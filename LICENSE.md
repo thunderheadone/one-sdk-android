@@ -1,1 +1,1 @@
-Copyright (c) 2017 Thunderhead One Inc. All rights reserved.
+Copyright (c) 2018 Thunderhead One Inc. All rights reserved.
