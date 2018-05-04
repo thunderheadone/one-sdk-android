@@ -47,7 +47,8 @@ dependencies {
 ```
 6. Update your `build.gradle` to add codeless identity transfer support.
 + Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
-``` gradle buildscript {
+``` gradle 
+buildscript {
     repositories {
         mavenCentral()
             google()
@@ -59,7 +60,7 @@ dependencies {
 }
 ```
 + Navigate to your **app-level** `build.gradle` and append the following configuration:
-```gradle 
+``` gradle 
 apply plugin: 'com.archinamon.aspectj-ext'
 aspectj {
     includeAspectsFromJar 'com.thunderhead', 'one_aspects'
@@ -159,7 +160,8 @@ To start tracking, capturing, and receiving optimizations with the ONE SDK in Us
 
 With your parameters ready to hand, add the following lines of code under the Application’s subclass onCreate() method. You must ensure the initialization method is added after super.onCreate() is called.
 
-```java public class YourApplication extends Application {
+``` java 
+public class YourApplication extends Application {
   
   private static final String siteKey = "ONE-XXXXXXXXXX-1022";
   private static final String touchpointURI = "myAppsNameURI";
@@ -188,7 +190,6 @@ one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.ADMIN_MO
 
 ## Additional features
 Follow any of the steps below to access further functions of the SDK.
-
 *Coming soon*
 
 ## Further integration details 
