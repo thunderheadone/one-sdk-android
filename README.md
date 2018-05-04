@@ -190,6 +190,7 @@ one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.ADMIN_MO
 
 ## Additional features
 Follow any of the steps below to access further functions of the SDK.
+
 *Coming soon*
 
 ## Further integration details 
