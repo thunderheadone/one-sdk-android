@@ -37,7 +37,7 @@ dependencies {
 
     implementation 'oauth.signpost:signpost-jetty6:1.2.1.2'
 
-    implementation 'com.squareup.okhttp:okhttp:3.7.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
     implementation 'com.squareup.retrofit2:retrofit:2.2.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
     implementation 'com.brsanthu:migbase64:2.2'
