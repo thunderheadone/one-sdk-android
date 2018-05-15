@@ -103,7 +103,7 @@ android {
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -119,7 +119,7 @@ aspectj {
 }
 
 dependencies {
-    implementation project(path: ':Thunderhead_android_release_2.16.0')
+    implementation project(path: ':Thunderhead_android_release_2.18.1')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation 'com.android.support:support-v4:26.1.0'
