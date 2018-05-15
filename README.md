@@ -172,8 +172,11 @@ public class YourApplication extends Application {
   
     @Override
     public void onCreate() {
+      super.onCreate();
+      
       One one = One.getInstance(getApplicationContext());
       one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.USER_MODE, hostName);
+      
     }
 }
 ```
