@@ -1,6 +1,6 @@
 ![Thunderhead ONE SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead ONE")
 
-The ONE SDK for Android supports Android 4 (API 14) and above.
+The ONE SDK for Android supports Android 4.1 (API 16) and above.
 
 ## Installation
 
@@ -30,10 +30,10 @@ defaultConfig {
 + Add the following SDK dependencies to your app:
 ``` gradle 
 dependencies {
-    implementation 'com.android.support:support-v4:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.android.support:customtabs:26.1.0'
+    implementation 'com.android.support:support-v4:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support:customtabs:27.0.2'
 
     implementation 'oauth.signpost:signpost-jetty6:1.2.1.2'
 
@@ -97,13 +97,13 @@ apply plugin: 'com.archinamon.aspectj-ext'
 
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion 16
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -119,13 +119,13 @@ aspectj {
 }
 
 dependencies {
-    implementation project(path: ':Thunderhead_android_release_2.18.1')
+    implementation project(path: ':Thunderhead_android_release_2.19.0')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation 'com.android.support:support-v4:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.android.support:customtabs:26.1.0'
+    implementation 'com.android.support:support-v4:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support:customtabs:27.0.2'
 
     implementation 'oauth.signpost:signpost-jetty6:1.2.1.2'
 
@@ -201,10 +201,10 @@ Follow any of the steps below to access further functions of the SDK.
 The ONE SDK for Android also supports apps that use Retrofit 1.9. In order to use this, update your app level build.gradle file to contain the following dependencies:
 ``` java 
 dependencies {
-    implementation 'com.android.support:support-v4:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.android.support:customtabs:26.1.0'
+    implementation 'com.android.support:support-v4:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support:customtabs:27.0.2'
 
     implementation 'oauth.signpost:signpost-jetty6:1.2.1.2'
 
