@@ -5,21 +5,17 @@ The ONE SDK for Android supports Android 4.1 (API 16) and above.
 ## Installation
 
 ### Manual installation
-1. [Download the latest ONE SDK for Android](https://github.com/thunderheadone/one-sdk-android/releases) and extract the zip.
-2. Open your existing Android application in Android Studio.
-3. Import the aar file into your project:
-+ Select File > New > New Module > Import JAR/.AAR Package.
-+ Locate the .aar file on your machine and select Finish.
-4. Include the ONE SDK as a dependency into your project:
+1. Open your existing Android application in Android Studio.
+2. Include the ONE SDK as a dependency into your project:
 + Navigate to your app-level build.gradle file.
 + Add the following, under the dependencies section:
 ```gradle
 dependencies {     
-  	implementation project(':name-of-aar-file') 
+    implementation "com.thunderhead.android:one-sdk:2.20.0-alpha"
 }
 ```
 + Ensure the project name matches the module name.
-5. Add the ONE SDK dependencies within the same `build.gradle` file. 
+3. Add the ONE SDK dependencies within the same `build.gradle` file. 
 + Add `RenderScript` support under the `defaultConfig` section:
 ```gradle
 defaultConfig {
@@ -27,31 +23,21 @@ defaultConfig {
    renderscriptSupportModeEnabled true
 }
 ```
-+ Add the following SDK dependencies to your app:
++ Add the following, under the repositories section:
 ``` gradle 
-dependencies {
-    implementation 'com.android.support:support-v4:27.0.2'
-    implementation 'com.android.support:design:27.0.2'
-    implementation 'com.android.support:recyclerview-v7:27.0.2'
-    implementation 'com.android.support:customtabs:27.0.2'
-
-    implementation 'oauth.signpost:signpost-jetty6:1.2.1.2'
-
-    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
-    implementation 'com.brsanthu:migbase64:2.2'
-
-    implementation 'com.google.code.gson:gson:2.8.0'
+repositories {
+  maven {
+    url https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android
+  }
 }
 ```
-6. Update your `build.gradle` to add codeless identity transfer support.
+4. Update your `build.gradle` to add codeless identity transfer support.
 + Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
 ``` gradle 
 buildscript {
     repositories {
-        mavenCentral()
-            google()
+        jcenter()   // or mavenCentral()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -72,8 +58,8 @@ Example of the **top-level** `build.gradle` file after integration:
 ``` gradle
 buildscript {
     repositories {
-        mavenCentral()
-             google()
+        jcenter()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -119,23 +105,8 @@ aspectj {
 }
 
 dependencies {
-    implementation project(path: ':Thunderhead_android_release_2.19.0')
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-    implementation 'com.android.support:support-v4:27.0.2'
-    implementation 'com.android.support:design:27.0.2'
-    implementation 'com.android.support:recyclerview-v7:27.0.2'
-    implementation 'com.android.support:customtabs:27.0.2'
-
-    implementation 'oauth.signpost:signpost-jetty6:1.2.1.2'
-
-    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
-    implementation 'com.brsanthu:migbase64:2.2'
-
-    implementation 'com.google.code.gson:gson:2.8.0'
-    
+    implementation "com.thunderhead.android:one-sdk:2.20.0-alpha"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')    
 }
 ```
 
@@ -201,21 +172,9 @@ Follow any of the steps below to access further functions of the SDK.
 The ONE SDK for Android also supports apps that use Retrofit 1.9. In order to use this, update your app level build.gradle file to contain the following dependencies:
 ``` java 
 dependencies {
-    implementation 'com.android.support:support-v4:27.0.2'
-    implementation 'com.android.support:design:27.0.2'
-    implementation 'com.android.support:recyclerview-v7:27.0.2'
-    implementation 'com.android.support:customtabs:27.0.2'
-
-    implementation 'oauth.signpost:signpost-jetty6:1.2.1.2'
-
     implementation 'com.squareup.retrofit:retrofit:1.9.0'
     implementation 'com.squareup.okhttp:okhttp-urlconnection:2.7.5'
-    
-    implementation 'com.google.code.gson:gson:2.8.0'
-     
-    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
     implementation 'com.jakewharton.retrofit:retrofit1-okhttp3-client:1.1.0'
-    implementation 'com.brsanthu:migbase64:2.2'
 }
 ```
 ### How to disable the codeless identity transfer support
