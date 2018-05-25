@@ -27,8 +27,16 @@ defaultConfig {
 ``` gradle 
 repositories {
   maven {
-    url https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android
+   url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
   }
+}
+```
++ Append the following configuration:
+``` gradle 
+apply plugin: 'com.archinamon.aspectj-ext'
+aspectj {
+    includeAspectsFromJar 'com.thunderhead', 'one_aspects'
+    ajcArgs << '-Xlint:ignore' 
 }
 ```
 4. Update your `build.gradle` to add codeless identity transfer support.
@@ -43,14 +51,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.archinamon:android-gradle-aspectj:3.2.0'
     }
-}
-```
-+ Navigate to your **app-level** `build.gradle` and append the following configuration:
-``` gradle 
-apply plugin: 'com.archinamon.aspectj-ext'
-aspectj {
-    includeAspectsFromJar 'com.thunderhead', 'one_aspects'
-    ajcArgs << '-Xlint:ignore' 
 }
 ```
 #### Manual installation `build.gradle` examples
@@ -113,8 +113,8 @@ dependencies {
 ## Use the Codeless ONE SDK for Android
 Enable your app to automatically recognize ONE Interactions by executing the following steps.
 
-### Update your Application Manifest File
-Update your project's AndroidManifest.xml to include the following permissions:
+### The Thunderhead Application Manifest File Permissions:
+Included in the Thunderhead ONE SDK's AndroidManifest.xml are the following permissions which will be merged with your applications AndroidManifest.xml:
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -168,13 +168,22 @@ Follow any of the steps below to access further functions of the SDK.
 *Coming soon*
 
 ## Further integration details 
+### Retrofit 2.x support
+The ONE SDK for Android supports apps that use Retrofit 2.X. In order to use this, update your app level build.gradle file to contain the following dependencies:
+``` java 
+dependencies {
+    implementation ("com.thunderhead.android:one-sdk:2.20.0-alpha") {
+      exclude group: retrofit1Package
+    }
+}
+```
 ### Retrofit 1.9 support
 The ONE SDK for Android also supports apps that use Retrofit 1.9. In order to use this, update your app level build.gradle file to contain the following dependencies:
 ``` java 
 dependencies {
-    implementation 'com.squareup.retrofit:retrofit:1.9.0'
-    implementation 'com.squareup.okhttp:okhttp-urlconnection:2.7.5'
-    implementation 'com.jakewharton.retrofit:retrofit1-okhttp3-client:1.1.0'
+    implementation ("com.thunderhead.android:one-sdk:2.20.0-alpha") {
+      exclude group: retrofit2Package
+    }
 }
 ```
 ### How to disable the codeless identity transfer support
