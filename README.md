@@ -11,9 +11,12 @@ The ONE SDK for Android supports Android 4.1 (API 16) and above.
 + Add the following, under the dependencies section:
 ```gradle
 dependencies {     
-    implementation "com.thunderhead.android:one-sdk:2.20.0-alpha"
+  implementation ("com.thunderhead.android:one-sdk:2.20.0-alpha") {
+      exclude group: retrofit1Package
+    }
 }
 ```
++ **Note:** See [Retrofit 1.9 Support](#retro19) for applications that implement Retrofit 1.9
 + Ensure the project name matches the module name.
 3. Add the ONE SDK dependencies within the same `build.gradle` file. 
 + Add `RenderScript` support under the `defaultConfig` section:
@@ -105,7 +108,9 @@ aspectj {
 }
 
 dependencies {
-    implementation "com.thunderhead.android:one-sdk:2.20.0-alpha"
+    implementation ("com.thunderhead.android:one-sdk:2.20.0-alpha") {
+      exclude group: retrofit1Package
+    }
     implementation fileTree(include: ['*.jar'], dir: 'libs')    
 }
 ```
@@ -177,7 +182,7 @@ dependencies {
     }
 }
 ```
-### Retrofit 1.9 support
+### <a name="retro19"></a>Retrofit 1.9 support
 The ONE SDK for Android also supports apps that use Retrofit 1.9. In order to use this, update your app level build.gradle file to contain the following dependencies:
 ``` java 
 dependencies {
