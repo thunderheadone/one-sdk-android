@@ -7,7 +7,7 @@ The ONE SDK for Android supports Android 4.1 (API 16) and above.
 ### Manual installation
 1. Open your existing Android application in Android Studio.
 2. Include the ONE SDK as a dependency into your project:
-+ Navigate to your app-level build.gradle file.
++ Navigate to your **app-level** build.gradle file.
 + Add the following, under the dependencies section:
 ```gradle
 dependencies {     
@@ -18,7 +18,7 @@ dependencies {
 ```
 + **Note:** See [Retrofit 1.9 Support](#retro19) for applications that implement Retrofit 1.9
 + Ensure the project name matches the module name.
-3. Add the ONE SDK configuration within the same `build.gradle` file. 
+3. Add the ONE SDK configuration within the same **app-level** `build.gradle` file. 
 + Add `RenderScript` support under the `defaultConfig` section:
 ```gradle
 defaultConfig {
