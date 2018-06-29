@@ -1,4 +1,4 @@
-![Thunderhead ONE SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead ONE")
+x![Thunderhead ONE SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead ONE")
 
 The ONE SDK for Android supports Android 4.1 (API 16) and above.
 
@@ -17,7 +17,6 @@ dependencies {
 }
 ```
 + **Note:** See [Retrofit 1.9 Support](#retro19) for applications that implement Retrofit 1.9
-+ Ensure the project name matches the module name.
 3. Add the ONE SDK configuration within the same **app-level** `build.gradle` file. 
 + Add `RenderScript` support under the `defaultConfig` section:
 ```gradle
@@ -56,7 +55,7 @@ buildscript {
     }
 }
 ```
-#### Manual installation `build.gradle` examples
+####  `build.gradle` examples
 Example of the **top-level** `build.gradle` file after integration:
 ``` gradle
 buildscript {
@@ -108,11 +107,17 @@ aspectj {
 }
 
 dependencies {
-    implementation ("com.thunderhead.android:one-sdk:2.20.0") {
+    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.20.0') {
       exclude group: com.squareup.retrofit
     }
     implementation fileTree(include: ['*.jar'], dir: 'libs')    
 }
+repositories {
+    maven {
+       url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+    }
+}
+
 ```
 
 ## Use the Codeless ONE SDK for Android
@@ -177,7 +182,7 @@ Follow any of the steps below to access further functions of the SDK.
 The ONE SDK for Android supports apps that use Retrofit 2.X. In order to use this, update your app level build.gradle file to contain the following dependencies:
 ``` java 
 dependencies {
-    implementation ("com.thunderhead.android:one-sdk:2.20.0") {
+    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.20.0') {
       exclude group: com.squareup.retrofit
     }
 }
@@ -186,7 +191,7 @@ dependencies {
 The ONE SDK for Android also supports apps that use Retrofit 1.9. In order to use this, update your app level build.gradle file to contain the following dependencies:
 ``` java 
 dependencies {
-    implementation ("com.thunderhead.android:one-sdk:2.20.0") {
+    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.20.0') {
       exclude group: com.squareup.retrofit2
     }
 }
