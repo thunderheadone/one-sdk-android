@@ -11,7 +11,7 @@ The ONE SDK for Android supports Android 4.1 (API 16) and above.
 + Add the following, under the dependencies section:
 ```gradle
 dependencies {     
-  implementation ("com.thunderhead.android:one-sdk:2.20.0") {
+  implementation ("com.thunderhead.android:one-sdk:2.20.1") {
       exclude group: com.squareup.retrofit
     }
 }
@@ -108,7 +108,7 @@ aspectj {
 }
 
 dependencies {
-    implementation ("com.thunderhead.android:one-sdk:2.20.0") {
+    implementation ("com.thunderhead.android:one-sdk:2.20.1") {
       exclude group: com.squareup.retrofit
     }
     implementation fileTree(include: ['*.jar'], dir: 'libs')    
@@ -177,7 +177,7 @@ Follow any of the steps below to access further functions of the SDK.
 The ONE SDK for Android supports apps that use Retrofit 2.X. In order to use this, update your app level build.gradle file to contain the following dependencies:
 ``` java 
 dependencies {
-    implementation ("com.thunderhead.android:one-sdk:2.20.0") {
+    implementation ("com.thunderhead.android:one-sdk:2.20.1") {
       exclude group: com.squareup.retrofit
     }
 }
@@ -186,7 +186,7 @@ dependencies {
 The ONE SDK for Android also supports apps that use Retrofit 1.9. In order to use this, update your app level build.gradle file to contain the following dependencies:
 ``` java 
 dependencies {
-    implementation ("com.thunderhead.android:one-sdk:2.20.0") {
+    implementation ("com.thunderhead.android:one-sdk:2.20.1") {
       exclude group: com.squareup.retrofit2
     }
 }
