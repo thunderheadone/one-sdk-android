@@ -199,7 +199,7 @@ one.optOut(true);
 *Note:* 
 - When opted out, tracking will stop and locally queued data will be removed.
 - At any point you can opt a user back in by passing `false` into the same method. 
-- For instructions on how completely remove a user's data from ONE - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+- For instructions on how completely remove a user's data from ONE or Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ### Exclude an Interaction
 You can exclude a specific view from being automatically recognized as an Interaction by using the `excludeInteractionView` method.
