@@ -15,7 +15,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	```gradle
 	dependencies {     
 	  implementation ("com.thunderhead.android:one-sdk:2.21.0") {
-	      exclude group: com.squareup.retrofit
+	      exclude group: 'com.squareup.retrofit'
 	    }
 	}
 	```
@@ -25,7 +25,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	```gradle
 	dependencies {     
 	  implementation ("com.thunderhead.android:is-sdk:2.21.0") {
-	      exclude group: com.squareup.retrofit
+	      exclude group: 'com.squareup.retrofit'
 	    }
 	}
 	```
@@ -122,7 +122,7 @@ aspectj {
 
 dependencies {
     implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.0') {
-      exclude group: com.squareup.retrofit
+      exclude group: 'com.squareup.retrofit'
     }
     implementation fileTree(include: ['*.jar'], dir: 'libs')    
 }
@@ -750,7 +750,7 @@ The Thunderhead SDK for Android supports apps that use Retrofit 2.X. In order to
 ``` java 
 dependencies {
     implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.0') {
-      exclude group: com.squareup.retrofit
+      exclude group: 'com.squareup.retrofit'
     }
 }
 ```
@@ -760,7 +760,7 @@ dependencies {
 ``` java 
 dependencies {
     implementation (group: 'com.thunderhead.android', name: 'is-sdk', version: '2.21.0') {
-      exclude group: com.squareup.retrofit
+      exclude group: 'com.squareup.retrofit'
     }
 }
 ```
@@ -772,7 +772,7 @@ The Thunderhead SDK for Android also supports apps that use Retrofit 1.9. In ord
 ``` java 
 dependencies {
     implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.0') {
-      exclude group: com.squareup.retrofit2
+      exclude group: 'com.squareup.retrofit2'
     }
 }
 ```
@@ -782,7 +782,7 @@ dependencies {
 ``` java 
 dependencies {
     implementation (group: 'com.thunderhead.android', name: 'is-sdk', version: '2.21.0') {
-      exclude group: com.squareup.retrofit2
+      exclude group: 'com.squareup.retrofit2'
     }
 }
 ```
