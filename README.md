@@ -20,7 +20,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	}
 	```
 	
-	+ For Salesforce Interaction Studio:
+	+ For Salesforce Interaction Studio integrations:
 	
 	```gradle
 	dependencies {     
