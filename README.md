@@ -10,7 +10,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 
 + Navigate to your **app-level** build.gradle file.
 + Add the following, under the dependencies section:
-	+ For Thunderhead ONE integrations:
+	+ For **Thunderhead ONE** integrations:
 	
 	```gradle
 	dependencies {     
@@ -20,7 +20,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	}
 	```
 	
-	+ For Salesforce Interaction Studio integrations:
+	+ For **Salesforce Interaction Studio** integrations:
 	
 	```gradle
 	dependencies {     
