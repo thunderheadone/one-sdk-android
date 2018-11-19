@@ -16,7 +16,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	dependencies {     
 	  implementation ("com.thunderhead.android:one-sdk:2.21.0") {
 	      exclude group: 'com.squareup.retrofit'
-	    }
+	  }
 	}
 	```
 	
@@ -26,7 +26,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	dependencies {     
 	  implementation ("com.thunderhead.android:is-sdk:2.21.0") {
 	      exclude group: 'com.squareup.retrofit'
-	    }
+	  }
 	}
 	```
 	
@@ -48,13 +48,22 @@ repositories {
 }
 ```
 + Append the following configuration:
-``` gradle 
-apply plugin: 'com.archinamon.aspectj-ext'
-aspectj {
-    includeAspectsFromJar 'com.thunderhead', 'one_aspects'
-    ajcArgs << '-Xlint:ignore' 
-}
-```
+	+ For **Thunderhead ONE** integrations:
+		``` gradle 
+		apply plugin: 'com.thunderhead.android.aspectj-ext'
+		aspectj {
+		    includeAspectsFromJar 'one_sdk'
+		    ajcArgs << '-Xlint:ignore' 
+		}
+		```
+	+ For **Salesforce Interaction Studio** integrations:
+		``` gradle 
+		apply plugin: 'com.thunderhead.android.aspectj-ext'
+		aspectj {
+		    includeAspectsFromJar 'is_sdk'
+		    ajcArgs << '-Xlint:ignore' 
+		}
+		```
 4. Update your `build.gradle` to add codeless identity transfer support.
 + Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
 ``` gradle 
@@ -65,7 +74,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.archinamon:android-gradle-aspectj:3.2.0'
+        classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.0'
     }
 }
 ```
@@ -79,7 +88,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.archinamon:android-gradle-aspectj:3.2.0'
+        classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.0'
     }
 }
 
@@ -95,7 +104,7 @@ allprojects {
 Example of the **app-level** `build.gradle` file after integration:
 ``` gradle
 apply plugin: 'com.android.application'
-apply plugin: 'com.archinamon.aspectj-ext'
+apply plugin: 'com.thunderhead.android.aspectj-ext'
 
 
 android {
@@ -116,7 +125,7 @@ android {
 }
 
 aspectj {
-    includeAspectsFromJar 'com.thunderhead', 'one_aspects'
+    includeAspectsFromJar 'one_sdk'
     ajcArgs << '-Xlint:ignore'
 }
 
@@ -582,7 +591,7 @@ To enable the push notifications functionality, you need to make the following g
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.0.1'
-                classpath 'com.archinamon:android-gradle-aspectj:3.2.0'
+            classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.0'
             // for cloud messaging support
             classpath 'com.google.gms:google-services:3.1.0'
         }
@@ -791,13 +800,13 @@ dependencies {
 To remove the codeless identity transfer functionality for Android, you need to make the following updates:
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 ```gradle 
-classpath 'com.archinamon:android-gradle-aspectj:3.2.0'
+classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.0'
 ```
 2. Open the **app-level** `build.gradle` file and remove the following references.
 ```gradle 
-apply plugin: 'com.archinamon.aspectj-ext'
+apply plugin: 'com.thunderhead.android.aspectj-ext'
 aspectj {
-    includeAspectsFromJar 'com.thunderhead', 'one_aspects'
+    includeAspectsFromJar 'one_sdk'
     ajcArgs << '-Xlint:ignore' 
 }
 ```
