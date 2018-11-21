@@ -74,7 +74,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.0'
+        classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.1'
     }
 }
 ```
@@ -88,7 +88,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.0'
+        classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.1'
     }
 }
 
@@ -591,7 +591,7 @@ To enable the push notifications functionality, you need to make the following g
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.0.1'
-            classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.0'
+            classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.1'
             // for cloud messaging support
             classpath 'com.google.gms:google-services:3.1.0'
         }
@@ -800,7 +800,7 @@ dependencies {
 To remove the codeless identity transfer functionality for Android, you need to make the following updates:
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 ```gradle 
-classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.0'
+classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.1'
 ```
 2. Open the **app-level** `build.gradle` file and remove the following references.
 ```gradle 
