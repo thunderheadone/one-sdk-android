@@ -759,7 +759,7 @@ dependencies {
 
 ``` java 
 dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'is-sdk', version: '2.21.0') {
+    implementation (group: 'com.thunderhead.android', name: 'is-sdk', version: '2.21.1') {
       exclude group: 'com.squareup.retrofit'
     }
 }
@@ -771,7 +771,7 @@ The Thunderhead SDK for Android also supports apps that use Retrofit 1.9. In ord
 
 ``` java 
 dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.0') {
+    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.1') {
       exclude group: 'com.squareup.retrofit2'
     }
 }
@@ -781,7 +781,7 @@ dependencies {
 
 ``` java 
 dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'is-sdk', version: '2.21.0') {
+    implementation (group: 'com.thunderhead.android', name: 'is-sdk', version: '2.21.1') {
       exclude group: 'com.squareup.retrofit2'
     }
 }
