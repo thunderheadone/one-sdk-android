@@ -14,7 +14,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	
 	```gradle
 	dependencies {     
-	  implementation ("com.thunderhead.android:one-sdk:2.21.0") {
+	  implementation ("com.thunderhead.android:one-sdk:2.21.1") {
 	      exclude group: 'com.squareup.retrofit'
 	    }
 	}
@@ -24,7 +24,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	
 	```gradle
 	dependencies {     
-	  implementation ("com.thunderhead.android:is-sdk:2.21.0") {
+	  implementation ("com.thunderhead.android:is-sdk:2.21.1") {
 	      exclude group: 'com.squareup.retrofit'
 	    }
 	}
@@ -121,7 +121,7 @@ aspectj {
 }
 
 dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.0') {
+    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.1') {
       exclude group: 'com.squareup.retrofit'
     }
     implementation fileTree(include: ['*.jar'], dir: 'libs')    
@@ -749,7 +749,7 @@ The Thunderhead SDK for Android supports apps that use Retrofit 2.X. In order to
 
 ``` java 
 dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.0') {
+    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.1') {
       exclude group: 'com.squareup.retrofit'
     }
 }
