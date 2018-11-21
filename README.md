@@ -222,7 +222,12 @@ Included in the Thunderhead SDK's AndroidManifest.xml are the following permissi
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 ```
-*Note:* The `SYSTEM_ALERT_WINDOW` permission is only needed for Admin mode builds. In your setup you can add this as a flavor specific permission to avoid having to show this as a permission change to your Play Store users.
+*Note:* 
+- The `SYSTEM_ALERT_WINDOW` permission is only needed for Admin mode builds. In your setup you can add this as a flavor specific permission to avoid having to show this as a permission change to your Play Store users.
+- You can remove this permission in User mode builds by using: 
+    ```xml 
+        <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
+    ```
 
 ### Subclass your `Application` Class
 If you haven’t done so already, you will need to subclass your `Application` class in order to be able to initialize the SDK. If you are just creating an `Application` subclass please remember to define it in your app manifest.
@@ -260,7 +265,9 @@ To use the framework in Admin mode, change the ONE mode to `ADMIN_MODE`, as foll
 ``` java 
 one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.ADMIN_MODE, hostName);
 ```
-*Note:* If you are running in Admin mode on Android 6.0+, you will need to enable the “draw over other apps” permission via your OS settings. 
+*Note:* 
+- If you are running in Admin mode on Android 6.0+, you will need to enable the “draw over other apps” permission via your OS settings. 
+- If you have added both User and Admin mode support under the same app build, please note that the app will need to be terminated and restarted when switching from one mode to the other.
 
 **You have now successfully integrated the codeless Thunderhead SDK for Android.**
 
@@ -726,6 +733,18 @@ One one = One.getInstance(getApplicationContext());
 one.sendPushToken("DUI03F379S1UUIDA6DADF8DFQPZ");
 
 ```
+
+*Note:* 
+- The following permissions are used and will be merged into your app's manifest:
+```xml 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+```
+- You can remove these permissions by adding the following to your manifest: 
+    ```xml 
+        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" tools:node="remove" />
+        <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" tools:node="remove" />
+    ```
 
 ### Send a location object
 
