@@ -79,7 +79,10 @@ buildscript {
 }
 ```
 ####  `build.gradle` examples
-Example of the **top-level** `build.gradle` file after integration:
+
+#####  **Thunderhead ONE** `build.gradle` examples:
+
+###### Example of the **top-level** `build.gradle` file after integration:
 ``` gradle
 buildscript {
     repositories {
@@ -101,7 +104,7 @@ allprojects {
 }
 ```
 
-Example of the **app-level** `build.gradle` file after integration:
+###### Example of the **app-level** `build.gradle` file after integration:
 ``` gradle
 apply plugin: 'com.android.application'
 apply plugin: 'com.thunderhead.android.aspectj-ext'
@@ -129,12 +132,78 @@ aspectj {
     ajcArgs << '-Xlint:ignore'
 }
 
-dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.21.1') {
-      exclude group: 'com.squareup.retrofit'
-    }
-    implementation fileTree(include: ['*.jar'], dir: 'libs')    
+dependencies {     
+	implementation ("com.thunderhead.android:one-sdk:2.21.1") {
+	    exclude group: 'com.squareup.retrofit'
+	}
 }
+
+repositories {
+    maven {
+       url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+    }
+}
+
+```
+
+#####  **Salesforce Interaction Studio** `build.gradle` examples:
+
+###### Example of the **top-level** `build.gradle` file after integration:
+``` gradle
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.thunderhead.android:android-gradle-plugin-aspectj:4.0.1'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+    }
+}
+```
+
+###### Example of the **app-level** `build.gradle` file after integration:
+``` gradle
+apply plugin: 'com.android.application'
+apply plugin: 'com.thunderhead.android.aspectj-ext'
+
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        applicationId "com.thunderhead.android.demo"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        renderscriptTargetApi 20
+        renderscriptSupportModeEnabled true
+    }
+
+}
+
+aspectj {
+    includeAspectsFromJar 'is_sdk'
+    ajcArgs << '-Xlint:ignore'
+}
+
+dependencies {     
+	implementation ("com.thunderhead.android:is-sdk:2.21.1") {
+	    exclude group: 'com.squareup.retrofit'
+	}
+}
+
 repositories {
     maven {
        url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
