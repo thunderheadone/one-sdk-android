@@ -224,7 +224,7 @@ Included in the Thunderhead SDK's AndroidManifest.xml are the following permissi
 ```
 *Note:* 
 - The `SYSTEM_ALERT_WINDOW` permission is only needed for Admin mode builds. In your setup you can add this as a flavor specific permission to avoid having to show this as a permission change to your Play Store users.
-- You can remove this permission in User mode builds by using: 
+- You can remove this permission in User mode builds by adding the following to your manifest: 
     ```xml 
         <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
     ```
