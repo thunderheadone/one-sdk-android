@@ -52,7 +52,7 @@ repositories {
 		``` gradle 
 		apply plugin: 'com.archinamon.aspectj-ext'
 		aspectj {
-		    includeAspectsFromJar 'one_sdk'
+		    includeAspectsFromJar 'one-sdk'
 		    ajcArgs << '-Xlint:ignore' 
 		}
 		```
@@ -60,7 +60,7 @@ repositories {
 		``` gradle 
 		apply plugin: 'com.archinamon.aspectj-ext'
 		aspectj {
-		    includeAspectsFromJar 'is_sdk'
+		    includeAspectsFromJar 'is-sdk'
 		    ajcArgs << '-Xlint:ignore' 
 		}
 		```
@@ -128,7 +128,7 @@ android {
 }
 
 aspectj {
-    includeAspectsFromJar 'one_sdk'
+    includeAspectsFromJar 'one-sdk'
     ajcArgs << '-Xlint:ignore'
 }
 
@@ -194,7 +194,7 @@ android {
 }
 
 aspectj {
-    includeAspectsFromJar 'is_sdk'
+    includeAspectsFromJar 'is-sdk'
     ajcArgs << '-Xlint:ignore'
 }
 
@@ -894,7 +894,7 @@ classpath 'com.archinamon:android-gradle-aspectj:3.3.1'
 ```gradle 
 apply plugin: 'com.archinamon.aspectj-ext'
 aspectj {
-    includeAspectsFromJar 'one_sdk'
+    includeAspectsFromJar 'one-sdk'
     ajcArgs << '-Xlint:ignore' 
 }
 ```
