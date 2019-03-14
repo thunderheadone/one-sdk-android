@@ -96,13 +96,9 @@ configurations.all {
                 details.useVersion "17.3.2" // Where 17.3.2 is replaced with the apps required version
             }
             if(details.requested.group == "com.google.android.gms" && details.requested.name == "play-services-basement") {
-                details.useVersion "15.0.1" // Where 17.0.1 is replaced with the apps required version
+                details.useVersion "15.0.1" // Where 15.0.1 is replaced with the apps required version
             }
         }
     }
 }
 ```
-
-## Logcat Errors
-
-### Rejecting re-init on previously-failed class java.lang.Class<com.jakewharton.retrofit.Ok3Client>

@@ -806,8 +806,8 @@ aspectj {
 }
 ```
 
-## Integration Guide
-[Trouble Shooting Guide](TROUBLESHOOTING-GUIDE.md)
+## Troubleshooting Guide
+[Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
