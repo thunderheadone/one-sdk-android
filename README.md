@@ -14,9 +14,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	
 	```gradle
 	dependencies {     
-	  implementation ("com.thunderhead.android:one-sdk:2.22.0") {
-	      exclude group: 'com.squareup.retrofit'
-	  }
+	  implementation "com.thunderhead.android:one-sdk:3.0.0"
 	}
 	```
 	
@@ -24,13 +22,10 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	
 	```gradle
 	dependencies {     
-	  implementation ("com.thunderhead.android:is-sdk:2.22.0") {
-	      exclude group: 'com.squareup.retrofit'
-	  }
+	  implementation "com.thunderhead.android:is-sdk:3.0.0" 
 	}
 	```
 	
-+ **Note:** See [Retrofit 1.9 Support](#retro19) for applications that implement Retrofit 1.9
 3. Add the Thunderhead SDK configuration within the same **app-level** `build.gradle` file. 
 + Add `RenderScript` support under the `defaultConfig` section:
 ```gradle
@@ -133,9 +128,7 @@ aspectj {
 }
 
 dependencies {     
-	implementation ("com.thunderhead.android:one-sdk:2.22.0") {
-	    exclude group: 'com.squareup.retrofit'
-	}
+	implementation "com.thunderhead.android:one-sdk:3.0.0"
 }
 
 repositories {
@@ -199,9 +192,7 @@ aspectj {
 }
 
 dependencies {     
-	implementation ("com.thunderhead.android:is-sdk:2.22.0") {
-	    exclude group: 'com.squareup.retrofit'
-	}
+	implementation "com.thunderhead.android:is-sdk:3.0.0" 
 }
 
 repositories {
@@ -214,6 +205,8 @@ repositories {
 
 ## Use the Codeless Thunderhead SDK for Android
 Enable your app to automatically recognize **Interactions** by executing the following steps.
+
+* Developer note: Android Studio `Instant Run` must be [disabled](https://github.com/Archinamon/android-gradle-aspectj#extended-plugin-config) when using the codeless identity transfer feature.
 
 ### The Thunderhead Application Manifest File Permissions:
 Included in the Thunderhead SDK's AndroidManifest.xml are the following permissions which will be merged with your applications AndroidManifest.xml:
@@ -484,30 +477,6 @@ one.sendResponseCode("yourCode", "/interactionPath");
 - This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-### Identity sync
-#### Identity sync with Thunderhead ONE or Salesforce Interaction Studio
-
-To synchronise the Chrome Mobile identity set by the Thunderhead ONE Tag, or Salesforce Interaction Studio Tag, with the current app identity, call:
-
-```java
-One one = One.getInstance(getApplicationContext()); 
-one.identitySync();
-```
-*Note:*
-- This functionality only works if Chrome for Android is installed on the device and the device is connected to WiFi. 
-
-#### Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint
-
-To synchronise the Chrome Mobile identity set by the Thunderhead ONE Tag, or Salesforce Interaction Studio Tag, with the current app identity and your web touchpoint, call:
-
-```java
-One one = One.getInstance(getApplicationContext()); 
-one.identitySyncWithURL("https://your-web-touchpoint-url");
-```
-
-*Note:*
-- This functionality only works if Chrome for Android is installed on the device and the device is connected to WiFi. 
-
 ### Ability to whitelist identity transfer links
 
 The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the method `whitelistIdentityTransferLinks` and passing your links as shown below:
@@ -652,16 +621,17 @@ Pass the `URL` or `Uri`, which will send an Interaction request to `/one-click` 
 - The `/one-click` Interaction request should be setup in Thunderhead ONE, or Salesforce Interaction Studio, to capture the appropriate attributes and activity.
 
 ### Enable push notifications
+To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, Firebase Cloud Messaging (FCM) must be configured by following the FCM setup instructions. 
+At minimum the app must be configured in Firebase and the `google-services.json` needs to be in the root of the app project.
 
-To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, ensure the correct dependencies have been added to the project and that you have followed the GCM or FCM instructions to be able to receive push notifications.
+#### Minimum Gradle Configuration 
+To use the codeless push notifications functionality without using FCM directly, you need to at least have the `google-services` plugin applied to your app build.gradle: 
 
-#### Add gradle build dependencies 
-To enable the push notifications functionality, you need to make the following gradle build updates: 
-
-1. Add the messaging class path to your top-level build.gradle file, located in the root project directory, as shown below:
+1. Add the Google Services Plugin to your classpath in the top-level build.gradle file, located in the root project directory, as shown below:
     ```gradle
     buildscript {
         repositories {
+            google()
             jcenter()
             mavenCentral()
         }
@@ -669,45 +639,25 @@ To enable the push notifications functionality, you need to make the following g
             classpath 'com.android.tools.build:gradle:3.2.1'
             classpath 'com.archinamon:android-gradle-aspectj:3.3.1'
             // for cloud messaging support
-            classpath 'com.google.gms:google-services:3.1.0'
+            classpath 'com.google.gms:google-services:4.2.0'
         }
     }
     ```
-2.	Add the FCM or GCM dependencies and apply the Google Messaging Service plugin to the app-level build.gradle file, as shown below:
-- If you are using Firebase, add the following dependencies: 
-    ```gradle
-    dependencies {   
-        ...
-        // FCM dependencies    
-        implementation "com.google.firebase:firebase-messaging:11.0.1"
-        implementation "com.google.android.gms:play-services-base:11.0.1"
-    }
+2.	Apply the Google Messaging Service plugin to the app-level build.gradle file, as shown below:
 
-    // place this at the bottom of your build.gradle
+    ```gradle
+    // place this at the bottom of your app build.gradle
     apply plugin: 'com.google.gms.google-services'
     ```
-- If you are using GCM, add the following dependencies:
-    ```gradle
-    dependencies {    
-        ...   
-        // GCM dependencies
-        implementation ("com.google.android.gms:play-services-gcm:11.0.1")
-    }
-
-    // place this at the bottom of your build.gradle
-    apply plugin: 'com.google.gms.google-services'
-    ```
+    
+    - The `Warning: The app gradle file must have a dependency on com.google.firebase:firebase-core for Firebase services to work as intended.` 
+    can safely be ignored as this is not required for Push Notification Support.
+    
 #### Enable codeless push notification support programmatically
-- If you are using FCM, simply enable push notifications as shown below:
+- For Firebase Cloud Messaging simply enable push notifications as shown below:
     ```java
     One one = One.getInstance(getApplicationContext());
     one.enablePushNotifications(true);
-    ```
-
-- If you are using GCM, enable push notifications and ensure you also pass the sender ID, as shown below:
-    ```java
-    One one = One.getInstance(getApplicationContext());
-    one.enablePushNotifications(true, "your_sender_id");
     ```
 *Note:* 
 - When you enable codeless push notification support, the SDK will automatically get the push token and handle receiving of push notifications on behalf of your app.
@@ -840,49 +790,6 @@ one.clearUserProfile();
 - For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ## Further integration details 
-### Retrofit 2.x support
-The Thunderhead SDK for Android supports apps that use Retrofit 2.X. In order to use this, update your app level build.gradle file to contain the following dependencies:
-+ For Thunderhead ONE:
-
-``` java 
-dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.22.0') {
-      exclude group: 'com.squareup.retrofit'
-    }
-}
-```
-
-+ For Salesforce Interaction Studio:
-
-``` java 
-dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'is-sdk', version: '2.22.0') {
-      exclude group: 'com.squareup.retrofit'
-    }
-}
-```
-
-### <a name="retro19"></a>Retrofit 1.9 support
-The Thunderhead SDK for Android also supports apps that use Retrofit 1.9. In order to use this, update your app level build.gradle file to contain the following dependencies:
-+ For Thunderhead ONE:
-
-``` java 
-dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'one-sdk', version: '2.22.0') {
-      exclude group: 'com.squareup.retrofit2'
-    }
-}
-```
-
-+ For Salesforce Interaction Studio:
-
-``` java 
-dependencies {
-    implementation (group: 'com.thunderhead.android', name: 'is-sdk', version: '2.22.0') {
-      exclude group: 'com.squareup.retrofit2'
-    }
-}
-```
 
 ### How to disable the codeless identity transfer support
 To remove the codeless identity transfer functionality for Android, you need to make the following updates:
@@ -898,6 +805,9 @@ aspectj {
     ajcArgs << '-Xlint:ignore' 
 }
 ```
+
+## Troubleshooting Guide
+[Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
