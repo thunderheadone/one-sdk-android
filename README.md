@@ -1,6 +1,6 @@
 ![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
-The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
+The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.3.1+.
 
 ## Installation
 
@@ -14,7 +14,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:one-sdk:3.0.0"
+	  implementation "com.thunderhead.android:one-sdk:4.0.0"
 	}
 	```
 	
@@ -22,7 +22,7 @@ The Thunderhead SDK for Android supports Android 4.1 (API 16) and above.
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:is-sdk:3.0.0" 
+	  implementation "com.thunderhead.android:is-sdk:4.0.0" 
 	}
 	```
 	
@@ -45,20 +45,13 @@ repositories {
 + Append the following configuration:
 	+ For **Thunderhead ONE** integrations:
 		``` gradle 
-		apply plugin: 'com.archinamon.aspectj-ext'
-		aspectj {
-		    includeAspectsFromJar 'one-sdk'
-		    ajcArgs << '-Xlint:ignore' 
-		}
+		apply plugin: 'com.thunderhead.android.orchestration-plugin'
 		```
 	+ For **Salesforce Interaction Studio** integrations:
 		``` gradle 
-		apply plugin: 'com.archinamon.aspectj-ext'
-		aspectj {
-		    includeAspectsFromJar 'is-sdk'
-		    ajcArgs << '-Xlint:ignore' 
-		}
+		apply plugin: 'com.thunderhead.android.orchestration-plugin'
 		```
+
 4. Update your `build.gradle` to add codeless identity transfer support.
 + Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
 ``` gradle 
@@ -66,10 +59,14 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            name 'Thunderhead'
+            url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.archinamon:android-gradle-aspectj:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
     }
 }
 ```
@@ -83,10 +80,14 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            name 'Thunderhead'
+            url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.archinamon:android-gradle-aspectj:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
     }
 }
 
@@ -102,8 +103,7 @@ allprojects {
 ###### Example of the **app-level** `build.gradle` file after integration:
 ``` gradle
 apply plugin: 'com.android.application'
-apply plugin: 'com.archinamon.aspectj-ext'
-
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 android {
     compileSdkVersion 27
@@ -119,16 +119,10 @@ android {
         renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
     }
-
-}
-
-aspectj {
-    includeAspectsFromJar 'one-sdk'
-    ajcArgs << '-Xlint:ignore'
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:one-sdk:3.0.0"
+	implementation "com.thunderhead.android:one-sdk:4.0.0"
 }
 
 repositories {
@@ -147,10 +141,14 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            name 'Thunderhead'
+            url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.archinamon:android-gradle-aspectj:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
     }
 }
 
@@ -166,8 +164,7 @@ allprojects {
 ###### Example of the **app-level** `build.gradle` file after integration:
 ``` gradle
 apply plugin: 'com.android.application'
-apply plugin: 'com.archinamon.aspectj-ext'
-
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 android {
     compileSdkVersion 27
@@ -183,16 +180,10 @@ android {
         renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
     }
-
-}
-
-aspectj {
-    includeAspectsFromJar 'is-sdk'
-    ajcArgs << '-Xlint:ignore'
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:is-sdk:3.0.0" 
+	implementation "com.thunderhead.android:is-sdk:4.0.0" 
 }
 
 repositories {
@@ -203,10 +194,12 @@ repositories {
 
 ```
 
+For further documentation on the `orchestration-plugin` please see the [reference docs](GITHUB-PLUGIN-README.md)
+
 ## Use the Codeless Thunderhead SDK for Android
 Enable your app to automatically recognize **Interactions** by executing the following steps.
 
-* Developer note: Android Studio `Instant Run` must be [disabled](https://github.com/Archinamon/android-gradle-aspectj#extended-plugin-config) when using the codeless identity transfer feature.
+* Developer note: Android Studio `Instant Run` is not supported at this time and must be disabled.
 
 ### The Thunderhead Application Manifest File Permissions:
 Included in the Thunderhead SDK's AndroidManifest.xml are the following permissions which will be merged with your applications AndroidManifest.xml:
@@ -359,6 +352,7 @@ The response can be passed to the `processResponse` method as shown above. By ca
     }
     });
     ```
+    
 ### Explicitly define a View as an Interaction
 You can explicitly define a view as an Interaction by calling `setInteractionView` method and passing a view and desired Interaction path to it as shown below:
 ```java
@@ -537,7 +531,7 @@ one.blacklistIdentityTransferLinks(blacklist);
 
 ###	Disable automatic identity transfer
 
-If the Aspects functionality was enabled, the SDK adds a `one-tid` as a URL query parameter to web links opened in `WebView`, `CustomTabs` and external browsers(via `Intent`). To disable this functionality, call the `disableIdentityTransfer` method by passing `true` as shown below:  
+If the Orchestration Plugin was enabled, the SDK adds a `one-tid` as a URL query parameter to web links opened in `WebView`, `CustomTabs` and external browsers(via `Intent`). To disable this functionality, call the `disableIdentityTransfer` method by passing `true` as shown below:  
 
 ```java
 One one = One.getInstance(getApplicationContext());
@@ -583,7 +577,7 @@ Once you have the `uriWithOneTid`, pass this into the method which handles the o
 
 ### Disable automatic outbound link tracking
 
-If the Aspects functionality was enabled, the SDK will automatically send an Interaction request to `/one-click` as a url is opened in a `WebView`, `CustomTab` or external browser to facilitate last click attribution.
+If the Orchestration Plugin was enabled, the SDK will automatically send an Interaction request to `/one-click` as a url is opened in a `WebView`, `CustomTab` or external browser to facilitate last click attribution.
 
 To disable this functionality call the `disableAutomaticOutboundLinkTracking` method and pass `true`, as shown below:
 
@@ -792,18 +786,14 @@ one.clearUserProfile();
 ## Further integration details 
 
 ### How to disable the codeless identity transfer support
-To remove the codeless identity transfer functionality for Android, you need to make the following updates:
+To completely remove the codeless identity transfer functionality for Android, you need to make the following updates:
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 ```gradle 
-classpath 'com.archinamon:android-gradle-aspectj:3.3.1'
+classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
 ```
 2. Open the **app-level** `build.gradle` file and remove the following references.
 ```gradle 
-apply plugin: 'com.archinamon.aspectj-ext'
-aspectj {
-    includeAspectsFromJar 'one-sdk'
-    ajcArgs << '-Xlint:ignore' 
-}
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
 ```
 
 ## Troubleshooting Guide
