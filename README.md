@@ -190,7 +190,7 @@ repositories {
 
 ```
 
-For further documentation on the `orchestration-plugin` please see the [reference docs](ORCHESTRATION-PLUGIN-README.md)
+For further documentation on the `orchestration-plugin` please see the [reference docs](ORCHESTRATION-PLUGIN-README.md).
 
 ## Use the Codeless Thunderhead SDK for Android
 Enable your app to automatically recognize **Interactions** by executing the following steps.
