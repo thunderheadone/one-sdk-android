@@ -65,6 +65,8 @@ Requires Gradle 5.2.1+
     ```
 
 ### DSL API Reference
+  - Kotlin Script
+  
 ```kotlin
 // build.gradle.kts
 thunderhead {
@@ -82,6 +84,7 @@ thunderhead {
 }
 ```
 
+-Groovy Script
 ```groovy
 // build.gradle
 thunderhead {
