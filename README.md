@@ -5,6 +5,7 @@ The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradl
 ## Installation
 
 ### Manual installation
+Requires Gradle 5.2.1+
 1. Open your existing Android application in Android Studio.
 2. Include the Thunderhead SDK as a dependency into your project:
 
