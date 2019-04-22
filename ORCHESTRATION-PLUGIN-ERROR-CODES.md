@@ -1,6 +1,6 @@
 ## Plugin Error Codes and Potential Solutions
 
-#### 2007, Orchestration aspects jar file null. Check build.gradle configuration.
+### 2007, Orchestration aspects jar file null. Check build.gradle configuration.
 The 2007 error code is indicative of three possible problems: 
 
 * A corrupt gradle cache
