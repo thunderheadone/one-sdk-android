@@ -43,16 +43,11 @@ repositories {
   }
 }
 ```
-+ Append the following configuration:
-	+ For **Thunderhead ONE** integrations:
++ Append the following configuration, for **Thunderhead ONE** and **Salesforce Interaction Studio** integrations: 
 		``` gradle 
 		apply plugin: 'com.thunderhead.android.orchestration-plugin'
 		```
-	+ For **Salesforce Interaction Studio** integrations:
-		``` gradle 
-		apply plugin: 'com.thunderhead.android.orchestration-plugin'
-		```
-
+		
 4. Update your `build.gradle` to add codeless identity transfer support.
 + Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
 ``` gradle 
