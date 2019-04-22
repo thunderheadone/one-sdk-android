@@ -10,7 +10,7 @@ The 2007 error code is indicative of three possible problems:
 **Possible solutions to a corrupt gradle cache**:
 
 * Run gradle build with the `--refresh-dependencies` flag. 
-  * Ex. `/.gradlew assemble --refresh-dependencies`
+  * Ex. `./gradlew assemble --refresh-dependencies`
 * Clear gradle cache by removing the cache from your user's directory gradle dir. 
   * On unix systems: `rm -rf $HOME/.gradle/caches/`
   * Related [StackOverflow](https://stackoverflow.com/questions/13565082/how-can-i-force-gradle-to-redownload-dependencies)
