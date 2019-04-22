@@ -87,10 +87,10 @@ thunderhead {
 thunderhead {
     enabled = true // default true
     resources {
-      buildDirectory = File("$buildDir/test") // default buildDir/orchestration/resources
+      buildDirectory = new File("$buildDir/test") // default buildDir/orchestration/resources
     }
     classProcessing {
-      logfile = File("$buildDir/test/custom.log") // defaults to buildDir/orchestration/classProccessorLog.log
+      logfile = new File("$buildDir/test/custom.log") // defaults to buildDir/orchestration/classProccessorLog.log
       javaSourceTarget = JavaVersion.VERSION_1_8 // defaults to 1.7
       javaOutputTarget = JavaVersion.VERSION_1_8  // defaults to 1.7
       processMainConfiguration = true // default true

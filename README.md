@@ -492,7 +492,7 @@ one.whitelistIdentityTransferLinks(whitelist);
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
 One one = One.getInstance(getApplicationContext());
 ArrayList<String> whitelist = new ArrayList<>();
-// this will cover any google.com domains and subdomains
+// this will cover any wikipedia.org domains and subdomains
 whitelist.add("*.wikipedia.org");
 one.whitelistIdentityTransferLinks(whitelist);
 ```
@@ -570,7 +570,7 @@ If you have disabled automatic identity transfer, you can still add a `one-tid` 
 
 ```java
 One one = One.getInstance(getApplicationContext());
-Uro uriWithOneTid = one.getUriWithOneTid(url);
+Uri uriWithOneTid = one.getUriWithOneTid(url);
 ```
 
 Once you have the `uriWithOneTid`, pass this into the method which handles the opening of the `Uri`.
