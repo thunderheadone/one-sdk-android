@@ -84,7 +84,7 @@ thunderhead {
 }
 ```
 
--Groovy Script
+- Groovy Script
 ```groovy
 // build.gradle
 thunderhead {
