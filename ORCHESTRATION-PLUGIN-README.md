@@ -1,4 +1,4 @@
-# One Mobile Android Gradle Plugin
+# Thunderhead Orchestration Plugin
 
 Thunderhead Gradle Plugin for augmenting an Android Application at build time.
 
