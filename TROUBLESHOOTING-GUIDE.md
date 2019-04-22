@@ -43,41 +43,6 @@ generate a new user TID.  To disable backup in an application, add the following
 For more information backing up user data see [Back up user data](https://developer.android.com/guide/topics/data/autobackup)
 in the Android Developer's guide
 
-### Resolving `java.lang.ClassNotFoundException` when running automation tests
-Applications the are developed with a suite of tests within Android Studio  may experience `java.lang.ClassNotFoundException`
-when running those tests.  The exception is caused by a reported defect in `aspectJ` plugin used by the codeless Thunderhead SDK.
-It is possible to continue running tests encountering `java.lang.ClassNotFoundException` by removing the `aspectJ` dependency
-from the test build.  Thunderhead recommends conditionally removing the `aspectJ` plugin by inserting the following conditional statement
-around the `aspectJ` dependency within the build.gradle file.
-
-+ For **Thunderhead ONE** integrations:
-  ```
-    if(!System.getProperty('DISABLE_ASPECT_J').toBoolean()) {
-        apply plugin: 'com.archinamon.aspectj'
-        aspectj {
-             includeAspectsFromJar 'one-sdk'
-             ajcArgs << '-Xlint:ignore'
-         }
-    }
-  ```
-
-+ For **Salesforce Interaction Studio** integrations:
-  ```
-    if(!System.getProperty('DISABLE_ASPECT_J').toBoolean()) {
-        apply plugin: 'com.archinamon.aspectj'
-        aspectj {
-             includeAspectsFromJar 'is-sdk'
-             ajcArgs << '-Xlint:ignore'
-         }
-    }
-  ```
-
-+ For each Android Studio test run configuration resulting in `java.lang.ClassNotFoundException`
-add the following to the `VM Options` line:
-  ```
-   -DDISABLE_ASPECT_J=true
-  ```
-  
 ### Resolving > The library com.google.firebase:firebase-iid is being requested by various other libraries
 
 The Thunderhead SDK has a dependency on [com.google.firebase:firebase-messaging:17.3.4](https://firebase.google.com/docs/android/setup) 
