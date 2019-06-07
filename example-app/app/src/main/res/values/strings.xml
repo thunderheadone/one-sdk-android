@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">ThunderheadExample</string>
     <string name="transfer_identity_to_web">Transfer Identity To Web</string>
+    <string name="go_to_tab_activity">Go To Tab Activity</string>
+    <array name="list_items">
+        <item>Product 1B</item>
+        <item>Product 1C</item>
+        <item>Product 2B</item>
+        <item>Product 2C</item>
+    </array>
 </resources>

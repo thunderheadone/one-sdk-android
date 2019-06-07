@@ -14,5 +14,9 @@ class MainActivity : AppCompatActivity() {
             val uri = activity_main_edittext_example_identity_transfer.text.toString()
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
         }
+
+        tabButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity, TabActivity::class.java))
+        }
     }
 }
