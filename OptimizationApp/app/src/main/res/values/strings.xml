@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">OptimizationApp</string>
-    <array name="list_items">
-        <item>Product 1B</item>
-        <item>Product 1C</item>
-        <item>Product 2B</item>
-        <item>Product 2C</item>
-    </array>
-</resources>
