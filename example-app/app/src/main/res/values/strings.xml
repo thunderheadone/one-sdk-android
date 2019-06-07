@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">ThunderheadExample</string>
     <string name="transfer_identity_to_web">Transfer Identity To Web</string>
-    <string name="go_to_tab_activity">Go To Tab Activity</string>
 </resources>
