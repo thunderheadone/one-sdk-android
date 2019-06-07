@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
             return 2
         }
 
-
         override fun getPageTitle(position: Int): CharSequence {
             return when (position) {
                 0 -> "First Tab"
@@ -111,7 +110,6 @@ class FirstFragment : Fragment() {
                         val content = action.getJSONObject("asset").getString("content")
                         val contentJson = JSONObject(Html.fromHtml(content).toString())
                         viewAdapter.bannerUrl = contentJson.getString("image")
-                        Log.e("url", viewAdapter.bannerUrl)
                         viewAdapter.notifyDataSetChanged()
                     } else if (action.getString("name").contains("card")) {
                         val content = action.getJSONObject("asset").getString("content")
