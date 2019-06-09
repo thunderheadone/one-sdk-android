@@ -20,7 +20,7 @@ The ThunderheadSDK is initialized in the `ExampleApplication.kt` class using the
 If your information is correct and there are no network errors the `MainActivity.kt` will be started when the App is opened.
 
 This example application is meant to be used while working through the optimization information found on the ONE Help site found at 
-https://eu2.thunderhead.com/one/help/conversations/how-do-i/mobile/one_integrate_mobile_exercise/. 
+https://na2.thunderhead.com/one/help/conversations/how-do-i/mobile/one_integrate_mobile_exercise/. 
 
 The app is a simple TabView based app with 2 fragment screens:
  * First Tab `FirstFragment`
