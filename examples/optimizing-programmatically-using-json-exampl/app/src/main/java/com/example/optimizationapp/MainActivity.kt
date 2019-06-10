@@ -1,5 +1,6 @@
 package com.example.optimizationapp
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Html
 import android.util.Base64
@@ -90,6 +91,14 @@ class FirstFragment : Fragment() {
             .filter { json -> json.has("actions") }
             .map { json -> json.getJSONArray("actions").get(0) as JSONObject }
 
+        actions.filter { it.getString("name").contains("banner")  }
+            .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
+            .forEach{ response -> setSentiment(response, true) }
+
+        actions.filter { it.getString("name").contains("card")  }
+            .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
+            .forEach{ response -> setSentiment(response, false) }
+
         actions.filter { it.getString("name").contains("banner") }
             .map { it.getJSONObject("asset").getString("content") }
             .map { content -> JSONObject(Html.fromHtml(content).toString()) }
@@ -99,6 +108,11 @@ class FirstFragment : Fragment() {
             .map { it.getJSONObject("asset").getString("content") }
             .map { content -> JSONObject(Html.fromHtml(content).toString()) }
             .forEach { contentJson -> performUpdate(contentJson, false) }
+    }
+
+    private fun setSentiment(json: JSONObject, isBanner: Boolean) {
+        val sentiment = json.getString("sentiment")
+        if (isBanner) viewAdapter.bannerSentiment = sentiment else viewAdapter.cardSentiment = sentiment;
     }
 
     private fun performUpdate(json: JSONObject, isBanner: Boolean) {
@@ -118,6 +132,8 @@ class FirstFragment : Fragment() {
 
         var bannerUrl = ""
         var cardUrl = ""
+        var bannerSentiment = ""
+        var cardSentiment = ""
 
         class FirstFragmentViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
 
@@ -142,6 +158,25 @@ class FirstFragment : Fragment() {
                 Glide.with(holder.image.context).load(cardUrl).into(holder.image)
             } else {
                 holder.image.setImageDrawable(ContextCompat.getDrawable(holder.image.context, imageList[position]))
+            }
+
+            // setup click listener to send response code
+            if (position == 0) {
+                holder.image.setOnClickListener {
+                    sendResponseCode(it.context, bannerSentiment)
+                }
+            } else if (position == 1) {
+                holder.image.setOnClickListener {
+                    sendResponseCode(it.context, cardSentiment)
+                }
+            }
+        }
+
+        private fun sendResponseCode(context: Context?, code: String) {
+            One.getInstance(context?.applicationContext)?.let { thunderhead ->
+                thunderhead.sendResponseCode(
+                    code, "/FirstFragment-recycler_view_one"
+                )
             }
         }
 
