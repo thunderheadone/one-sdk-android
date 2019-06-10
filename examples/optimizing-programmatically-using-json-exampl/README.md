@@ -19,9 +19,6 @@ The information entered in the `gradle.properties` file is used as as the initia
 The ThunderheadSDK is initialized in the `ExampleApplication.kt` class using the information you entered in the `gradle.properties` file.
 If your information is correct and there are no network errors the `MainActivity.kt` will be started when the App is opened.
 
-This example application is meant to be used while working through the optimization information found on the ONE Help site found at 
-https://na2.thunderhead.com/one/help/conversations/how-do-i/mobile/one_integrate_mobile_exercise/. 
-
 The app is a simple TabView based app with 2 fragment screens:
  * First Tab `FirstFragment`
    * Contains a Recycler View which displays a list of product images
