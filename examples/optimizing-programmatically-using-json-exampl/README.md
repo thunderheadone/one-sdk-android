@@ -3,7 +3,7 @@
 ### How to run
 * Clone this repo or download the source directly.
 * Update the values in `gradle.properties` with your Thunderhead Information:
-  * thunderheadAdminMode=false 
+  * thunderheadAdminMode=true 
   * thunderheadUser="user@tenant"
   * thunderheadApiKey="my-key"
   * thunderheadSharedSecret="my-secret"

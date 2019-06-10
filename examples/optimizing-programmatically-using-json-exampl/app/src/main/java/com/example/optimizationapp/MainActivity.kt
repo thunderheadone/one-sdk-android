@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Html
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,7 +81,7 @@ class FirstFragment : Fragment() {
         }
     }
 
-    // parse out optimization url
+    // parse out optimization array
     private fun parseData(response: BaseResponse) {
         val actions = response.optimizations
             .map { op -> op.data.toByteArray(Charsets.UTF_8) }
@@ -102,12 +101,12 @@ class FirstFragment : Fragment() {
         actions.filter { it.getString("name").contains("banner") }
             .map { it.getJSONObject("asset").getString("content") }
             .map { content -> JSONObject(Html.fromHtml(content).toString()) }
-            .forEach { contentJson -> performUpdate(contentJson, true) }
+            .forEach { contentJson -> updateContent(contentJson, true) }
 
         actions.filter { it.getString("name").contains("card") }
             .map { it.getJSONObject("asset").getString("content") }
             .map { content -> JSONObject(Html.fromHtml(content).toString()) }
-            .forEach { contentJson -> performUpdate(contentJson, false) }
+            .forEach { contentJson -> updateContent(contentJson, false) }
     }
 
     private fun setSentiment(json: JSONObject, isBanner: Boolean) {
@@ -115,7 +114,7 @@ class FirstFragment : Fragment() {
         if (isBanner) viewAdapter.bannerSentiment = sentiment else viewAdapter.cardSentiment = sentiment;
     }
 
-    private fun performUpdate(json: JSONObject, isBanner: Boolean) {
+    private fun updateContent(json: JSONObject, isBanner: Boolean) {
         val url = json.getString("image")
         if (isBanner) viewAdapter.bannerUrl = url else viewAdapter.cardUrl = url
         viewAdapter.notifyDataSetChanged()
