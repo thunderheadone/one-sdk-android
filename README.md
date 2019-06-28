@@ -15,7 +15,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:one-sdk:4.0.0"
+	  implementation "com.thunderhead.android:one-sdk:4.0.1"
 	}
 	```
 	
@@ -23,7 +23,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:is-sdk:4.0.0" 
+	  implementation "com.thunderhead.android:is-sdk:4.0.1" 
 	}
 	```
 	
@@ -118,7 +118,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:one-sdk:4.0.0"
+	implementation "com.thunderhead.android:one-sdk:4.0.1"
 }
 
 repositories {
@@ -179,7 +179,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:is-sdk:4.0.0" 
+	implementation "com.thunderhead.android:is-sdk:4.0.1" 
 }
 
 repositories {
@@ -191,6 +191,9 @@ repositories {
 ```
 
 For further documentation on the `orchestration-plugin` please see the [reference docs](ORCHESTRATION-PLUGIN-README.md).
+
+**For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](PLUGIN-MIGRATION.md) 
+for details on updating the required Gradle plugins.**
 
 ## Use the Codeless Thunderhead SDK for Android
 Enable your app to automatically recognize **Interactions** by executing the following steps.
@@ -731,28 +734,32 @@ one.getTid();
 
 The Thunderhead SDK for Android provides 4 distinct debugging levels, that can be enabled once the SDK has been initialized, as shown below:
 
-1. `NONE_LEVEL` - if set, no messages will be displayed in the console.
+1. `NONE` - if set, no messages will be displayed in the console.
 	
 	```java
-    ThunderheadLogger.setLogLevel(ThunderheadLogger.NONE_LEVEL);
+	// this is an instance of Android Context.
+	One.getInstance(this).setLogLevel(OneLogLevel.NONE);
 	```
 
-2. `ALL_LEVEL` - if set, all log messages will be displayed in the console.
+2. `ALL` - if set, all log messages will be displayed in the console.
 	
 	```java
-	ThunderheadLogger.setLogLevel(ThunderheadLogger.ALL_LEVEL);
+	// this is an instance of Android Context.
+	One.getInstance(this).setLogLevel(OneLogLevel.ALL);
 	```
 
-3. `WEB_SERVICE_LEVEL` - if set, only web service logs will be displayed in the console.
+3. `WEB_SERVICE` - if set, only web service logs will be displayed in the console.
 
 	```java
-	ThunderheadLogger.setLogLevel(ThunderheadLogger.WEB_SERVICE_LEVEL);
+	// this is an instance of Android Context.
+	One.getInstance(this).setLogLevel(OneLogLevel.WEB_SERVICE);
 	```
 
-4. `FRAMEWORK_LEVEL` - if set, only framework logs will be displayed in the console.
+4. `FRAMEWORK` - if set, only framework logs will be displayed in the console.
 	
 	```java
-	ThunderheadLogger.setLogLevel(ThunderheadLogger.FRAMEWORK_LEVEL);
+	// this is an instance of Android Context.
+	One.getInstance(this).setLogLevel(OneLogLevel.FRAMEWORK);
 	```
 
 *Note:* 

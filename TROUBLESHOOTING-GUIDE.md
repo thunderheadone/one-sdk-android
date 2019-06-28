@@ -67,3 +67,59 @@ configurations.all {
     }
 }
 ```
+
+### Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform.
+
+This error can occur on some versions of the Android platform which include an outdated version of the `org.apache.commons.codec.binary` package. The platform
+version of the class is loaded onto the classpath before the bundled version of the class included in the APK. The outdated version of the class does not contain 
+a method required by a third-party library which the Thunderhead SDK uses, [Signpost](https://github.com/mttkay/signpost), resulting in the error when attempting to access
+the missing method. You can see similar issues [here](https://blog.osom.info/2015/04/commons-codec-on-android.html) and on [StackOverflow](https://stackoverflow.com/questions/2047706/apache-commons-codec-with-android-could-not-find-method).
+
+We are investigating long term solutions for this atypical situation and suggest the Thunderhead SDK not be initialized if this method cannot be found. Below is a sample of how this can be achieved.
+
+```java
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        try { 
+          Class base64Class = Base64.class;
+          base64Class.getMethod("encode", byte[].class);
+          // Init Thunderhead SDK
+        } catch (NoSuchMethodException e) {
+           Log.e("MyApplication", "Base64 Encode Missing. Not initizliing Thunderhead SDK. " + e.getMessage());
+        }
+    }
+}
+```
+
+## Performance Issues
+
+### Build Time
+As instant run is not supported at this time it is expected that builds will take longer as a full build will be required when a change is made as opposed 
+to just building the changed bits. We are aware of this limitation and we may consider addressing it in future releases.
+
+Development build times can be improved by disabling orchestration until the feature is ready for QA. Disabling orchestration will allow developers to turn on instant run. 
+Disabling orchestration does not remove the ability to use the SDK in [Admin Mode](https://github.com/thunderheadone/one-sdk-android#set-up-the-framework-in-admin-mode),
+it disables the codeless identity transfer and last click attribution features, thus allowing developers to still interact with the Thunderhead sdk.
+
+If this is desired we recommend conditionally enabling/disabling the orchestration-plugin via a Gradle Project Property argument. The orchestration-plugin Gradle DSL api can be configured as follows:
+
+```groovy
+// Place in the app build.gradle file.
+
+thunderhead {
+    if (project.hasProperty("enableThunderheadOrchestration")) {
+        enabled = enableThunderheadOrchestration.toBoolean()
+    } else {
+        enabled = false
+    }
+}
+```
+
+Then the full build with orchestration enabled can be executed by passing a project property to the Gradle build.
+
+`./gradlew clean assemble -PenableThunderheadOrchestration=true`
+
+For more information on Gradle Project Properties please see [the documentation](https://docs.gradle.org/current/userguide/build_environment.html#sec:project_properties).
+
+
