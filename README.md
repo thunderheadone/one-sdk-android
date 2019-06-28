@@ -2,6 +2,9 @@
 
 The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.3.1+.
 
+**For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
+for details on updating the required Gradle plugins.**
+
 ## Installation
 
 ### Manual installation
@@ -191,9 +194,6 @@ repositories {
 ```
 
 For further documentation on the `orchestration-plugin` please see the [reference docs](ORCHESTRATION-PLUGIN-README.md).
-
-**For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](PLUGIN-MIGRATION.md) 
-for details on updating the required Gradle plugins.**
 
 ## Use the Codeless Thunderhead SDK for Android
 Enable your app to automatically recognize **Interactions** by executing the following steps.
