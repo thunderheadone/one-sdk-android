@@ -4,7 +4,6 @@ import android.app.Application
 import com.thunderhead.One
 import com.thunderhead.OneLogLevel
 import com.thunderhead.OneModes
-import com.thunderhead.utils.ThunderheadLogger
 import java.lang.IllegalStateException
 
 class OptimizationApp : Application() {
