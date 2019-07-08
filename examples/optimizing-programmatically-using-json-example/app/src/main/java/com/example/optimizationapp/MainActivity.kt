@@ -92,11 +92,11 @@ class FirstFragment : Fragment() {
 
         actions.filter { it.getString("name").contains("banner")  }
             .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
-            .forEach{ response -> setSentiment(response, true) }
+            .forEach{ response -> setResponseCode(response, true) }
 
         actions.filter { it.getString("name").contains("card")  }
             .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
-            .forEach{ response -> setSentiment(response, false) }
+            .forEach{ response -> setResponseCode(response, false) }
 
         actions.filter { it.getString("name").contains("banner") }
             .map { it.getJSONObject("asset").getString("content") }
@@ -109,9 +109,9 @@ class FirstFragment : Fragment() {
             .forEach { contentJson -> updateContent(contentJson, false) }
     }
 
-    private fun setSentiment(json: JSONObject, isBanner: Boolean) {
-        val sentiment = json.getString("sentiment")
-        if (isBanner) viewAdapter.bannerSentiment = sentiment else viewAdapter.cardSentiment = sentiment;
+    private fun setResponseCode(json: JSONObject, isBanner: Boolean) {
+        val responseCode = json.getString("code")
+        if (isBanner) viewAdapter.bannerResponseCode = responseCode else viewAdapter.cardResponseCode = responseCode;
     }
 
     private fun updateContent(json: JSONObject, isBanner: Boolean) {
@@ -131,8 +131,8 @@ class FirstFragment : Fragment() {
 
         var bannerUrl = ""
         var cardUrl = ""
-        var bannerSentiment = ""
-        var cardSentiment = ""
+        var bannerResponseCode = ""
+        var cardResponseCode = ""
 
         class FirstFragmentViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
 
@@ -162,11 +162,11 @@ class FirstFragment : Fragment() {
             // setup click listener to send response code
             if (position == 0) {
                 holder.image.setOnClickListener {
-                    sendResponseCode(it.context, bannerSentiment)
+                    sendResponseCode(it.context, bannerResponseCode)
                 }
             } else if (position == 1) {
                 holder.image.setOnClickListener {
-                    sendResponseCode(it.context, cardSentiment)
+                    sendResponseCode(it.context, cardResponseCode)
                 }
             }
         }
