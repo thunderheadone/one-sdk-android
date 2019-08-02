@@ -1,6 +1,6 @@
 ![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
-The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.3.1+.
+The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
 
 **For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
 for details on updating the required Gradle plugins.**
@@ -18,7 +18,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:one-sdk:4.0.1"
+	  implementation "com.thunderhead.android:one-sdk:4.1.0"
 	}
 	```
 	
@@ -26,7 +26,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:is-sdk:4.0.1" 
+	  implementation "com.thunderhead.android:is-sdk:4.1.0" 
 	}
 	```
 	
@@ -64,7 +64,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
     }
 }
@@ -85,7 +85,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
     }
 }
@@ -105,13 +105,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.0'
 
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -121,7 +121,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:one-sdk:4.0.1"
+	implementation "com.thunderhead.android:one-sdk:4.1.0"
 }
 
 repositories {
@@ -146,7 +146,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
     }
 }
@@ -166,8 +166,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.0'
 
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
@@ -182,7 +182,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:is-sdk:4.0.1" 
+	implementation "com.thunderhead.android:is-sdk:4.1.0" 
 }
 
 repositories {
@@ -629,8 +629,7 @@ To use the codeless push notifications functionality without using FCM directly,
             mavenCentral()
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.2.1'
-            classpath 'com.archinamon:android-gradle-aspectj:3.3.1'
+            classpath 'com.android.tools.build:gradle:3.4.2'
             // for cloud messaging support
             classpath 'com.google.gms:google-services:4.2.0'
         }
@@ -676,18 +675,6 @@ One one = One.getInstance(getApplicationContext());
 one.sendPushToken("DUI03F379S1UUIDA6DADF8DFQPZ");
 
 ```
-
-*Note:* 
-- The following permissions are used and will be merged into your app's manifest:
-```xml 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-```
-- You can remove these permissions by adding the following to your manifest: 
-    ```xml 
-        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" tools:node="remove" />
-        <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" tools:node="remove" />
-    ```
 
 ### Send a location object
 
@@ -804,4 +791,8 @@ apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 ## Questions or need help
 
+### Salesforce Interaction Studio Support
+_For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
+
+### Thunderhead ONE Support
 _The Thunderhead team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
