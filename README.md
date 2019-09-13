@@ -18,7 +18,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:one-sdk:4.1.0"
+	  implementation "com.thunderhead.android:one-sdk:4.2.0"
 	}
 	```
 	
@@ -26,7 +26,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:is-sdk:4.1.0" 
+	  implementation "com.thunderhead.android:is-sdk:4.2.0" 
 	}
 	```
 	
@@ -34,7 +34,7 @@ Requires Gradle 5.2.1+
 + Add `RenderScript` support under the `defaultConfig` section:
 ```gradle
 defaultConfig {
-   renderscriptTargetApi 20
+   renderscriptTargetApi 22
    renderscriptSupportModeEnabled true
 }
 ```
@@ -115,13 +115,13 @@ android {
         versionCode 1
         versionName "1.0"
 
-        renderscriptTargetApi 20
+        renderscriptTargetApi 22
         renderscriptSupportModeEnabled true
     }
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:one-sdk:4.1.0"
+	implementation "com.thunderhead.android:one-sdk:4.2.0"
 }
 
 repositories {
@@ -176,13 +176,13 @@ android {
         versionCode 1
         versionName "1.0"
 
-        renderscriptTargetApi 20
+        renderscriptTargetApi 22
         renderscriptSupportModeEnabled true
     }
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:is-sdk:4.1.0" 
+	implementation "com.thunderhead.android:is-sdk:4.2.0" 
 }
 
 repositories {
