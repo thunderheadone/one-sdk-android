@@ -123,3 +123,26 @@ Then the full build with orchestration enabled can be executed by passing a proj
 For more information on Gradle Project Properties please see [the documentation](https://docs.gradle.org/current/userguide/build_environment.html#sec:project_properties).
 
 
+## Error Codes and Resolutions
+
+### 14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set.
+
+Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
+The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
+
+The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash
+loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
+Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
+
+The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error.
+
+Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
+
+```kotlin
+        One.getInstance(context)?.run {
+            // set icon before init to avoid warning.
+            messageConfig = MessageConfig(android.R.drawable.star_on)
+            init(siteKey, touchpoint, apiKey, sharedSecret, userId, mode, host)
+            enablePushNotifications(true)
+        }
+```
