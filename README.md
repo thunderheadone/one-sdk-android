@@ -18,7 +18,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:one-sdk:4.2.3"
+	  implementation "com.thunderhead.android:one-sdk:4.2.4"
 	}
 	```
 	
@@ -26,7 +26,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:is-sdk:4.2.3" 
+	  implementation "com.thunderhead.android:is-sdk:4.2.4" 
 	}
 	```
 	
@@ -121,7 +121,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:one-sdk:4.2.3"
+	implementation "com.thunderhead.android:one-sdk:4.2.4"
 }
 
 repositories {
@@ -182,7 +182,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:is-sdk:4.2.3" 
+	implementation "com.thunderhead.android:is-sdk:4.2.4" 
 }
 
 repositories {
@@ -653,6 +653,38 @@ To use the codeless push notifications functionality without using FCM directly,
     ```
 *Note:* 
 - When you enable codeless push notification support, the SDK will automatically get the push token and handle receiving of push notifications on behalf of your app.
+
+##### Set a non adaptive fallback.
+
+Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
+The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
+
+The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash
+loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
+Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
+
+The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. See [Troubleshooting Guide](https://github.com/thunderheadone/one-sdk-android/blob/master/TROUBLESHOOTING-GUIDE.md#14019-non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set)
+
+Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
+
+```kotlin
+One.getInstance(context)?.run {
+    // set icon before init to avoid warning.
+    messageConfig = MessageConfig(android.R.drawable.star_on)
+    enablePushNotifications(true)
+    init(siteKey, touchpoint, apiKey, sharedSecret, userId, mode, host)
+}
+```
+
+```java
+One one = One.getInstance(getApplicationContext());
+one.setMessageConfig(
+    new MessageConfig(android.R.drawable.star_on)
+);
+one.enablePushNotifications(true);
+one.init(siteKey, touchpoint, apiKey, sharedSecret, userId, mode, host);
+```
+
 
 ### Get a push token
 
