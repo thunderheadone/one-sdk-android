@@ -5,9 +5,6 @@ The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradl
 **For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
 for details on updating the required Gradle plugins.**
 
-**For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java8 Migration guide](JAVA8-MIGRATION-GUIDE.md) for details
-on updating your app to be Java8 compatible in order to use the Thunderhead SDK.**
-
 ## Installation
 
 ### Manual installation
@@ -54,17 +51,7 @@ repositories {
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 ```
 		
-4. Add Java8 Support
-
-+ Add the following, under the `android` section
-```groovy
-compileOptions {
-    sourceCompatibility 1.8
-    targetCompatibility 1.8
-}
-```
-
-5. Update your `build.gradle` to add codeless identity transfer support.
+4. Update your `build.gradle` to add codeless identity transfer support.
 + Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
 ``` gradle 
 buildscript {
@@ -120,10 +107,6 @@ apply plugin: 'com.thunderhead.android.orchestration-plugin'
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.0'
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
 
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
@@ -185,10 +168,7 @@ apply plugin: 'com.thunderhead.android.orchestration-plugin'
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.0'
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
+
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
         minSdkVersion 16
@@ -683,7 +663,7 @@ The Thunderhead SDK will optimize your user's App experience by sending Push Not
 loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
 Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
 
-The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. See [Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md)
+The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. See [Troubleshooting Guide](https://github.com/thunderheadone/one-sdk-android/blob/master/TROUBLESHOOTING-GUIDE.md#14019-non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set)
 
 Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
 
