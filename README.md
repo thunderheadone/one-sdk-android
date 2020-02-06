@@ -18,7 +18,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:one-sdk:4.2.9"
+	  implementation "com.thunderhead.android:one-sdk:4.2.10"
 	}
 	```
 	
@@ -26,7 +26,7 @@ Requires Gradle 5.2.1+
 	
 	```gradle
 	dependencies {     
-	  implementation "com.thunderhead.android:is-sdk:4.2.9"
+	  implementation "com.thunderhead.android:is-sdk:4.2.10"
 	}
 	```
 	
@@ -121,7 +121,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:one-sdk:4.2.9"
+	implementation "com.thunderhead.android:one-sdk:4.2.10"
 }
 
 repositories {
@@ -182,7 +182,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:is-sdk:4.2.9"
+	implementation "com.thunderhead.android:is-sdk:4.2.10"
 }
 
 repositories {
@@ -652,7 +652,62 @@ To use the codeless push notifications functionality without using FCM directly,
     one.enablePushNotifications(true);
     ```
 *Note:* 
-- When you enable codeless push notification support, the SDK will automatically get the push token and handle receiving of push notifications on behalf of your app.
+- When the Thunderhead SDK is the only push message provider in your application and you enable codeless push notification support, 
+the SDK will automatically get the push token and handle receiving of push notifications on behalf of your app.
+
+##### Configure Push Notifications With Multiple Push Message SDKs
+When the Thunderhead SDK is integrated into an App that has multiple push message providers for Firebase, extra configuration is required.
+The Thunderhead SDK message APIs must be called from the service that receives the FCM token and FCM Message.  
+
+```java
+// Call when a new FCM token is retrieved:
+One.getInstance(context).processMessagingToken(newToken);
+
+// Call when a new message is received from Firebase:
+One.getInstance(context).processMessage(message);
+```
+
+An example of a Firebase Messaging Service that calls the Thunderhead SDK messaging APIs:
+```java
+public final class FirebaseService extends FirebaseMessagingService {
+    private static final String TAG = "FirebaseService";
+    
+    @Override
+    public void onMessageReceived(final RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        try {
+            One.getInstance(getApplicationContext()).processMessage(remoteMessage);
+            // Call other Push Message SDKS.
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
+    @Override
+    public void onNewToken(final String newToken) {
+        super.onNewToken(newToken);
+        try {
+            One.getInstance(getApplicationContext()).processMessagingToken(newToken);
+            // Call other Push Message SDKS.
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+}
+```
+
+Do not forget to register the customer service (if required) that calls the Thunderhead SDK in the manifest:
+
+```xml
+
+<!-- The priority should be set to a high value in order to ensure this service receives the intent vs the other push provider SDKs -->
+ <service
+            android:name="com.example.FirebaseService">
+            <intent-filter android:priority="100">
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+```
 
 ##### Set a non adaptive fallback.
 
