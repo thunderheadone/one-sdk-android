@@ -1,3 +1,12 @@
+## [1.0.1](https://bitbucket.org/thunderhead-com/one-mobile-android-gradle-plugin/compare/1.0.0...1.0.1) (2020-03-25)
+
+
+### Bug Fixes
+
+* **aspectjtransformer.kt:** include library modules as source ([50986cd](https://bitbucket.org/thunderhead-com/one-mobile-android-gradle-plugin/commits/50986cdb303d3144cc8def1de288985a591bdf68))
+
+
+
 # 1.0.0 (2019-04-15)
 
 
