@@ -44,6 +44,7 @@ For more information backing up user data see [Back up user data](https://develo
 in the Android Developer's guide
 
 ### Resolving > The library com.google.firebase:firebase-iid is being requested by various other libraries
+
 The Thunderhead SDK has a dependency on [com.google.firebase:firebase-messaging:17.3.4](https://firebase.google.com/docs/android/setup) 
 which at the time of this articles writing is the latest version.  This dependency transitively depends on firebase-iid.  Projects which integrated Firebase prior to integrating the
 Thunderhead SDK may have an older version of the dependency. The Google Cloud Plugin is warning of this version mismatch. It is recommended
@@ -67,7 +68,8 @@ configurations.all {
 }
 ```
 
-### Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform
+### Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform.
+
 This error can occur on some versions of the Android platform which include an outdated version of the `org.apache.commons.codec.binary` package. The platform
 version of the class is loaded onto the classpath before the bundled version of the class included in the APK. The outdated version of the class does not contain 
 a method required by a third-party library which the Thunderhead SDK uses, [Signpost](https://github.com/mttkay/signpost), resulting in the error when attempting to access
@@ -91,6 +93,7 @@ public class MyApplication extends Application {
 ```
 
 ## Performance Issues
+
 ### Build Time
 As instant run is not supported at this time it is expected that builds will take longer as a full build will be required when a change is made as opposed 
 to just building the changed bits. We are aware of this limitation and we may consider addressing it in future releases.
@@ -121,7 +124,9 @@ For more information on Gradle Project Properties please see [the documentation]
 
 
 ## Error Codes and Resolutions
-### 14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set
+
+### 14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set.
+
 Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
 The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
 
