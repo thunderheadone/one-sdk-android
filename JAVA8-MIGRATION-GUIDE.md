@@ -4,7 +4,7 @@ The Thunderhead SDK 5.0.0+ targets the Java8 Language Specification.  This requi
 
 #### Affects
 
-All applications previously integrated with the Thunderhead SDK <= 5.0.0 that were not already targeting Java 8 or
+All applications integrated with the Thunderhead SDK <= 5.0.0 that were not already targeting Java 8 or
 if you encounter an error message during the Gradle build that contains the following message:
 
 ```
