@@ -6,13 +6,13 @@ The Thunderhead SDK for Android Troubleshooting Guide for common implementation 
 
 - [Integration issues](#integration-issues)
   * [How to resolve StackOverflow Exception](#how-to-resolve-stackoverflow-exception)
-  * [Resolving conflicts with `android:allowBackup`](#resolving-conflicts-with-android-allowbackup)
-  * [Resolving > The library com.google.firebase:firebase-iid is being requested by various other libraries](#resolving-the-library-comgooglefirebase-firebase-iid-is-being-requested-by-various-other-libraries)
-  * [Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform](#resolving-nosuchmethoderror-for-base64-class-or-15-000-signpost-cannot-be-used-on-this-platform)
+  * [Resolving conflicts with `android:allowBackup`](#resolving-conflicts-with-androidallowbackup)
+  * [Resolving > The library com.google.firebase:firebase-iid is being requested by various other libraries](#resolving--the-library-comgooglefirebasefirebase-iid-is-being-requested-by-various-other-libraries)
+  * [Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform](#resolving-nosuchmethoderror-for-base64-class-or-15_000-signpost-cannot-be-used-on-this-platform)
 - [Performance issues](#performance-issues)
   * [Build Time](#build-time)
 - [Error codes and resolutions](#error-codes-and-resolutions)
-  * [14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set](#14019--non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set)
+  * [14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set](#14019-non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set)
 
 ## Integration issues
 ### How to resolve StackOverflow Exception
@@ -106,7 +106,7 @@ public class MyApplication extends Application {
 
 ## Performance issues
 
-### Build Time
+### Build time
 As instant run is not supported at this time it is expected that builds will take longer as a full build will be required when a change is made as opposed 
 to just building the changed bits. We are aware of this limitation and we may consider addressing it in future releases.
 
