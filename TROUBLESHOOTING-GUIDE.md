@@ -42,10 +42,10 @@ interfere with the Thunderhead SDK, causing the `StackOverflowException`.
 
 ### Resolving conflicts with `android:allowBackup`
 The Thunderhead SDK ships with `allowBackup=true` in the SDK's `AndroidManifest.xml`, which is the Android default
-setting.  The Thunderhead SDK sets `allowBackup` to ensure the TID in use is backed up in the event the end user
+setting.  The Thunderhead SDK sets `allowBackup` to ensure the `tid` in use is backed up in the event the end user
 application is built to allow backups.  An application disabling backup will not effect the
 use of the Thunderhead SDK.  However, resetting the end user device followed by a restore may
-generate a new user TID.  To disable backup in an application, add the following to the applications
+generate a new user `tid`.  To disable backup in an application, add the following to the applications
 `AndroidManifest.xml`
 ```xml
         tools:replace="android:allowBackup"
@@ -53,14 +53,14 @@ generate a new user TID.  To disable backup in an application, add the following
 ```
 
 For more information backing up user data see [Back up user data](https://developer.android.com/guide/topics/data/autobackup)
-in the Android Developer's guide
+in the Android Developer's guide.
 
 ### Resolving > The library com.google.firebase:firebase-iid is being requested by various other libraries
 
 The Thunderhead SDK has a dependency on [com.google.firebase:firebase-messaging:17.3.4](https://firebase.google.com/docs/android/setup) 
 which at the time of this articles writing is the latest version.  This dependency transitively depends on firebase-iid.  Projects which integrated Firebase prior to integrating the
 Thunderhead SDK may have an older version of the dependency. The Google Cloud Plugin is warning of this version mismatch. It is recommended
-to use the same versions for gradle dependencies declared in the app and that are referenced transitively. This error can be resolved
+to use the same versions for Gradle dependencies declared in the app and that are referenced transitively. This error can be resolved
 by updating an app's Firebase messaging dependency to the same version the Thunderhead SDK uses. If this is not possible the
 Thunderhead SDK can use an older version of Firebase artifacts whose version contains 
 the [FirebaseInstanceId class](https://firebase.google.com/docs/reference/android/com/google/firebase/iid/FirebaseInstanceId).
@@ -110,11 +110,11 @@ public class MyApplication extends Application {
 As instant run is not supported at this time it is expected that builds will take longer as a full build will be required when a change is made as opposed 
 to just building the changed bits. We are aware of this limitation and we may consider addressing it in future releases.
 
-Development build times can be improved by disabling orchestration until the feature is ready for QA. Disabling orchestration will allow developers to turn on instant run. 
-Disabling orchestration does not remove the ability to use the SDK in [Admin Mode](https://github.com/thunderheadone/one-sdk-android#set-up-the-framework-in-admin-mode),
+Development build times can be improved by disabling Orchestration until the feature is ready for QA. Disabling Orchestration will allow developers to turn on instant run. 
+Disabling Orchestration does not remove the ability to use the SDK in [Admin Mode](https://github.com/thunderheadone/one-sdk-android#set-up-the-framework-in-admin-mode),
 it disables the codeless identity transfer and last click attribution features, thus allowing developers to still interact with the Thunderhead sdk.
 
-If this is desired we recommend conditionally enabling/disabling the orchestration-plugin via a Gradle Project Property argument. The orchestration-plugin Gradle DSL api can be configured as follows:
+If this is desired we recommend conditionally enabling/disabling the Orchestration Plugin via a Gradle project property argument. The Orchestration Plugin Gradle DSL api can be configured as follows:
 
 ```groovy
 // Place in the app build.gradle file.
@@ -128,11 +128,11 @@ thunderhead {
 }
 ```
 
-Then the full build with orchestration enabled can be executed by passing a project property to the Gradle build.
+Then the full build with Orchestration enabled can be executed by passing a project property to the Gradle build.
 
 `./gradlew clean assemble -PenableThunderheadOrchestration=true`
 
-For more information on Gradle Project Properties please see [the documentation](https://docs.gradle.org/current/userguide/build_environment.html#sec:project_properties).
+For more information on Gradle project properties please see [the documentation](https://docs.gradle.org/current/userguide/build_environment.html#sec:project_properties).
 
 
 ## Error codes and resolutions
@@ -142,7 +142,7 @@ For more information on Gradle Project Properties please see [the documentation]
 Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
 The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
 
-The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash
+The Thunderhead SDK will optimize your user's app experience by sending push notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash
 loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
 Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
 
