@@ -1,8 +1,20 @@
 ![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
-The Thunderhead SDK for Android Troubleshooting Guide for Common Implementation Issues.
+The Thunderhead SDK for Android Troubleshooting Guide for common implementation issues.
 
-## Integration Issues
+## Table of Contents
+
+- [Integration issues](#integration-issues)
+  * [How to resolve StackOverflow Exception](#how-to-resolve-stackoverflow-exception)
+  * [Resolving conflicts with `android:allowBackup`](#resolving-conflicts-with-android-allowbackup)
+  * [Resolving > The library com.google.firebase:firebase-iid is being requested by various other libraries](#resolving-the-library-comgooglefirebase-firebase-iid-is-being-requested-by-various-other-libraries)
+  * [Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform](#resolving-nosuchmethoderror-for-base64-class-or-15-000-signpost-cannot-be-used-on-this-platform)
+- [Performance issues](#performance-issues)
+  * [Build Time](#build-time)
+- [Error codes and resolutions](#error-codes-and-resolutions)
+  * [14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set](#14019--non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set)
+
+## Integration issues
 ### How to resolve StackOverflow Exception
 Applications that override a base class set listener method may experience a `StackOverflowException`.
 The `StackOverflowException` is caused by the application inadvertently taking ownership of a listener
@@ -68,7 +80,7 @@ configurations.all {
 }
 ```
 
-### Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform.
+### Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform
 
 This error can occur on some versions of the Android platform which include an outdated version of the `org.apache.commons.codec.binary` package. The platform
 version of the class is loaded onto the classpath before the bundled version of the class included in the APK. The outdated version of the class does not contain 
@@ -92,7 +104,7 @@ public class MyApplication extends Application {
 }
 ```
 
-## Performance Issues
+## Performance issues
 
 ### Build Time
 As instant run is not supported at this time it is expected that builds will take longer as a full build will be required when a change is made as opposed 
@@ -123,9 +135,9 @@ Then the full build with orchestration enabled can be executed by passing a proj
 For more information on Gradle Project Properties please see [the documentation](https://docs.gradle.org/current/userguide/build_environment.html#sec:project_properties).
 
 
-## Error Codes and Resolutions
+## Error codes and resolutions
 
-### 14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set.
+### 14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set
 
 Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
 The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
