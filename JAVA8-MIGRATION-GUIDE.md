@@ -1,11 +1,10 @@
 # Java 8 Migration
 
-The Thunderhead SDK 5.0.0+ targets the Java8 Language Specification.  This requires that consuming applications also target Java 8.
+The Thunderhead SDK 5.0.0+ targets the Java 8 Language Specification. This requires that consuming applications also target Java 8.
 
 #### Affects
 
-All applications integrated with the Thunderhead SDK 5.0.0 that are not already targeting Java 8 or
-if you encounter an error message during the Gradle build that contains the following message:
+All applications integrated with the Thunderhead SDK 5.0.0 that are not already targeting Java 8 or if you encounter an error message during the Gradle build that contains the following message:
 
 ```
 The dependency contains Java 8 bytecode. Please enable desugaring by adding the following to build.gradle
@@ -28,3 +27,4 @@ compileOptions {
    targetCompatibility 1.8
 }
 ```
+For more information visit [Java 8 support]( https://developer.android.com/studio/write/java8-support).

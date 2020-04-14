@@ -22,12 +22,12 @@ on updating your app to be Java 8 compatible in order to use the Thunderhead SDK
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
   * [Exclude an Interaction](#exclude-an-interaction)
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
-  * [Send Interactions to Thunderhead ONE or Salesforce Interaction Studio](#send-interactions-to-thunderhead-one-or-salesforce-interaction-studio)
+  * [Send Interactions](#send-interactions)
     + [Send an Interaction request](#send-an-interaction-request)
     + [Send an Interaction request and retrieve the response](#send-an-interaction-request-and-retrieve-the-response)
   * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
   * [Explicitly define a View as an Interaction](#explicitly-define-a-view-as-an-interaction)
-  * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
+  * [Send Properties](#send-properties)
     + [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
     + [Send Properties to an Interaction](#send-properties-to-an-interaction)
     + [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
@@ -370,7 +370,7 @@ By disabling automatic Interaction detection, the SDK won’t automatically send
 
 You can set this back to false at any point to restart automatic Interaction detection.
 
-### Send Interactions to Thunderhead ONE or Salesforce Interaction Studio
+### Send Interactions
 
 #### Send an Interaction request
 You can send an Interaction request programmatically by calling the `sendInteraction` method and passing an Interaction path as a parameter as shown below:
@@ -472,7 +472,7 @@ private void showVariants() {
     …
 }
 ```
-### Send Properties to Thunderhead ONE or Salesforce Interaction Studio
+### Send Properties
 Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. Create a HashMap containing key/value pair strings, and call the appropriate Properties public method, as follows:
 ```java
 HashMap<String, String> propertiesMap = new HashMap<>();
