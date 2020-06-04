@@ -1,4 +1,4 @@
-![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
+![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
 
 The Thunderhead SDK for Android Troubleshooting Guide for common implementation issues.
 
