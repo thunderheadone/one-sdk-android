@@ -1,4 +1,4 @@
-![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
+![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
 
 The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
 
@@ -948,7 +948,7 @@ apply plugin: 'com.thunderhead.android.orchestration-plugin'
 ```
 
 ## Troubleshooting guide
-[Troubleshooting guide](TROUBLESHOOTING.md)
+[Troubleshooting guide](TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
