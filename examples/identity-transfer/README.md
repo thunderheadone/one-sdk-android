@@ -15,8 +15,8 @@
 * Play the "App" on an emulator.
 
 ### What's happening
-The information entered in the `gradle.properties` file is used as as the initialization parameters for the Thunderhead SDK.
-The ThunderheadSDK is initialized in the `ExampleApplication.kt` class using the information you entered in the `gradle.properties` file.
+The information entered in the `gradle.properties` file is used as as the configuration parameters for the Thunderhead SDK.
+The ThunderheadSDK is configured in the `ExampleApplication.kt` class using the information you entered in the `gradle.properties` file.
 If your information is correct and there are no network errors the `MainActivity.kt` will be started when the App is opened.
 Enter the url of your choice, the default is https://www.thunderhead.com, and press the `Transfer Identity To Web`  button.
 This will open the URL you entered in whatever browser the phone currently has.  If all things go as planned the url 
