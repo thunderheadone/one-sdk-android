@@ -69,13 +69,13 @@ class DynamicConfigurationApplication : MultiDexApplication() {
         /**
          * SDK initialization is not required.
          *
-         * The Thunderhead SDK is automatically initialized in an `un-configured` state.
-         *  While `un-configured`, the SDK will continue to locally queue end-user data and will upload the data to server once
+         * The Thunderhead SDK is automatically initialized in an unconfigured state.
+         *  While unconfigured, the SDK will continue to locally queue end-user data and will upload the data to server once
          *  the SDK is configured with valid parameters.
          *  This can be disabled at any time by setting the `oneOptOutConfiguration` to `true`.
          *
          * The SDK does not support partial, or piecemeal, configuration. All parameters must be provided, either all valid or invalid (`empty string` or `null`).
-         * When configured with invalid parameters, it will set the SDK into an `un-configured` state.
+         * When configured with invalid parameters, it will set the SDK into an unconfigured state.
          *
          * https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example
          */

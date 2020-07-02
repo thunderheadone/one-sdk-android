@@ -11,15 +11,15 @@ App Flow Summary:
 
 ## SDK initialization not required
 
-The Thunderhead SDK is automatically initialized in an `un-configured` state.
-* While `un-configured`, the SDK will continue to locally queue end-user data and will upload the data to server once the SDK is configured with valid parameters.
+The Thunderhead SDK is automatically initialized in an unconfigured state.
+* While *unconfigured*, the SDK will continue to locally queue end-user data and will upload the data to server once the SDK is configured with valid parameters.
 * This can be disabled at any time by setting the `oneOptOutConfiguration` to `true`. See more about opt out [here](#opt-an-end-user-out-of-tracking).
 
 ## Configure and reconfigure the SDK
 
 You can configure and reconfigure the SDK as many times as necessary. 
 * The SDK does not support partial, or piecemeal, configuration. All parameters must be provided, either all valid or invalid (`empty string` or `null`).  
-* When configured with invalid parameters, it will set the SDK into an `un-configured` state.
+* When configured with invalid parameters, it will set the SDK into an *unconfigured* state.
 
 To configure/reconfigure the SDK, simply call the `configureOne` top-level Kotlin function or the `One.configure` Java method with the new parameters, as shown below:
 
