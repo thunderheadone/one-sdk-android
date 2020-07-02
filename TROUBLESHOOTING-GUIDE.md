@@ -80,7 +80,7 @@ configurations.all {
 }
 ```
 
-### Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform
+### Resolving: NoSuchMethodError for Base64 class or 15000: Signpost cannot be used on this platform
 
 This error can occur on some versions of the Android platform which include an outdated version of the `org.apache.commons.codec.binary` package. The platform
 version of the class is loaded onto the classpath before the bundled version of the class included in the APK. The outdated version of the class does not contain 
@@ -148,13 +148,29 @@ Changing your application's icon to a non adaptive icon is not required and the 
 
 The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error.
 
-Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
+Here is a Kotlin example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
 
 ```kotlin
-        One.getInstance(context)?.run {
-            // set icon before init to avoid warning.
-            messageConfig = MessageConfig(android.R.drawable.star_on)
-            init(siteKey, touchpoint, apiKey, sharedSecret, userId, mode, host)
-            enablePushNotifications(true)
+        oneConfigureMessaging {
+            enabled = true
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                nonAdaptiveSmallIcon = android.R.drawable.star_on
+            }
         }
+```
+
+The same example in Java:
+
+```java
+        final OneMessagingConfiguration.Builder oneMessagingConfigurationBuilder =
+                new OneMessagingConfiguration.Builder()
+                        .enabled(true);
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
+            oneMessagingConfigurationBuilder.nonAdaptiveSmallIcon(android.R.drawable.star_on);
+        }
+
+        final OneMessagingConfiguration oneMessagingConfiguration = oneMessagingConfigurationBuilder.build();
+        One.setMessagingConfiguration(oneMessagingConfiguration);
+
 ```

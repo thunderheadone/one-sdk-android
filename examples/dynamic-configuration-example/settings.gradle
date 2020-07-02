@@ -1,0 +1,2 @@
+rootProject.name='Dynamic Configuration Example'
+include ':app'
