@@ -20,7 +20,6 @@ val oneModeSetting: OneModes =
  * This example app demonstrates how to dynamically configure the ONE SDK when required.
  *
  * This app showcases the scenario where it may be useful to reconfigure the SDK to correspond to device region settings.
- * https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example
  */
 
 /**
@@ -76,8 +75,6 @@ class DynamicConfigurationApplication : MultiDexApplication() {
          *
          * The SDK does not support partial, or piecemeal, configuration. All parameters must be provided, either all valid or invalid (`empty string` or `null`).
          * When configured with invalid parameters, it will set the SDK into an unconfigured state.
-         *
-         * https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example
          */
         oneConfigure {
             siteKey = ""
