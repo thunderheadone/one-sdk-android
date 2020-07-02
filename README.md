@@ -2,113 +2,123 @@
 
 The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
 
-**For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md)
+**For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
 for details on updating the required Gradle plugins.**
 
-**For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java 8 migration guide](JAVA8-MIGRATION-GUIDE.md) for details
+**For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java 8 Migration guide](JAVA8-MIGRATION-GUIDE.md) for details
 on updating your app to be Java 8 compatible in order to use the Thunderhead SDK.**
+
+**For _migrating_ from version(s) < 6.0.0 of the Thunderhead SDK to version(s) 6.0.0+, please see the [Version 6 Migration guide](MIGRATION-VERSION-6.md) for details
+on updating your existing SDK configuration.**
 
 ## Table of Contents
 
-- [Installation](#installation)
-  * [Manual installation](#manual-installation)
-- [Use the codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
-  * [The Thunderhead Application Manifest file permissions](#the-thunderhead-application-manifest-file-permissions)
-  * [Subclass your `Application` Class](#subclass-your-application-class)
-  * [Initialize the SDK](#initialize-the-sdk)
-    + [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
-    + [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
-- [Additional features](#additional-features)
-  * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
-  * [Exclude an Interaction](#exclude-an-interaction)
-  * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
-  * [Send Interactions](#send-interactions)
-    + [Send an Interaction request](#send-an-interaction-request)
-    + [Send an Interaction request and retrieve the response](#send-an-interaction-request-and-retrieve-the-response)
-  * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
-  * [Explicitly define a View as an Interaction](#explicitly-define-a-view-as-an-interaction)
-  * [Send Properties](#send-properties)
-    + [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
-    + [Send Properties to an Interaction](#send-properties-to-an-interaction)
-    + [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
-    + [Send an Interaction request with Properties and retrieve the response](#send-an-interaction-request-with-properties-and-retrieve-the-response)
-    + [Send a response code](#send-a-response-code)
-  * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
-  * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
-  * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
-    + [Send Properties for a URL scheme](#send-properties-for-a-url-scheme)
-    + [Append a `one-tid` parameter to a `URL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-url-to-facilitate-identity-transfer)
-    + [Append a `one-tid` parameter to a `Uri` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-uri-to-facilitate-identity-transfer)
-  * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
-    + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
-  * [Enable push notifications](#enable-push-notifications)
-    + [Minimum Gradle configuration](#minimum-gradle-configuration)
-    + [Enable codeless push notification support programmatically](#enable-codeless-push-notification-support-programmatically)
-      - [Configure push notifications with multiple push message SDKs](#configure-push-notifications-with-multiple-push-message-sdks)
-      - [Set a non adaptive fallback](#set-a-non-adaptive-fallback)
-  * [Get a push token](#get-a-push-token)
-  * [Send a push token](#send-a-push-token)
-  * [Send a location object](#send-a-location-object)
-  * [Get Tid](#get-tid)
-  * [Access debug information](#access-debug-information)
-  * [Identify the framework version](#identify-the-framework-version)
-  * [Clear the user profile](#clear-the-user-profile)
-- [Further integration details](#further-integration-details)
-  * [How to disable the codeless identity transfer support](#how-to-disable-the-codeless-identity-transfer-support)
-- [Troubleshooting guide](#troubleshooting-guide)
-- [Questions or need help](#questions-or-need-help)
-  * [Salesforce Interaction Studio support](#salesforce-interaction-studio-support)
-  * [Thunderhead ONE support](#thunderhead-one-support)
+* [Installation](#installation)
+    * [Manual installation](#manual-installation)
+* [Use the codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
+     * [The Thunderhead Application Manifest file permissions](#the-thunderhead-application-manifest-file-permissions)
+     * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
+        * [SDK initialization not required](#sdk-initialization-not-required)
+        * [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
+        * [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
+* [Additional features](#additional-features)
+    * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
+    * [Exclude an Interaction](#exclude-an-interaction)
+    * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
+    * [Programmatic Interactions and Properties API](#programmatic-interactions-and-properties-api)
+        * [Send Interactions](#send-interactions)
+            * [Send an Interaction request](#send-an-interaction-request)
+            * [Send an Interaction request processing the response](#send-an-interaction-request-processing-the-response)
+        * [Send Properties](#send-properties)
+            * [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
+            * [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
+        * [Send a response code](#send-a-response-code)
+    * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
+    * [Assign an Interaction to a View](#assign-an-interaction-to-a-view)
+    * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
+    * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
+    * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
+        * [Send deep link properties programmatically](#send-deep-link-properties-programmatically)
+        * [Create a `URL` with a `one-tid` parameter to facilitate identity transfer](#create-a-url-with-a-one-tid-parameter-to-facilitate-identity-transfer)
+        * [Create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to facilitate identity transfer](#create-an-androidneturi-or-javaneturi-with-a-one-tid-parameter-to-facilitate-identity-transfer)
+    * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
+        * [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
+    * [Enable push notifications](#enable-push-notifications)
+        * [Minimum Gradle configuration](#minimum-gradle-configuration)
+        * [Enable codeless push notification support programmatically](#enable-codeless-push-notification-support-programmatically)
+           * [Configure push notifications with multiple push message SDKs](#configure-push-notifications-with-multiple-push-message-sdks)
+           * [Set a non adaptive fallback](#set-a-non-adaptive-fallback)
+    * [Get a push token](#get-a-push-token)
+    * [Send a push token](#send-a-push-token)
+     * [Send a location object](#send-a-location-object)
+     * [Get Tid](#get-tid)
+     * [Access debug information](#access-debug-information)
+     * [Identify the SDK version](#identify-the-sdk-version)
+     * [Clear the user profile](#clear-the-user-profile)
+* [Further integration details](#further-integration-details)
+    * [How to disable the codeless identity transfer support](#how-to-disable-the-codeless-identity-transfer-support)
+* [Troubleshooting guide](#troubleshooting-guide)
+* [Questions or need help](#questions-or-need-help)
+    * [Salesforce Interaction Studio support](#salesforce-interaction-studio-support)
+    * [Thunderhead ONE support](#thunderhead-one-support)
 
 ## Installation
 
 ### Manual installation
+
 Requires Gradle 5.2.1+
+
 1. Open your existing Android application in Android Studio.
 2. Include the Thunderhead SDK as a dependency into your project:
-
 + Navigate to your **app-level** build.gradle file.
 + Add the following, under the dependencies section:
-	+ For **Thunderhead ONE** integrations:
+    + For **Thunderhead ONE** integrations:
 
-	```gradle
-	dependencies {     
-	  implementation "com.thunderhead.android:one-sdk:5.0.1"
-	}
-	```
+    ```gradle
+    dependencies {     
+      implementation "com.thunderhead.android:one-sdk:6.0.0"
+    }
+    ```
+    
+    + For **Salesforce Interaction Studio** integrations:
+    
+    ```gradle
+    dependencies {     
+      implementation "com.thunderhead.android:is-sdk:6.0.0"
+    }
+    ```
 
-	+ For **Salesforce Interaction Studio** integrations:
+3. Add the Thunderhead SDK configuration within the same **app-level** `build.gradle` file. 
 
-	```gradle
-	dependencies {     
-	  implementation "com.thunderhead.android:is-sdk:5.0.1"
-	}
-	```
-
-3. Add the Thunderhead SDK configuration within the same **app-level** `build.gradle` file.
 + Add `RenderScript` support under the `defaultConfig` section:
+
 ```gradle
 defaultConfig {
    renderscriptTargetApi 22
    renderscriptSupportModeEnabled true
 }
 ```
+
 + Add the following, under the repositories section:
-``` gradle
+
+``` gradle 
 repositories {
   maven {
    url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
   }
 }
 ```
+
 + Append the following configuration, for **Thunderhead ONE** and **Salesforce Interaction Studio** integrations:
-``` gradle
+
+``` gradle 
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 ```
-
+  
 4. Add Java 8 Support
 
 + Add the following, under the `android` section
+
 ```groovy
 compileOptions {
     sourceCompatibility 1.8
@@ -117,8 +127,10 @@ compileOptions {
 ```
 
 5. Update your `build.gradle` to add codeless identity transfer support.
+
 + Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
-``` gradle
+
+``` gradle 
 buildscript {
     repositories {
         google()
@@ -134,11 +146,13 @@ buildscript {
     }
 }
 ```
+
 ####  `build.gradle` examples
 
-#####  **Thunderhead ONE** `build.gradle` examples:
+#####  **Thunderhead ONE** `build.gradle` examples
 
-###### Example of the **top-level** `build.gradle` file after integration:
+###### Example of the **top-level** `build.gradle` file after integration
+
 ``` gradle
 buildscript {
     repositories {
@@ -164,7 +178,8 @@ allprojects {
 }
 ```
 
-###### Example of the **app-level** `build.gradle` file after integration:
+###### Example of the **app-level** `build.gradle` file after integration
+
 ``` gradle
 apply plugin: 'com.android.application'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
@@ -190,7 +205,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:one-sdk:5.0.1"
+  implementation "com.thunderhead.android:one-sdk:6.0.0"
 }
 
 repositories {
@@ -201,9 +216,10 @@ repositories {
 
 ```
 
-#####  **Salesforce Interaction Studio** `build.gradle` examples:
+#####  **Salesforce Interaction Studio** `build.gradle` examples
 
-###### Example of the **top-level** `build.gradle` file after integration:
+###### Example of the **top-level** `build.gradle` file after integration
+
 ``` gradle
 buildscript {
     repositories {
@@ -229,7 +245,8 @@ allprojects {
 }
 ```
 
-###### Example of the **app-level** `build.gradle` file after integration:
+###### Example of the **app-level** `build.gradle` file after integration
+
 ``` gradle
 apply plugin: 'com.android.application'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
@@ -254,7 +271,7 @@ android {
 }
 
 dependencies {     
-	implementation "com.thunderhead.android:is-sdk:5.0.1"
+  implementation "com.thunderhead.android:is-sdk:6.0.0"
 }
 
 repositories {
@@ -268,414 +285,1046 @@ repositories {
 For further documentation on the `orchestration-plugin` please see the [reference docs](ORCHESTRATION-PLUGIN-README.md).
 
 ## Use the codeless Thunderhead SDK for Android
+
 Enable your app to automatically recognize **Interactions** by executing the following steps.
 
 * Developer note: Android Studio `Instant Run` is not supported at this time and must be disabled.
 
 ### The Thunderhead Application Manifest file permissions
+
 Included in the Thunderhead SDK's AndroidManifest.xml are the following permissions which will be merged with your applications AndroidManifest.xml:
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 ```
-*Note:*
+*Note:* 
 - The `SYSTEM_ALERT_WINDOW` permission is only needed for Admin mode builds. In your setup you can add this as a flavor specific permission to avoid having to show this as a permission change to your Play Store users.
-- You can remove this permission in User mode builds by adding the following to your manifest:
-    ```xml
-        <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
-    ```
+- You can remove this permission in User mode builds by adding the following to your manifest: 
+```xml 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
+```
 
-### Subclass your `Application` Class
-If you haven’t done so already, you will need to subclass your `Application` class in order to be able to initialize the SDK. If you are just creating an `Application` subclass please remember to define it in your app manifest.
+### Configure and reconfigure the SDK
 
-### Initialize the SDK
+You can configure and reconfigure the SDK as many times as necessary. 
+* The SDK does not support partial, or piecemeal, configuration. All parameters must be provided, either all valid or invalid (`empty string` or `null`).  
+* When configured with invalid parameters, it will set the SDK into an `un-configured` state.
+
+See [here](https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example) for an example app that demonstrates dynamic configuration.
+
+#### SDK initialization not required
+
+The Thunderhead SDK is automatically initialized in an `un-configured` state.
+* While `un-configured`, the SDK will continue to locally queue end-user data and will upload the data to server once the SDK is configured with valid parameters.
+* This can be disabled at any time by setting the `oneOptOutConfiguration` to `true`. See more about opt out [here](#opt-an-end-user-out-of-tracking).
+
 #### Set up the SDK in User mode
-To start tracking, capturing, and receiving optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
-With your parameters ready at hand, add the following lines of code under the Application’s subclass onCreate() method. You must ensure the initialization method is added after super.onCreate() is called.
+To start capturing insights and orchestrating with the Thunderhead SDK in User mode, you must first configure it with your Thunderhead API parameters. 
+You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
-``` java
-public class YourApplication extends Application {
+With your parameters ready at hand, configure the SDK. We recommend adding the following lines of code for User Mode under the Application’s subclass `onCreate()` method though this is not required. 
+You must ensure the `oneConfigure` top-level Kotlin function or `setConfiguration` Java method is invoked after `super.onCreate()` is called.
 
-  private static final String siteKey = "ONE-XXXXXXXXXX-1022";
-  private static final String touchpointURI = "myAppsNameURI";
-  private static final String apiKey = "f713d44a-8af0-4e79-ba7e-xxxxxxxxx";
-  private static final String sharedSecret = "bb8bacb2-ffc2-4c52-aaf4-xxx";
-  private static final String userId = "yourUsername@yourCompanyName";
-  private static final String hostName = "https://xx.thunderhead.com";
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneConfigure
+import com.thunderhead.OneModes;
+// The rest of the imports
 
-    @Override
-    public void onCreate() {
-      super.onCreate();
-
-      One one = One.getInstance(getApplicationContext());
-      one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.USER_MODE, hostName);
-
+class YourApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        oneConfigure {
+            siteKey = SITE_KEY
+            apiKey = API_KEY
+            sharedSecret = SHARED_SECRET
+            userId = USER_ID
+            host = URI(HOST)
+            touchpoint = URI(TOUCHPOINT)
+            mode = OneModes.USER_MODE
+        }
+    }
+    
+    companion object {
+        const val SITE_KEY = "ONE-XXXXXXXXXX-1022"
+        const val API_KEY = "f713d44a-8af0-4e79-ba7e-xxxxxxxxx"
+        const val SHARED_SECRET = "bb8bacb2-ffc2-4c52-aaf4-xxx"
+        const val USER_ID = "yourUsername@yourCompanyName"
+        const val HOST = "https://xx.thunderhead.com"
+        const val TOUCHPOINT = "myAppsNameURI"
     }
 }
 ```
-*Note:* The User mode SDK build should be setup as part of your release build that is going to be uploaded to the Play Store.
+
+`Java`
+```java 
+import com.thunderhead.android.api.configuration.OneConfiguration;
+import com.thunderhead.One;
+import com.thunderhead.OneModes;
+// The rest of the imports
+
+public class YourApplication extends Application {
+  
+  private static final String siteKey = "ONE-XXXXXXXXXX-1022";
+  private static final String apiKey = "f713d44a-8af0-4e79-ba7e-xxxxxxxxx";
+  private static final String sharedSecret = "bb8bacb2-ffc2-4c52-aaf4-xxx";
+  private static final String userId = "yourUsername@yourCompanyName";
+  private static final String host = "https://xx.thunderhead.com";
+  private static final String touchpointURI = "myAppsNameURI";
+  
+    @Override
+    public void onCreate() {
+      super.onCreate();
+      final OneConfiguration oneConfiguration = new OneConfiguration.Builder()
+        .siteKey(siteKey)
+        .apiKey(apiKey)
+        .sharedSecret(sharedSecret)
+        .userId(userId)
+        .host(URI.create(host))
+        .touchpoint(URI.create(touchpointURI))
+        .mode(OneModes.USER_MODE)
+        .build();
+
+        One.setConfiguration(oneConfiguration);
+    }
+}
+```
+
+*Note:* 
+- The User mode SDK build should be setup as part of your release build that is going to be uploaded to the Play Store.
+- Dynamic configuration of Admin and User mode is supported.
 
 #### Set up the SDK in Admin mode
-To use the framework in Admin mode, change the ONE mode to `ADMIN_MODE`, as follows:
-``` java
-one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.ADMIN_MODE, hostName);
-```
-*Note:*
-- If you are running in Admin mode on Android 6.0+, you will need to enable the “draw over other apps” permission via your OS settings.
-- If you have added both User and Admin mode support under the same app build, please note that the app will need to be terminated and restarted when switching from one mode to the other.
+
+To use the SDK in Admin mode, change the ONE mode to `ADMIN_MODE`.
+
+*Note:* 
+- If you are running in Admin mode on Android 6.0+, you will need to enable the “draw over other apps” permission via your OS settings. 
+- Dynamic configuration of Admin and User mode is supported.
 
 **You have now successfully integrated the codeless Thunderhead SDK for Android.**
 
 ## Additional features
+
 Follow any of the steps below to access further functions of the SDK.
 
 ### Opt an end-user out of tracking
-To opt an end-user out of tracking when the end-user does not give permission to be tracked in the client app, call the opt out method as shown below:
 
-```java
-One one = One.getInstance(getApplicationContext());
-one.optOut(true);
+To opt an end-user out of tracking when the end-user does not give permission to be tracked in the client app, 
+call the `oneConfigureOptOut` top-level Kotlin function or the `One.setOptOutConfiguration` Java method as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneConfigureOptOut
+
+oneConfigureOptOut {
+    optOut = true
+}
 ```
-*Note:*
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.optout.OneOptOutConfiguration;
+
+final OneOptOutConfiguration optOutConfiguration = new OneOptOutConfiguration.Builder()
+            .optOut(true)
+            .build();
+
+One.setOptOutConfiguration(optOutConfiguration);
+```
+
+*Note:* 
 - When opted out, tracking will stop and locally queued data will be removed.
-- At any point you can opt a user back in by passing `false` into the same method.
+- At any point you can opt a user back in by setting the `optOut` parameter to `false` using the same method. 
 - For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ### Exclude an Interaction
-You can exclude a specific view from being automatically recognized as an Interaction by using the `excludeInteractionView` method.
 
-In your `onCreate` or `onCreateView`, call `excludeInteractionView` and pass the view you would like to exclude from being automatically tracked like shown in the example below:
+You can exclude a specific view from being automatically recognized as an Interaction by using the `excludeAutomaticInteraction` Kotlin extension function or `One.excludeAutomaticInteraction` Java method in an Activity's `onCreate` method or a Fragment's `onCreateView`, as shown below. 
 
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.excludeAutomaticInteraction
+// rest of imports
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    findViewById<LinearLayout>(R.id.root)
+        .excludeAutomaticInteraction()
+}
+```
+
+`Java`
 ```java
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
                          Bundle savedInstanceState) {
     rootView = inflater.inflate(R.layout.fragment_layout_2, null);
-    One.getInstance(getActivity()).excludeInteractionView(rootView);
+    final OneAutomaticInteractionExclusion rootViewExclusion = new OneAutomaticInteractionExclusion.Builder()
+                        .view(rootView)
+                        .build();
+    One.excludeAutomaticInteraction(rootViewExclusion);
     return rootView;
 }
 ```
 
 ### Disable automatic Interaction detection
-You can disable automatic Interaction detection by calling the method `disableAutomaticInteractionDetection` and passing `true` as a parameter, as shown below:
 
-```java
-One one = One.getInstance(getApplicationContext());
-one.disableAutomaticInteractionDetection(true);
+You can disable automatic Interaction detection by calling the `oneConfigureCodelessInteractionTracking` Kotlin top-level function
+or the `One.setCodelessInteractionTrackingConfiguration` Java method with the appropriate configuration, as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneConfigureCodelessInteractionTracking
+
+oneConfigureCodelessInteractionTracking {
+    disableCodelessInteractionTracking = true
+}
 ```
 
-By disabling automatic Interaction detection, the SDK won’t automatically send Interaction requests. It becomes your responsibility to send them when needed by using the methods provided in the sections below.
-
-You can set this back to false at any point to restart automatic Interaction detection.
-
-### Send Interactions
-
-#### Send an Interaction request
-You can send an Interaction request programmatically by calling the `sendInteraction` method and passing an Interaction path as a parameter as shown below:
+`Java`
 ```java
-One one = One.getInstance(getApplicationContext());
-one.sendInteraction("/interactionPath");
+import com.thunderhead.One;
+import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfiguration;
+
+final OneCodelessInteractionTrackingConfiguration codelessInteractionTrackingConfiguration =
+    new OneCodelessInteractionTrackingConfiguration.Builder()
+        .disableCodelessInteractionTracking(true)
+        .build();
+One.setCodelessInteractionTrackingConfiguration(codelessInteractionTrackingConfiguration);
 ```
-*Note:*
-- This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
-- When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-#### Send an Interaction request and retrieve the response
-You can send an Interaction request programmatically and retrieve its response by calling the `sendInteraction` method with a callback. You need to pass an Interaction path and a callback to the method as shown below:
-```java
-One one = One.getInstance(getApplicationContext());
-one.sendInteraction("/interactionName", new GetCallback<ResponseObject>() {  public void done(ResponseObject response, ThunderheadException e) {
-    if (e == null) {
-      // Success!
-      one.processResponse(response);
-    } else {
-      // Failure!
+By disabling automatic Interaction detection, the SDK won’t automatically send Interaction requests. 
+It becomes your responsibility to send them when needed by using the methods provided in the sections below.
+
+You can set this back to `false` at any point to restart automatic Interaction detection.
+
+### Programmatic Interactions and Properties API
+
+You can manually send Interaction Requests and Properties to ONE or Interaction Studio by using 
+the `oneSendInteraction` Kotlin top-level function or the `One.sendInteraction` Java method.
+
+The `oneSendInteraction` Kotlin top-level function uses Kotlin [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+while the `One.sendInteraction` Java method follows a Call/Request/Response model similar to [Retrofit](https://square.github.io/retrofit/).
+
+#### Send Interactions
+
+##### Send an Interaction request 
+
+You can send an Interaction request programmatically by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendInteraction
+// rest of imports
+
+scope.launch {
+    oneSendInteraction {
+        interactionPath = OneInteractionPath(URI("/interactionPath"))
     }
-  }
+}
+```
+
+To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
+
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendInteraction
+import com.thunderhead.android.api.responsetypes.OneAPIError
+import com.thunderhead.android.api.responsetypes.OneSDKError
+// rest of imports
+
+scope.launch {
+    try {
+        oneSendInteraction(throwErrors = true) {
+            interactionPath = OneInteractionPath(URI("/interactionPath"))
+        }
+    } catch (error: OneSDKError) {
+        Log.e(TAG, "SDK Error: ${error.errorMessage}")
+    } catch (error: OneAPIError) {
+        Log.e(TAG, "Api Error: ${error.errorMessage}")
+    }
+}
+```
+
+You can send an Interaction request programmatically by calling the `One.sendInteraction` Java method and enqueue with a `null` callback as shown below:
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.interactions.OneCall;
+import com.thunderhead.android.api.interactions.OneInteractionPath;
+import com.thunderhead.android.api.interactions.OneRequest;
+// rest of imports
+
+final OneRequest sendInteractionRequest = new OneRequest.Builder()
+        .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
+        .build();
+final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
+sendInteractionCall.enqueue(null);
+```
+
+*Note:* 
+- This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the `tid` from the response 
+will be used by the SDK - all other response objects will be ignored.
+- When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers, and/or dashes.
+
+##### Send an Interaction request processing the response
+
+You can send an Interaction request programmatically and process the response by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendInteraction
+import com.thunderhead.android.api.process
+// rest of imports
+
+scope.launch {
+    val response = oneSendInteraction {
+        interactionPath = OneInteractionPath(URI("/interactionPath"))
+    }
+    response?.process()
+}
+```
+
+To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
+
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendInteraction
+import com.thunderhead.android.api.process
+import com.thunderhead.android.api.responsetypes.OneAPIError
+import com.thunderhead.android.api.responsetypes.OneSDKError
+// rest of imports
+
+scope.launch {
+    try {
+        val response = oneSendInteraction(throwErrors = true) {
+            interactionPath = OneInteractionPath(URI("/interactionPath"))
+        }
+        response?.process()
+    } catch (error: OneSDKError) {
+        Log.e(TAG, "SDK Error: ${error.errorMessage}")
+    } catch (error: OneAPIError) {
+        Log.e(TAG, "Api Error: ${error.errorMessage}")
+    }
+}
+```
+
+You can send an Interaction request programmatically and process the response by calling the `One.sendInteraction` Java method and enqueue with a callback as shown below:
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.interactions.OneCall;
+import com.thunderhead.android.api.interactions.OneCallback;
+import com.thunderhead.android.api.interactions.OneInteractionPath;
+import com.thunderhead.android.api.interactions.OneRequest;
+// rest of imports
+
+final OneRequest sendInteractionRequest = new OneRequest.Builder()
+        .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
+        .build();
+
+final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
+
+sendInteractionCall.enqueue(new OneCallback() {
+    @Override
+    public void onSuccess(@NotNull OneResponse response) {
+        One.processResponse(response);
+    }
+
+    @Override
+    public void onError(@NotNull OneSDKError error) {
+        Log.e(TAG, "SDK Error: " +  error.getErrorMessage());
+    }
+
+    @Override
+    public void onFailure(@NotNull OneAPIError error) {
+        Log.e(TAG, "Api Error: " +  error.getErrorMessage());
+    }
 });
 ```
-The response can be passed to `processResponse` method as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
 
-*Note:*
+The response can be passed to `One.processResponse` method as shown above. This method returns the response 
+to the SDK to process, attaching any capture, track or optimize instructions to the interaction.
+
+*Note:* 
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
-- When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
+- When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers, and/or dashes.
 
-### Retrieve a response for an automatically triggered Interaction request
-You can retrieve a response for an automatically triggered Interaction request by registering for an Interaction callback as shown below:
+#### Send Properties
+
+Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. 
+
+##### Send an Interaction request with Properties
+
+You can send an Interaction request programmatically with Properties and ignore the response
+by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendInteraction
+// rest of imports
+
+scope.launch {
+    oneSendInteraction {
+        interactionPath = OneInteractionPath(URI("/interactionPath"))
+        properties = mapOf("keyA" to "valueA", "keyB" to "valueB")
+    }
+}
+```
+
+To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
+
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendInteraction
+import com.thunderhead.android.api.responsetypes.OneAPIError
+import com.thunderhead.android.api.responsetypes.OneSDKError
+// rest of imports
+
+scope.launch {
+    try {
+        oneSendInteraction(throwErrors = true) {
+            interactionPath = OneInteractionPath(URI("/interactionPath"))
+            properties = mapOf("keyA" to "valueA", "keyB" to "valueB")
+        }
+    } catch (error: OneSDKError) {
+        Log.e(TAG, "SDK Error: ${error.errorMessage}")
+    } catch (error: OneAPIError) {
+        Log.e(TAG, "Api Error: ${error.errorMessage}")
+    }
+}
+```
+
+You can send an Interaction request programmatically with Properties and ignore the response
+by calling the `One.sendInteraction` Java method and enqueue with a `null` callback as shown below:
+
+`Java`
 ```java
-One one = One.getInstance(getApplicationContext());
-one.registerInteractionCallback("/interactionName", new InteractionCallback() {  
- @Override
- public void onReceive(String interactionPath, BaseResponse response) {
-    one.processResponse(response);
- }
+import com.thunderhead.One;
+import com.thunderhead.android.api.interactions.OneCall;
+import com.thunderhead.android.api.interactions.OneInteractionPath;
+import com.thunderhead.android.api.interactions.OneRequest;
+// rest of imports
+
+final Map<String, String> properties = new HashMap<>();
+properties.put("keyA", "valueA");
+properties.put("keyB", "valueB");
+
+final OneRequest sendInteractionRequest = new OneRequest.Builder()
+        .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
+        .properties(properties)
+        .build();
+
+final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
+
+sendInteractionCall.enqueue(null);
+```
+
+##### Send Properties to a base Touchpoint
+
+You can send Properties programmatically and ignore the response
+by calling the `oneSendProperties` Kotlin top-level function in a Coroutine as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendProperties
+// rest of imports
+
+scope.launch {
+    oneSendProperties {
+        properties = mapOf("keyA" to "valueA", "keyB" to "valueB")
+    }
+}
+```
+
+To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
+
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendProperties
+import com.thunderhead.android.api.responsetypes.OneAPIError
+import com.thunderhead.android.api.responsetypes.OneSDKError
+// rest of imports
+
+scope.launch {
+    try {
+        oneSendProperties(throwErrors = true) {
+            properties = mapOf("keyA" to "valueA", "keyB" to "valueB")
+        }
+    } catch (error: OneSDKError) {
+        Log.e(TAG, "SDK Error: ${error.errorMessage}")
+    } catch (error: OneAPIError) {
+        Log.e(TAG, "Api Error: ${error.errorMessage}")
+    }
+}
+```
+
+You can send Properties programmatically and ignore the response
+by calling the `One.sendProperties` Java method and enqueue with a null callback as shown below:
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.interactions.OneCall;
+import com.thunderhead.android.api.interactions.OneRequest;
+// rest of imports
+
+final Map<String, String> properties = new HashMap<>();
+properties.put("keyA", "valueA");
+properties.put("keyB", "valueB");
+
+final OneRequest sendPropertiesRequest = new OneRequest.Builder()
+        .properties(properties)
+        .build();
+
+final OneCall sendPropertiesCall = One.sendProperties(sendPropertiesRequest);
+
+sendPropertiesCall.enqueue(null);
+```
+
+*Note:* 
+- This sends a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
+- Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio. The capture point api name in Thunderhead ONE, or Salesforce Interaction Studio, would have to match your key name sent above.
+
+#### Send a response code
+
+To send a response code, call the `oneSendResponseCode` Kotlin top-level function with the response code and the corresponding Interaction path as parameters as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendResponseCode
+// rest of imports
+
+scope.launch {
+    oneSendResponseCode {
+        interactionPath = OneInteractionPath(URI("/interactionPath"))
+        code = ResponseCode("code")
+    }
+}
+```
+
+To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
+
+```kotlin
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.oneSendResponseCode
+import com.thunderhead.android.api.responsetypes.OneAPIError
+import com.thunderhead.android.api.responsetypes.OneSDKError
+// rest of imports
+
+scope.launch {
+    try {
+        oneSendResponseCode(throwErrors = true) {
+            interactionPath = OneInteractionPath(URI("/interactionPath"))
+            code = ResponseCode("code")
+        }
+    } catch (error: OneSDKError) {
+        Log.e(TAG, "SDK Error: ${error.errorMessage}")
+    } catch (error: OneAPIError) {
+        Log.e(TAG, "Api Error: ${error.errorMessage}")
+    }
+}
+```
+
+To send a response code, call the `One.sendResponseCode` Java method with the response code
+and the corresponding interaction path as parameters as shown below:
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.interactions.OneResponseCodeRequest;
+import com.thunderhead.android.api.interactions.OneInteractionPath;
+import com.thunderhead.android.api.interactions.OneResponseCode;
+
+final OneResponseCodeRequest responseCodeRequest = new OneResponseCodeRequest.Builder()
+        .responseCode(new ResponseCode("code"))
+        .interactionPath(new OneInteractionPath("/interactionPath"))
+        .build()
+One.sendResponseCode(responseCodeRequest).enqueue(null);
+```
+
+*Note:* 
+- This method should be used when displaying optimizations programmatically and you need to capture the user's response.
+- This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
+- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers, and/or dashes.
+
+### Retrieve a response for an automatically triggered Interaction request 
+
+You can retrieve a response for an automatically triggered Interaction request by setting an Interaction callback as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneSetAutomaticInteractionCallback
+import com.thunderhead.android.api.interactions.OneInteractionPath
+// rest of imports
+
+oneSetAutomaticInteractionCallback(OneInteractionPath(URI("https://server.com"))) {
+    onSuccess { response ->
+        // perform custom action
+        response.process()
+    }
+
+    onError { sdkError ->
+        Log.d(TAG, "SdkError: ${sdkError.errorMessage}")
+    }
+
+    onFailure { apiError ->
+        Log.d(TAG, "ApiError: ${apiError.errorMessage}")
+    }
+}
+```
+
+`Java`
+```java
+One.setAutomaticInteractionCallback(new OneInteractionPath(URI.create(TestConstants.test_triggered_interaction_1)), new OneCallback() {
+    @Override
+    public void onFailure(@NotNull OneAPIError error) {
+        Log.e(TAG, "ApiError: " + error.getErrorMessage());
+    }
+
+    @Override
+    public void onError(@NotNull OneSDKError error) {
+        Log.e(TAG, "SdkError: " + error.getErrorMessage());
+    }
+
+    @Override
+    public void onSuccess(@NotNull OneResponse response) {
+        One.processResponse(response);
+    }
 });
 ```
-The response can be passed to the `processResponse` method as shown above. By calling this method the response is returned to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
 
-*Note:*
-- If you register to retrieve a response for an automatically triggered Interaction, you are responsible to unregister from this callback. You are advised to do this as soon as you no longer need this callback or under your activity or fragment’s `onStop` method.
+The response can be passed to the `processResponse` method as shown above. By calling this method the response is returned to the SDK to process, attaching any capture, track, or optimize instructions to the Interaction.
 
-    ```java
-    protected void onStop() {
-        super.onStop();
-        one.unregisterInteractionCallback("/interactionName");
-    }
-    });
-    ```
+*Note:* 
+- If you set a callback for an automatically triggered Interaction, you are responsible to remove this callback. You are advised to do this as soon as you no longer need this callback or under your activity or fragment’s `onStop` method.
 
-### Explicitly define a View as an Interaction
-You can explicitly define a view as an Interaction by calling `setInteractionView` method and passing a view and desired Interaction path to it as shown below:
-```java
-One.getInstance(this).setInteractionView(customView, "/interactionPath");
+`Kotlin`
+```kotlin   
+import com.thunderhead.android.api.oneRemoveAutomaticInteractionCallback
+import com.thunderhead.android.api.interactions.OneInteractionPath
+
+protected fun onStop() {
+    super.onStop()
+    oneRemoveAutomaticInteractionCallback(OneInteractionPath(URI.create("/interaction")))
+}
 ```
-This could be useful in the following cases:
-1. If an activity with the same layout implements generic functionality and used to represent various Interactions within the same application. For example it could be a list view, which is being reused across the application to display branch locations in one use case and cash point locations in a second use case.
+
+`Java`
 ```java
-public class LocationsList extends ListActivity implements GISDataPresenter{
+protected void onStop() {
+    super.onStop();
+    One.removeAutomaticInteractionCallback(new OneInteractionPath(URI.create(TestConstants.test_triggered_interaction_1)));
+}
+```
+    
+### Assign an Interaction to a View
+
+You can explicitly define a view as an Interaction by calling the `assignInteractionPath` Kotlin extension function
+or the `One.assignInteractionPath` Java method with a valid desired Interaction path, as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.assignInteractionPath
+import com.thunderhead.android.api.interactions.OneInteractionPath
+
+findViewById<LinearLayout>(R.id.linear_layout)
+    .assignInteractionPath(OneInteractionPath(URI("/viewAsInteraction")))
+```
+
+`Java`
+```java
+LinearLayout linearLayout = findViewById<LinearLayout>(R.id.linear_layout);
+final OneInteractionPathAssignment oneInteractionPathAssignment = new OneInteractionPathAssignment.Builder()
+        .view(linearLayout)
+        .interactionPath(new OneInteractionPath(URI.create("/viewAsInteraction")))
+        .build();
+
+One.assignInteractionPath(oneInteractionPathAssignment);
+```
+
+This could be useful in the following cases:
+1. If an activity with the same layout implements generic functionality and is used to represent various Interactions within the same application. 
+For example it could be a list view, which is being reused across the application to display branch locations in one use case and cash point locations in a second use case.
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.assignInteractionPath
+import com.thunderhead.android.api.interactions.OneInteractionPath
+// rest of imports
+
+class LocationsList : ListActivity(), GISDataPresenter {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val interactionPath = if (presenterType == CASH_POINT_LOCATION) {
+            "/cashPointList"
+        } else {
+           "/branchList" 
+        }
+        getListView().assignInteractionPath(OneInteractionPath(URI(interactionPath)))
+    }
+}
+```
+
+`Java`
+```java
+public class LocationsList extends ListActivity implements GISDataPresenter {
   @Override
   public void onCreate(Bundle savedInstanceState) {
- 	  super.onCreate(savedInstanceState);
-	  …
-     	if (presenterType == CASH_POINT_LOCATION) {
-          	One.getInstance(this).setInteractionView(getListView(), "/cashPointList");
- 		} else {
-             One.getInstance(this).setInteractionView(getListView(), "/branchList");
-            }
- 	   …
-  }
+        super.onCreate(savedInstanceState);
+        final OneInteractionPathAssignment.Builder assignmentBuilder = 
+            new OneInteractionPathAssignment.Builder()
+                .view(getListView());
+        if (presenterType == CASH_POINT_LOCATION) {
+            assignmentBuilder
+                .interactionPath(new OneInteractionPath(URI.create("/cashPointList")));
+        } else {
+            assignmentBuilder
+                .interactionPath(new OneInteractionPath(URI.create("/branchList")));
+        }
+        One.assignInteractionPath(assignmentBuilder.build());
+    }
 }
 ```
-2. If a fragment implements generic functionality and could represent various Interactions. For instance in one case it could show a screen containing laptops in another case it could show cameras category.
-```java
+
+2. If a fragment implements generic functionality and could represent various Interactions. 
+For instance in one case it could show a screen containing laptops and in another case it could show a screen containing cameras.
+
+```java 
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-View view = inflater.inflate(R.layout.products_tiles_view, container, false);
-  if (category == Product.Category.LAPTOP) {
-      One.getInstance(getActivity()).setInteractionView(view, "/LaptopsList");
-  } else if (category == Product.Category.CAMERA) {
-      One.getInstance(getActivity()).setInteractionView(view, "/CamerasList");
-  }
-  …
-  return view;
+    View view = inflater.inflate(R.layout.products_tiles_view, container, false);
+    final OneInteractionPathAssignment.Builder assignmentBuilder = 
+        new OneInteractionPathAssignment.Builder()
+            .view(view);
+    if (category == Product.Category.LAPTOP) {
+        assignmentBuilder
+            .interactionPath(new OneInteractionPath(URI.create("/laptopsList")));
+    } else if (category == Product.Category.CAMERA) {
+        assignmentBuilder
+            .interactionPath(new OneInteractionPath(URI.create("/camerasList")));
+    }
+    One.assignInteractionPath(assignmentBuilder.build());
+    return view;
 }
 ```
+
 3. If an Interaction is represented by a custom view.
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.assignInteractionPath
+import com.thunderhead.android.api.interactions.OneInteractionPath
+// rest of imports
+
+private fun showVariants() {
+    if (varientsView == null) {
+        variantsView = inflater.inflate(R.layout.variants_slide, mainPanelView, false)
+        variantsView.assignInteractionPath(OneInteractionPath(URI("/variants")))
+    }
+}
+```
+
+`Java`
 ```java
 private void showVariants() {
     if (variantsView == null) {
-        inflater.inflate(R.layout.variants_slide, mainPaneView, false);
-        One.getInstance(this).setInteractionView(variantsView, "/Variants");
+        variantsView = inflater.inflate(R.layout.variants_slide, mainPaneView, false);
+        final OneInteractionPathAssignment assignment = 
+            new OneInteractionPathAssignment.Builder()
+                .view(variantsView)
+                .interactionPath(new OneInteractionPath(URI.create("/variants")))
+                .build();
+
+        One.assignInteractionPath(assignment);
     }
-    …
 }
 ```
-### Send Properties
-Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. Create a HashMap containing key/value pair strings, and call the appropriate Properties public method, as follows:
-```java
-HashMap<String, String> propertiesMap = new HashMap<>();
-propertiesMap.put("key1", "value1");
-propertiesMap.put("key2", "value2");
-```
-
-#### Send Properties to a base Touchpoint
-To send Properties to a base Touchpoint, call the following public method and pass in your `HashMap`:
-```java
-One one = One.getInstance(getApplicationContext());
-one.sendBaseTouchpointProperties(propertiesMap);
-```
-*Note:*
-- This sends a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
-- Properties sent to a base Touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio. The capture point api name in Thunderhead ONE, or Salesforce Interaction Studio, would have to match your key name sent above.
-
-#### Send Properties to an Interaction
-To send Properties to a specific Interaction, call the following public method, passing the Interaction path as a string together with your HashMap containing the said Properties:
-
-```java
-One one = One.getInstance(getApplicationContext());
-one.sendProperties("/interactionPath", propertiesMap);
-```
-*Note:*
-- This sends a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
-- When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
-
-#### Send an Interaction request with Properties
-You can send an Interaction request with Properties by calling the `sendInteraction` method, and passing an Interaction path as a parameter and a `HashMap` containing the said Properties, as shown below:
-```java
-One one = One.getInstance(getApplicationContext());
-one.sendInteraction("/interactionPath", propertiesMap);
-```
-*Note:*
-- This sends a POST request to Thunderhead ONE or Salesforce Interaction Studio.
-- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
-
-#### Send an Interaction request with Properties and retrieve the response
-You can send an Interaction request with Properties and retrieve its response by calling corresponding `sendInteraction` method with a callback. You need to pass an Interaction path, a Properties map and a callback to the method as shown below:
-```java
-One one = One.getInstance(getApplicationContext());
-one.sendInteraction("/interactionName", propertiesMap, new GetCallback<ResponseObject>() {
-  public void done(ResponseObject response, ThunderheadException e) {
-    if (e == null) {
-      // Success!
-      one.processResponse(response);
-    } else {
-      // Failure!
-    }
-  }
-});
-```
-The response can be passed to the `processResponse` method as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
-
-*Note:*
-- This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
-- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
-
-#### Send a response code
-To send a response code, call `sendResponseCode` by passing the response code and the corresponding Interaction path as parameters as shown below:
-```java
-One one = One.getInstance(getApplicationContext());
-one.sendResponseCode("yourCode", "/interactionPath");
-```
-
-*Note:*
-- This method should be used when displaying optimizations programmatically and you need to capture the user's response.
-- This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
-- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Ability to whitelist identity transfer links
 
-The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the method `whitelistIdentityTransferLinks` and passing your links as shown below:
+The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the `java.net.URI.setIdentityTransferLinksWhiteList` Kotlin extension function or `whitelistIdentityTransferLinks` Java method as shown below:
 
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.setIdentityTransferLinksWhiteList
+// rest of imports
+
+// This example shows how to whitelist links under specific domain names
+// www.google.com and www.uber.com. For example,
+// https://www.google.com, https://www.uber.com/en/,
+// https://www.uber.com/en/ride/, etc.
+val whiteList = setOf(URI("www.google.com"), URI("www.uber.com"))
+    .setIdentityTransferLinksWhiteList()
+
+// This example shows how to whitelist the main domain name
+// wikipedia.org and any subdomain. For example,
+// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
+val whiteList = setOf(URI("*.wikipedia.org"))
+    .setIdentityTransferLinksWhiteList()
+
+// This example show how to retrieve the whitelist currently in use
+val whitelist = oneGetIdentityTransferLinksWhiteList()
+```
+
+`Java`
 ```java
 // This example shows how to whitelist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
 // https://www.uber.com/en/ride/, etc.
-One one = One.getInstance(getApplicationContext());
-ArrayList<String> whitelist = new ArrayList<>();
-whitelist.add("www.google.com");
-whitelist.add("www.uber.com");
-one.whitelistIdentityTransferLinks(whitelist);
-
+HashSet<URI> whitelist = new HashSet<>();
+try {
+    whitelist.add(new URI("www.google.com"));
+    whitelist.add(new URI("www.uber.com"));
+} catch (URISyntaxException e) {
+    e.printStackTrace();
+}
+One.setIdentityTransferLinksWhiteList(whitelist);
 
 // This example shows how to whitelist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-One one = One.getInstance(getApplicationContext());
-ArrayList<String> whitelist = new ArrayList<>();
-// this will cover any wikipedia.org domains and subdomains
-whitelist.add("*.wikipedia.org");
-one.whitelistIdentityTransferLinks(whitelist);
+HashSet<URI> whitelist = new HashSet<>();
+try {
+    whitelist.add("*.wikipedia.org");
+} catch (URISyntaxException e) {
+    e.printStackTrace();
+}
+One.setIdentityTransferLinksWhiteList(whitelist);
+
+// This example show how to retrieve the whitelist currently in use
+HashSet<URI> whitelist = One.getIdentityTransferLinksWhiteList()
 ```
 
-*Note:*
+*Note:* 
 - When a link is whitelisted, a `one-tid` will be appended to the whitelisted link/s only.
+- Setting the whitelist to an `empty list` or `null` will clear the existing whitelist.
 
 ### Ability to blacklist identity transfer links
 
-The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` specific set of links, you can blacklist the links to which the SDK should not append a `one-tid` by calling the method `blacklistIdentityTransferLinks` and passing your links as shown below:
+The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can blacklist the links to which the SDK should not append a `one-tid` by calling the `java.net.URI.setIdentityTransferLinksBlackList` Kotlin extension function or `blacklistIdentityTransferLinks` Java method as shown below:
 
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.setIdentityTransferLinksBlackList
+// rest of imports
+
+// This example shows how to blacklist links under specific domain names
+// www.google.com and www.uber.com. For example,
+// https://www.google.com, https://www.uber.com/en/,
+// https://www.uber.com/en/ride/, etc.
+val blackList = setOf(URI("www.google.com"), URI("www.uber.com"))
+    .setIdentityTransferLinksBlackList()
+
+// This example shows how to whitelist the main domain name
+// wikipedia.org and any subdomain. For example,
+// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
+val blackList = setOf(URI("*.wikipedia.org"))
+    .setIdentityTransferLinksBlackList()
+
+// This example show how to retrieve the whitelist currently in use
+val blackList = oneGetIdentityTransferLinksBlackList()
+```
+
+`Java`
 ```java
 // This example shows how to blacklist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
 // https://www.uber.com/en/ride/, etc.
-One one = One.getInstance(getApplicationContext());
-ArrayList<String> blacklist = new ArrayList<>();
-blacklist.add("www.google.com");
-blacklist.add("www.uber.com");
-one.blacklistIdentityTransferLinks(blacklist);
-
+HashSet<URI> blacklist = new HashSet<>();
+try {
+    blacklist.add(new URI("www.google.com"));
+    blacklist.add(new URI("www.uber.com"));
+} catch (URISyntaxException e) {
+    e.printStackTrace();
+}
+One.setIdentityTransferLinksBlackList(blacklist);
 
 // This example shows how to blacklist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-One one = One.getInstance(getApplicationContext());
-ArrayList<String> whitelist = new ArrayList<>();
-// this will cover any google.com domains and subdomains
-blacklist.add("*.wikipedia.org");
-one.blacklistIdentityTransferLinks(blacklist);
+HashSet<URI> blacklist = new HashSet<>();
+try {
+    blacklist.add("*.wikipedia.org");
+} catch (URISyntaxException e) {
+    e.printStackTrace();
+}
+One.setIdentityTransferLinksBlackList(blacklist);
+
+// This example show how to retrieve the blacklist currently in use
+HashSet<URI> blacklist = One.getIdentityTransferLinksBlackList()
 ```
 
-*Note:*
-- If a link is blacklisted, a `one-tid` will be appended to all other links but the blacklisted link.
+*Note:* 
+- If a link is blacklisted, a `one-tid` will be appended to all other links but the blacklisted link. 
+- Setting the blacklist to an `empty list` or `null` will clear the existing blacklist.
 
-###	Disable automatic identity transfer
+### Disable automatic identity transfer
 
-If the Orchestration Plugin was enabled, the SDK adds a `one-tid` as a URL query parameter to web links opened in `WebView`, `CustomTabs` and external browsers(via `Intent`). To disable this functionality, call the `disableIdentityTransfer` method by passing `true` as shown below:  
+If the Orchestration Plugin was enabled, the SDK adds a `one-tid` as a `URL` query parameter to web links opened in `WebView`, `CustomTabs` and external browsers (via `Intent`). 
+To disable this functionality, call the `oneConfigureIdentityTransfer` Kotlin top-level function or the `One.setIdentityTransferConfiguration` Java method as shown below:  
 
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneConfigureIdentityTransfer
+
+oneConfigureIdentityTransfer {
+    disableIdentityTransfer = true
+}
+```
+
+`Java`
 ```java
-One one = One.getInstance(getApplicationContext());
-one.disableIdentityTransfer(true);
+import com.thunderhead.One;
+import com.thunderhead.android.api.identitytransfer.OneIdentityTransferConfiguration;
+
+final OneIdentityTransferConfiguration identityTransferConfiguration =
+    new OneIdentityTransferConfiguration.Builder()
+        .disableIdentityTranser(true)
+        .build();
+One.setIdentityTransferConfiguration(identityTranserConfiguration);
 ```
 
-*Note:*
-- This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a `one-tid` as a URL query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
+*Note:* 
+- This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a `one-tid` as a `URL` query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
 
-#### Send Properties for a URL scheme
+#### Send deep link properties programmatically
 
-If you have disabled automatic identity transfer, you can still send all URL parameters received as part of a deep link by calling the `handleURL` SDK public method and passing the URL as a parameter into it, as shown below:
+If you have disabled automatic identity transfer, you can still send all `URL` parameters received as part of a deep link by calling the `java.net.URI.processDeepLink` or `android.net.Uri.processDeepLink` Kotlin extension function or the `One.processDeepLink` Java method as shown below:
 
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.processDeepLink
+// rest of imports
+
+URI("myapp://MainActivity?customerKey=1").processDeepLink()
+Uri.parse("myapp://MainActivity?customerKey=1").processDeepLink()
+```
+
+`Java`
 ```java
-One one = One.getInstance(getApplicationContext());
-one.handleURL("myapp://MainActivity?customerKey=1");
+One.processDeepLink(URI.create("myapp://MainActivity?customerKey=1"));
 ```
 
-*Note:*
+*Note:* 
 - This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 
-#### Append a ‘one-tid’ parameter to a `URL` to facilitate identity transfer
+#### Create a `URL` with a `one-tid` parameter to facilitate identity transfer 
 
-If you have disabled automatic identity transfer, you can still add a `one-tid` parameter to a link opened from the app programmatically, by calling `getURLWithOneTid` as shown below:
+If you have disabled automatic identity transfer, you can still create a `URL` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URL.createUrlWithTid()` Kotlin extension function or the `One.createUrlWithTid(URL)` Java method as shown below:
 
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.createUrlWithTid
+// rest of imports
+
+val urlWithOneTid = URL("http://mysite.com").createUrlWithTid()
+```
+
+`Java`
 ```java
-One one = One.getInstance(getApplicationContext());
-URL urlWithOneTid = one.getURLWithOneTid(url);
+URL url = new URL("http://mysite.com");
+URL urlWithOneTid = One.createUrlWithTid(url);
 ```
 
 Once you have the `urlWithOneTid`, pass this into the method which handles the opening of the `URL`.
 
-#### Append a `one-tid` parameter to a `Uri` to facilitate identity transfer
+*Note:* The above methods return `null` if the SDK is not configured or is in Admin Mode.
 
-If you have disabled automatic identity transfer, you can still add a `one-tid` parameter to a link opened from the app programmatically, by calling `getUriWithOneTid` as shown below:
+#### Create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to facilitate identity transfer 
 
+If you have disabled automatic identity transfer, you can still create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URI.createUriWithTid()` or `android.net.Uri.createUriWithTid()` Kotlin extension functions or the `One.createUriWithTid(Uri|URI)` Java method as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.createUriWithTid
+// rest of imports
+
+val androidUriWithOneTid = Uri.parse("http://mysite.com").createUriWithTid()
+val javaUriWithOneTid = URI("http://mysite.com").createUriWithTid()
+```
+
+`Java`
 ```java
-One one = One.getInstance(getApplicationContext());
-Uri uriWithOneTid = one.getUriWithOneTid(url);
+Uri uri = Uri.parse("http://mysite.com");
+Uri uriWithOneTid = One.createUriWithTid(uri);
+
+URI javaUri = URI.create("http://mysite.com");
+URI javaUriWithOneTid = One.createUriWithTid(javaUri);
 ```
 
 Once you have the `uriWithOneTid`, pass this into the method which handles the opening of the `Uri`.
+
+*Note:* The above methods return `null` if the SDK is not configured or is in Admin Mode.
 
 ### Disable automatic outbound link tracking
 
 If the Orchestration Plugin was enabled, the SDK will automatically send an Interaction request to `/one-click` as a url is opened in a `WebView`, `CustomTab` or external browser to facilitate last click attribution.
 
-To disable this functionality call the `disableAutomaticOutboundLinkTracking` method and pass `true`, as shown below:
+To disable this functionality use the code below:
 
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneConfigureCodelessInteractionTracking
+
+oneConfigureCodelessInteractionTracking {
+    disableOutboundLinkTracking = true
+}
+```
+
+`Java`
 ```java
-One one = One.getInstance(getApplicationContext());
-one.disableAutomaticOutboundLinkTracking(true);
+import com.thunderhead.One;
+import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfiguration;
+
+final OneCodelessInteractionTrackingConfiguration codelessInteractionTrackingConfiguration =
+    new OneCodelessInteractionTrackingConfiguration.Builder()
+        .disableOutboundLinkTracking(true)
+        .build();
+
+One.setCodelessInteractionTrackingConfiguration(codelessInteractionTrackingConfiguration);
 ```
 
 #### Programmatically trigger an outbound link tracking Interaction call
 
-If you have disabled automatic outbound link tracking, you can still track a `URL` or `Uri`, by calling:
+If you have disabled automatic outbound link tracking, you can still track a `URL` or `Uri`, by calling the `java.net.URI.sendInteractionForOutboundLink` or `android.net.Uri.sendInteractionForOutboundLink` Kotlin extension functions or the `One.sendInteractionForOutboundLink` Java method as shown below:
 
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.sendInteractionForOutboundLink
+
+URI("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
+Uri.parse("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
+
+URL("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
+```
+
+
+`Java`
 ```java
 // URL example
-One one = One.getInstance(getApplicationContext());
 try {
-    one.sendInteractionForOutboundLink(new URL("https://www.yourfullurl.com/"));
+    One.sendInteractionForOutboundLink(new URL("https://www.yourfullurl.com/"));
 } catch (MalformedURLException e) {
     e.printStackTrace();
 }
 
 // URI example
-One one = One.getInstance(getApplicationContext());
 try {
-     one.sendInteractionForOutboundLink(Uri.parse("https://www.yourfullurl.com/"));
+     One.sendInteractionForOutboundLink(Uri.parse("https://www.yourfullurl.com/"));
 } catch (MalformedURLException e) {
     e.printStackTrace();
 }
@@ -683,74 +1332,96 @@ try {
 ```
 Pass the `URL` or `Uri`, which will send an Interaction request to `/one-click` using the same logic as available automatically.
 
-*Note:*
+*Note:* 
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - The `/one-click` Interaction request should be setup in Thunderhead ONE, or Salesforce Interaction Studio, to capture the appropriate attributes and activity.
 
 ### Enable push notifications
-To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, Firebase Cloud Messaging (FCM) must be configured by following the FCM setup instructions.
+
+To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, Firebase Cloud Messaging (FCM) must be configured by following the FCM setup instructions. 
 At minimum the app must be configured in Firebase and the `google-services.json` needs to be in the root of the app project.
 
-#### Minimum Gradle configuration
-To use the codeless push notifications functionality without using FCM directly, you need to at least have the `google-services` plugin applied to your app build.gradle:
+#### Minimum Gradle configuration 
+
+To use the codeless push notifications functionality without using FCM directly, you need to at least have the `google-services` plugin applied to your app build.gradle: 
 
 1. Add the Google Services Plugin to your classpath in the top-level build.gradle file, located in the root project directory, as shown below:
-    ```gradle
-    buildscript {
-        repositories {
-            google()
-            jcenter()
-            mavenCentral()
-        }
-        dependencies {
-            classpath 'com.android.tools.build:gradle:3.4.2'
-            // for cloud messaging support
-            classpath 'com.google.gms:google-services:4.2.0'
-        }
+
+```gradle
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
     }
-    ```
-2.	Apply the Google Messaging Service plugin to the app-level build.gradle file, as shown below:
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        // for cloud messaging support
+        classpath 'com.google.gms:google-services:4.2.0'
+    }
+}
+```
 
-    ```gradle
-    // place this at the bottom of your app build.gradle
-    apply plugin: 'com.google.gms.google-services'
-    ```
+2.  Apply the Google Messaging Service plugin to the app-level build.gradle file, as shown below:
 
-    - The `Warning: The app gradle file must have a dependency on com.google.firebase:firebase-core for Firebase services to work as intended.`
-    can safely be ignored as this is not required for Push Notification Support.
-
+```gradle
+// place this at the bottom of your app build.gradle
+apply plugin: 'com.google.gms.google-services'
+```
+    
+- The `Warning: The app gradle file must have a dependency on com.google.firebase:firebase-core for Firebase services to work as intended.` can safely be ignored as this is not required for push notification support.
+    
 #### Enable codeless push notification support programmatically
-- For Firebase Cloud Messaging simply enable push notifications as shown below:
-    ```java
-    One one = One.getInstance(getApplicationContext());
-    one.enablePushNotifications(true);
-    ```
-*Note:*
-- When the Thunderhead SDK is the only push message provider in your application and you enable codeless push notification support,
-the SDK will automatically get the push token and handle receiving of push notifications on behalf of your app.
+
+For Firebase Cloud Messaging, simply enable push notifications as shown below:
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneConfigureMessaging
+
+oneConfigureMessaging {
+    enabled = true
+}
+```
+  
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
+
+final OneMessagingConfiguration oneMessagingConfiguration = new OneMessagingConfiguration.Builder()
+    .enabled(true)
+    .build();
+
+One.setMessagingConfiguration(oneMessagingConfiguration);
+```
+
+*Note:* 
+- When the Thunderhead SDK is the only push message provider in your application and you enable codeless push notification support, the SDK will automatically get the push token and handle receiving of push notifications on behalf of your app.
 
 ##### Configure push notifications with multiple push message SDKs
-When the Thunderhead SDK is integrated into an App that has multiple push message providers for Firebase, extra configuration is required.
-The Thunderhead SDK message APIs must be called from the service that receives the FCM token and FCM Message.  
+
+When the Thunderhead SDK is integrated into an app that has multiple push message providers for Firebase, extra configuration is required. The Thunderhead SDK message APIs must be called from the service that receives the FCM token and FCM Message.  
 
 ```java
 // Call when a new FCM token is retrieved:
-One.getInstance(context).processMessagingToken(newToken);
+One.setMessagingToken(newToken);
 
 // Call when a new message is received from Firebase:
-One.getInstance(context).processMessage(message);
+One.processMessage(message);
 ```
 
 An example of a Firebase Messaging Service that calls the Thunderhead SDK messaging APIs:
+
 ```java
 public final class FirebaseService extends FirebaseMessagingService {
     private static final String TAG = "FirebaseService";
-
+    
     @Override
     public void onMessageReceived(final RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
         try {
-            One.getInstance(getApplicationContext()).processMessage(remoteMessage);
+            One.processMessage(remoteMessage);
             // Call other Push Message SDKS.
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
@@ -761,7 +1432,7 @@ public final class FirebaseService extends FirebaseMessagingService {
     public void onNewToken(final String newToken) {
         super.onNewToken(newToken);
         try {
-            One.getInstance(getApplicationContext()).processMessagingToken(newToken);
+            One.setMessagingToken(newToken);
             // Call other Push Message SDKS.
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
@@ -773,80 +1444,81 @@ public final class FirebaseService extends FirebaseMessagingService {
 Do not forget to register the customer service (if required) that calls the Thunderhead SDK in the manifest:
 
 ```xml
-
 <!-- The priority should be set to a high value in order to ensure this service receives the intent vs the other push provider SDKs -->
  <service
-            android:name="com.example.FirebaseService">
-            <intent-filter android:priority="100">
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+    android:name="com.example.FirebaseService">
+        <intent-filter android:priority="100">
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+</service>
 ```
 
 ##### Set a non adaptive fallback
 
-Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460).
+Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
 The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
 
 The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash
-loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices.
+loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
 Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
 
-The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. See [Troubleshooting Guide](https://github.com/thunderheadone/one-sdk-android/blob/master/TROUBLESHOOTING-GUIDE.md#14019-non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set).
+The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. See [Troubleshooting Guide](GITHUB-TROUBLESHOOTING-GUIDE.md)
 
 Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
 
+`Kotlin`
 ```kotlin
-One.getInstance(context)?.run {
-    // set icon before init to avoid warning.
-    messageConfig = MessageConfig(android.R.drawable.star_on)
-    enablePushNotifications(true)
-    init(siteKey, touchpoint, apiKey, sharedSecret, userId, mode, host)
+import com.thunderhead.android.api.oneConfigureMessaging
+
+oneConfigureMessaging {
+    enabled = true
+    nonAdaptiveSmallIcon = android.R.drawable.star_on
 }
 ```
 
+`Java`
 ```java
-One one = One.getInstance(getApplicationContext());
-one.setMessageConfig(
-    new MessageConfig(android.R.drawable.star_on)
-);
-one.enablePushNotifications(true);
-one.init(siteKey, touchpoint, apiKey, sharedSecret, userId, mode, host);
-```
+import com.thunderhead.One;
+import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
 
+final OneMessagingConfiguration oneMessagingConfiguration = new OneMessagingConfiguration.Builder()
+    .nonAdaptiveSmallIcon(android.R.drawable.star_on)
+    .enabled(true)
+    .build();
+
+One.setMessagingConfiguration(oneMessagingConfiguration);
+```
 
 ### Get a push token
 
-To get the push token codelessly retrieved by the SDK, call the `getPushToken` method as shown below:
+To get the push token codelessly retrieved by the SDK, call the `One.getMessagingToken` Java method as shown below:
 
 ```java  
-One one = One.getInstance(getApplicationContext());
-String pushToken = one.getPushToken();
+String pushToken = One.getMessagingToken();
 // work with the push token
 ```
 *Note:*
-- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider.
+- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider. 
 
 ### Send a push token
 
-To send a push token, call the `sendPushToken` method by passing a push token, as shown below:
+To send a push token, call the `One.setMessagingToken` method by passing a push token, as shown below:
 
 ```java
-One one = One.getInstance(getApplicationContext());
-one.sendPushToken("DUI03F379S1UUIDA6DADF8DFQPZ");
+import com.thunderhead.One;
 
+One.setMessagingToken("DUI03F379S1UUIDA6DADF8DFQPZ");
 ```
 
 ### Send a location object
 
-To send a location object, call:
+To send a location object, pass the location object as a parameter to the `updateLocation` method, as shown below:
 
 ```java
-One one = One.getInstance(getApplicationContext());
-one.updateLocation(location);
+One.processLocation(location);
 ```
 
-passing the location object as a parameter to the `updateLocation` method. Use `LocationListener` callback method to call ``updateLocation`, as shown below:
+Use the `LocationListener` callback method to call `updateLocation`, as shown below:
 
 ```java
 LocationListener locationListener = new LocationListener() {
@@ -870,8 +1542,7 @@ LocationListener locationListener = new LocationListener() {
 To get the current `tid` used by the SDK, call:
 
 ```java
-One one = One.getInstance(getApplicationContext());
-one.getTid();
+One.getTid();
 ```
 
 *Note:*
@@ -883,43 +1554,38 @@ one.getTid();
 The Thunderhead SDK for Android provides 4 distinct debugging levels, that can be enabled once the SDK has been initialized, as shown below:
 
 1. `NONE` - if set, no messages will be displayed in the console.
-
-	```java
-	// this is an instance of Android Context.
-	One.getInstance(this).setLogLevel(OneLogLevel.NONE);
-	```
+  
+```java
+One.setLogLevel(OneLogLevel.NONE);
+```
 
 2. `ALL` - if set, all log messages will be displayed in the console.
-
-	```java
-	// this is an instance of Android Context.
-	One.getInstance(this).setLogLevel(OneLogLevel.ALL);
-	```
+  
+```java
+One.setLogLevel(OneLogLevel.ALL);
+```
 
 3. `WEB_SERVICE` - if set, only web service logs will be displayed in the console.
 
-	```java
-	// this is an instance of Android Context.
-	One.getInstance(this).setLogLevel(OneLogLevel.WEB_SERVICE);
-	```
+```java
+One.setLogLevel(OneLogLevel.WEB_SERVICE);
+```
 
 4. `FRAMEWORK` - if set, only framework logs will be displayed in the console.
+  
+```java
+One.setLogLevel(OneLogLevel.FRAMEWORK);
+```
 
-	```java
-	// this is an instance of Android Context.
-	One.getInstance(this).setLogLevel(OneLogLevel.FRAMEWORK);
-	```
-
-*Note:*
+*Note:* 
 - By default, the Thunderhead SDK for Android does not display any debug log messages. However, exception messages are printed in the console, when these occur.
 
-### Identify the framework version
+### Identify the SDK version
 
-You can find out the current version of the framework by calling:
+You can find out the current version of the SDK by calling:
 
 ```java
-One one = One.getInstance(getApplicationContext());
-one.frameworkVersion();
+One.getVersion();
 ```
 
 ### Clear the user profile
@@ -927,28 +1593,33 @@ one.frameworkVersion();
 You can programmatically erase the user profile data by calling:
 
 ```java
-One one = One.getInstance(getApplicationContext());
-one.clearUserProfile();
+One.clearUserProfile();
 ```
-*Note:*
+
+*Note:* 
 - This method removes `tid` from local storage only.
 - For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-## Further integration details
+## Further integration details 
 
 ### How to disable the codeless identity transfer support
+
 To completely remove the codeless identity transfer functionality for Android, you need to make the following updates:
+
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
-```gradle
+
+```gradle 
 classpath 'com.thunderhead.android:orchestration-plugin:1.0.1'
 ```
+
 2. Open the **app-level** `build.gradle` file and remove the following references.
-```gradle
+
+```gradle 
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 ```
 
 ## Troubleshooting guide
-[Troubleshooting guide](TROUBLESHOOTING-GUIDE.md)
+[Troubleshooting guide](GITHUB-TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
