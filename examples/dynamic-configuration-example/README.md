@@ -1,4 +1,4 @@
-![Nevercode build status](https://app.nevercode.io/api/projects/b6c0e1f1-46b5-414a-8fe3-969670225833/workflows/6ac7f951-f9ac-4c05-9803-4f8023f17d36/status_badge.svg?branch=master&style=shields)
+![Nevercode build status](https://app.nevercode.io/api/projects/a1c694b2-2e86-4a3b-9d0e-9671c5819b9f/workflows/d7a9ef3c-a383-4f1e-a4b1-2c6ed83ce9e7/status_badge.svg?branch=master&style=shields)
 
 # Dynamic configuration example
 
