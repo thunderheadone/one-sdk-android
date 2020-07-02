@@ -7,7 +7,6 @@ buildscript {
         jcenter()
         maven {
             name 'Thunderhead'
-            //TODO: Use public repo when release is out.
             url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
         }
     }
