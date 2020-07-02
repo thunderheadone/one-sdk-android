@@ -28,7 +28,7 @@ on updating your existing SDK configuration.**
     * [Programmatic Interactions and Properties API](#programmatic-interactions-and-properties-api)
         * [Send Interactions](#send-interactions)
             * [Send an Interaction request](#send-an-interaction-request)
-            * [Send an Interaction request processing the response](#send-an-interaction-request-processing-the-response)
+            * [Send an Interaction request and retrieve the response](#send-an-interaction-request-and-retrieve-the-response)
         * [Send Properties](#send-properties)
             * [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
             * [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
@@ -309,14 +309,14 @@ Included in the Thunderhead SDK's AndroidManifest.xml are the following permissi
 
 You can configure and reconfigure the SDK as many times as necessary. 
 * The SDK does not support partial, or piecemeal, configuration. All parameters must be provided, either all valid or invalid (`empty string` or `null`).  
-* When configured with invalid parameters, it will set the SDK into an `un-configured` state.
+* When configured with invalid parameters, it will set the SDK into an *unconfigured* state.
 
 See [here](https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example) for an example app that demonstrates dynamic configuration.
 
 #### SDK initialization not required
 
-The Thunderhead SDK is automatically initialized in an `un-configured` state.
-* While `un-configured`, the SDK will continue to locally queue end-user data and will upload the data to server once the SDK is configured with valid parameters.
+The Thunderhead SDK is automatically initialized in an *unconfigured* state.
+* While *unconfigured*, the SDK will continue to locally queue end-user data and will upload the data to server once the SDK is configured with valid parameters.
 * This can be disabled at any time by setting the `oneOptOutConfiguration` to `true`. See more about opt out [here](#opt-an-end-user-out-of-tracking).
 
 #### Set up the SDK in User mode
@@ -398,7 +398,7 @@ public class YourApplication extends Application {
 
 #### Set up the SDK in Admin mode
 
-To use the SDK in Admin mode, change the ONE mode to `ADMIN_MODE`.
+To use the SDK in Admin mode, change the `OneModes` to `ADMIN_MODE`.
 
 *Note:* 
 - If you are running in Admin mode on Android 6.0+, you will need to enable the “draw over other apps” permission via your OS settings. 
@@ -569,13 +569,13 @@ sendInteractionCall.enqueue(null);
 ```
 
 *Note:* 
-- This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the `tid` from the response 
+- This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio. Only the `tid` from the response 
 will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers, and/or dashes.
 
-##### Send an Interaction request processing the response
+##### Send an Interaction request and retrieve the response
 
-You can send an Interaction request programmatically and process the response by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
+You can send an Interaction request programmatically, access its response, and then process the response by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
 
 `Kotlin`
 ```kotlin
