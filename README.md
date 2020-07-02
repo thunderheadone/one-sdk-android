@@ -1462,7 +1462,7 @@ The Thunderhead SDK will optimize your user's App experience by sending Push Not
 loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
 Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
 
-The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. See [Troubleshooting Guide](GITHUB-TROUBLESHOOTING-GUIDE.md)
+The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. See [Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md)
 
 Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
 
@@ -1619,7 +1619,7 @@ apply plugin: 'com.thunderhead.android.orchestration-plugin'
 ```
 
 ## Troubleshooting guide
-[Troubleshooting guide](GITHUB-TROUBLESHOOTING-GUIDE.md)
+[Troubleshooting guide](TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
