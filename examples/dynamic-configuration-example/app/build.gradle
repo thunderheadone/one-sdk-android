@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.thunderhead.dynamicconfigurationexample"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
+
+        buildConfigField("boolean", "TH_SDK_ADMIN_MODE", "${findProperty("th.android.sdk.adminMode").toBoolean()}")
+
+        buildConfigField("String", "TH_SDK_USER_USA", "${findProperty("th.android.sdk.user.usa")}")
+        buildConfigField("String", "TH_SDK_APIKEY_USA", "${findProperty("th.android.sdk.apiKey.usa")}")
+        buildConfigField("String", "TH_SDK_SHAREDSECRET_USA", "${findProperty("th.android.sdk.sharedSecret.usa")}")
+        buildConfigField("String", "TH_SDK_SITEKEY_USA", "${findProperty("th.android.sdk.siteKey.usa")}")
+        buildConfigField("String", "TH_SDK_URI_USA", "${findProperty("th.android.sdk.uri.usa")}")
+        buildConfigField("String", "TH_SDK_HOST_USA", "${findProperty("th.android.sdk.host.usa")}")
+
+        buildConfigField("String", "TH_SDK_USER_EUR", "${findProperty("th.android.sdk.user.eur")}")
+        buildConfigField("String", "TH_SDK_APIKEY_EUR", "${findProperty("th.android.sdk.apiKey.eur")}")
+        buildConfigField("String", "TH_SDK_SHAREDSECRET_EUR", "${findProperty("th.android.sdk.sharedSecret.eur")}")
+        buildConfigField("String", "TH_SDK_SITEKEY_EUR", "${findProperty("th.android.sdk.siteKey.eur")}")
+        buildConfigField("String", "TH_SDK_URI_EUR", "${findProperty("th.android.sdk.uri.eur")}")
+        buildConfigField("String", "TH_SDK_HOST_EUR", "${findProperty("th.android.sdk.host.eur")}")
+
+        buildConfigField("String", "TH_SDK_USER_UK", "${findProperty("th.android.sdk.user.uk")}")
+        buildConfigField("String", "TH_SDK_APIKEY_UK", "${findProperty("th.android.sdk.apiKey.uk")}")
+        buildConfigField("String", "TH_SDK_SHAREDSECRET_UK", "${findProperty("th.android.sdk.sharedSecret.uk")}")
+        buildConfigField("String", "TH_SDK_SITEKEY_UK", "${findProperty("th.android.sdk.siteKey.uk")}")
+        buildConfigField("String", "TH_SDK_URI_UK", "${findProperty("th.android.sdk.uri.uk")}")
+        buildConfigField("String", "TH_SDK_HOST_UK", "${findProperty("th.android.sdk.host.uk")}")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // Thunderhead
+    implementation "com.thunderhead.android:one-sdk:6.0.0"
+    // For Interaction Studio, uncomment below and remove above implementation line.
+    //implementation "com.thunderhead.android:is-sdk:6.0.0"
+
+    testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+}
