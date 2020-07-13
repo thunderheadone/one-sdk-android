@@ -1,23 +1,29 @@
-# Thunderhead SDK and Orchestration Plugin Example
+# Identity transfer example
+
+This example app demonstrates how to use the identity transfer feature in the Thunderhead SDK.  
 
 ### How to run
-* Clone this repo or download the source directly.
-* Update the values in `gradle.properties` with your Thunderhead Information:
-  * thunderheadAdminMode=false 
-  * thunderheadUser="user@tenant"
-  * thunderheadApiKey="my-key"
-  * thunderheadSharedSecret="my-secret"
-  * thunderheadSiteKey="my-site-key"
-  * thunderheadTouchpoint="android://thunderheadDemo"
-  * thunderheadHost="https://na2.thunderhead.com"
-* Open the project with Android Studio
-* Clean and Build the Project
-* Play the "App" on an emulator.
 
-### What's happening
-The information entered in the `gradle.properties` file is used as as the configuration parameters for the Thunderhead SDK.
-The ThunderheadSDK is configured in the `ExampleApplication.kt` class using the information you entered in the `gradle.properties` file.
-If your information is correct and there are no network errors the `MainActivity.kt` will be started when the App is opened.
-Enter the url of your choice, the default is https://www.thunderhead.com, and press the `Transfer Identity To Web`  button.
-This will open the URL you entered in whatever browser the phone currently has.  If all things go as planned the url 
-will have a new query parameter of `one-tid=<GUID>` appended which will successfully transfer the users identity to the consuming website.
+The parameters found in the `gradle.properties` file is used as the configuration parameters for the Thunderhead SDK, which is configured in [ExampleApplication.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/identity-transfer-example/app/src/main/java/com/thunderhead/identitytransferexample/ExampleApplication.kt).
+
+* Clone this repo or download the source directly.
+* Update configuration values in `gradle.properties` with your Thunderhead credentials:
+```java
+thunderheadAdminMode=false
+thunderheadUser="user@tenant"
+thunderheadApiKey="my-key"
+thunderheadSharedSecret="my-secret"
+thunderheadSiteKey="my-site-key"
+thunderheadTouchpoint="android://thunderheadDemo"
+thunderheadHost="https://xx.thunderhead.com"
+```
+* Open project in Android Studio
+* Clean and Build the Project
+* Play the "App" on an emulator
+
+App Flow Summary:
+1. On initial app start, [MainActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/identity-transfer-example/app/src/main/java/com/thunderhead/identitytransferexample/MainActivity.kt) is presented. 
+2. Enter the url of your choice in the Text View, the default is https://www.thunderhead.com.
+3. Press the `Transfer Identity To Web`  button.
+
+This will open the entered URL in the mobile browser and the url will have an appended query parameter of `one-tid=<GUID>` which will transfer the users identity to the consuming website.
