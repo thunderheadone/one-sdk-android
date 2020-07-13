@@ -284,7 +284,7 @@ repositories {
 
 For further documentation on the `orchestration-plugin` please see the [Orchestration Plugin Readme](ORCHESTRATION-PLUGIN-README.md).
 
-## Use the Codeless Thunderhead SDK for Android
+## Use the codeless Thunderhead SDK for Android
 
 Enable your app to automatically recognize **Interactions** by executing the following steps.
 
@@ -309,7 +309,7 @@ The following permissions are included in the Thunderhead SDK's AndroidManifest.
 
 You can configure and reconfigure the SDK as many times as necessary. 
 * The SDK does not support partial, or piecemeal, configuration. You must provide all parameters, either all valid or invalid (`empty string` or `null`).  
-* When configured with invalid parameters, the SDK is initialized in an *unconfigured* state.
+* When configured with invalid parameters, the SDK is set in an *unconfigured* state.
 
 See [here](https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example) for an example app that demonstrates dynamic configuration.
 
@@ -406,7 +406,7 @@ To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
 
 **You have now successfully integrated the codeless Thunderhead SDK for Android.**
 
-## Additional Features
+## Additional features
 
 Follow any of the steps below to access further functions of the SDK.
 
@@ -898,7 +898,7 @@ One.setAutomaticInteractionCallback(new OneInteractionPath(URI.create(TestConsta
 });
 ```
 
-The response can be passed to the `processResponse` method, as shown above. By calling this method the response is returned to the SDK to process, attaching any activity capture, trattribute capture, or optimize instructions to the Interaction.
+The response can be passed to the `processResponse` method, as shown above. By calling this method the response is returned to the SDK to process, attaching any activity capture, attribute capture, or optimize instructions to the Interaction.
 
 *Note:* 
 - If you set a callback for an automatically triggered Interaction, you are advised to remove that callback as soon as it is no longer needed under your activity or fragment’s `onStop` method.
@@ -1049,7 +1049,7 @@ private void showVariants() {
 
 ### Ability to whitelist identity transfer links
 
-The SDK appends a `one-tid` URL parameter to all links opened from a mobile app. To limit this behaviour, and allow the SDK to append a `one-tid` URL parameter only to a specific set of links, whitelist that set of links by calling the `java.net.URI.setIdentityTransferLinksWhiteList` Kotlin extension function or `whitelistIdentityTransferLinks` Java method, as shown below:
+The SDK appends a `one-tid` `URL` parameter to all links opened from a mobile app. To limit this behaviour, and allow the SDK to append a `one-tid` `URL` parameter only to a specific set of links, whitelist that set of links by calling the `java.net.URI.setIdentityTransferLinksWhiteList` Kotlin extension function or `whitelistIdentityTransferLinks` Java method, as shown below:
 
 `Kotlin`
 ```kotlin
@@ -1109,7 +1109,7 @@ HashSet<URI> whitelist = One.getIdentityTransferLinksWhiteList()
 
 ### Ability to blacklist identity transfer links
 
-The SDK appends a `one-tid` URL parameter to all links opened from a mobile app. To limit this behaviour, and allow the SDK to append a `one-tid` URL parameter only to a specific set of links, blacklist the links to which the SDK should not append a `one-tid` by calling the `java.net.URI.setIdentityTransferLinksBlackList` Kotlin extension function or `blacklistIdentityTransferLinks` Java method, as shown below:
+The SDK appends a `one-tid` `URL` parameter to all links opened from a mobile app. To limit this behaviour, and allow the SDK to append a `one-tid` `URL` parameter only to a specific set of links, blacklist the links to which the SDK should not append a `one-tid` by calling the `java.net.URI.setIdentityTransferLinksBlackList` Kotlin extension function or `blacklistIdentityTransferLinks` Java method, as shown below:
 
 `Kotlin`
 ```kotlin
@@ -1455,7 +1455,7 @@ The issue was resolved in Api 27. It was not, however, back ported to the origin
 The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
 Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
 
-The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. For more information, see the [Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md)
+The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. For more information, see the [Troubleshooting guide](TROUBLESHOOTING-GUIDE.md)
 
 Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
 
@@ -1593,7 +1593,7 @@ One.clearUserProfile();
 - Removes the stored `tid` only from local storage.
 - For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio, see our [API Documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-## Further Integration Details 
+## Further integration Details 
 
 ### How to disable the codeless identity transfer support
 
@@ -1611,13 +1611,13 @@ classpath 'com.thunderhead.android:orchestration-plugin:1.0.1'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 ```
 
-## Troubleshooting Guide
+## Troubleshooting guide
 [Troubleshooting guide](TROUBLESHOOTING-GUIDE.md)
 
-## Questions or Need Help
+## Questions or need help
 
 ### Salesforce Interaction Studio support
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
 
-### Thunderhead ONE Support
+### Thunderhead ONE support
 _The Thunderhead team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
