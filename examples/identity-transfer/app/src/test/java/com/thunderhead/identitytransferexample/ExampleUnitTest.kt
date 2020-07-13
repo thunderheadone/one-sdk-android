@@ -1,4 +1,4 @@
-package com.example.thunderhead
+package com.thunderhead.identitytransferexample
 
 import org.junit.Test
 

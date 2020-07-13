@@ -6,7 +6,7 @@ apply plugin: 'com.thunderhead.android.orchestration-plugin'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.thunderhead"
+        applicationId "com.thunderhead.identitytransferexample"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1

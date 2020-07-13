@@ -1,7 +1,6 @@
-package com.example.thunderhead
+package com.thunderhead.identitytransferexample
 
 import android.app.Application
-import com.example.thunderhead.BuildConfig
 import com.thunderhead.One
 import com.thunderhead.OneLogLevel
 import com.thunderhead.OneModes

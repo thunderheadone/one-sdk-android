@@ -1,4 +1,4 @@
-package com.example.thunderhead
+package com.thunderhead.identitytransferexample
 
 import android.content.Intent
 import android.net.Uri
