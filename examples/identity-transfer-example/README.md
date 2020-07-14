@@ -26,4 +26,39 @@ App Flow Summary:
 2. Enter the `URL` of your choice in the `TextView`, the default is https://www.thunderhead.com.
 3. Press the `Transfer Identity To Web`  button.
 
-This will open the entered `URL` in the mobile browser and the `URL` will have an appended query parameter of `one-tid=<GUID>` which will transfer the users identity to the consuming website.
+This opens the entered `URL` in the mobile browser and the `URL` will have an appended query parameter of `one-tid=<GUID>` which transfers the users identity to the consuming website.
+
+### Migrating from versions < 6.0.0
+
+Version 6.0.0 of the Thunderhead SDK introduced static methods and Kotlin top-level extension functions.
+Please see below to see how to migrate the SDK methods used in this example app from < 6.0.0.  
+
+```kotlin
+ // Old 
+
+ One.getInstance(this)?.run {
+	init(
+		BuildConfig.thunderheadSiteKey,
+		BuildConfig.thunderheadTouchpoint,
+		BuildConfig.thunderheadApiKey,
+		BuildConfig.thunderheadSharedSecret,
+		BuildConfig.thunderheadUser,
+		BuildConfig.thunderheadHost,
+		if(BuildConfig.thunderheadAdminMode) OneModes.ADMIN_MODE else OneModes.USER_MODE
+	)
+}
+```
+
+```kotlin
+ // New 
+
+oneConfigure {
+	siteKey = BuildConfig.thunderheadSiteKey
+	apiKey = BuildConfig.thunderheadApiKey
+	sharedSecret = BuildConfig.thunderheadSharedSecret
+	userId = BuildConfig.thunderheadUser
+	host = URI(BuildConfig.thunderheadHost)
+	touchpoint = URI(BuildConfig.thunderheadTouchpoint)
+	mode = if(BuildConfig.thunderheadAdminMode) OneModes.ADMIN_MODE else OneModes.USER_MODE
+}
+```
