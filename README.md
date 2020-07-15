@@ -8,7 +8,7 @@ for details on updating the required Gradle plugins.**
 **To _migrate_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java 8 migration guide](JAVA8-MIGRATION-GUIDE.md) for details
 on updating your app to be Java 8 compatible in order to use the Thunderhead SDK.**
 
-**To _migrate__ from version(s) < 6.0.0 of the Thunderhead SDK to version(s) 6.0.0+, please see the [Version 6 migration guide](MIGRATION-VERSION-6.md) for details
+**To _migrate_ from version(s) < 6.0.0 of the Thunderhead SDK to version(s) 6.0.0+, please see the [Version 6 migration guide](MIGRATION-VERSION-6.md) for details
 on updating your existing SDK configuration.**
 
 ## Table of Contents
@@ -16,7 +16,7 @@ on updating your existing SDK configuration.**
 * [Installation](#installation)
     * [Manual installation](#manual-installation)
 * [Use the codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
-     * [The Thunderhead Application Manifest file permissions](#the-thunderhead-application-manifest-file-permissions)
+     * [Thunderhead Application Manifest file permissions](#thunderhead-application-manifest-file-permissions)
      * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
         * [SDK initialization not required](#sdk-initialization-not-required)
         * [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
@@ -70,7 +70,7 @@ Requires Gradle 5.2.1+
 
 1. Open your existing Android application in Android Studio.
 2. Include the Thunderhead SDK as a dependency in your project:
-+ Navigate to your **app-level** build.gradle file.
++ Navigate to your **app-level** build.gradle.
 + Add the following, under the dependencies section:
     + For **Thunderhead ONE** integrations:
 
@@ -292,7 +292,7 @@ Enable your app to automatically recognize **Interactions** by executing the fol
 
 ### Thunderhead Application Manifest file permissions
 
-The following permissions are included in the Thunderhead SDK's AndroidManifest.xml and will be merged with your applications AndroidManifest.xml:
+The following permissions are included in the Thunderhead SDK's `AndroidManifest.xml` and will be merged with your applications AndroidManifest.xml:
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -1267,7 +1267,7 @@ Once you have the `uriWithOneTid`, pass this into the method which handles the o
 
 ### Disable automatic outbound link tracking
 
-If the Orchestration Plugin is enabled, the SDK automatically sends an Interaction request to `/one-click` when a URL is opened in a `WebView`, `CustomTab` or external browser to facilitate last click attribution.
+If the Orchestration Plugin is enabled, the SDK automatically sends an Interaction request to `/one-click` when a `URL` is opened in a `WebView`, `CustomTab` or external browser to facilitate last click attribution.
 
 To disable this functionality, use the code below:
 
@@ -1337,9 +1337,9 @@ To receive push notifications from Thunderhead ONE or Salesforce Interaction Stu
 
 #### Minimum Gradle configuration 
 
-To use the codeless push notifications functionality without using FCM directly, you must at least have the `google-services` plugin applied to your app build.gradle: 
+To use the codeless push notifications functionality without using FCM directly, you must at least have the `google-services` plugin applied to your app build.gradle. 
 
-1. Add the Google Services Plugin to your classpath in the top-level build.gradle file, located in the root project directory, as shown below:
+1. Add the Google Services Plugin to your classpath in the top-level build.gradle, located in the root project directory, as shown below:
 
 ```gradle
 buildscript {
@@ -1356,7 +1356,7 @@ buildscript {
 }
 ```
 
-2.  Apply the Google Messaging Service plugin to the app-level build.gradle file, as shown below:
+2.  Apply the Google Messaging Service plugin to the app-level build.gradle, as shown below:
 
 ```gradle
 // place this at the bottom of your app build.gradle
@@ -1395,7 +1395,7 @@ One.setMessagingConfiguration(oneMessagingConfiguration);
 
 ##### Configure push notifications with multiple push message SDKs
 
-When the Thunderhead SDK is integrated into an app that has multiple push message providers for Firebase, extra configuration is required. you must call the Thunderhead SDK message APIs from the service that receives the FCM token and FCM Message.  
+When the Thunderhead SDK is integrated into an app that has multiple push message providers for Firebase, extra configuration is required. You must call the Thunderhead SDK message APIs from the service that receives the FCM token and FCM Message.  
 
 ```java
 // Call when a new FCM token is retrieved:
