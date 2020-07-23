@@ -1,4 +1,4 @@
-package com.example.optimizationapp
+package com.thunderhead.optimizationexample
 
 import org.junit.Test
 

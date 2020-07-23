@@ -1,9 +1,10 @@
-package com.example.optimizationapp
+package com.thunderhead.optimizationexample
 
 import android.content.Context
 import android.os.Bundle
 import android.text.Html
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +19,20 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.thunderhead.One
-import com.thunderhead.android.infrastructure.server.responses.BaseResponse
+import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.android.api.interactions.OneResponseCode
+import com.thunderhead.android.api.oneSendResponseCode
+import com.thunderhead.android.api.oneSetAutomaticInteractionCallback
+import com.thunderhead.android.api.process
+import com.thunderhead.android.api.responsetypes.OneAPIError
+import com.thunderhead.android.api.responsetypes.OneResponse
+import com.thunderhead.android.api.responsetypes.OneSDKError
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONObject
+import java.net.URI
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
     }
 
-    class ActivityTabsPager(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    class ActivityTabsPager(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(position: Int): Fragment =
             if (position == 0) FirstFragment() else SecondFragment()
@@ -55,22 +66,32 @@ class MainActivity : AppCompatActivity() {
  * First tab fragment
  */
 class FirstFragment : Fragment() {
-
+    private val scope = CoroutineScope(Dispatchers.IO)
     private val viewAdapter by lazy { FirstFragmentRecyclerViewAdapter() }
     private val viewManager by lazy { LinearLayoutManager(context) }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val parent = inflater.inflate(R.layout.fragment_first, container, false)
 
         // get optimization response from SDK
-        One.getInstance(context?.applicationContext)?.let { thunderhead ->
-            thunderhead.registerInteractionCallback(
-                "/FirstFragment-recycler_view_one"
-            ) { _, response ->
-                run {
-                    thunderhead.processResponse(response)
-                    parseData(response)
+        oneSetAutomaticInteractionCallback(OneInteractionPath(URI.create("/FirstFragment-recycler_view_one"))) {
+            onSuccess {
+                it?.let {
+                    it.process()
+                    parseData(it)
                 }
+            }
+
+            onError {
+                Log.e("optimization-example", it.errorMessage)
+            }
+
+            onFailure {
+                Log.e("optimization-example", it.errorMessage)
             }
         }
 
@@ -82,42 +103,56 @@ class FirstFragment : Fragment() {
     }
 
     // parse out optimization array
-    private fun parseData(response: BaseResponse) {
-        val actions = response.optimizations
-            .map { op -> op.data.toByteArray(Charsets.UTF_8) }
-            .map { data -> Base64.decode(data, Base64.DEFAULT) }
-            .map { bytes -> JSONObject(String(bytes, Charsets.UTF_8)) }
-            .filter { json -> json.has("actions") }
-            .map { json -> json.getJSONArray("actions").get(0) as JSONObject }
+    private fun parseData(response: OneResponse) {
+        val actions = response?.optimizations?.let {
+            it.asSequence().map { op -> op.data.toByteArray(Charsets.UTF_8) }
+                .map { data -> Base64.decode(data, Base64.DEFAULT) }
+                .map { bytes -> JSONObject(String(bytes, Charsets.UTF_8)) }
+                .filter { json -> json.has("actions") }
+                .map { json -> json.getJSONArray("actions").get(0) as JSONObject }.toList()
+        }
 
-        actions.filter { it.getString("name").contains("banner")  }
-            .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
-            .forEach{ response -> setResponseCode(response, true) }
+        actions?.let {
+            actions
+            actions.filter { it.getString("name").contains("banner") }
+                .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
+                .forEach { response -> setResponseCode(response, true) }
+        }
 
-        actions.filter { it.getString("name").contains("card")  }
-            .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
-            .forEach{ response -> setResponseCode(response, false) }
+        actions?.let { actions ->
+            actions.filter { it.getString("name").contains("card") }
+                .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
+                .forEach { response -> setResponseCode(response, false) }
+        }
 
-        actions.filter { it.getString("name").contains("banner") }
-            .map { it.getJSONObject("asset").getString("content") }
-            .map { content -> JSONObject(Html.fromHtml(content).toString()) }
-            .forEach { contentJson -> updateContent(contentJson, true) }
+        actions?.let { actions ->
+            actions.filter { it.getString("name").contains("banner") }
+                .map { it.getJSONObject("asset").getString("content") }
+                .map { content -> JSONObject(Html.fromHtml(content).toString()) }
+                .forEach { contentJson -> updateContent(contentJson, true) }
+        }
 
-        actions.filter { it.getString("name").contains("card") }
-            .map { it.getJSONObject("asset").getString("content") }
-            .map { content -> JSONObject(Html.fromHtml(content).toString()) }
-            .forEach { contentJson -> updateContent(contentJson, false) }
+        actions?.let { actions ->
+            actions.filter { it.getString("name").contains("card") }
+                .map { it.getJSONObject("asset").getString("content") }
+                .map { content -> JSONObject(Html.fromHtml(content).toString()) }
+                .forEach { contentJson -> updateContent(contentJson, false) }
+        }
     }
 
     private fun setResponseCode(json: JSONObject, isBanner: Boolean) {
         val responseCode = json.getString("code")
-        if (isBanner) viewAdapter.bannerResponseCode = responseCode else viewAdapter.cardResponseCode = responseCode;
+        if (isBanner) viewAdapter.bannerResponseCode =
+            responseCode else viewAdapter.cardResponseCode = responseCode;
     }
 
     private fun updateContent(json: JSONObject, isBanner: Boolean) {
         val url = json.getString("image")
         if (isBanner) viewAdapter.bannerUrl = url else viewAdapter.cardUrl = url
-        viewAdapter.notifyDataSetChanged()
+
+        activity?.runOnUiThread {
+            viewAdapter.notifyDataSetChanged()
+        }
     }
 
     class FirstFragmentRecyclerViewAdapter :
@@ -128,7 +163,7 @@ class FirstFragment : Fragment() {
             R.drawable.product_2a,
             R.drawable.product_3a
         )
-
+        private val scope = CoroutineScope(Dispatchers.IO)
         var bannerUrl = ""
         var cardUrl = ""
         var bannerResponseCode = ""
@@ -156,26 +191,39 @@ class FirstFragment : Fragment() {
             } else if (position == 1 && cardUrl.isNotEmpty()) {
                 Glide.with(holder.image.context).load(cardUrl).into(holder.image)
             } else {
-                holder.image.setImageDrawable(ContextCompat.getDrawable(holder.image.context, imageList[position]))
+                holder.image.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        holder.image.context,
+                        imageList[position]
+                    )
+                )
             }
 
             // setup click listener to send response code
             if (position == 0) {
                 holder.image.setOnClickListener {
-                    sendResponseCode(it.context, bannerResponseCode)
+                    scope.launch {
+                        sendResponseCode(it.context, bannerResponseCode)
+                    }
                 }
             } else if (position == 1) {
                 holder.image.setOnClickListener {
-                    sendResponseCode(it.context, cardResponseCode)
+                    scope.launch {
+                        sendResponseCode(it.context, cardResponseCode)
+                    }
                 }
             }
         }
 
-        private fun sendResponseCode(context: Context?, code: String) {
-            One.getInstance(context?.applicationContext)?.let { thunderhead ->
-                thunderhead.sendResponseCode(
-                    code, "/FirstFragment-recycler_view_one"
-                )
+        private suspend fun sendResponseCode(context: Context?, code: String) {
+            try {
+                oneSendResponseCode(throwErrors = true) {
+                    responseCode = OneResponseCode("/FirstFragment-recycler_view_one")
+                }
+            } catch (error: OneSDKError) {
+                Log.e("optimization-example", "SDK Error: ${error.errorMessage}")
+            } catch (error: OneAPIError) {
+                Log.e("optimization-example", "Api Error: ${error.errorMessage}")
             }
         }
 
@@ -191,10 +239,15 @@ class SecondFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private val viewManager by lazy { LinearLayoutManager(context) }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val parent = inflater.inflate(R.layout.fragment_second, container, false)
 
-        viewAdapter = SecondFragmentRecyclerViewAdapter(resources.getStringArray(R.array.list_items))
+        viewAdapter =
+            SecondFragmentRecyclerViewAdapter(resources.getStringArray(R.array.list_items))
 
         return parent.findViewById<RecyclerView>(R.id.recycler_view_two).apply {
             setHasFixedSize(true)
@@ -231,5 +284,4 @@ class SecondFragment : Fragment() {
 
         override fun getItemCount() = dataset.size
     }
-
 }
