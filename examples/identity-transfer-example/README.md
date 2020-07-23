@@ -2,7 +2,7 @@
 
 This example app demonstrates how to use the identity transfer feature in the Thunderhead SDK.  
 
-### How to run
+## How to run
 
 The parameters found in the `gradle.properties` file is used as configuration parameters for the Thunderhead SDK, which is configured in [ExampleApplication.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/identity-transfer-example/app/src/main/java/com/thunderhead/identitytransferexample/ExampleApplication.kt).
 
@@ -21,19 +21,20 @@ thunderheadHost="https://xx.thunderhead.com"
 * Clean and Build the Project
 * Play the "App" on an emulator
 
-App Flow Summary:
-1. On initial app start, [MainActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/identity-transfer-example/app/src/main/java/com/thunderhead/identitytransferexample/MainActivity.kt) is presented. 
-2. Enter the `URL` of your choice in the `TextView`, the default is https://www.thunderhead.com.
-3. Press the `Transfer Identity To Web`  button.
+## App Flow Summary
+
+[MainActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/identity-transfer-example/app/src/main/java/com/thunderhead/identitytransferexample/MainActivity.kt)
+ * Enter the `URL` of your choice in the `TextView`, the default is https://www.thunderhead.com.
+ * Press the `Transfer Identity To Web`  button.
 
 This opens the entered `URL` in the mobile browser and the `URL` will have an appended query parameter of `one-tid=<GUID>` which transfers the users identity to the consuming website.
 
-### Migrating from versions < 6.0.0
+## Migrating from versions < 6.0.0
 
 Version 6.0.0 of the Thunderhead SDK introduced static methods and Kotlin top-level extension functions.
 Please see below to see how to migrate the SDK methods used in this example app from < 6.0.0.  
 
-```kotlin
+```java
  // Old 
 
  One.getInstance(this)?.run {
@@ -62,3 +63,13 @@ oneConfigure {
 	mode = if(BuildConfig.thunderheadAdminMode) OneModes.ADMIN_MODE else OneModes.USER_MODE
 }
 ```
+
+## Questions or need help
+Public documentation on the SDK can be found [here](https://github.com/thunderheadone/one-sdk-android)
+To see what's available, every API is exposed in the `com.thunderhead.android.api` package.  Check that package source for guidance.
+
+### Salesforce Interaction Studio Support
+_For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
+
+### Thunderhead ONE Support
+_The Thunderhead team is available 24/7 to answer any questions you have. Just email [onesupport@thunderhead.com](mailto:onesupport@thunderhead.com) or visit our docs page for more detailed installation and usage information._
