@@ -33,17 +33,12 @@ The Plugin therefore checks for gradle compatibility.
 Gradle promises that all APIs will be [backwards compatible](https://docs.gradle.org/current/userguide/feature_lifecycle.html#backwards_compatibility)
 until they are deprecated and removed, implying that using newer versions of gradle will be safe to use.
 
-Google also supports open ended newer versions for gradle when using the Android Gradle Plugin.  Please refer to their 
-[release notes](https://developer.android.com/studio/releases/gradle-plugin) which indicates the _minimum_ gradle version supported
-for each version of the Android Gradle Plugin.
+Google also supports open ended newer versions for gradle when using the Android Gradle Plugin.  Please refer to their [release notes](https://developer.android.com/studio/releases/gradle-plugin) which indicates the _minimum_ gradle version supported for each version of the Android Gradle Plugin.
 
-For example, in the Android Gradle Plugin 3.4 release notes, under the [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle)
-section, the table shows the minimum supported version of gradle is `5.1.1+`.  In addition, the 
-[release notes for 3.4.0](https://developer.android.com/studio/releases/gradle-plugin#3-4-0) specifically state `Gradle 5.1.1 or higher`.
+For example, in the Android Gradle Plugin 3.4 release notes, under the [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) section, the table shows the minimum supported version of gradle is `5.1.1+`.  In addition, the [release notes for 3.4.0](https://developer.android.com/studio/releases/gradle-plugin#3-4-0) specifically state `Gradle 5.1.1 or higher`.
 
 **Solution to an incompatible Gradle Version**
 
-Update the project's `gradle-wrapper.properties` file to use the specified version as indicated by the error message. This file is typically
-found under `projectRoot/gradle/wrapper`. 
+Update the project's `gradle-wrapper.properties` file to use the specified version as indicated by the error message. This file is typically found under `projectRoot/gradle/wrapper`. 
 
 
