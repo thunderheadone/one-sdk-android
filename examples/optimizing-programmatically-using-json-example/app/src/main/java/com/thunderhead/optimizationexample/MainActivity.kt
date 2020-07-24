@@ -79,8 +79,8 @@ class FirstFragment : Fragment() {
 
         // get optimization response from SDK
         oneSetAutomaticInteractionCallback(OneInteractionPath(URI.create("/FirstFragment-recycler_view_one"))) {
-            onSuccess {
-                it?.let {
+            onSuccess {response ->
+                response?.let {
                     it.process()
                     parseData(it)
                 }
@@ -112,28 +112,27 @@ class FirstFragment : Fragment() {
                 .map { json -> json.getJSONArray("actions").get(0) as JSONObject }.toList()
         }
 
-        actions?.let {
-            actions
-            actions.filter { it.getString("name").contains("banner") }
+        actions?.run {
+            this.filter { it.getString("name").contains("banner") }
                 .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
                 .forEach { response -> setResponseCode(response, true) }
         }
 
-        actions?.let { actions ->
-            actions.filter { it.getString("name").contains("card") }
+        actions?.run {
+            this.filter { it.getString("name").contains("card") }
                 .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
                 .forEach { response -> setResponseCode(response, false) }
         }
 
-        actions?.let { actions ->
-            actions.filter { it.getString("name").contains("banner") }
+        actions?.run {
+            this.filter { it.getString("name").contains("banner") }
                 .map { it.getJSONObject("asset").getString("content") }
                 .map { content -> JSONObject(Html.fromHtml(content).toString()) }
                 .forEach { contentJson -> updateContent(contentJson, true) }
         }
 
-        actions?.let { actions ->
-            actions.filter { it.getString("name").contains("card") }
+        actions?.run {
+            this.filter { it.getString("name").contains("card") }
                 .map { it.getJSONObject("asset").getString("content") }
                 .map { content -> JSONObject(Html.fromHtml(content).toString()) }
                 .forEach { contentJson -> updateContent(contentJson, false) }
@@ -142,8 +141,11 @@ class FirstFragment : Fragment() {
 
     private fun setResponseCode(json: JSONObject, isBanner: Boolean) {
         val responseCode = json.getString("code")
-        if (isBanner) viewAdapter.bannerResponseCode =
-            responseCode else viewAdapter.cardResponseCode = responseCode;
+        if (isBanner) {
+            viewAdapter.bannerResponseCode = responseCode
+        } else {
+            viewAdapter.cardResponseCode = responseCode
+        }
     }
 
     private fun updateContent(json: JSONObject, isBanner: Boolean) {
@@ -203,22 +205,22 @@ class FirstFragment : Fragment() {
             if (position == 0) {
                 holder.image.setOnClickListener {
                     scope.launch {
-                        sendResponseCode(it.context, bannerResponseCode)
+                        sendResponseCode(bannerResponseCode)
                     }
                 }
             } else if (position == 1) {
                 holder.image.setOnClickListener {
                     scope.launch {
-                        sendResponseCode(it.context, cardResponseCode)
+                        sendResponseCode(cardResponseCode)
                     }
                 }
             }
         }
 
-        private suspend fun sendResponseCode(context: Context?, code: String) {
+        private suspend fun sendResponseCode(code: String) {
             try {
                 oneSendResponseCode(throwErrors = true) {
-                    responseCode = OneResponseCode("/FirstFragment-recycler_view_one")
+                    responseCode = OneResponseCode(code)
                 }
             } catch (error: OneSDKError) {
                 Log.e("optimization-example", "SDK Error: ${error.errorMessage}")
