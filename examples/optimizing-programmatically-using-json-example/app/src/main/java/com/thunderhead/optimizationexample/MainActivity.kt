@@ -104,7 +104,7 @@ class FirstFragment : Fragment() {
 
     // parse out optimization array
     private fun parseData(response: OneResponse) {
-        val actions = response?.optimizations?.let {
+        val actions = response.optimizations?.let {
             it.asSequence().map { op -> op.data.toByteArray(Charsets.UTF_8) }
                 .map { data -> Base64.decode(data, Base64.DEFAULT) }
                 .map { bytes -> JSONObject(String(bytes, Charsets.UTF_8)) }
