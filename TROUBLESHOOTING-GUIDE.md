@@ -10,9 +10,9 @@ The Thunderhead SDK for Android Troubleshooting Guide for common implementation 
   * [Resolving > The library com.google.firebase:firebase-iid is being requested by various other libraries](#resolving--the-library-comgooglefirebasefirebase-iid-is-being-requested-by-various-other-libraries)
   * [Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform](#resolving-nosuchmethoderror-for-base64-class-or-15_000-signpost-cannot-be-used-on-this-platform)
 - [Performance issues](#performance-issues)
-  * [Build Time](#build-time)
+  * [Build time](#build-time)
 - [Error codes and resolutions](#error-codes-and-resolutions)
-  * [14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set](#14019-non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set)
+  * [14019: Non adaptive icon is not set. Android API 26 push notifications will not be shown if this is not set](#14019-non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set)
 
 ## Integration issues
 ### How to resolve StackOverflow Exception
@@ -125,18 +125,18 @@ For more information on Gradle project properties please see [the documentation]
 
 ## Error codes and resolutions
 
-### 14019: Non Adaptive Icon is not set. Android Api 26 push notifications will not be shown if this is not set
+### 14019: Non adaptive icon is not set. Android API 26 push notifications will not be shown if this is not set
 
-Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
-The issue was resolved in Api 27. It was not, however, back ported to the original Oreo Api 26 platform.  
+Android (O)reo, API 26, shipped with a platform bug relating to adaptive icons and notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460).
+The issue was resolved in API 27. It was not, however, back ported to the original Oreo API 26 platform.
 
 The Thunderhead SDK will optimize your user's app experience by sending push notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash
 loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
-Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
+Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for API 26**.
 
 The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error.
 
-Here is a Kotlin example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
+Here is a Kotlin example of setting the fallback for API 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
 
 ```kotlin
         oneConfigureMessaging {

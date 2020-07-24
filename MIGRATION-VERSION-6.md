@@ -18,7 +18,7 @@ Below is a list of build migrations to follow when upgrading from older versions
 The Thunderhead SDK now targets the Java 8 language specification.
 This requires changes to the `app.gradle` -> `android` configuration.  
 
-**Change**
+**Change**:
 An application must target and compile Java 8 byte code.
 
 **Action Required**
@@ -41,7 +41,7 @@ but will still require configuration with proper API credentials where necessary
 
 Debug initialization logging will be done via `android.util.Log` class under the `ThunderheadLogger` TAG. This will be configurable in future versions.
 
-**Change**
+**Change**:
 `One.getInstance(Context)` has been removed.
 `One::init` has been removed.
 
@@ -53,7 +53,7 @@ as appropriate. See [`Configure and reconfigure the SDK`](README.md#configure-an
 Version 6.0.0 introduced the idea of _Dynamic Configuration_ allowing app developers to change SDK configuration on the fly. Such configuration change examples are changing the ONE Touchpoint, the ONE SiteKey, 
 the API credentials used to communicate with ONE, or switching between Admin and User modes. 
 
-**Change**
+**Change**:
 `One::init` has been removed.
 
 **Action Required**
@@ -104,7 +104,7 @@ One.setConfiguration(oneConfiguration);
 
 ### SDK messaging
 
-**Change**
+**Change**:
 `One::enablePushNotifications` has been removed.
 
 **Action Required**
@@ -143,7 +143,7 @@ One.setMessagingConfiguration(oneMessagingConfiguration);
 Version 6.0.0 introduced the idea of static APIs to programmatically interact with the SDK.
 The [Thunderhead README](README.md#additional-features) `Additional Features` section provides steps to access function available in the SDK.  A usage example is shown in this section of the migration guide.
 
-**Change**
+**Change**:
 `One.getInstance(Context)` has been removed, eliminating the requirement of
 obtaining a `One` instance to implement Interactions programmatically.
 

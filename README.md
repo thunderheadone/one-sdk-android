@@ -1593,7 +1593,7 @@ One.clearUserProfile();
 - Removes the stored `tid` only from local storage.
 - For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio, see our [API Documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-## Further integration Details 
+## Further integration details
 
 ### How to disable the codeless identity transfer support
 
