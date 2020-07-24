@@ -79,7 +79,7 @@ class FirstFragment : Fragment() {
 
         // get optimization response from SDK
         oneSetAutomaticInteractionCallback(OneInteractionPath(URI.create("/FirstFragment-recycler_view_one"))) {
-            onSuccess {response ->
+            onSuccess { response ->
                 response?.let {
                     it.process()
                     parseData(it)
@@ -220,6 +220,7 @@ class FirstFragment : Fragment() {
         private suspend fun sendResponseCode(code: String) {
             try {
                 oneSendResponseCode(throwErrors = true) {
+                    interactionPath = OneInteractionPath(URI.create("/FirstFragment-recycler_view_one"))
                     responseCode = OneResponseCode(code)
                 }
             } catch (error: OneSDKError) {
