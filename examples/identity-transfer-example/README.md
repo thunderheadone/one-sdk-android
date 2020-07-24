@@ -9,7 +9,6 @@ The parameters found in the `gradle.properties` file is used as configuration pa
 * Clone this repo or download the source directly.
 * Update configuration values in `gradle.properties` with your Thunderhead credentials:
 ```java
-thunderheadAdminMode=false
 thunderheadUser="user@tenant"
 thunderheadApiKey="my-key"
 thunderheadSharedSecret="my-secret"
