@@ -20,10 +20,10 @@ thunderheadTouchpoint="android://thunderheadDemo"
 thunderheadHost="https://xx.thunderhead.com"
 ```
 * Open project in Android Studio
-* Clean and Build the Project
-* Play the "App" on an emulator
+* Clean and build the project
+* Run the app in an emulator
 
-## App Flow Summary
+## App flow summary
 
 The app is a simple `TabView` based app with 2 fragment screens:
 
@@ -73,8 +73,8 @@ oneConfigure {
 Public documentation on the SDK can be found [here](https://github.com/thunderheadone/one-sdk-android)
 To see what's available, every API is exposed in the `com.thunderhead.android.api` package.  Check that package source for guidance.
 
-### Salesforce Interaction Studio Support
+### Salesforce Interaction Studio support
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
 
-### Thunderhead ONE Support
+### Thunderhead ONE support
 _The Thunderhead team is available 24/7 to answer any questions you have. Just email [onesupport@thunderhead.com](mailto:onesupport@thunderhead.com) or visit our docs page for more detailed installation and usage information._
