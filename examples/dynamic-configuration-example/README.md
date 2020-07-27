@@ -4,7 +4,8 @@
 
 This example app demonstrates how to dynamically configure the Thunderhead SDK.
 
-App Flow Summary:
+## App flow summary 
+
 1. On initial app start, [MainActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/MainActivity.kt) is presented with no region selected/configured.
 2. The 'SELECT' button presents [ChangeRegionActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/ChangeRegionActivity.kt), which displays a list of regions to select from.
 3. Upon selection of a new region, the SDK is *reconfigured* with new API credentials corresponding to the region selected, handled in the [`onActivityResult`](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/MainActivity.kt#L57) method.
@@ -62,9 +63,9 @@ One.setConfiguration(oneConfiguration);
 Public documentation on the SDK can be found [here](https://github.com/thunderheadone/one-sdk-android)
 To see what's available, every API is exposed in the `com.thunderhead.android.api` package.  Check that package source for guidance.
 
-### Salesforce Interaction Studio Support
+### Salesforce Interaction Studio support
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
 
-### Thunderhead ONE Support
+### Thunderhead ONE support
 _The Thunderhead team is available 24/7 to answer any questions you have. Just email [onesupport@thunderhead.com](mailto:onesupport@thunderhead.com) or visit our docs page for more detailed installation and usage information._
 

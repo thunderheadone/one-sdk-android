@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">IdentityTransferExample</string>
+    <string name="transfer_identity_to_web">Transfer Identity To Web</string>
+</resources>
