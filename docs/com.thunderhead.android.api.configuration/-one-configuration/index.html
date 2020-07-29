@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>OneConfiguration - Thunderhead</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">Thunderhead</a>&nbsp;/&nbsp;<a href="../index.html">com.thunderhead.android.api.configuration</a>&nbsp;/&nbsp;<a href="./index.html">OneConfiguration</a><br/>
+<br/>
+<h1>OneConfiguration</h1>
+<code><span class="keyword">class </span><span class="identifier">OneConfiguration</span></code>
+<p>A configuration object for the Thunderhead SDK.</p>
+<p>Use the <a href="-builder/index.html">Builder</a> for creating a new instance.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-builder/index.html">Builder</a></h4>
+</td>
+<td>
+<p>Builder to create a <a href="./index.html">OneConfiguration</a>.</p>
+<code><span class="keyword">class </span><span class="identifier">Builder</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="api-key.html">apiKey</a></h4>
+</td>
+<td>
+<p>The API key to authenticate with when making requests.
+This can be found in <code>ONE Admin -&gt; API Credentials -&gt; OAuth 1.0 Credentials</code> in the Admin UI.</p>
+<code><span class="keyword">val </span><span class="identifier">apiKey</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="host.html">host</a></h4>
+</td>
+<td>
+<p>The ONE host to send data to.</p>
+<code><span class="keyword">val </span><span class="identifier">host</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/net/URI.html"><span class="identifier">URI</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="mode.html">mode</a></h4>
+</td>
+<td>
+<p>The Mode of the Thunderhead SDK.
+<a href="#">OneModes.ADMIN_MODE</a> should be used when updating the ONE workspace.
+<a href="#">OneModes.USER_MODE</a> should be used in production when uploaded to the play store.</p>
+<code><span class="keyword">val </span><span class="identifier">mode</span><span class="symbol">: </span><span class="identifier">OneModes</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="shared-secret.html">sharedSecret</a></h4>
+</td>
+<td>
+<p>The shared secret to authenticate with when making requests.
+This can be found in <code>ONE Admin -&gt; API Credentials -&gt; OAuth 1.0 Credentials</code> in the Admin UI.</p>
+<code><span class="keyword">val </span><span class="identifier">sharedSecret</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="site-key.html">siteKey</a></h4>
+</td>
+<td>
+<p>The ONE workspace to configure the SDK with.
+This can be found in <code>ONE Config -&gt; One Tag</code> in the Admin UI.</p>
+<code><span class="keyword">val </span><span class="identifier">siteKey</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="touchpoint.html">touchpoint</a></h4>
+</td>
+<td>
+<p>The ONE touchpoint to configure the SDK with.
+This can be found in <code>ONE Collect -&gt; Touchpoints</code> in the Admin UI.</p>
+<code><span class="keyword">val </span><span class="identifier">touchpoint</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/net/URI.html"><span class="identifier">URI</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="user-id.html">userId</a></h4>
+</td>
+<td>
+<p>The user ID that the <a href="api-key.html">apiKey</a> &amp; <a href="shared-secret.html">sharedSecret</a> represent.</p>
+<code><span class="keyword">val </span><span class="identifier">userId</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="equals.html">equals</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">equals</span><span class="symbol">(</span><span class="identifier" id="com.thunderhead.android.api.configuration.OneConfiguration$equals(kotlin.Any)/other">other</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="hash-code.html">hashCode</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hashCode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="to-string.html">toString</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="builder.html">builder</a></h4>
+</td>
+<td>
+<p>Convenience Java Factory Function to create a <a href="-builder/index.html">Builder</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">builder</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code>
+<p>Convenience Java Factory Function to create a <a href="-builder/index.html">Builder</a>
+that is pre-populated with values from another <a href="./index.html">OneConfiguration</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">builder</span><span class="symbol">(</span><span class="identifier" id="com.thunderhead.android.api.configuration.OneConfiguration.Companion$builder(com.thunderhead.android.api.configuration.OneConfiguration)/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">OneConfiguration</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>oneSetAutomaticInteractionCallback - Thunderhead</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">Thunderhead</a>&nbsp;/&nbsp;<a href="index.html">com.thunderhead.android.api</a>&nbsp;/&nbsp;<a href="./one-set-automatic-interaction-callback.html">oneSetAutomaticInteractionCallback</a><br/>
+<br/>
+<h1>oneSetAutomaticInteractionCallback</h1>
+<a name="com.thunderhead.android.api$oneSetAutomaticInteractionCallback(com.thunderhead.android.api.interactions.OneInteractionPath, kotlin.Function1((com.thunderhead.android.api.interactions.OneAutomaticInteractionCallback, kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">oneSetAutomaticInteractionCallback</span><span class="symbol">(</span><span class="identifier" id="com.thunderhead.android.api$oneSetAutomaticInteractionCallback(com.thunderhead.android.api.interactions.OneInteractionPath, kotlin.Function1((com.thunderhead.android.api.interactions.OneAutomaticInteractionCallback, kotlin.Unit)))/oneInteractionPath">oneInteractionPath</span><span class="symbol">:</span>&nbsp;<a href="../com.thunderhead.android.api.interactions/-one-interaction-path/index.html"><span class="identifier">OneInteractionPath</span></a><span class="symbol">, </span><span class="identifier" id="com.thunderhead.android.api$oneSetAutomaticInteractionCallback(com.thunderhead.android.api.interactions.OneInteractionPath, kotlin.Function1((com.thunderhead.android.api.interactions.OneAutomaticInteractionCallback, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="../com.thunderhead.android.api.interactions/-one-automatic-interaction-callback/index.html"><span class="identifier">OneAutomaticInteractionCallback</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a callback in order to be notified of <em>automatic</em>
+interaction requests.</p>
+<p>To remove call <a href="one-remove-automatic-interaction-callback.html">oneRemoveAutomaticInteractionCallback</a>.</p>
+<p>Example:</p>
+<pre><code>oneSetAutomaticInteractionCallback(OneInteractionPath(URI("https://server.com"))) {
+ onSuccess { response -&gt;
+     // perform custom action
+     response.process()
+ }
+
+ onError { sdkError -&gt;
+     Log.d(TAG, "SdkError: ${sdkError.errorMessage}")
+ }
+
+ onFailure { apiError -&gt;
+     Log.d(TAG, "ApiError: ${apiError.errorMessage}")
+ }
+}
+</code></pre>
+</BODY>
+</HTML>

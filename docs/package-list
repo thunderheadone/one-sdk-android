@@ -1,0 +1,22 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:com.thunderhead.android.api$assignInteractionPath(android.view.View, com.thunderhead.android.api.interactions.OneInteractionPath)com.thunderhead.android.api/android.view.-view/assign-interaction-path.html
+$dokka.location:com.thunderhead.android.api$createUriWithTid(android.net.Uri)com.thunderhead.android.api/android.net.-uri/create-uri-with-tid.html
+$dokka.location:com.thunderhead.android.api$createUriWithTid(java.net.URI)com.thunderhead.android.api/java.net.-u-r-i/create-uri-with-tid.html
+$dokka.location:com.thunderhead.android.api$createUrlWithTid(java.net.URL)com.thunderhead.android.api/java.net.-u-r-l/create-url-with-tid.html
+$dokka.location:com.thunderhead.android.api$excludeAutomaticInteraction(android.view.View)com.thunderhead.android.api/android.view.-view/exclude-automatic-interaction.html
+$dokka.location:com.thunderhead.android.api$processDeepLink(android.net.Uri)com.thunderhead.android.api/android.net.-uri/process-deep-link.html
+$dokka.location:com.thunderhead.android.api$processDeepLink(java.net.URI)com.thunderhead.android.api/java.net.-u-r-i/process-deep-link.html
+$dokka.location:com.thunderhead.android.api$sendInteractionForOutboundLink(android.net.Uri)com.thunderhead.android.api/android.net.-uri/send-interaction-for-outbound-link.html
+$dokka.location:com.thunderhead.android.api$sendInteractionForOutboundLink(java.net.URI)com.thunderhead.android.api/java.net.-u-r-i/send-interaction-for-outbound-link.html
+$dokka.location:com.thunderhead.android.api$sendInteractionForOutboundLink(java.net.URL)com.thunderhead.android.api/java.net.-u-r-l/send-interaction-for-outbound-link.html
+$dokka.location:com.thunderhead.android.api$setIdentityTransferLinksBlackList(kotlin.collections.Set((java.net.URI)))com.thunderhead.android.api/kotlin.collections.-set/set-identity-transfer-links-black-list.html
+$dokka.location:com.thunderhead.android.api$setIdentityTransferLinksWhiteList(kotlin.collections.Set((java.net.URI)))com.thunderhead.android.api/kotlin.collections.-set/set-identity-transfer-links-white-list.html
+com.thunderhead.android.api
+com.thunderhead.android.api.codeless
+com.thunderhead.android.api.configuration
+com.thunderhead.android.api.identitytransfer
+com.thunderhead.android.api.interactions
+com.thunderhead.android.api.messaging
+com.thunderhead.android.api.optout
+com.thunderhead.android.api.responsetypes
