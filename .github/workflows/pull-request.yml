@@ -1,8 +1,6 @@
 name: Pull Request on Branch Push
 on:
   push:
-    branches-ignore:
-      - 'master'
     branches:
       - 'release/**'
 jobs:
