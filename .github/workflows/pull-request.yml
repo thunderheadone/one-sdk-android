@@ -24,7 +24,7 @@ jobs:
           fileOutput: ''
       
       - name: test
-        run: echo ${{ steps.check_readme_modified_.outputs.files_modified.indexOf('README.md') !== -1 }}
+        run: echo ${{ steps.check_readme_modified_.outputs.files_modified }}
        
       - name: Create Pull Request
         if: steps.check_readme_exists.outputs.files_exists == 'true'
