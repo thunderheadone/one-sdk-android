@@ -22,9 +22,6 @@ jobs:
         uses: trilom/file-changes-action@v1.2.3
         with:
           fileOutput: ''
-      
-      - name: test
-        run: echo ${{ steps.check_readme_modified.outputs.files_modified }}
        
       - name: Create Pull Request
         if: steps.check_readme_exists.outputs.files_exists == 'true' && contains(steps.check_readme_modified.outputs.files_modified, 'README.md')
