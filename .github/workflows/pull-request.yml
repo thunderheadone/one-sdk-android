@@ -1,14 +1,21 @@
-name: Pull Request on Branch Push
+name: Pull Request on Release Branch Push
 on:
   push:
     branches:
       - 'release/**'
 jobs:
   auto-pull-request:
-    name: PullRequestAction
+    name: Release Pull Request
     runs-on: ubuntu-latest
     steps:
-      - name: pull-request-action
+      - name: Check Readme Exists
+        id: check_readme_exists
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "README.md"
+      
+      - name: Create Pull Request
+        id: create_pull_request
         uses: vsoch/pull-request-action@1.0.6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
