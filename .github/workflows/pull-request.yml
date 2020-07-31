@@ -17,8 +17,14 @@ jobs:
           files: "README.md"
           allow_failure: true
       
+      - name: Check Readme Modified
+        id: check_readme_modified
+        uses: trilom/file-changes-action@v1.2.3
+        with:
+          fileOutput: ''
+      
       - name: Create Pull Request
-        if: steps.check_readme_exists.outputs.files_exists == 'true'
+        if: steps.check_readme_exists.outputs.files_exists == 'true' && steps.check_readme_modified.outputs.files_modified.contains("README.md")
         id: create_pull_request
         uses: vsoch/pull-request-action@1.0.6
         env:
