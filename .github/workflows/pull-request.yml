@@ -24,7 +24,7 @@ jobs:
           fileOutput: ''
       
       - name: Create Pull Request
-        if: steps.check_readme_exists.outputs.files_exists == 'true' && steps.check_readme_modified.outputs.files_modified.includes("README.md")
+        if: steps.check_readme_exists.outputs.files_exists == 'true' && contains(steps.check_readme_modified.outputs.files_modified, "README.md")
         id: create_pull_request
         uses: vsoch/pull-request-action@1.0.6
         env:
