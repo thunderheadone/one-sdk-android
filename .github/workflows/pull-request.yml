@@ -24,11 +24,9 @@ jobs:
           fileOutput: ''
       
       - name: test
-        run: |
-          echo ${{ steps.check_readme_modified_.outputs.files_modified }}
+        run: echo ${{ steps.check_readme_modified_.outputs.files_modified.indexOf("README.md") !== -1 }}
        
-     
-     - name: Create Pull Request
+      - name: Create Pull Request
         if: steps.check_readme_exists.outputs.files_exists == 'true'
         id: create_pull_request
         uses: vsoch/pull-request-action@1.0.6
