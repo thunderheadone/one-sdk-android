@@ -8,6 +8,8 @@ jobs:
     name: Release Pull Request
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        
       - name: Check Readme Exists
         id: check_readme_exists
         uses: andstor/file-existence-action@v1
