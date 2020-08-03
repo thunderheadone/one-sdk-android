@@ -36,6 +36,8 @@ jobs:
         id: echo_tag_name
         run: echo "${{ steps.create_tag_variable.outputs.tag }}"
       
+      - uses: actions/checkout@v2
+      
       - name: Get Release Notes
         id: get_release_notes
         run: |
