@@ -26,7 +26,7 @@ jobs:
         
       - name: Create Tag Variable
         id: create_tag_variable
-#         if: contains(steps.get_release_branch_name.outputs.branch_name, 'release/')
+        if: contains(steps.get_release_branch_name.outputs.branch_name, 'release/')
         run: |
           BRANCH=${{ steps.get_release_branch_name.outputs.branch_name }}
           TAG="$(sed 's/release\///g' <<< $BRANCH)"
@@ -36,10 +36,10 @@ jobs:
         id: echo_tag_name
         run: echo "${{ steps.create_tag_variable.outputs.tag }}"
       
-#       - name: Tag Release Merge
-#         id: tag_release_merge
-#         uses: tvdias/github-tagger@v0.0.1
-#         with:
-#           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-#           tag: "${{ steps.create_tag_variable.outputs.tag }}"
-#           commit-sha: "${{ steps.get_merge_sha.outputs.merge_sha }}"
+      - name: Tag Release Merge
+        id: tag_release_merge
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: "${{ steps.create_tag_variable.outputs.tag }}"
+          commit-sha: "${{ steps.get_merge_sha.outputs.merge_sha }}"
