@@ -32,7 +32,7 @@ jobs:
         if: contains(steps.get_branch_name.outputs.branch_name, 'release/')
         run: |
           BRANCH=${{ steps.get_branch_name.outputs.branch_name }}
-          TAG=sed 's/release\///g' <<< "$BRANCH"
+          TAG="$(sed 's/release\///g' <<< $BRANCH)"
           ::set-output name=tag::"TAG"
         
       - name: Echo Tag Name
