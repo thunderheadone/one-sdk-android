@@ -37,6 +37,6 @@ jobs:
         
       - name: Echo Tag Name
         id: echo_tag_name
-        run: echo "${{ steps.creat_tag_variable.outputs.tag }}"
+        run: echo "${{ steps.create_tag_variable.outputs.tag }}"
           
      
