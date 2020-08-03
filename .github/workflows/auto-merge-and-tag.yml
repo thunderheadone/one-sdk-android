@@ -19,10 +19,24 @@ jobs:
 #           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 #           UPDATE_LABELS: ""
           
-      - name: Get Tag
-        id: get_tag
-        run: echo "::set-env name=BRANCH_NAME::${{ github.head_ref }}"
-      - name: Echo Tag
-        id: echo_tag
-        run: echo '$BRANCH_NAME'
+      - name: Get Branch Name
+        id: get_branch_name
+        run: echo "::set-output name=branch_name::${{ github.head_ref }}"
+
+      - name: Echo Branch Name
+        id: echo_branch_name
+        run: echo '${{ steps.get_branch_name.outputs.branch_name }}'
+        
+      - name: Create Tag Variable
+        id: create_tag_variable
+        if: contains(steps.get_branch_name.outputs.branch_name, 'release/')
+        run: |
+          BRANCH=${{ steps.get_branch_name.outputs.branch_name }}
+          TAG=sed 's/release\///g' <<< "$BRANCH"
+          ::set-output name=tag::"TAG"
+        
+      - name: Echo Tag Name
+        id: echo_tag_name
+        run: echo "${{ steps.creat_tag_variable.outputs.tag }}"
+          
      
