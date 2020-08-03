@@ -36,23 +36,29 @@ jobs:
         id: echo_tag_name
         run: echo "${{ steps.create_tag_variable.outputs.tag }}"
       
-      - name: Tag Release Merge
-        id: tag_release_merge
-        uses: tvdias/github-tagger@v0.0.2
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          tag: "${{ steps.create_tag_variable.outputs.tag }}"
-          commit-sha: "${{ steps.get_merge_sha.outputs.merge_sha }}"
+      - name: Get Release Notes
+        id: get_release_notes
+        run: |
+          NOTES="$(sed -n '/^\*/p;/^$/q' CHANGELOG.md)"
+          echo ::set-output name=notes::"$NOTES"
+      
+#       - name: Tag Release
+#         id: tag_release
+#         uses: tvdias/github-tagger@v0.0.2
+#         with:
+#           repo-token: "${{ secrets.GITHUB_TOKEN }}"
+#           tag: "${{ steps.create_tag_variable.outputs.tag }}"
+#           commit-sha: "${{ steps.get_merge_sha.outputs.merge_sha }}"
                
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.create_tag_variable.outputs.tag }}
-          release_name: Release ${{ steps.create_tag_variable.outputs.tag }}
-          body: |
-            Testing Automated Release
-          draft: true
-          prerelease: false
+#       - name: Create Release
+#         id: create_release
+#         uses: actions/create-release@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+#         with:
+#           tag_name: ${{ steps.create_tag_variable.outputs.tag }}
+#           release_name: Release ${{ steps.create_tag_variable.outputs.tag }}
+#           body: |
+#             Testing Automated Release
+#           draft: true
+#           prerelease: false
