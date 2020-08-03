@@ -1,3 +1,4 @@
+:
 ![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
 
 The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
