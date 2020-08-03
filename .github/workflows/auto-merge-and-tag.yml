@@ -21,7 +21,7 @@ jobs:
           
       - name: Get Tag
         id: get_tag
-        run: echo "::set-env name=BRANCH_NAME::github.payload.pull_request.head.ref"
+        run: echo "::set-env name=BRANCH_NAME::github.ref"
       - name: Echo Tag
         id: echo_tag
         run: echo '$BRANCH_NAME'
