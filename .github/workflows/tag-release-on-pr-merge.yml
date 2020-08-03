@@ -1,0 +1,37 @@
+name: Tag and Release on PR Merge
+on:
+  pull_request:
+    types: [closed]
+    branches: 
+      - 'release/*'
+jobs:
+  tag-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Branch Name
+        id: get_branch_name
+        run: echo "::set-output name=branch_name::${{ github.head_ref }}"
+
+      - name: Echo Branch Name
+        id: echo_branch_name
+        run: echo '${{ steps.get_branch_name.outputs.branch_name }}'
+
+      - name: Get Branch Name 2
+        id: get_branch_name_2
+        run: echo "::set-output name=branch_name2::${{ github.base_ref }}"
+
+      - name: Echo Branch Name
+        id: echo_branch_name_2
+        run: echo '${{ steps.get_branch_name_2.outputs.branch_name2 }}'
+        
+#       - name: Create Tag Variable
+#         id: create_tag_variable
+#         if: contains(steps.get_branch_name.outputs.branch_name, 'release/')
+#         run: |
+#           BRANCH=${{ steps.get_branch_name.outputs.branch_name }}
+#           TAG="$(sed 's/release\///g' <<< $BRANCH)"
+#           echo ::set-output name=tag::"$TAG"
+        
+#       - name: Echo Tag Name
+#         id: echo_tag_name
+#         run: echo "${{ steps.create_tag_variable.outputs.tag }}"
