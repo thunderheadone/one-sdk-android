@@ -44,6 +44,10 @@ jobs:
           NOTES="$(sed -n '/^\*/p;/^$/q' CHANGELOG.md)"
           echo ::set-output name=notes::"$NOTES"
       
+      - name: Echo Release Notes
+        id: echo_release_notes
+        run: echo "${{ steps.get_release_notes.outputs.notes }}"
+      
 #       - name: Tag Release
 #         id: tag_release
 #         uses: tvdias/github-tagger@v0.0.2
