@@ -2,8 +2,8 @@ name: Tag and Release on PR Merge
 on:
   pull_request:
     types: [closed]
-    branches: 
-      - 'release/*'
+#     branches: 
+#       - 'release/*'
 jobs:
   tag-and-release:
     runs-on: ubuntu-latest
