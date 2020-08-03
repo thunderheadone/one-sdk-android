@@ -33,7 +33,7 @@ jobs:
         run: |
           BRANCH=${{ steps.get_branch_name.outputs.branch_name }}
           TAG="$(sed 's/release\///g' <<< $BRANCH)"
-          ::set-output name=tag::"$TAG"
+          echo ::set-output name=tag::"$TAG"
         
       - name: Echo Tag Name
         id: echo_tag_name
