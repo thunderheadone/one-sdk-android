@@ -1,0 +1,33 @@
+name: Pull Request on Release Branch Push
+on:
+  push:
+    branches:
+      - 'release/**'
+jobs:
+  auto-pull-request:
+    name: Release Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Check Readme Exists
+        id: check_readme_exists
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "README.md"
+          allow_failure: true
+      
+      - name: Check Readme Modified
+        id: check_readme_modified
+        uses: trilom/file-changes-action@v1.2.3
+        with:
+          fileOutput: ''
+       
+      - name: Create Pull Request
+        if: steps.check_readme_exists.outputs.files_exists == 'true' && contains(steps.check_readme_modified.outputs.files_modified, 'README.md')
+        id: create_pull_request
+        uses: vsoch/pull-request-action@1.0.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_PREFIX: "release/"
+          PULL_REQUEST_BRANCH: "master"
