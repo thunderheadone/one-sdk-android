@@ -2,11 +2,12 @@ name: Tag and Release on PR Merge
 on:
   pull_request:
     types: [closed]
-    branches: 
-      - 'release/*'
+#    branches: 
+#     - 'release/*'
 jobs:
   tag-and-release:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
       - name: Get Release Branch Name
         id: get_release_branch_name
