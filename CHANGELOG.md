@@ -1,3 +1,11 @@
+#### Version 7.0.0
+* [BREAKING] Supported minimum SDK version increased to 21.
+* [BREAKING] Requires the [Orchestration Plugin version 2.0.0](https://github.com/thunderheadone/one-android-orchestration-plugin/releases).
+* [NEW] Added support for Android Gradle Plugin 3.6.x.
+* [UPDATE] Removed use of redirects when opening an optimization url. Previously url redirects were used to pass the response codes between the app and external channel. Response codes are now sent automatically by the SDK and the target url is opened as normal without a redirect being used.
+* [UPDATE] Added additional setup instructions on how to configure the SDK with apps already configured with push messaging. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#additional-configuration-required-for-apps-configured-with-push-messaging).
+* [BUGFIX] Resolved an issue to avoid offline requests being sent incorrectly.
+
 #### Version 6.0.2
 * [BUGFIX] Addressed an issue where URI/URL APIs returned null instead of original input if the SDK is not configured correctly.
 

@@ -1,8 +1,8 @@
 ![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
 
-The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
+The Thunderhead SDK for Android supports Android 5.0+ (API 21) and Android Gradle Plugin 3.6.x.
 
-**To  _migrate_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](https://github.com/thunderheadone/one-android-orchestration-plugin/blob/master/MIGRATION.md) 
+**To  _migrate_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](https://github.com/thunderheadone/one-android-orchestration-plugin/blob/master/MIGRATION.md)
 for details on updating the required Gradle plugins.**
 
 **To _migrate_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java 8 migration guide](JAVA8-MIGRATION-GUIDE.md) for details
@@ -21,6 +21,8 @@ on updating your existing SDK configuration.**
         * [SDK initialization not required](#sdk-initialization-not-required)
         * [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
         * [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
+* [Considerations](#considerations)
+     * [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
 * [Additional features](#additional-features)
     * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
     * [Exclude an Interaction](#exclude-an-interaction)
@@ -66,7 +68,7 @@ on updating your existing SDK configuration.**
 
 ### Manual installation
 
-Requires Gradle 5.2.1+
+Requires Gradle 5.6.4+
 
 1. Open your existing Android application in Android Studio.
 2. Include the Thunderhead SDK as a dependency in your project:
@@ -76,7 +78,7 @@ Requires Gradle 5.2.1+
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:6.0.2"
+      implementation "com.thunderhead.android:one-sdk:7.0.0"
     }
     ```
     
@@ -84,7 +86,7 @@ Requires Gradle 5.2.1+
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:6.0.2"
+      implementation "com.thunderhead.android:is-sdk:7.0.0"
     }
     ```
 
@@ -136,13 +138,17 @@ buildscript {
         google()
         jcenter()
         maven {
+            name 'ThunderheadSpringMilestone'
+            url = 'https://repo.spring.io/milestone'
+        }
+        maven {
             name 'Thunderhead'
             url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
         }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:1.0.1'
+        classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
     }
 }
 ```
@@ -159,13 +165,17 @@ buildscript {
         google()
         jcenter()
         maven {
+            name 'ThunderheadSpringMilestone'
+            url = 'https://repo.spring.io/milestone'
+        }
+        maven {
             name 'Thunderhead'
             url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
         }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:1.0.1'
+        classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
     }
 }
 
@@ -194,7 +204,7 @@ android {
 
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -205,7 +215,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:6.0.2"
+  implementation "com.thunderhead.android:one-sdk:7.0.0"
 }
 
 repositories {
@@ -226,13 +236,17 @@ buildscript {
         google()
         jcenter()
         maven {
+            name 'ThunderheadSpringMilestone'
+            url = 'https://repo.spring.io/milestone'
+        }
+        maven {
             name 'Thunderhead'
             url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
         }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:1.0.1'
+        classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
     }
 }
 
@@ -260,8 +274,8 @@ android {
     }
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
-        minSdkVersion 16
-        targetSdkVersion 27
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -271,7 +285,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:6.0.2"
+  implementation "com.thunderhead.android:is-sdk:7.0.0"
 }
 
 repositories {
@@ -405,6 +419,100 @@ To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
 - Dynamic configuration of both Admin and User mode is supported.
 
 **You have now successfully integrated the codeless Thunderhead SDK for Android.**
+
+## Considerations
+
+### Additional configuration required for apps configured with push messaging
+
+When the Thunderhead SDK is the *only* push message provider in your application and you enable codeless push notification support, the SDK automatically gets the push token and handles the receiving of push notifications on behalf of your app, and therefore the below additional configuration instructions would not be needed.
+
+When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required to ensure push messaging continues to work for all SDKs using FCM.
+*Note:*
+- This is still required even if Thunderhead push notifications are not enabled.
+
+You must forward the `onNewToken` and `onMessageReceived` callbacks to *all* SDK message APIs from the service that extends `FirebaseMessagingService`.
+
+If using the Thunderhead SDK for push messaging, forward the callbacks as shown below:
+
+```kotlin
+// Call when a new FCM token is retrieved:
+One.setMessagingToken(newToken);
+
+// Call when a new message is received from Firebase:
+One.processMessage(message);
+```
+
+An example of a service extending `FirebaseMessagingService` that calls the SDK messaging APIs:
+
+`Kotlin`
+```kotlin
+class FirebaseService : FirebaseMessagingService() {
+
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        super.onMessageReceived(remoteMessage)
+        try {
+            One.processMessage(remoteMessage)
+            // Call other Push Message SDKs.
+        } catch (e: Exception) {
+            Log.e(TAG, e.message)
+        }
+    }
+
+    override fun onNewToken(newToken: String) {
+        super.onNewToken(newToken)
+        try {
+            One.setMessagingToken(newToken)
+            // Call other Push Message SDKs.
+        } catch (e: Exception) {
+            Log.e(TAG, e.message)
+        }
+    }
+    companion object {
+        private const val TAG = "FirebaseService"
+    }
+}
+```
+
+`Java`
+```java
+public final class FirebaseService extends FirebaseMessagingService {
+    private static final String TAG = "FirebaseService";
+
+    @Override
+    public void onMessageReceived(final RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        try {
+            One.processMessage(remoteMessage);
+            // Call other Push Message SDKs.
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
+    @Override
+    public void onNewToken(final String newToken) {
+        super.onNewToken(newToken);
+        try {
+            One.setMessagingToken(newToken);
+            // Call other Push Message SDKs.
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+}
+```
+
+Do not forget to register the service in the manifest, if required:
+
+```xml
+<!-- The priority should be set to a high value in order to ensure this service receives the intent vs the other push provider SDKs -->
+ <service
+    android:name="com.example.FirebaseService">
+        <intent-filter android:priority="100">
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+</service>
+```
 
 ## Additional features
 
@@ -1188,9 +1296,9 @@ import com.thunderhead.android.api.identitytransfer.OneIdentityTransferConfigura
 
 final OneIdentityTransferConfiguration identityTransferConfiguration =
     new OneIdentityTransferConfiguration.Builder()
-        .disableIdentityTranser(true)
+        .disableIdentityTransfer(true)
         .build();
-One.setIdentityTransferConfiguration(identityTranserConfiguration);
+One.setIdentityTransferConfiguration(identityTransferConfiguration);
 ```
 
 *Note:* 
@@ -1335,6 +1443,8 @@ Pass the `URL` or `Uri`, to send an Interaction request to `/one-click` using th
 
 To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, configure Firebase Cloud Messaging (FCM) by following the FCM setup instructions. At a minimum the app must be configured in Firebase and the `google-services.json` needs to be in the root of the app project.
 
+**Important:** For apps configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.  See more [here](#additional-configuration-required-for-apps-configured-with-push-messaging).
+
 #### Minimum Gradle configuration 
 
 To use the codeless push notifications functionality without using FCM directly, you must at least have the `google-services` plugin applied to your app build.gradle. 
@@ -1393,71 +1503,17 @@ One.setMessagingConfiguration(oneMessagingConfiguration);
 *Note:* 
 - When the Thunderhead SDK is the only push message provider in your application and you enable codeless push notification support, the SDK automatically gets the push token and handles the receiving of push notifications on behalf of your app.
 
-##### Configure push notifications with multiple push message SDKs
-
-When the Thunderhead SDK is integrated into an app that has multiple push message providers for Firebase, extra configuration is required. You must call the Thunderhead SDK message APIs from the service that receives the FCM token and FCM Message.  
-
-```java
-// Call when a new FCM token is retrieved:
-One.setMessagingToken(newToken);
-
-// Call when a new message is received from Firebase:
-One.processMessage(message);
-```
-
-An example of a Firebase Messaging Service that calls the Thunderhead SDK messaging APIs:
-
-```java
-public final class FirebaseService extends FirebaseMessagingService {
-    private static final String TAG = "FirebaseService";
-    
-    @Override
-    public void onMessageReceived(final RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
-        try {
-            One.processMessage(remoteMessage);
-            // Call other Push Message SDKS.
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
-    }
-
-    @Override
-    public void onNewToken(final String newToken) {
-        super.onNewToken(newToken);
-        try {
-            One.setMessagingToken(newToken);
-            // Call other Push Message SDKS.
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
-    }
-}
-```
-
-Do not forget to register the customer service that calls the Thunderhead SDK in the manifest, if required:
-
-```xml
-<!-- The priority should be set to a high value in order to ensure this service receives the intent vs the other push provider SDKs -->
- <service
-    android:name="com.example.FirebaseService">
-        <intent-filter android:priority="100">
-            <action android:name="com.google.firebase.MESSAGING_EVENT" />
-        </intent-filter>
-</service>
-```
-
 ##### Set a non adaptive fallback
 
-Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
-The issue was resolved in Api 27. It was not, however, back ported to the original Oreo Api 26 platform.  
+Android (O)reo, API 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460).
+The issue was resolved in API 27. It was not, however, back ported to the original Oreo API 26 platform.
 
-The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
-Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
+The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on API 26 devices.
+Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for API 26**.
 
 The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. For more information, see the [Troubleshooting guide](TROUBLESHOOTING-GUIDE.md)
 
-Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
+Here is an example of setting the fallback for API 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
 
 `Kotlin`
 ```kotlin
@@ -1602,7 +1658,7 @@ To completely remove the codeless identity transfer functionality for Android, m
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 
 ```gradle 
-classpath 'com.thunderhead.android:orchestration-plugin:1.0.1'
+classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
 ```
 
 2. Open the **app-level** `build.gradle` file and remove the following references.
