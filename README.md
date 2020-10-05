@@ -2,7 +2,7 @@
 
 The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
 
-**To  _migrate_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
+**To  _migrate_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](https://github.com/thunderheadone/one-android-orchestration-plugin/blob/master/MIGRATION.md) 
 for details on updating the required Gradle plugins.**
 
 **To _migrate_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java 8 migration guide](JAVA8-MIGRATION-GUIDE.md) for details
@@ -282,7 +282,7 @@ repositories {
 
 ```
 
-For further documentation on the `orchestration-plugin` please see the [Orchestration Plugin Readme](ORCHESTRATION-PLUGIN-README.md).
+For further documentation on the `orchestration-plugin` please see the [Orchestration Plugin Readme](https://github.com/thunderheadone/one-android-orchestration-plugin/blob/master/README.md).
 
 ## Use the codeless Thunderhead SDK for Android
 
