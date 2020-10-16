@@ -78,7 +78,7 @@ Requires Gradle 5.6.4+
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:7.0.0"
+      implementation "com.thunderhead.android:one-sdk:{SDK_VERSION}"
     }
     ```
     
@@ -86,7 +86,7 @@ Requires Gradle 5.6.4+
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:7.0.0"
+      implementation "com.thunderhead.android:is-sdk:{SDK_VERSION}"
     }
     ```
 
@@ -215,7 +215,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:7.0.0"
+  implementation "com.thunderhead.android:one-sdk:{SDK_VERSION}"
 }
 
 repositories {
@@ -285,7 +285,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:7.0.0"
+  implementation "com.thunderhead.android:is-sdk:{SDK_VERSION}"
 }
 
 repositories {

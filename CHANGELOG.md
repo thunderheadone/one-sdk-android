@@ -1,3 +1,6 @@
+#### Version 7.0.1
+* [BUGFIX] Addressed an issue where, in some cases, the SDK would continue to send some data after opting out of tracking in the `Application` class.
+
 #### Version 7.0.0
 * [BREAKING] Supported minimum SDK version increased to 21.
 * [BREAKING] Requires the [Orchestration Plugin version 2.0.0](https://github.com/thunderheadone/one-android-orchestration-plugin/releases).
