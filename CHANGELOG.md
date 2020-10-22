@@ -1,3 +1,6 @@
+#### Version 7.0.2
+* [BUGFIX] Added additional guards around opt-out to further prevent sending data after opting out of tracking in the `Application` class.
+
 #### Version 7.0.1
 * [BUGFIX] Addressed an issue where, in some cases, the SDK would continue to send some data after opting out of tracking in the `Application` class.
 
