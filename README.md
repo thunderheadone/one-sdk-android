@@ -1,5 +1,7 @@
 ![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
 
+TS_testing create GitHub pull request
+
 The Thunderhead SDK for Android supports Android 5.0+ (API 21) and Android Gradle Plugin 3.6.x.
 
 **To  _migrate_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](https://github.com/thunderheadone/one-android-orchestration-plugin/blob/master/MIGRATION.md)
@@ -78,7 +80,7 @@ Requires Gradle 5.6.4+
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:7.0.2"
+      implementation "com.thunderhead.android:one-sdk:7.0.2-testing-GitHub"
     }
     ```
     
@@ -86,7 +88,7 @@ Requires Gradle 5.6.4+
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:7.0.2"
+      implementation "com.thunderhead.android:is-sdk:7.0.2-testing-GitHub"
     }
     ```
 
@@ -215,7 +217,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:7.0.2"
+  implementation "com.thunderhead.android:one-sdk:7.0.2-testing-GitHub"
 }
 
 repositories {
@@ -285,7 +287,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:7.0.2"
+  implementation "com.thunderhead.android:is-sdk:7.0.2-testing-GitHub"
 }
 
 repositories {
