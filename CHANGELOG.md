@@ -1,3 +1,6 @@
+#### Version 7.0.2-testGitHubPR-2
+* [BUGFIX] testGitHubPR-2
+
 #### Version 7.0.2
 * [BUGFIX] Added additional guards around opt-out to further prevent sending data after opting out of tracking in the `Application` class.
 
