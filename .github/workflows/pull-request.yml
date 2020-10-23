@@ -22,9 +22,23 @@ jobs:
         uses: trilom/file-changes-action@v1.2.3
         with:
           fileOutput: ''
+      
+      - name: Check Changelog Exists
+        id: check_changelog_exists
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "CHANGELOG.md"
+          allow_failure: false
+      
+      - name: Check Changelog Modified
+        id: check_changelog_modified
+        uses: trilom/file-changes-action@v1.2.3
+        with:
+          fileOutput: ''
        
       - name: Create Pull Request
-        if: steps.check_readme_exists.outputs.files_exists == 'true' && contains(steps.check_readme_modified.outputs.files_modified, 'README.md')
+        if: (steps.check_readme_exists.outputs.files_exists == 'true' && contains(steps.check_readme_modified.outputs.files_modified, 'README.md'))
+          || (steps.check_changelog_exists.outputs.files_exists == 'true' && contains(steps.check_changelog_modified.outputs.files_modified, 'CHANGELOG.md'))
         id: create_pull_request
         uses: vsoch/pull-request-action@1.0.6
         env:
