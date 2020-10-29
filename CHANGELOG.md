@@ -1,3 +1,11 @@
+#### Version 8.0.0
+* [NEW] Changed the SDK target to API 29 and updated it to be compatible with the network connection checker.
+* [UPDATE] Added support for Admin and User mode views to be presented correctly on devices with large screens.
+* [UPDATE] Use modern Android SDK network monitoring callbacks to ensure offline and online interactions are correctly identified.
+* [UPDATE] Removed unnecessary loading indicator in Preview mode to better provide a real world experience.
+* [BUGFIX] Fixed an issue where mini notifications were not displayed after the Airplane mode is on and off.
+* [BUGFIX] Fixed an issue where a user was logged out of Preview mode when the Airplane mode is on.
+
 #### Version 7.0.2
 * [BUGFIX] Added additional guards around opt-out to further prevent sending data after opting out of tracking in the `Application` class.
 
