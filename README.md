@@ -78,7 +78,7 @@ Requires Gradle 5.6.4+
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:7.0.2"
+      implementation "com.thunderhead.android:one-sdk:8.0.0"
     }
     ```
     
@@ -86,7 +86,7 @@ Requires Gradle 5.6.4+
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:7.0.2"
+      implementation "com.thunderhead.android:is-sdk:8.0.0"
     }
     ```
 
@@ -195,8 +195,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.0'
+    compileSdkVersion 29
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -205,7 +204,7 @@ android {
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -215,7 +214,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:7.0.2"
+  implementation "com.thunderhead.android:one-sdk:8.0.0"
 }
 
 repositories {
@@ -266,8 +265,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.0'
+    compileSdkVersion 29
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -275,7 +273,7 @@ android {
     defaultConfig {
         applicationId "com.thunderhead.android.demo"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -285,7 +283,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:7.0.2"
+  implementation "com.thunderhead.android:is-sdk:8.0.0"
 }
 
 repositories {
