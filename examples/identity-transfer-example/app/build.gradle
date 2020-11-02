@@ -4,16 +4,16 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.thunderhead.identitytransferexample"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        renderscriptTargetApi 20
+        renderscriptTargetApi 22
         renderscriptSupportModeEnabled true
 
         buildConfigField("String", "thunderheadUser", thunderheadUser)
@@ -41,7 +41,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.thunderhead.android:one-sdk:6.0.1"
+    implementation "com.thunderhead.android:one-sdk:8.0.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.1'

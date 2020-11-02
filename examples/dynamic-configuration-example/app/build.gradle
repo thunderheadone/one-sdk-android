@@ -4,12 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.thunderhead.dynamicconfigurationexample"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0.0"
         multiDexEnabled true
@@ -66,9 +66,9 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     // Thunderhead
-    implementation "com.thunderhead.android:one-sdk:6.0.0"
+    implementation "com.thunderhead.android:one-sdk:8.0.0"
     // For Interaction Studio, uncomment below and remove above implementation line.
-    //implementation "com.thunderhead.android:is-sdk:6.0.0"
+    //implementation "com.thunderhead.android:is-sdk:8.0.0"
 
     testImplementation 'junit:junit:4.12'
 
