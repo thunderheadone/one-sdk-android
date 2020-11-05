@@ -1,0 +1,21 @@
+# Check out https://docs.codemagic.io/getting-started/building-a-native-android-app/ for more information
+
+workflows:
+    dynamic-configuration-example:
+        name: Dynamic Configuration App
+        scripts:
+            - ./examples/dynamic-configuration-example/gradlew -p examples/dynamic-configuration-example assembleDebug
+        artifacts:
+            - app/build/outputs/**/*.apk
+    optimization-example:
+        name: Optimization App
+        scripts:
+            - ./examples/dynamic-configuration-example/gradlew -p examples/identity-transfer-example assembleDebug
+        artifacts:
+            - app/build/outputs/**/*.apk
+    identity-transfer-example:
+        name: Identity Transfer App
+        scripts:
+            - ./examples/dynamic-configuration-example/gradlew -p examples/optimizing-programmatically-using-json-example assembleDebug
+        artifacts:
+            - app/build/outputs/**/*.apk
