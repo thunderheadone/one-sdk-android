@@ -21,6 +21,7 @@ on updating your existing SDK configuration.**
         * [SDK initialization not required](#sdk-initialization-not-required)
         * [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
         * [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
+        * [Sending codeless Interactions based on the list of Interactions created under a Touchpoint](#sending-codeless-Interactions-based-on-the-list-of-Interactions-created-under-a-touchpoint)
 * [Considerations](#considerations)
      * [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
 * [Additional features](#additional-features)
@@ -78,7 +79,7 @@ Requires Gradle 5.6.4+
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:8.0.0"
+      implementation "com.thunderhead.android:one-sdk:8.1.0"
     }
     ```
     
@@ -86,7 +87,7 @@ Requires Gradle 5.6.4+
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:8.0.0"
+      implementation "com.thunderhead.android:is-sdk:8.1.0"
     }
     ```
 
@@ -214,7 +215,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:8.0.0"
+  implementation "com.thunderhead.android:one-sdk:8.1.0"
 }
 
 repositories {
@@ -283,7 +284,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:8.0.0"
+  implementation "com.thunderhead.android:is-sdk:8.1.0"
 }
 
 repositories {
@@ -415,6 +416,15 @@ To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
 *Note:* 
 - If you are running in Admin mode on Android 6.0+, you must enable the “draw over other apps” permission through your OS settings. 
 - Dynamic configuration of both Admin and User mode is supported.
+
+#### Sending codeless Interactions based on the list of Interactions created under a Touchpoint
+
+In order to reduce the number of unnecessary Interaction requests sent automatically by the SDK, only codeless Interactions with explicit Interaction paths created under a Touchpoint and configured with at least one point are sent to Thunderhead ONE or Salesforce Interaction Studio. This configuration change has been introduced in version 8.1.0 of the Android SDK.
+
+*Note:*
+- The SDK will only send codeless Interactions if they have been created under a Touchpoint and/or if they match wildcard rules defined under a Touchpoint.
+- For a codeless Interaction to be sent by the SDK this Interaction needs to contain at least one Activity Capture Point, Attribute Capture Point, and/or Optimization Point.
+- If you are running the SDK in [User mode](#set-up-the-sdk-in-user-mode), you need to ensure that all Interactions and related points have been fully published, before the SDK will trigger a request.
 
 **You have now successfully integrated the codeless Thunderhead SDK for Android.**
 
