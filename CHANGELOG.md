@@ -1,3 +1,6 @@
+#### Version 8.1.0
+* [UPDATE] Added default ability to only send codeless Interactions for Interaction Points specifically configured under the Touchpoint.
+
 #### Version 8.0.0
 * [NEW] Changed the SDK target to API 29 and updated it to be compatible with the network connection checker.
 * [UPDATE] Added support for Admin and User mode views to be presented correctly on devices with large screens.
