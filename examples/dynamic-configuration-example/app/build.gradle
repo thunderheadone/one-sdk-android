@@ -66,9 +66,9 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     // Thunderhead
-    implementation "com.thunderhead.android:one-sdk:8.0.0"
+    implementation "com.thunderhead.android:one-sdk:8.1.0"
     // For Interaction Studio, uncomment below and remove above implementation line.
-    //implementation "com.thunderhead.android:is-sdk:8.0.0"
+    //implementation "com.thunderhead.android:is-sdk:8.1.0"
 
     testImplementation 'junit:junit:4.12'
 
