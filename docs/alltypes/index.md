@@ -4,6 +4,16 @@
 
 | Name | Summary |
 |---|---|
+| (extensions in package com.thunderhead.android.api)
+
+##### [android.app.Activity](../com.thunderhead.android.api/android.app.-activity/index.md)
+
+
+| (extensions in package com.thunderhead.android.api)
+
+##### [android.support.v4.app.Fragment](../com.thunderhead.android.api/android.support.v4.app.-fragment/index.md)
+
+
 |
 
 ##### [com.thunderhead.android.api.responsetypes.OneAPIError](../com.thunderhead.android.api.responsetypes/-one-a-p-i-error/index.md)
