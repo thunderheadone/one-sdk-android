@@ -6,7 +6,9 @@
 
 | Name | Summary |
 |---|---|
+| [android.app.Activity](android.app.-activity/index.md) |  |
 | [android.net.Uri](android.net.-uri/index.md) |  |
+| [android.support.v4.app.Fragment](android.support.v4.app.-fragment/index.md) |  |
 | [android.view.View](android.view.-view/index.md) |  |
 | [java.net.URI](java.net.-u-r-i/index.md) |  |
 | [java.net.URL](java.net.-u-r-l/index.md) |  |

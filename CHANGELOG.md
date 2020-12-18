@@ -1,3 +1,7 @@
+#### Version 8.2.0
+* [UPDATE] Added ability to reference Activity or Fragment Interaction path set by the SDK without exclusively defining a static URI. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#retrieve-a-response-for-an-automatically-triggered-interaction-request).
+* [UPDATE] Added a link to the SDK API documentation in README. To access the API documentation click [here](https://thunderheadone.github.io/one-sdk-android/).
+
 #### Version 8.1.0
 * [UPDATE] Added default ability to only send codeless Interactions for Interaction Points specifically configured under the Touchpoint.
 

@@ -12,7 +12,7 @@ To remove call [oneRemoveAutomaticInteractionCallback](one-remove-automatic-inte
 Example:
 
 ```
-oneSetAutomaticInteractionCallback(OneInteractionPath(URI("https://server.com"))) {
+oneSetAutomaticInteractionCallback(OneInteractionPath(URI("/MainActivity"))) {
  onSuccess { response ->
      // perform custom action
      response.process()
