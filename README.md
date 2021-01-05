@@ -41,7 +41,7 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
     * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
         * [Example: Retrieve a response for an automatic Activity Interaction](#example-retrieve-a-response-for-an-automatic-activity-interaction)
         * [Example: Retrieve a response for an automatic Fragment Interaction](#example-retrieve-a-response-for-an-automatic-fragment-interaction)
-        * [Example: Retrieve a response for a manually Assigned Interaction](#example-retrieve-a-response-for-a-manually-assigned-interaction)
+        * [Example: Retrieve a response for a manually assigned Interaction](#example-retrieve-a-response-for-a-manually-assigned-interaction)
         * [Optional response processing](#optional-response-processing)
     * [Assign an Interaction to a View](#assign-an-interaction-to-a-view)
     * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
@@ -1203,7 +1203,7 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-#### Example: Retrieve a response for a manually Assigned Interaction
+#### Example: Retrieve a response for a manually assigned Interaction
 
 `Kotlin`
 ```kotlin
