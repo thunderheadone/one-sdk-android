@@ -1264,6 +1264,7 @@ One.setAutomaticInteractionCallback(new OneInteractionPath(URI.create("/ManualIn
         One.removeAutomaticInteractionCallback(new OneInteractionPath(URI.create("/ManualInteraction")));
     }
 ```
+#### Optional response processing 
 
 The response can be passed to the `processResponse` method, as shown above. By calling this method the response is returned to the SDK to process, attaching any captures, trackers, and/or optimizations to the Interaction.
 
