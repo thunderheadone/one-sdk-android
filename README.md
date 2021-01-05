@@ -982,7 +982,7 @@ automatic Interaction callback API.
 * Assigning a manual/custom Interaction to a view should be done _before_ setting an automatic Interaction callback.
 * If you set a callback for an automatically triggered Interaction, you are advised to remove that callback as soon as it is no longer needed under your Activity's `onStop` method.
 
-Example: Automatic Activity Interaction
+#### Example: Retrieve a response for an automatic Activity Interaction
 
 `Kotlin`
 ```kotlin
@@ -1076,7 +1076,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-Example: Automatic Fragment Interaction
+#### Example: Retrieve a response for an automatic Fragment Interaction
 
 `Kotlin`
 ```kotlin
@@ -1199,7 +1199,7 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-Example: Manually Assigned Interaction
+#### Example: Retrieve a response for a manually Assigned Interaction
 
 `Kotlin`
 ```kotlin
