@@ -1,6 +1,5 @@
 package com.thunderhead.optimizationexample
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Html
 import android.util.Base64
@@ -19,11 +18,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.thunderhead.android.api.*
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.interactions.OneResponseCode
-import com.thunderhead.android.api.oneSendResponseCode
-import com.thunderhead.android.api.oneSetAutomaticInteractionCallback
-import com.thunderhead.android.api.process
 import com.thunderhead.android.api.responsetypes.OneAPIError
 import com.thunderhead.android.api.responsetypes.OneResponse
 import com.thunderhead.android.api.responsetypes.OneSDKError
@@ -48,10 +45,33 @@ class MainActivity : AppCompatActivity() {
 
         // get the tab layout view from the layout and set the view pager view
         tabLayout.setupWithViewPager(viewPager)
+        oneConfigureMessaging {
+            enabled = false
+        }
+
+        // Requires calling `removeAutomaticInteractionCallback` when destroyed, typically used in
+        // in the Activity `onDestroy` or Fragment `onDestroyView` lifecycle method.
+        setAutomaticInteractionCallback {
+            onSuccess { response ->
+                response?.let {
+                    it.process()
+                }
+            }
+
+            onError {
+                Log.e("optimization-example", it.errorMessage)
+            }
+
+            onFailure {
+                Log.e("optimization-example", it.errorMessage)
+            }
+        }
     }
 
-    class ActivityTabsPager(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-
+    class ActivityTabsPager(fm: FragmentManager) : FragmentPagerAdapter(
+        fm,
+        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    ) {
         override fun getItem(position: Int): Fragment =
             if (position == 0) FirstFragment() else SecondFragment()
 
@@ -59,6 +79,11 @@ class MainActivity : AppCompatActivity() {
 
         override fun getPageTitle(position: Int): CharSequence =
             if (position == 0) "First Tab" else "Second Tab"
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        removeAutomaticInteractionCallback()
     }
 }
 
@@ -77,8 +102,9 @@ class FirstFragment : Fragment() {
     ): View? {
         val parent = inflater.inflate(R.layout.fragment_first, container, false)
 
-        // get optimization response from SDK
-        oneSetAutomaticInteractionCallback(OneInteractionPath(URI.create("/FirstFragment-recycler_view_one"))) {
+        // Requires calling `removeAutomaticInteractionCallback` when destroyed, typically used in
+        // in the Activity `onDestroy` or Fragment `onDestroyView` lifecycle method.
+        setAutomaticInteractionCallback {
             onSuccess { response ->
                 response?.let {
                     it.process()
@@ -180,8 +206,7 @@ class FirstFragment : Fragment() {
 
             val image = LayoutInflater.from(parent.context)
                 .inflate(
-                    R.layout.list_image_cell
-                    , parent, false
+                    R.layout.list_image_cell, parent, false
                 ) as ImageView
             return FirstFragmentViewHolder(image)
         }
@@ -232,6 +257,11 @@ class FirstFragment : Fragment() {
 
         override fun getItemCount() = imageList.size
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        removeAutomaticInteractionCallback()
+    }
 }
 
 /**
@@ -271,8 +301,7 @@ class SecondFragment : Fragment() {
 
             val textView = LayoutInflater.from(parent.context)
                 .inflate(
-                    android.R.layout.simple_list_item_1
-                    , parent, false
+                    android.R.layout.simple_list_item_1, parent, false
                 ) as TextView
             return SecondFragmentViewHolder(textView)
         }
