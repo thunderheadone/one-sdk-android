@@ -4,10 +4,7 @@ workflows:
         triggering: &triggering
           events:
             - push
-          branch_patterns:
-            - pattern: master
-              include: true
-              source: true
+            - pull_request
         scripts:
             - ./examples/dynamic-configuration-example/gradlew -p examples/dynamic-configuration-example assembleDebug
         artifacts:
