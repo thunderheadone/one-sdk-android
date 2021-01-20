@@ -7,6 +7,10 @@ workflows:
             - pull_request
         scripts:
             - ./examples/dynamic-configuration-example/gradlew -p examples/dynamic-configuration-example assembleDebug
+        publishing:
+            email:
+                recipients:
+                    - e1ef44bb.thunderhead.com@emea.teams.ms
         artifacts:
             - app/build/outputs/**/*.apk
     optimization-example:
@@ -14,6 +18,10 @@ workflows:
         triggering: *triggering
         scripts:
             - ./examples/dynamic-configuration-example/gradlew -p examples/identity-transfer-example assembleDebug
+        publishing:
+            email:
+                recipients:
+                    - e1ef44bb.thunderhead.com@emea.teams.ms
         artifacts:
             - app/build/outputs/**/*.apk
     identity-transfer-example:
@@ -21,5 +29,9 @@ workflows:
         triggering: *triggering
         scripts:
             - ./examples/dynamic-configuration-example/gradlew -p examples/optimizing-programmatically-using-json-example assembleDebug
+        publishing:
+            email:
+                recipients:
+                    - e1ef44bb.thunderhead.com@emea.teams.ms
         artifacts:
             - app/build/outputs/**/*.apk
