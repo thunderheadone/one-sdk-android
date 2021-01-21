@@ -68,6 +68,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        removeAutomaticInteractionCallback()
+    }
+
     class ActivityTabsPager(fm: FragmentManager) : FragmentPagerAdapter(
         fm,
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
@@ -79,11 +84,6 @@ class MainActivity : AppCompatActivity() {
 
         override fun getPageTitle(position: Int): CharSequence =
             if (position == 0) "First Tab" else "Second Tab"
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        removeAutomaticInteractionCallback()
     }
 }
 
@@ -126,6 +126,11 @@ class FirstFragment : Fragment() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        removeAutomaticInteractionCallback()
     }
 
     // parse out optimization array
@@ -256,11 +261,6 @@ class FirstFragment : Fragment() {
         }
 
         override fun getItemCount() = imageList.size
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        removeAutomaticInteractionCallback()
     }
 }
 
