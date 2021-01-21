@@ -15,7 +15,7 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
         * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
         * [SDK initialization not required](#sdk-initialization-not-required)
 * [Considerations](#considerations)
- * [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
+    * [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
 * [Additional features](#additional-features)
     * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
     * [Exclude an Interaction](#exclude-an-interaction)
