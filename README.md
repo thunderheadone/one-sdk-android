@@ -1,7 +1,5 @@
 ![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
 
-The Thunderhead SDK for Android supports Android 5.0+ (API 21) and Android Gradle Plugin 3.6.x.
-
 **To  _migrate_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](https://github.com/thunderheadone/one-android-orchestration-plugin/blob/master/MIGRATION.md)
 for details on updating the required Gradle plugins.**
 
@@ -15,17 +13,18 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
 
 ## Table of Contents
 
+* [Requirements](#requirements)
 * [Installation](#installation)
-    * [Manual installation](#manual-installation)
-* [Use the codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
-     * [Thunderhead Application Manifest file permissions](#thunderhead-application-manifest-file-permissions)
-     * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
+* [Configure the codeless Thunderhead SDK for Android](#configure-the-codeless-thunderhead-sdk-for-android)
+    * [Set up the SDK in User mode for Play Store builds](#set-up-the-sdk-in-user-mode-for-play-store-builds)
+    * [Set up the SDK in Admin mode for internal distribution](#set-up-the-sdk-in-admin-mode-for-internal-distribution)
+    * [Further codeless integration considerations](#further-codeless-integration-considerations)
+        * [Sending codeless Interactions based on the list of Interactions created under a Touchpoint](#sending-codeless-interactions-based-on-the-list-of-interactions-created-under-a-touchpoint)
+        * [Thunderhead Application Manifest file permissions](#thunderhead-application-manifest-file-permissions)
+        * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
         * [SDK initialization not required](#sdk-initialization-not-required)
-        * [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
-        * [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
-        * [Sending codeless Interactions based on the list of Interactions created under a Touchpoint](#sending-codeless-Interactions-based-on-the-list-of-Interactions-created-under-a-touchpoint)
 * [Considerations](#considerations)
-     * [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
+ * [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
 * [Additional features](#additional-features)
     * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
     * [Exclude an Interaction](#exclude-an-interaction)
@@ -71,17 +70,21 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
     * [Salesforce Interaction Studio support](#salesforce-interaction-studio-support)
     * [Thunderhead ONE support](#thunderhead-one-support)
 
+## Requirements
+
++ [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin) 3.6.x
++ Android 5.0+ (API 21) and above
++ [Gradle](https://gradle.org/releases/) 5.6.4
+
 ## Installation
-
-### Manual installation
-
-Requires Gradle 5.6.4+
 
 1. Open your existing Android application in Android Studio.
 2. Include the Thunderhead SDK as a dependency in your project:
-+ Navigate to your **app-level** build.gradle.
-+ Add the following, under the dependencies section:
-    + For **Thunderhead ONE** integrations:
+    Navigate to your **app-level** build.gradle.
+    
+    Add the following, under the dependencies section:
+    
+    For **Thunderhead ONE** integrations:
 
     ```gradle
     dependencies {     
@@ -89,7 +92,7 @@ Requires Gradle 5.6.4+
     }
     ```
     
-    + For **Salesforce Interaction Studio** integrations:
+    For **Salesforce Interaction Studio** integrations:
     
     ```gradle
     dependencies {     
@@ -99,66 +102,66 @@ Requires Gradle 5.6.4+
 
 3. Add the Thunderhead SDK configuration within the same **app-level** `build.gradle` file. 
 
-+ Add `RenderScript` support under the `defaultConfig` section:
+    Add `RenderScript` support under the `defaultConfig` section:
 
-```gradle
-defaultConfig {
-   renderscriptTargetApi 22
-   renderscriptSupportModeEnabled true
-}
-```
+    ```gradle
+    defaultConfig {
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
+    }
+    ```
 
-+ Add the following, under the repositories section:
+    Add the following, under the repositories section:
 
-``` gradle 
-repositories {
-  maven {
-   url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
-  }
-}
-```
-
-+ Append the following configuration, for both **Thunderhead ONE** and **Salesforce Interaction Studio** integrations:
-
-``` gradle 
-apply plugin: 'com.thunderhead.android.orchestration-plugin'
-```
-  
-4. Add Java 8 Support
-
-+ Add the following, under the `android` section
-
-```groovy
-compileOptions {
-    sourceCompatibility 1.8
-    targetCompatibility 1.8
-}
-```
-
-5. Update your `build.gradle` file to add codeless identity transfer support.
-
-+ Navigate to the **top-level** `build.gradle` file and add both a maven repository url and class path dependencies as shown below:
-
-``` gradle 
-buildscript {
+    ``` gradle 
     repositories {
-        google()
-        jcenter()
         maven {
-            name 'ThunderheadSpringMilestone'
-            url = 'https://repo.spring.io/milestone'
-        }
-        maven {
-            name 'Thunderhead'
             url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
         }
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
+    ```
+
+    Append the following configuration, for both **Thunderhead ONE** and **Salesforce Interaction Studio** integrations:
+
+    ``` gradle 
+    apply plugin: 'com.thunderhead.android.orchestration-plugin'
+    ```
+  
+4. Add Java 8 Support
+
+    Add the following, under the `android` section
+
+    ```groovy
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
-}
-```
+    ```
+
+5. Update your `build.gradle` file to add codeless identity transfer support.
+
+    Navigate to the **top-level** `build.gradle` file and add both a maven repository url and class path dependencies as shown below:
+
+    ``` gradle 
+    buildscript {
+        repositories {
+            google()
+            jcenter()
+            maven {
+                name 'ThunderheadSpringMilestone'
+                url = 'https://repo.spring.io/milestone'
+            }
+            maven {
+                name 'Thunderhead'
+                url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+            }
+        }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:3.4.2'
+            classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
+        }
+    }
+    ```
 
 ####  `build.gradle` examples
 
@@ -303,42 +306,13 @@ repositories {
 
 For further documentation on the `orchestration-plugin` please see the [Orchestration Plugin Readme](https://github.com/thunderheadone/one-android-orchestration-plugin/blob/master/README.md).
 
-## Use the codeless Thunderhead SDK for Android
+## Configure the codeless Thunderhead SDK for Android
 
-Enable your app to automatically recognize **Interactions** by executing the following steps.
+Enable your app to automatically recognize **Interactions** in your app, by executing the following steps:
 
 *Developer note:* Android Studio `Instant Run` is not currently supported and must be disabled.
 
-### Thunderhead Application Manifest file permissions
-
-The following permissions are included in the Thunderhead SDK's `AndroidManifest.xml` and will be merged with your applications AndroidManifest.xml:
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-```
-*Note:* 
-- The `SYSTEM_ALERT_WINDOW` permission is needed only for Admin mode builds. Add this as a flavor-specific permission  in your setup to avoid having to show it as a permission change to your Play Store users.
-- You can remove this permission in User mode builds by adding the following to your manifest: 
-```xml 
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
-```
-
-### Configure and reconfigure the SDK
-
-You can configure and reconfigure the SDK as many times as necessary. 
-* The SDK does not support partial, or piecemeal, configuration. You must provide all parameters, either all valid or invalid (`empty string` or `null`).  
-* When configured with invalid parameters, the SDK is set in an *unconfigured* state.
-
-See [here](https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example) for an example app that demonstrates dynamic configuration.
-
-#### SDK initialization not required
-
-The Thunderhead SDK is automatically initialized in an *unconfigured* state.
-* When *unconfigured*, the SDK queues end-user data locally and uploads that data to the server once the SDK is configured with valid parameters.
-* You can disable this functionality, at any time, by setting the `oneOptOutConfiguration` to `true`. See more about opt out [here](#opt-an-end-user-out-of-tracking).
-
-#### Set up the SDK in User mode
+### Set up the SDK in User mode for Play Store builds
 
 To start capturing insights and configuring orchestrations in User mode, you must first configure the Thunderhead SDK with your Thunderhead API parameters. 
 You can find your Thunderhead API parameters on the _API Credentials_ page in Thunderhead ONE or Salesforce Interaction Studio.
@@ -411,17 +385,17 @@ public class YourApplication extends Application {
 }
 ```
 
-*Note:* 
-- Set up the User mode SDK build as part of the release build you plan to publish to the Play Store.
-- Dynamic configuration of both Admin and User mode is supported.
+### Set up the SDK in Admin mode for internal distribution
 
-#### Set up the SDK in Admin mode
-
-To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
+To use the SDK in Admin mode, change the `OneModes` parameter to `OneModes.ADMIN_MODE`.
 
 *Note:* 
 - If you are running in Admin mode on Android 6.0+, you must enable the “draw over other apps” permission through your OS settings. 
 - Dynamic configuration of both Admin and User mode is supported.
+
+**You have now successfully integrated the codeless Thunderhead SDK for Android.**
+
+### Further codeless integration considerations
 
 #### Sending codeless Interactions based on the list of Interactions created under a Touchpoint
 
@@ -432,7 +406,34 @@ In order to reduce the number of unnecessary Interaction requests sent automatic
 - For a codeless Interaction to be sent by the SDK this Interaction needs to contain at least one Activity Capture Point, Attribute Capture Point, and/or Optimization Point.
 - If you are running the SDK in [User mode](#set-up-the-sdk-in-user-mode), you need to ensure that all Interactions and related points have been fully published, before the SDK will trigger a request.
 
-**You have now successfully integrated the codeless Thunderhead SDK for Android.**
+#### Thunderhead Application Manifest file permissions
+
+The following permissions are included in the Thunderhead SDK's `AndroidManifest.xml` and will be merged with your applications AndroidManifest.xml:
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+```
+*Note:* 
+- The `SYSTEM_ALERT_WINDOW` permission is needed only for Admin mode builds. Add this as a flavor-specific permission  in your setup to avoid having to show it as a permission change to your Play Store users.
+- You can remove this permission in User mode builds by adding the following to your manifest: 
+```xml 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
+```
+
+#### Configure and reconfigure the SDK
+
+You can configure and reconfigure the SDK as many times as necessary. 
+* The SDK does not support partial, or piecemeal, configuration. You must provide all parameters, either all valid or invalid (`empty string` or `null`).  
+* When configured with invalid parameters, the SDK is set in an *unconfigured* state.
+
+See [here](https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example) for an example app that demonstrates dynamic configuration.
+
+#### SDK initialization not required
+
+The Thunderhead SDK is automatically initialized in an *unconfigured* state.
+* When *unconfigured*, the SDK queues end-user data locally and uploads that data to the server once the SDK is configured with valid parameters.
+* You can disable this functionality, at any time, by setting the `oneOptOutConfiguration` to `true`. See more about opt out [here](#opt-an-end-user-out-of-tracking).
 
 ## Considerations
 
@@ -1053,8 +1054,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         One.setAutomaticInteractionCallback(this, new OneCallback() {
             @Override
-
-            @Override
             public void onError(@NotNull OneSDKError error) {
                 Log.e(TAG, "SDK Error", error);
             }
@@ -1064,6 +1063,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "API Error", error);
             }
 
+            @Override
             public void onSuccess(@NotNull OneResponse response) {
                 Log.d(TAG, response.getTid());
                 // Do something with response
