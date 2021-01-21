@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         setAutomaticInteractionCallback {
             onSuccess { response ->
                 response?.let {
+                    Log.d("optimization-example", "Received automatic callback for Interaction: ${it.interactionPath}")
                     it.process()
                 }
             }
@@ -107,6 +108,7 @@ class FirstFragment : Fragment() {
         setAutomaticInteractionCallback {
             onSuccess { response ->
                 response?.let {
+                    Log.d("optimization-example", "Received automatic callback for Interaction: ${it.interactionPath}")
                     it.process()
                     parseData(it)
                 }
