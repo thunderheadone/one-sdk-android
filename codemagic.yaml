@@ -5,6 +5,10 @@ workflows:
           events:
             - push
             - pull_request
+          branch_patterns:
+            - pattern: '*'
+              include: true
+              source: true
         scripts:
             - ./examples/dynamic-configuration-example/gradlew -p examples/dynamic-configuration-example assembleDebug
         publishing:
