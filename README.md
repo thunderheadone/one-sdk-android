@@ -9,6 +9,9 @@ on updating your app to be Java 8 compatible in order to use the Thunderhead SDK
 **To _migrate_ from version(s) < 6.0.0 of the Thunderhead SDK to version(s) 6.0.0+, please see the [Version 6 migration guide](MIGRATION-VERSION-6.md) for details
 on updating your existing SDK configuration.**
 
+**To _migrate_ from version(s) < 9.0.0 of the Thunderhead SDK to version(s) 9.0.0+, please see the [Version 9 migration guide](MIGRATION-VERSION-9.md) for details
+on updating your existing SDK configuration.**
+
 API docs are available for viewing [here](https://thunderheadone.github.io/one-sdk-android/).
 
 ## Table of Contents
@@ -23,8 +26,6 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
         * [Thunderhead Application Manifest file permissions](#thunderhead-application-manifest-file-permissions)
         * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
         * [SDK initialization not required](#sdk-initialization-not-required)
-* [Considerations](#considerations)
-    * [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
 * [Additional features](#additional-features)
     * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
     * [Exclude an Interaction](#exclude-an-interaction)
@@ -51,16 +52,9 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
         * [Create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to facilitate identity transfer](#create-an-androidneturi-or-javaneturi-with-a-one-tid-parameter-to-facilitate-identity-transfer)
     * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
         * [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
-    * [Enable push notifications](#enable-push-notifications)
-        * [Minimum Gradle configuration](#minimum-gradle-configuration)
-        * [Enable codeless push notification support programmatically](#enable-codeless-push-notification-support-programmatically)
-           * [Configure push notifications with multiple push message SDKs](#configure-push-notifications-with-multiple-push-message-sdks)
-           * [Set a non adaptive fallback](#set-a-non-adaptive-fallback)
-    * [Get a push token](#get-a-push-token)
-    * [Send a push token](#send-a-push-token)
      * [Send a location object](#send-a-location-object)
      * [Get Tid](#get-tid)
-     * [Access debug information](#access-debug-information)
+     * [Configuring Logging](#configuring-logging)
      * [Identify the SDK version](#identify-the-sdk-version)
      * [Clear the user profile](#clear-the-user-profile)
 * [Further integration details](#further-integration-details)
@@ -88,7 +82,7 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:8.2.0"
+      implementation "com.thunderhead.android:one-sdk:9.0.0"
     }
     ```
     
@@ -96,7 +90,7 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:8.2.0"
+      implementation "com.thunderhead.android:is-sdk:9.0.0"
     }
     ```
 
@@ -158,7 +152,7 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.4.2'
-            classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
+            classpath 'com.thunderhead.android:orchestration-plugin:3.0.0'
         }
     }
     ```
@@ -185,7 +179,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:3.0.0'
     }
 }
 
@@ -224,7 +218,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:8.2.0"
+  implementation "com.thunderhead.android:one-sdk:9.0.0"
 }
 
 repositories {
@@ -255,7 +249,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:3.0.0'
     }
 }
 
@@ -293,7 +287,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:8.2.0"
+  implementation "com.thunderhead.android:is-sdk:9.0.0"
 }
 
 repositories {
@@ -434,100 +428,6 @@ See [here](https://github.com/thunderheadone/one-sdk-android/tree/master/example
 The Thunderhead SDK is automatically initialized in an *unconfigured* state.
 * When *unconfigured*, the SDK queues end-user data locally and uploads that data to the server once the SDK is configured with valid parameters.
 * You can disable this functionality, at any time, by setting the `oneOptOutConfiguration` to `true`. See more about opt out [here](#opt-an-end-user-out-of-tracking).
-
-## Considerations
-
-### Additional configuration required for apps configured with push messaging
-
-When the Thunderhead SDK is the *only* push message provider in your application and you enable codeless push notification support, the SDK automatically gets the push token and handles the receiving of push notifications on behalf of your app, and therefore the below additional configuration instructions would not be needed.
-
-When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required to ensure push messaging continues to work for all SDKs using FCM.
-*Note:*
-- This is still required even if Thunderhead push notifications are not enabled.
-
-You must forward the `onNewToken` and `onMessageReceived` callbacks to *all* SDK message APIs from the service that extends `FirebaseMessagingService`.
-
-If using the Thunderhead SDK for push messaging, forward the callbacks as shown below:
-
-```kotlin
-// Call when a new FCM token is retrieved:
-One.setMessagingToken(newToken);
-
-// Call when a new message is received from Firebase:
-One.processMessage(message);
-```
-
-An example of a service extending `FirebaseMessagingService` that calls the SDK messaging APIs:
-
-`Kotlin`
-```kotlin
-class FirebaseService : FirebaseMessagingService() {
-
-    override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        super.onMessageReceived(remoteMessage)
-        try {
-            One.processMessage(remoteMessage)
-            // Call other Push Message SDKs.
-        } catch (e: Exception) {
-            Log.e(TAG, e.message)
-        }
-    }
-
-    override fun onNewToken(newToken: String) {
-        super.onNewToken(newToken)
-        try {
-            One.setMessagingToken(newToken)
-            // Call other Push Message SDKs.
-        } catch (e: Exception) {
-            Log.e(TAG, e.message)
-        }
-    }
-    companion object {
-        private const val TAG = "FirebaseService"
-    }
-}
-```
-
-`Java`
-```java
-public final class FirebaseService extends FirebaseMessagingService {
-    private static final String TAG = "FirebaseService";
-
-    @Override
-    public void onMessageReceived(final RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
-        try {
-            One.processMessage(remoteMessage);
-            // Call other Push Message SDKs.
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
-    }
-
-    @Override
-    public void onNewToken(final String newToken) {
-        super.onNewToken(newToken);
-        try {
-            One.setMessagingToken(newToken);
-            // Call other Push Message SDKs.
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
-    }
-}
-```
-
-Do not forget to register the service in the manifest, if required:
-
-```xml
-<!-- The priority should be set to a high value in order to ensure this service receives the intent vs the other push provider SDKs -->
- <service
-    android:name="com.example.FirebaseService">
-        <intent-filter android:priority="100">
-            <action android:name="com.google.firebase.MESSAGING_EVENT" />
-        </intent-filter>
-</service>
-```
 
 ## Additional features
 
@@ -1681,126 +1581,6 @@ Pass the `URL` or `Uri`, to send an Interaction request to `/one-click` using th
 - Sends a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - Set up the `/one-click` Interaction request in Thunderhead ONE or Salesforce Interaction Studio, to capture the appropriate attributes and activity.
 
-### Enable push notifications
-
-To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, configure Firebase Cloud Messaging (FCM) by following the FCM setup instructions. At a minimum the app must be configured in Firebase and the `google-services.json` needs to be in the root of the app project.
-
-**Important:** For apps configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.  See more [here](#additional-configuration-required-for-apps-configured-with-push-messaging).
-
-#### Minimum Gradle configuration 
-
-To use the codeless push notifications functionality without using FCM directly, you must at least have the `google-services` plugin applied to your app build.gradle. 
-
-1. Add the Google Services Plugin to your classpath in the top-level build.gradle, located in the root project directory, as shown below:
-
-```gradle
-buildscript {
-    repositories {
-        google()
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
-        // for cloud messaging support
-        classpath 'com.google.gms:google-services:4.2.0'
-    }
-}
-```
-
-2.  Apply the Google Messaging Service plugin to the app-level build.gradle, as shown below:
-
-```gradle
-// place this at the bottom of your app build.gradle
-apply plugin: 'com.google.gms.google-services'
-```
-    
-- The `Warning: The app gradle file must have a dependency on com.google.firebase:firebase-core for Firebase services to work as intended.` can safely be ignored as this is not required for push notification support.
-    
-#### Enable codeless push notification support programmatically
-
-For Firebase Cloud Messaging, enable push notifications as shown below:
-
-`Kotlin`
-```kotlin
-import com.thunderhead.android.api.oneConfigureMessaging
-
-oneConfigureMessaging {
-    enabled = true
-}
-```
-  
-`Java`
-```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
-
-final OneMessagingConfiguration oneMessagingConfiguration = new OneMessagingConfiguration.Builder()
-    .enabled(true)
-    .build();
-
-One.setMessagingConfiguration(oneMessagingConfiguration);
-```
-
-*Note:* 
-- When the Thunderhead SDK is the only push message provider in your application and you enable codeless push notification support, the SDK automatically gets the push token and handles the receiving of push notifications on behalf of your app.
-
-##### Set a non adaptive fallback
-
-Android (O)reo, API 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460).
-The issue was resolved in API 27. It was not, however, back ported to the original Oreo API 26 platform.
-
-The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on API 26 devices.
-Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for API 26**.
-
-The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. For more information, see the [Troubleshooting guide](TROUBLESHOOTING-GUIDE.md)
-
-Here is an example of setting the fallback for API 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
-
-`Kotlin`
-```kotlin
-import com.thunderhead.android.api.oneConfigureMessaging
-
-oneConfigureMessaging {
-    enabled = true
-    nonAdaptiveSmallIcon = android.R.drawable.star_on
-}
-```
-
-`Java`
-```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
-
-final OneMessagingConfiguration oneMessagingConfiguration = new OneMessagingConfiguration.Builder()
-    .nonAdaptiveSmallIcon(android.R.drawable.star_on)
-    .enabled(true)
-    .build();
-
-One.setMessagingConfiguration(oneMessagingConfiguration);
-```
-
-### Get a push token
-
-To get the push token codelessly retrieved by the SDK, call the `One.getMessagingToken` Java method as shown below:
-
-```java  
-String pushToken = One.getMessagingToken();
-// work with the push token
-```
-*Note:*
-- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider. 
-
-### Send a push token
-
-To send a push token, call the `One.setMessagingToken` method by passing a push token, as shown below:
-
-```java
-import com.thunderhead.One;
-
-One.setMessagingToken("DUI03F379S1UUIDA6DADF8DFQPZ");
-```
-
 ### Send a location object
 
 To send a location object, pass the location object as a parameter to the `updateLocation` method, as shown below:
@@ -1840,36 +1620,234 @@ One.getTid();
 - Returns the `tid` assigned to the current user as a `String`.
 - Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE or Salesforce Interaction Studio, or if you need to pass the identity of the current user to another system that sends data to Thunderhead ONE or Salesforce Interaction Studio.
 
-### Access debug information
+### Configuring Logging
 
-The Thunderhead SDK for Android provides 4 distinct debugging levels that can be enabled after the SDK has been initialized, as shown below:
+The Thunderhead SDK for Android provides an extensible logging configuration API for debug or reporting purposes. The API can be configured to 
+log any combination of "Components" (features or technical concepts such as networking or databases) to Log Levels (Debug, Verbose, etc). In addition,
+custom log writers can be added to facilitate reporting if desired (ex. sending errors to Google Console).
 
-1. `NONE` - if set, no messages will be displayed in the console.
-  
-```java
-One.setLogLevel(OneLogLevel.NONE);
+Below are various examples of logging configurations.
+
+*Turning logging off if it has been turned on.*
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.logging.Component
+import com.thunderhead.android.api.logging.LogLevel
+import com.thunderhead.android.api.logging.and
+import com.thunderhead.android.api.oneConfigureLogging
+// rest of imports
+
+oneConfigureLogging {
+    levels = mutableSetOf()
+    components = mutableSetOf()
+}
 ```
 
-2. `ALL` - if set, all log messages will be displayed in the console.
-  
+`Java`
 ```java
-One.setLogLevel(OneLogLevel.ALL);
+import com.thunderhead.One;
+import com.thunderhead.android.api.configuration.OneConfiguration;
+import com.thunderhead.android.api.logging.Component;
+import com.thunderhead.android.api.logging.LogLevel;
+import com.thunderhead.android.api.logging.OneLoggingConfiguration;
+// rest of imports
+
+final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
+    .build();
+
+One.setLoggingConfiguration(oneLoggingConfiguration);
 ```
 
-3. `WEB_SERVICE` - if set, only web service logs will be displayed in the console.
+*Combination of ERROR and WARN levels for ANY Thunderhead SDK Component.*
 
-```java
-One.setLogLevel(OneLogLevel.WEB_SERVICE);
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.logging.Component
+import com.thunderhead.android.api.logging.LogLevel
+import com.thunderhead.android.api.logging.and
+import com.thunderhead.android.api.oneConfigureLogging
+// rest of imports
+
+oneConfigureLogging {
+    levels = LogLevel.ERROR and LogLevel.WARN
+    components = mutableSetOf(Component.ANY)
+}
 ```
 
-4. `FRAMEWORK` - if set, only framework logs will be displayed in the console.
-  
+`Java`
 ```java
-One.setLogLevel(OneLogLevel.FRAMEWORK);
+import com.thunderhead.One;
+import com.thunderhead.android.api.configuration.OneConfiguration;
+import com.thunderhead.android.api.logging.Component;
+import com.thunderhead.android.api.logging.LogLevel;
+import com.thunderhead.android.api.logging.OneLoggingConfiguration;
+// rest of imports
+
+final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
+    .log(LogLevel.ERROR)
+    .log(LogLevel.WARN)
+    .log(Component.ANY)
+    .build();
+
+One.setLoggingConfiguration(oneLoggingConfiguration);
 ```
+
+*Combination of VERBOSE (IE everything) for just Networking and Database Components of the Thunderhead SDK.*
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.logging.Component
+import com.thunderhead.android.api.logging.LogLevel
+import com.thunderhead.android.api.logging.and
+import com.thunderhead.android.api.oneConfigureLogging
+// rest of imports
+
+oneConfigureLogging {
+    levels = mutableSetOf(LogLevel.VERBOSE) 
+    components = Component.NETWORKING and Component.DATABASE
+}
+```
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.configuration.OneConfiguration;
+import com.thunderhead.android.api.logging.Component;
+import com.thunderhead.android.api.logging.LogLevel;
+import com.thunderhead.android.api.logging.OneLoggingConfiguration;
+// rest of imports
+
+final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
+    .log(LogLevel.VERBOSE)
+    .log(Component.NETWORKING)
+    .log(Component.DATABASE)
+    .build();
+
+One.setLoggingConfiguration(oneLoggingConfiguration);
+```
+
+*Example of using a custom logger*
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.logging.Component
+import com.thunderhead.android.api.logging.LogLevel
+import com.thunderhead.android.api.logging.and
+import com.thunderhead.android.api.oneConfigureLogging
+import com.thunderhead.android.api.logging.LogWriter
+// rest of imports
+
+oneConfigureLogging {
+    levels = mutableSetOf(LogLevel.VERBOSE) 
+    components = Component.NETWORKING and Component.DATABASE
+    logWriters = mutableSetOf(CustomLogger())
+}
+
+// custom logger
+class CustomLogger : LogWriter() {
+    override fun log(
+        logLevel: LogLevel,
+        component: Component,
+        message: String,
+        throwable: Throwable?
+    ) {
+        Log.d("CustomLogger", "Component: ${component.name}\nMessage: $message", throwable)
+    }
+}
+```
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.configuration.OneConfiguration;
+import com.thunderhead.android.api.logging.Component;
+import com.thunderhead.android.api.logging.LogLevel;
+import com.thunderhead.android.api.logging.OneLoggingConfiguration;
+import com.thunderhead.android.api.logging.LogWriter;
+// rest of imports
+
+final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
+    .log(LogLevel.VERBOSE)
+    .log(Component.NETWORKING)
+    .log(Component.DATABASE)
+    .logTo(new CustomLogger())
+    .build();
+
+One.setLoggingConfiguration(oneLoggingConfiguration);
+
+// custom logger
+static class CustomLogger extends LogWriter {
+        @Override
+        public void log(
+                @NotNull LogLevel logLevel,
+                @NotNull Component component,
+                @NotNull String message,
+                @Nullable Throwable throwable
+        ) {
+            Log.d("CustomLogger", "Component: " + component.name() + "\nMessage: "  + message, throwable);
+        }
+    }
+```
+
+*To log the Thunderhead SDK initialization process*
+
+The Thunderhead SDK performs initialization processes in an Android Content Provider which is instantiated before
+the Application is created. This means the log configuration API cannot be invoked before the Thunderhead SDK
+has finished its initialization process. To turn on logging for the initialization process of the Thunderhead SDK
+a meta data element must be added to the android manifest. If the metadata element is not set no logging is configured.
+
+*Metadata Info:*
+
+`name` :  `com.thunderhead.android.InitLogLevel`
+`value`: Comma separated list of `com.thunderhead.android.api.logging.LogLevel`
+
+*Example logging verbose and above logs:*
+
+```xml
+<application>
+    <!--Other application elements-->
+
+    <meta-data
+        android:name="com.thunderhead.android.InitLogLevel"
+        android:value="VERBOSE" />
+</application>
+```
+
+*Example logging only ERROR and WARN logs:*
+
+```xml
+<application>
+    <!--Other application elements-->
+
+    <meta-data
+        android:name="com.thunderhead.android.InitLogLevel"
+        android:value="ERROR,WARN" />
+</application>
+```
+
+**Recommendation**
+We recommend including the above metadata only in `DEBUG` builds to ensure no unnecessary logging
+occurs in release. Therefore, only include this metadata in the `DEBUG` variant
+`AndroidManifest.xml` and _NOT_ in the main `AndroidManifest.xml`. To learn more about how manifests
+are merged, please see the [Android Documentation](https://developer.android.com/studio/build/manifest-merge).
 
 *Note:* 
-- By default, the Thunderhead SDK for Android does not display any debug log messages. However, exception messages are printed in the console, when these occur.
+- By default, the Thunderhead SDK for Android does not log any information.
+- The `com.thunderhead.android.InitLogLevel` `AndroidManifest.xml` metadata value is only honored 
+for the Thunderhead SDK initialization process. After initialization has finished, the logging 
+configuration reverts to a default of _off_. If more logging is desired then use the logging 
+configuration APIs to turn on logging as shown above.
+- When setting a single `LogLevel`, the SDK will log any messages of that level and above.
+    - The order from the bottom is: VERBOSE, DEBUG, ERROR, WARN, INFO, ASSERT
+    - Example: Setting VERBOSE will log all messages.
+    - Example: Setting INFO will log only INFO and ASSERT messages.
+- When setting multiple `LogLevel`(s), the SDK will log only messages of those specific levels.
+    - Example: Setting ERROR and WARN will only log message of ERROR and WARN levels and nothing else.
+- When setting `Component` to _only_ `ANY` all components will be logged in conjunction with the log level.
+- When setting multiple `Component`(s), the SDK will log only messages for those specific components.
+    - Do not set set multiple `Components`(s) along side the `ANY` component. Choose only the components
+        required or just use `ANY` but not both.
 
 ### Identify the SDK version
 
@@ -1900,7 +1878,7 @@ To completely remove the codeless identity transfer functionality for Android, m
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 
 ```gradle 
-classpath 'com.thunderhead.android:orchestration-plugin:2.0.0'
+classpath 'com.thunderhead.android:orchestration-plugin:3.0.0'
 ```
 
 2. Open the **app-level** `build.gradle` file and remove the following references.
