@@ -2,7 +2,7 @@
 
 # optimizations
 
-`val optimizations: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<Optimizations>?`
+`val optimizations: List<Optimizations>?`
 
 Array of optimizations returned from the API.
 

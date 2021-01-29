@@ -24,12 +24,12 @@ See [com.thunderhead.android.api.oneInteractionPathAssignment](../../com.thunder
 | Name | Summary |
 |---|---|
 | [interactionPath](interaction-path.md) | The Interaction path to assign to a given view.`val interactionPath: `[`OneInteractionPath`](../-one-interaction-path/index.md)`?` |
-| [view](view.md) | The [View](https://developer.android.com/reference/android/view/View.html) to assign an Interaction path to. This should be the content view of an activity or the root view of a fragment.`val view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?` |
+| [view](view.md) | The [View](https://whatever/android/view/View.html) to assign an Interaction path to. This should be the content view of an activity or the root view of a fragment.`val view: `[`View`](https://whatever/android/view/View.html)`?` |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
-| [equals](equals.md) | `fun equals(other: `[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`?): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
-| [hashCode](hash-code.md) | `fun hashCode(): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [equals](equals.md) | `fun equals(other: Any?): Boolean` |
+| [hashCode](hash-code.md) | `fun hashCode(): Int` |
+| [toString](to-string.md) | `fun toString(): String` |

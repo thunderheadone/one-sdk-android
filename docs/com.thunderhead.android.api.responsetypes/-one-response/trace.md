@@ -2,7 +2,7 @@
 
 # trace
 
-`val trace: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`val trace: String?`
 
 String trace returned from the API.
 

@@ -12,5 +12,5 @@
 
 | Name | Summary |
 |---|---|
-| [OneAPIError](-one-a-p-i-error/index.md) | Error class used to signify that an API error was encountered.`class OneAPIError : `[`Exception`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html) |
-| [OneSDKError](-one-s-d-k-error/index.md) | Error used to specify that an SDK error was encountered.`class OneSDKError : `[`Exception`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html) |
+| [OneAPIError](-one-a-p-i-error/index.md) | Error class used to signify that an API error was encountered.`class OneAPIError : Exception` |
+| [OneSDKError](-one-s-d-k-error/index.md) | Error used to specify that an SDK error was encountered.`class OneSDKError : Exception` |

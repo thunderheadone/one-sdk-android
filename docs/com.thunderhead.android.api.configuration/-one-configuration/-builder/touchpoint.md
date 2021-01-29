@@ -2,7 +2,7 @@
 
 # touchpoint
 
-`var touchpoint: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?`
+`var touchpoint: `[`URI`](https://whatever/java/net/URI.html)`?`
 
 The ONE touchpoint to configure the SDK with.
 This can be found in `ONE Collect -> Touchpoints` in the Admin UI.
@@ -12,7 +12,7 @@ This can be found in `ONE Collect -> Touchpoints` in the Admin UI.
 The ONE touchpoint to configure the SDK with.
 This can be found in `ONE Collect -> Touchpoints` in the Admin UI.
 
-`fun touchpoint(touchpoint: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?): Builder`
+`fun touchpoint(touchpoint: `[`URI`](https://whatever/java/net/URI.html)`?): Builder`
 
 ### Parameters
 

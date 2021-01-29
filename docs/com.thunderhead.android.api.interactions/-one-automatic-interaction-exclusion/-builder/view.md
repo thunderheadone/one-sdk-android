@@ -2,16 +2,16 @@
 
 # view
 
-`var view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?`
+`var view: `[`View`](https://whatever/android/view/View.html)`?`
 
-The [View](https://developer.android.com/reference/android/view/View.html) to exclude from automatic interaction tracking.
+The [View](https://whatever/android/view/View.html) to exclude from automatic interaction tracking.
 
 **Setter**
 
-The [View](https://developer.android.com/reference/android/view/View.html) to exclude from automatic interaction tracking.
+The [View](https://whatever/android/view/View.html) to exclude from automatic interaction tracking.
 
-`fun view(view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?): Builder`
+`fun view(view: `[`View`](https://whatever/android/view/View.html)`?): Builder`
 
 ### Parameters
 
-`view` - The [View](https://developer.android.com/reference/android/view/View.html) to exclude from automatic interaction tracking.
+`view` - The [View](https://whatever/android/view/View.html) to exclude from automatic interaction tracking.

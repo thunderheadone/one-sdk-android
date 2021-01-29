@@ -2,7 +2,7 @@
 
 # properties
 
-`val properties: `[`Map`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>?`
+`val properties: Map<String, String>?`
 
 Properties map to be sent with the interaction
 

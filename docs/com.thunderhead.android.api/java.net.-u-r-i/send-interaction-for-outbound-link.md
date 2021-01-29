@@ -2,7 +2,7 @@
 
 # sendInteractionForOutboundLink
 
-`fun `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?.sendInteractionForOutboundLink(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`URI`](https://whatever/java/net/URI.html)`?.sendInteractionForOutboundLink(): Unit`
 
 Programmatic api to track an outbound link when
 Automatic Outbound Link Tracking is disabled.

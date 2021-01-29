@@ -16,13 +16,13 @@ Builder to create a [OneCodelessInteractionTrackingConfiguration](../index.md).
 
 | Name | Summary |
 |---|---|
-| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) True to disable interaction tracking.`var disableCodelessInteractionTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?` |
-| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) to disable updating outbound links.`var disableOutboundLinkTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?` |
+| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | [Boolean](#) True to disable interaction tracking.`var disableCodelessInteractionTracking: Boolean?` |
+| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | [Boolean](#) to disable updating outbound links.`var disableOutboundLinkTracking: Boolean?` |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
 | [build](build.md) | Create the [OneCodelessInteractionTrackingConfiguration](../index.md) from provided configuration.`fun build(): `[`OneCodelessInteractionTrackingConfiguration`](../index.md) |
-| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | `fun disableCodelessInteractionTracking(disableCodelessInteractionTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?): Builder` |
-| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | `fun disableOutboundLinkTracking(disableOutboundLinkTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?): Builder` |
+| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | `fun disableCodelessInteractionTracking(disableCodelessInteractionTracking: Boolean?): Builder` |
+| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | `fun disableOutboundLinkTracking(disableOutboundLinkTracking: Boolean?): Builder` |

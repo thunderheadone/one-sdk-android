@@ -2,9 +2,9 @@
 
 # assignInteractionPath
 
-`fun `[`View`](https://developer.android.com/reference/android/view/View.html)`?.assignInteractionPath(oneInteractionPath: `[`OneInteractionPath`](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`View`](https://whatever/android/view/View.html)`?.assignInteractionPath(oneInteractionPath: `[`OneInteractionPath`](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)`): Unit`
 
-Assign an [OneInteractionPath](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md) to an Android [View](https://developer.android.com/reference/android/view/View.html)
+Assign an [OneInteractionPath](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md) to an Android [View](https://whatever/android/view/View.html)
 to be used instead of using the automatic path.
 
 See [One.assignInteractionPath](#)

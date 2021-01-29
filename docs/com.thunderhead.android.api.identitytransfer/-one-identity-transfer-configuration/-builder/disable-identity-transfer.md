@@ -2,16 +2,16 @@
 
 # disableIdentityTransfer
 
-`var disableIdentityTransfer: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?`
+`var disableIdentityTransfer: Boolean?`
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to disable transfer of identity to outbound locations.
+[Boolean](#) true to disable transfer of identity to outbound locations.
 
 **Setter**
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to disable transfer of identity to outbound locations.
+[Boolean](#) true to disable transfer of identity to outbound locations.
 
-`fun disableIdentityTransfer(disableIdentityTransfer: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?): Builder`
+`fun disableIdentityTransfer(disableIdentityTransfer: Boolean?): Builder`
 
 ### Parameters
 
-`disableIdentityTransfer` - [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to disable transfer of identity to outbound locations.
+`disableIdentityTransfer` - [Boolean](#) true to disable transfer of identity to outbound locations.

@@ -2,7 +2,7 @@
 
 # onSuccess
 
-`abstract fun onSuccess(response: `[`OneResponse`](../../com.thunderhead.android.api.responsetypes/-one-response/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`abstract fun onSuccess(response: `[`OneResponse`](../../com.thunderhead.android.api.responsetypes/-one-response/index.md)`): Unit`
 
 Called after a successfully completed network call.
 

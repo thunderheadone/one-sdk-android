@@ -2,12 +2,12 @@
 
 # view
 
-`val view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?`
+`val view: `[`View`](https://whatever/android/view/View.html)`?`
 
-The [View](https://developer.android.com/reference/android/view/View.html) to assign an Interaction path to. This should be
+The [View](https://whatever/android/view/View.html) to assign an Interaction path to. This should be
 the content view of an activity or the root view of a fragment.
 
 ### Property
 
-`view` - The [View](https://developer.android.com/reference/android/view/View.html) to assign an Interaction path to. This should be
+`view` - The [View](https://whatever/android/view/View.html) to assign an Interaction path to. This should be
 the content view of an activity or the root view of a fragment.

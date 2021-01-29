@@ -15,10 +15,10 @@ Response code object containing the response code value. This is used as part of
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Response code object containing the response code value. This is used as part of the [OneResponseCodeRequest](../-one-response-code-request/index.md) object. Response code values is sent to the One API as a property value.`OneResponseCode(value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)` |
+| [&lt;init&gt;](-init-.md) | Response code object containing the response code value. This is used as part of the [OneResponseCodeRequest](../-one-response-code-request/index.md) object. Response code values is sent to the One API as a property value.`OneResponseCode(value: String)` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | response code string value.`val value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [value](value.md) | response code string value.`val value: String` |

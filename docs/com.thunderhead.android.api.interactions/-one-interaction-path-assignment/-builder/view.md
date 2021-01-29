@@ -2,16 +2,16 @@
 
 # view
 
-`var view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?`
+`var view: `[`View`](https://whatever/android/view/View.html)`?`
 
-The [View](https://developer.android.com/reference/android/view/View.html) to assign a [OneInteractionPath](../../-one-interaction-path/index.md) path to.
+The [View](https://whatever/android/view/View.html) to assign a [OneInteractionPath](../../-one-interaction-path/index.md) path to.
 
 **Setter**
 
-The [View](https://developer.android.com/reference/android/view/View.html) to assign a [OneInteractionPath](../../-one-interaction-path/index.md) path to.
+The [View](https://whatever/android/view/View.html) to assign a [OneInteractionPath](../../-one-interaction-path/index.md) path to.
 
-`fun view(view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?): Builder`
+`fun view(view: `[`View`](https://whatever/android/view/View.html)`?): Builder`
 
 ### Parameters
 
-`view` - The [View](https://developer.android.com/reference/android/view/View.html) to assign a [OneInteractionPath](../../-one-interaction-path/index.md) path to.
+`view` - The [View](https://whatever/android/view/View.html) to assign a [OneInteractionPath](../../-one-interaction-path/index.md) path to.

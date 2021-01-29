@@ -2,7 +2,7 @@
 
 # tid
 
-`val tid: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`val tid: String?`
 
 TIP returned from the API.
 

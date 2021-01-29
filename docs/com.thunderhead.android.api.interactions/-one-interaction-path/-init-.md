@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`OneInteractionPath(value: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`)`
+`OneInteractionPath(value: `[`URI`](https://whatever/java/net/URI.html)`)`
 
 Represents a ONE interaction path.
 

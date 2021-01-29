@@ -2,7 +2,7 @@
 
 # sharedSecret
 
-`var sharedSecret: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`var sharedSecret: String?`
 
 The shared secret to authenticate with when making requests.
 This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
@@ -12,7 +12,7 @@ This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in 
 The shared secret to authenticate with when making requests.
 This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
 
-`fun sharedSecret(sharedSecret: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): Builder`
+`fun sharedSecret(sharedSecret: String?): Builder`
 
 ### Parameters
 

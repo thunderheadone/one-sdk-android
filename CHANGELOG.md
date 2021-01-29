@@ -1,3 +1,11 @@
+#### Version 9.0.0
+* [BREAKING] The SDK has been fully migrated to AndroidX and support for support libraries has been dropped. For further details on this see [our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-9.md#androidx).
+* [BREAKING] The SDK logging API has changed. For further details on this see [our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-9.md#logging-configuration).
+* [BREAKING] Removed the push notification functionality from the Thunderhead SDK. For further details on this see [our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-9.md#push-notifications).
+* [BREAKING] Requires the [Orchestration Plugin version 3.0.0](https://github.com/thunderheadone/one-android-orchestration-plugin/releases).
+* [NEW] Added ability to automatically track `WebView` Interactions based on the URL loaded. The Interaction for the Activity containing the `WebView` will also automatically be sent.
+* [BUGFIX] Fixed an issue where the device's city & country location was not always captured.
+
 #### Version 8.2.0
 * [UPDATE] Added ability to reference Activity or Fragment Interaction path set by the SDK without exclusively defining a static URI. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#retrieve-a-response-for-an-automatically-triggered-interaction-request).
 * [UPDATE] Added a link to the SDK API documentation in README. To access the API documentation click [here](https://thunderheadone.github.io/one-sdk-android/).

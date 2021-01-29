@@ -2,7 +2,7 @@
 
 # siteKey
 
-`val siteKey: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`val siteKey: String?`
 
 The ONE workspace to configure the SDK with.
 This can be found in `ONE Config -> One Tag` in the Admin UI.

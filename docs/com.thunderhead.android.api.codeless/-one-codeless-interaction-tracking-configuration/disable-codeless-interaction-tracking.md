@@ -2,10 +2,10 @@
 
 # disableCodelessInteractionTracking
 
-`val disableCodelessInteractionTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`val disableCodelessInteractionTracking: Boolean`
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to disable interaction tracking.
+[Boolean](#) true to disable interaction tracking.
 
 ### Property
 
-`disableCodelessInteractionTracking` - [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to disable interaction tracking.
+`disableCodelessInteractionTracking` - [Boolean](#) true to disable interaction tracking.

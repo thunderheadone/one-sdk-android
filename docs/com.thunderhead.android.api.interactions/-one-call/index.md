@@ -10,4 +10,4 @@ Interface for executing an interaction API call.
 
 | Name | Summary |
 |---|---|
-| [enqueue](enqueue.md) | Method used to perform network call off the main thread.`abstract fun enqueue(callback: `[`OneCallback`](../-one-callback/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
+| [enqueue](enqueue.md) | Method used to perform network call off the main thread.`abstract fun enqueue(callback: `[`OneCallback`](../-one-callback/index.md)`?): Unit` |

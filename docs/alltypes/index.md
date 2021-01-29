@@ -9,9 +9,37 @@
 ##### [android.app.Activity](../com.thunderhead.android.api/android.app.-activity/index.md)
 
 
+|
+
+##### [com.thunderhead.android.api.logging.Component](../com.thunderhead.android.api.logging/-component/index.md)
+
+A list of components to filter the logs
+the Thunderhead SDK will log.
+
+
+| (extensions in package com.thunderhead.android.api.logging)
+
+##### [java.util.EnumSet](../com.thunderhead.android.api.logging/java.util.-enum-set/index.md)
+
+
 | (extensions in package com.thunderhead.android.api)
 
-##### [android.support.v4.app.Fragment](../com.thunderhead.android.api/android.support.v4.app.-fragment/index.md)
+##### [androidx.fragment.app.Fragment](../com.thunderhead.android.api/androidx.fragment.app.-fragment/index.md)
+
+
+|
+
+##### [com.thunderhead.android.api.logging.LogLevel](../com.thunderhead.android.api.logging/-log-level/index.md)
+
+The Level (IE severity) of a Thunderhead SDK Log Message.
+
+
+|
+
+##### [com.thunderhead.android.api.logging.LogWriter](../com.thunderhead.android.api.logging/-log-writer/index.md)
+
+Required base class to write Thunderhead SDK Logs
+to a custom destination.
 
 
 |
@@ -89,9 +117,9 @@ an activity content view or a fragment root view.
 
 |
 
-##### [com.thunderhead.android.api.messaging.OneMessagingConfiguration](../com.thunderhead.android.api.messaging/-one-messaging-configuration/index.md)
+##### [com.thunderhead.android.api.logging.OneLoggingConfiguration](../com.thunderhead.android.api.logging/-one-logging-configuration/index.md)
 
-A configuration object for the Thunderhead SDK Messaging features.
+A logging configuration object for the Thunderhead SDK.
 
 
 |

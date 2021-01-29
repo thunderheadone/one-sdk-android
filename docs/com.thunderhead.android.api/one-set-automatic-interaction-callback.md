@@ -2,7 +2,7 @@
 
 # oneSetAutomaticInteractionCallback
 
-`fun oneSetAutomaticInteractionCallback(oneInteractionPath: `[`OneInteractionPath`](../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)`, init: `[`OneAutomaticInteractionCallback`](../com.thunderhead.android.api.interactions/-one-automatic-interaction-callback/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun oneSetAutomaticInteractionCallback(oneInteractionPath: `[`OneInteractionPath`](../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)`, init: `[`OneAutomaticInteractionCallback`](../com.thunderhead.android.api.interactions/-one-automatic-interaction-callback/index.md)`.() -> Unit): Unit`
 
 Set a callback in order to be notified of *automatic*
 interaction requests.

@@ -2,7 +2,7 @@
 
 # host
 
-`val host: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?`
+`val host: `[`URI`](https://whatever/java/net/URI.html)`?`
 
 The ONE host to send data to.
 

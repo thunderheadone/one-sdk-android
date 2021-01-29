@@ -2,7 +2,7 @@
 
 # createUriWithTid
 
-`fun `[`Uri`](https://developer.android.com/reference/android/net/Uri.html)`?.createUriWithTid(): `[`Uri`](https://developer.android.com/reference/android/net/Uri.html)`?`
+`fun `[`Uri`](https://whatever/android/net/Uri.html)`?.createUriWithTid(): `[`Uri`](https://whatever/android/net/Uri.html)`?`
 
-Create a [Uri](https://developer.android.com/reference/android/net/Uri.html) with a tid query parameter, from "this" [Uri](https://developer.android.com/reference/android/net/Uri.html), if possible.
+Create a [Uri](https://whatever/android/net/Uri.html) with a tid query parameter, from "this" [Uri](https://whatever/android/net/Uri.html), if possible.
 

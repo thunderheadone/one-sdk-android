@@ -2,7 +2,7 @@
 
 # apiKey
 
-`var apiKey: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`var apiKey: String?`
 
 The API key to authenticate with when making requests.
 This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
@@ -12,7 +12,7 @@ This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in 
 The API key to authenticate with when making requests.
 This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
 
-`fun apiKey(apiKey: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): Builder`
+`fun apiKey(apiKey: String?): Builder`
 
 ### Parameters
 

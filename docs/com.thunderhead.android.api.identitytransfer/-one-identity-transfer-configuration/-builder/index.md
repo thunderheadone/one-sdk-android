@@ -16,11 +16,11 @@ Builder to create [OneIdentityTransferConfiguration](../index.md).
 
 | Name | Summary |
 |---|---|
-| [disableIdentityTransfer](disable-identity-transfer.md) | [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to disable transfer of identity to outbound locations.`var disableIdentityTransfer: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?` |
+| [disableIdentityTransfer](disable-identity-transfer.md) | [Boolean](#) true to disable transfer of identity to outbound locations.`var disableIdentityTransfer: Boolean?` |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
 | [build](build.md) | Create a [OneIdentityTransferConfiguration](../index.md) from provided configuration.`fun build(): `[`OneIdentityTransferConfiguration`](../index.md) |
-| [disableIdentityTransfer](disable-identity-transfer.md) | `fun disableIdentityTransfer(disableIdentityTransfer: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?): Builder` |
+| [disableIdentityTransfer](disable-identity-transfer.md) | `fun disableIdentityTransfer(disableIdentityTransfer: Boolean?): Builder` |

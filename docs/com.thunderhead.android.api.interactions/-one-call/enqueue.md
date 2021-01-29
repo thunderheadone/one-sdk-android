@@ -2,7 +2,7 @@
 
 # enqueue
 
-`abstract fun enqueue(callback: `[`OneCallback`](../-one-callback/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`abstract fun enqueue(callback: `[`OneCallback`](../-one-callback/index.md)`?): Unit`
 
 Method used to perform network call off the main thread.
 

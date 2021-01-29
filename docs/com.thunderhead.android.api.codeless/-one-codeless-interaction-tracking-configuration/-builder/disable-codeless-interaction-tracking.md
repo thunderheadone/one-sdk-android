@@ -2,16 +2,16 @@
 
 # disableCodelessInteractionTracking
 
-`var disableCodelessInteractionTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?`
+`var disableCodelessInteractionTracking: Boolean?`
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) True to disable interaction tracking.
+[Boolean](#) True to disable interaction tracking.
 
 **Setter**
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) True to disable interaction tracking.
+[Boolean](#) True to disable interaction tracking.
 
-`fun disableCodelessInteractionTracking(disableCodelessInteractionTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?): Builder`
+`fun disableCodelessInteractionTracking(disableCodelessInteractionTracking: Boolean?): Builder`
 
 ### Parameters
 
-`disableCodelessInteractionTracking` - [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) True to disable interaction tracking.
+`disableCodelessInteractionTracking` - [Boolean](#) True to disable interaction tracking.

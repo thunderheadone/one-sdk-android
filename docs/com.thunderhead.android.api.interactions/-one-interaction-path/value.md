@@ -2,7 +2,7 @@
 
 # value
 
-`val value: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)
+`val value: `[`URI`](https://whatever/java/net/URI.html)
 
 The actual value of the path
 

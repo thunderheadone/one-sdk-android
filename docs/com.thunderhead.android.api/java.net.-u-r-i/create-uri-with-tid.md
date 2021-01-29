@@ -2,7 +2,7 @@
 
 # createUriWithTid
 
-`fun `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?.createUriWithTid(): `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?`
+`fun `[`URI`](https://whatever/java/net/URI.html)`?.createUriWithTid(): `[`URI`](https://whatever/java/net/URI.html)`?`
 
-Create a [URI](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html) with a tid query parameter, from "this" [URI](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html), if possible.
+Create a [URI](https://whatever/java/net/URI.html) with a tid query parameter, from "this" [URI](https://whatever/java/net/URI.html), if possible.
 

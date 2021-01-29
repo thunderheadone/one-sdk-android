@@ -2,12 +2,12 @@
 
 # onFailure
 
-`fun onFailure(failureHandler: (`[`OneAPIError`](../../com.thunderhead.android.api.responsetypes/-one-a-p-i-error/index.md)`) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun onFailure(failureHandler: (`[`OneAPIError`](../../com.thunderhead.android.api.responsetypes/-one-a-p-i-error/index.md)`) -> Unit): Unit`
 
 Provide a failure handler for *automatic*
 interaction requests.
 
-`fun onFailure(error: `[`OneAPIError`](../../com.thunderhead.android.api.responsetypes/-one-a-p-i-error/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun onFailure(error: `[`OneAPIError`](../../com.thunderhead.android.api.responsetypes/-one-a-p-i-error/index.md)`): Unit`
 
 Called after an API error has been encountered.
 

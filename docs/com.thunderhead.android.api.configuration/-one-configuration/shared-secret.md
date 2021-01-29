@@ -2,7 +2,7 @@
 
 # sharedSecret
 
-`val sharedSecret: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`val sharedSecret: String?`
 
 The shared secret to authenticate with when making requests.
 This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.

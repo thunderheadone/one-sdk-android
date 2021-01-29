@@ -2,10 +2,10 @@
 
 # setAutomaticInteractionCallback
 
-`fun `[`Activity`](https://developer.android.com/reference/android/app/Activity.html)`?.setAutomaticInteractionCallback(init: `[`OneAutomaticInteractionCallback`](../../com.thunderhead.android.api.interactions/-one-automatic-interaction-callback/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`Activity`](https://whatever/android/app/Activity.html)`?.setAutomaticInteractionCallback(init: `[`OneAutomaticInteractionCallback`](../../com.thunderhead.android.api.interactions/-one-automatic-interaction-callback/index.md)`.() -> Unit): Unit`
 
 Set a callback in order to be notified of an *automatic*
-interaction request for `this` [Activity](https://developer.android.com/reference/android/app/Activity.html).
+interaction request for `this` [Activity](https://whatever/android/app/Activity.html).
 
 To remove call [removeAutomaticInteractionCallback](remove-automatic-interaction-callback.md).
 

@@ -2,7 +2,7 @@
 
 # oneCodelessInteractionTrackingConfiguration
 
-`fun oneCodelessInteractionTrackingConfiguration(initializer: Builder.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`OneCodelessInteractionTrackingConfiguration`](../com.thunderhead.android.api.codeless/-one-codeless-interaction-tracking-configuration/index.md)
+`fun oneCodelessInteractionTrackingConfiguration(initializer: Builder.() -> Unit): `[`OneCodelessInteractionTrackingConfiguration`](../com.thunderhead.android.api.codeless/-one-codeless-interaction-tracking-configuration/index.md)
 
 Create a [OneCodelessInteractionTrackingConfiguration](../com.thunderhead.android.api.codeless/-one-codeless-interaction-tracking-configuration/index.md) to configure Identity Transfer features.
 

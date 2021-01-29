@@ -11,7 +11,7 @@ Use the [Builder](-builder/index.md) to create a new instance.
 
 ### Parameters
 
-`optOut` - [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to opt out of tracking.
+`optOut` - [Boolean](#) true to opt out of tracking.
 
 ### Types
 
@@ -23,12 +23,12 @@ Use the [Builder](-builder/index.md) to create a new instance.
 
 | Name | Summary |
 |---|---|
-| [optOut](opt-out.md) | [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to opt out of tracking.`val optOut: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
+| [optOut](opt-out.md) | [Boolean](#) true to opt out of tracking.`val optOut: Boolean` |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
-| [equals](equals.md) | `fun equals(other: `[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`?): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
-| [hashCode](hash-code.md) | `fun hashCode(): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [equals](equals.md) | `fun equals(other: Any?): Boolean` |
+| [hashCode](hash-code.md) | `fun hashCode(): Int` |
+| [toString](to-string.md) | `fun toString(): String` |

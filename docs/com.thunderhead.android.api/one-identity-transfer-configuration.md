@@ -2,7 +2,7 @@
 
 # oneIdentityTransferConfiguration
 
-`fun oneIdentityTransferConfiguration(initializer: Builder.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`OneIdentityTransferConfiguration`](../com.thunderhead.android.api.identitytransfer/-one-identity-transfer-configuration/index.md)
+`fun oneIdentityTransferConfiguration(initializer: Builder.() -> Unit): `[`OneIdentityTransferConfiguration`](../com.thunderhead.android.api.identitytransfer/-one-identity-transfer-configuration/index.md)
 
 Create a [OneIdentityTransferConfiguration](../com.thunderhead.android.api.identitytransfer/-one-identity-transfer-configuration/index.md) to configure Identity Transfer features.
 

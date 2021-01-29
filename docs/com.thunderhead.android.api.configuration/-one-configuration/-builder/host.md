@@ -2,7 +2,7 @@
 
 # host
 
-`var host: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?`
+`var host: `[`URI`](https://whatever/java/net/URI.html)`?`
 
 The ONE host to send data to.
 
@@ -10,7 +10,7 @@ The ONE host to send data to.
 
 The ONE host to send data to.
 
-`fun host(host: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?): Builder`
+`fun host(host: `[`URI`](https://whatever/java/net/URI.html)`?): Builder`
 
 ### Parameters
 

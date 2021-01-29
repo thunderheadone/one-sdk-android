@@ -2,7 +2,7 @@
 
 # optOut
 
-`val optOut: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`val optOut: Boolean`
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to opt out of tracking.
+[Boolean](#) true to opt out of tracking.
 

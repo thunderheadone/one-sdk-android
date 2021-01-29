@@ -2,7 +2,7 @@
 
 # onFailure
 
-`abstract fun onFailure(error: `[`OneAPIError`](../../com.thunderhead.android.api.responsetypes/-one-a-p-i-error/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`abstract fun onFailure(error: `[`OneAPIError`](../../com.thunderhead.android.api.responsetypes/-one-a-p-i-error/index.md)`): Unit`
 
 Called after an API error has been encountered.
 

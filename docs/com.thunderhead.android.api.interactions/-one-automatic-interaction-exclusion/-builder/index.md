@@ -16,11 +16,11 @@ Builder to create a [OneAutomaticInteractionExclusion](../index.md).
 
 | Name | Summary |
 |---|---|
-| [view](view.md) | The [View](https://developer.android.com/reference/android/view/View.html) to exclude from automatic interaction tracking.`var view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?` |
+| [view](view.md) | The [View](https://whatever/android/view/View.html) to exclude from automatic interaction tracking.`var view: `[`View`](https://whatever/android/view/View.html)`?` |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
 | [build](build.md) | Creates the [OneAutomaticInteractionExclusion](../index.md) used to exclude an object from automatic interaction tracking.`fun build(): `[`OneAutomaticInteractionExclusion`](../index.md) |
-| [view](view.md) | `fun view(view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?): Builder` |
+| [view](view.md) | `fun view(view: `[`View`](https://whatever/android/view/View.html)`?): Builder` |

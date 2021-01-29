@@ -2,9 +2,9 @@
 
 # view
 
-`val view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?`
+`val view: `[`View`](https://whatever/android/view/View.html)`?`
 
-[View](https://developer.android.com/reference/android/view/View.html) to exclude from Automatic Interaction Tracking.
+[View](https://whatever/android/view/View.html) to exclude from Automatic Interaction Tracking.
 
 See [com.thunderhead.One.excludeAutomaticInteraction](#)
 
@@ -12,7 +12,7 @@ See [com.thunderhead.One.excludeAutomaticInteraction](#)
 
 `view` -
 
-[View](https://developer.android.com/reference/android/view/View.html) to exclude from Automatic Interaction Tracking.
+[View](https://whatever/android/view/View.html) to exclude from Automatic Interaction Tracking.
 
 
 
