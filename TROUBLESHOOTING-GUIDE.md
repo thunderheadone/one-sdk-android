@@ -11,8 +11,6 @@ The Thunderhead SDK for Android Troubleshooting Guide for common implementation 
   * [Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform](#resolving-nosuchmethoderror-for-base64-class-or-15_000-signpost-cannot-be-used-on-this-platform)
 - [Performance issues](#performance-issues)
   * [Build time](#build-time)
-- [Error codes and resolutions](#error-codes-and-resolutions)
-  * [14019: Non adaptive icon is not set. Android API 26 push notifications will not be shown if this is not set](#14019-non-adaptive-icon-is-not-set-android-api-26-push-notifications-will-not-be-shown-if-this-is-not-set)
 
 ## Integration issues
 ### How to resolve StackOverflow Exception
@@ -102,17 +100,24 @@ As instant run is not currently supported it is expected that builds will take l
 Development build times can be improved by disabling Orchestration until the feature is ready for QA. Disabling Orchestration will allow developers to turn on instant run. 
 Disabling Orchestration does not remove the ability to use the SDK in [Admin Mode](https://github.com/thunderheadone/one-sdk-android#set-up-the-framework-in-admin-mode), it disables the codeless identity transfer and last click attribution features, thus allowing developers to still interact with the Thunderhead sdk.
 
-If this is desired, we recommend conditionally enabling/disabling the Orchestration Plugin via a Gradle project property argument. The Orchestration Plugin Gradle DSL api can be configured as follows:
+If this is desired, we recommend conditionally applying the Orchestration Plugin via a Gradle project property argument. 
+Set a gradle property to true for Release Builds in CI and false for development or local developer builds.  
+Read this property in the _app_ `build.gradle` (example shown below) to accomplish this.
+Gradle properties are passed via the `-P` command line idiom and can have a default value by 
+being placed in the root `gradle.properties` file.
+ 
+Example:
+
+```groovy
+// root gradle.properties file
+// set to false in order to not orchestrate the app while developing.
+enableThunderheadOrchestration=false
+```
 
 ```groovy
 // Place in the app build.gradle file.
-
-thunderhead {
-    if (project.hasProperty("enableThunderheadOrchestration")) {
-        enabled = enableThunderheadOrchestration.toBoolean()
-    } else {
-        enabled = false
-    }
+if (project.hasProperty("enableThunderheadOrchestration") && project.getProperty("enableThunderheadOrchestration") == "true") {
+	apply plugin: 'com.thunderhead.android.orchestration-plugin'
 }
 ```
 
@@ -121,44 +126,3 @@ Then the full build with Orchestration enabled can be executed by passing a proj
 `./gradlew clean assemble -PenableThunderheadOrchestration=true`
 
 For more information on Gradle project properties please see [the documentation](https://docs.gradle.org/current/userguide/build_environment.html#sec:project_properties).
-
-
-## Error codes and resolutions
-
-### 14019: Non adaptive icon is not set. Android API 26 push notifications will not be shown if this is not set
-
-Android (O)reo, API 26, shipped with a platform bug relating to adaptive icons and notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460).
-The issue was resolved in API 27. It was not, however, back ported to the original Oreo API 26 platform.
-
-The Thunderhead SDK will optimize your user's app experience by sending push notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash
-loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
-Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for API 26**.
-
-The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error.
-
-Here is a Kotlin example of setting the fallback for API 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
-
-```kotlin
-        oneConfigureMessaging {
-            enabled = true
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                nonAdaptiveSmallIcon = android.R.drawable.star_on
-            }
-        }
-```
-
-The same example in Java:
-
-```java
-        final OneMessagingConfiguration.Builder oneMessagingConfigurationBuilder =
-                new OneMessagingConfiguration.Builder()
-                        .enabled(true);
-
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
-            oneMessagingConfigurationBuilder.nonAdaptiveSmallIcon(android.R.drawable.star_on);
-        }
-
-        final OneMessagingConfiguration oneMessagingConfiguration = oneMessagingConfigurationBuilder.build();
-        One.setMessagingConfiguration(oneMessagingConfiguration);
-
-```
