@@ -98,7 +98,7 @@ public class MyApplication extends Application {
 As instant run is not currently supported it is expected that builds will take longer as a full build will be required when a change is made as opposed to just building the changed bits. We are aware of this limitation and we may consider addressing it in future releases.
 
 Development build times can be improved by disabling Orchestration until the feature is ready for QA. Disabling Orchestration will allow developers to turn on instant run. 
-Disabling Orchestration does not remove the ability to use the SDK in [Admin Mode](https://github.com/thunderheadone/one-sdk-android##set-up-the-sdk-in-admin-mode-for-internal-distribution), it disables the codeless identity transfer and last click attribution features, thus allowing developers to still interact with the Thunderhead sdk.
+Disabling Orchestration does not remove the ability to use the SDK in [Admin Mode](https://github.com/thunderheadone/one-sdk-android#set-up-the-sdk-in-admin-mode-for-internal-distribution), it disables the codeless identity transfer and last click attribution features, thus allowing developers to still interact with the Thunderhead sdk.
 
 If this is desired, we recommend conditionally applying the Orchestration Plugin via a Gradle project property argument. 
 Set a gradle property to true for Release Builds in CI and false for development or local developer builds.  
