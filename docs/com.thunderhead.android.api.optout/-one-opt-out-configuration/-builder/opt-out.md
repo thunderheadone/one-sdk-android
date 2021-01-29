@@ -2,18 +2,18 @@
 
 # optOut
 
-`var optOut: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var optOut: Boolean`
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to opt out of tracking.
+[Boolean](#) true to opt out of tracking.
 Privacy compliance method to completely stop tracking a customer's actions.
 
 **Setter**
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to opt out of tracking.
+[Boolean](#) true to opt out of tracking.
 Privacy compliance method to completely stop tracking a customer's actions.
 
-`fun optOut(optOut: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?): Builder`
+`fun optOut(optOut: Boolean?): Builder`
 
 ### Parameters
 
-`optOut` - [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to opt out of tracking.
+`optOut` - [Boolean](#) true to opt out of tracking.

@@ -2,7 +2,7 @@
 
 # oneConfigure
 
-`fun oneConfigure(initializer: Builder.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`OneConfiguration`](../com.thunderhead.android.api.configuration/-one-configuration/index.md)
+`fun oneConfigure(initializer: Builder.() -> Unit): `[`OneConfiguration`](../com.thunderhead.android.api.configuration/-one-configuration/index.md)
 
 Configure the Thunderhead SDK.
 

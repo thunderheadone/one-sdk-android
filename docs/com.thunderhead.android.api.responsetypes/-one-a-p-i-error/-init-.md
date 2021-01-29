@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`OneAPIError(httpStatusCode: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, errorMessage: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`OneAPIError(httpStatusCode: Int, errorMessage: String)`
 
 Error class used to signify that an API error was encountered.
 

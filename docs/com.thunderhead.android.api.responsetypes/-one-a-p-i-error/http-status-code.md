@@ -2,7 +2,7 @@
 
 # httpStatusCode
 
-`val httpStatusCode: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val httpStatusCode: Int`
 
 API system error code.
 

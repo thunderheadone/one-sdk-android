@@ -2,7 +2,7 @@
 
 # oneRemoveAutomaticInteractionCallback
 
-`fun oneRemoveAutomaticInteractionCallback(oneInteractionPath: `[`OneInteractionPath`](../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun oneRemoveAutomaticInteractionCallback(oneInteractionPath: `[`OneInteractionPath`](../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)`): Unit`
 
 Remove a previously set *automatic* interaction callback.
 

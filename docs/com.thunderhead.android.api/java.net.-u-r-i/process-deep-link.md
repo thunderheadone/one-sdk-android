@@ -2,7 +2,7 @@
 
 # processDeepLink
 
-`fun `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`?.processDeepLink(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`URI`](https://whatever/java/net/URI.html)`?.processDeepLink(): Unit`
 
 Programmatic Api to process a deep link to an app
 that has had the `Orchestration` plugin disabled

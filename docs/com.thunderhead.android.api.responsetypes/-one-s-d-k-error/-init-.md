@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`OneSDKError(systemCode: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, errorMessage: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`OneSDKError(systemCode: Int, errorMessage: String)`
 
 Error used to specify that an SDK error was encountered.
 

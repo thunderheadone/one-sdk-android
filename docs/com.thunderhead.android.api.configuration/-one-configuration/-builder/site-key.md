@@ -2,7 +2,7 @@
 
 # siteKey
 
-`var siteKey: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`var siteKey: String?`
 
 The ONE workspace to configure the SDK with.
 This can be found in `ONE Config -> One Tag` in the Admin UI.
@@ -12,7 +12,7 @@ This can be found in `ONE Config -> One Tag` in the Admin UI.
 The ONE workspace to configure the SDK with.
 This can be found in `ONE Config -> One Tag` in the Admin UI.
 
-`fun siteKey(siteKey: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): Builder`
+`fun siteKey(siteKey: String?): Builder`
 
 ### Parameters
 

@@ -2,7 +2,7 @@
 
 # captures
 
-`val captures: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<Captures>?`
+`val captures: List<Captures>?`
 
 Array of captures returned from the API.
 

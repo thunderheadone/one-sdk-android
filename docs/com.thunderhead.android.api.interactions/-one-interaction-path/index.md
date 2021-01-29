@@ -10,10 +10,10 @@ Represents a ONE interaction path.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Represents a ONE interaction path.`OneInteractionPath(value: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html)`)` |
+| [&lt;init&gt;](-init-.md) | Represents a ONE interaction path.`OneInteractionPath(value: `[`URI`](https://whatever/java/net/URI.html)`)` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | The actual value of the path`val value: `[`URI`](https://docs.oracle.com/javase/6/docs/api/java/net/URI.html) |
+| [value](value.md) | The actual value of the path`val value: `[`URI`](https://whatever/java/net/URI.html) |

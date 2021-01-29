@@ -2,16 +2,16 @@
 
 # disableOutboundLinkTracking
 
-`var disableOutboundLinkTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?`
+`var disableOutboundLinkTracking: Boolean?`
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) to disable updating outbound links.
+[Boolean](#) to disable updating outbound links.
 
 **Setter**
 
-[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) to disable updating outbound links.
+[Boolean](#) to disable updating outbound links.
 
-`fun disableOutboundLinkTracking(disableOutboundLinkTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`?): Builder`
+`fun disableOutboundLinkTracking(disableOutboundLinkTracking: Boolean?): Builder`
 
 ### Parameters
 
-`disableOutboundLinkTracking` - [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) to disable updating outbound links.
+`disableOutboundLinkTracking` - [Boolean](#) to disable updating outbound links.

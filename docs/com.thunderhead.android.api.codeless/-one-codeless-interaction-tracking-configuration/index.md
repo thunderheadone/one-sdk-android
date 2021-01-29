@@ -16,13 +16,13 @@ Configuration object for Thunderhead SDK Interaction Tracking.
 
 | Name | Summary |
 |---|---|
-| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to disable interaction tracking.`val disableCodelessInteractionTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
-| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) true to disable updating outbound links.`val disableOutboundLinkTracking: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
+| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | [Boolean](#) true to disable interaction tracking.`val disableCodelessInteractionTracking: Boolean` |
+| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | [Boolean](#) true to disable updating outbound links.`val disableOutboundLinkTracking: Boolean` |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
-| [equals](equals.md) | `fun equals(other: `[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`?): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
-| [hashCode](hash-code.md) | `fun hashCode(): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [equals](equals.md) | `fun equals(other: Any?): Boolean` |
+| [hashCode](hash-code.md) | `fun hashCode(): Int` |
+| [toString](to-string.md) | `fun toString(): String` |

@@ -2,7 +2,7 @@
 
 # onError
 
-`abstract fun onError(error: `[`OneSDKError`](../../com.thunderhead.android.api.responsetypes/-one-s-d-k-error/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`abstract fun onError(error: `[`OneSDKError`](../../com.thunderhead.android.api.responsetypes/-one-s-d-k-error/index.md)`): Unit`
 
 Called after an SDK error has been encountered.
 

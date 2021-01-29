@@ -2,9 +2,9 @@
 
 # excludeAutomaticInteraction
 
-`fun `[`View`](https://developer.android.com/reference/android/view/View.html)`?.excludeAutomaticInteraction(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`View`](https://whatever/android/view/View.html)`?.excludeAutomaticInteraction(): Unit`
 
-Exclude "this" [View](https://developer.android.com/reference/android/view/View.html) from automatically being tracked as an interaction.
+Exclude "this" [View](https://whatever/android/view/View.html) from automatically being tracked as an interaction.
 
 See [One.excludeAutomaticInteraction](#)
 

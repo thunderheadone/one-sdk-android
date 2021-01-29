@@ -8,19 +8,20 @@ $dokka.location:com.thunderhead.android.api$excludeAutomaticInteraction(android.
 $dokka.location:com.thunderhead.android.api$processDeepLink(android.net.Uri)com.thunderhead.android.api/android.net.-uri/process-deep-link.md
 $dokka.location:com.thunderhead.android.api$processDeepLink(java.net.URI)com.thunderhead.android.api/java.net.-u-r-i/process-deep-link.md
 $dokka.location:com.thunderhead.android.api$removeAutomaticInteractionCallback(android.app.Activity)com.thunderhead.android.api/android.app.-activity/remove-automatic-interaction-callback.md
-$dokka.location:com.thunderhead.android.api$removeAutomaticInteractionCallback(android.support.v4.app.Fragment)com.thunderhead.android.api/android.support.v4.app.-fragment/remove-automatic-interaction-callback.md
+$dokka.location:com.thunderhead.android.api$removeAutomaticInteractionCallback(androidx.fragment.app.Fragment)com.thunderhead.android.api/androidx.fragment.app.-fragment/remove-automatic-interaction-callback.md
 $dokka.location:com.thunderhead.android.api$sendInteractionForOutboundLink(android.net.Uri)com.thunderhead.android.api/android.net.-uri/send-interaction-for-outbound-link.md
 $dokka.location:com.thunderhead.android.api$sendInteractionForOutboundLink(java.net.URI)com.thunderhead.android.api/java.net.-u-r-i/send-interaction-for-outbound-link.md
 $dokka.location:com.thunderhead.android.api$sendInteractionForOutboundLink(java.net.URL)com.thunderhead.android.api/java.net.-u-r-l/send-interaction-for-outbound-link.md
 $dokka.location:com.thunderhead.android.api$setAutomaticInteractionCallback(android.app.Activity, kotlin.Function1((com.thunderhead.android.api.interactions.OneAutomaticInteractionCallback, kotlin.Unit)))com.thunderhead.android.api/android.app.-activity/set-automatic-interaction-callback.md
-$dokka.location:com.thunderhead.android.api$setAutomaticInteractionCallback(android.support.v4.app.Fragment, kotlin.Function1((com.thunderhead.android.api.interactions.OneAutomaticInteractionCallback, kotlin.Unit)))com.thunderhead.android.api/android.support.v4.app.-fragment/set-automatic-interaction-callback.md
+$dokka.location:com.thunderhead.android.api$setAutomaticInteractionCallback(androidx.fragment.app.Fragment, kotlin.Function1((com.thunderhead.android.api.interactions.OneAutomaticInteractionCallback, kotlin.Unit)))com.thunderhead.android.api/androidx.fragment.app.-fragment/set-automatic-interaction-callback.md
 $dokka.location:com.thunderhead.android.api$setIdentityTransferLinksBlackList(kotlin.collections.Set((java.net.URI)))com.thunderhead.android.api/kotlin.collections.-set/set-identity-transfer-links-black-list.md
 $dokka.location:com.thunderhead.android.api$setIdentityTransferLinksWhiteList(kotlin.collections.Set((java.net.URI)))com.thunderhead.android.api/kotlin.collections.-set/set-identity-transfer-links-white-list.md
+$dokka.location:com.thunderhead.android.api.logging$and(java.util.EnumSet((com.thunderhead.android.api.logging.and.T)), com.thunderhead.android.api.logging.and.T)com.thunderhead.android.api.logging/java.util.-enum-set/and.md
 com.thunderhead.android.api
 com.thunderhead.android.api.codeless
 com.thunderhead.android.api.configuration
 com.thunderhead.android.api.identitytransfer
 com.thunderhead.android.api.interactions
-com.thunderhead.android.api.messaging
+com.thunderhead.android.api.logging
 com.thunderhead.android.api.optout
 com.thunderhead.android.api.responsetypes

@@ -2,7 +2,7 @@
 
 # oneAutomaticInteractionExclusion
 
-`fun oneAutomaticInteractionExclusion(initializer: Builder.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`OneAutomaticInteractionExclusion`](../com.thunderhead.android.api.interactions/-one-automatic-interaction-exclusion/index.md)
+`fun oneAutomaticInteractionExclusion(initializer: Builder.() -> Unit): `[`OneAutomaticInteractionExclusion`](../com.thunderhead.android.api.interactions/-one-automatic-interaction-exclusion/index.md)
 
 Creates an [OneAutomaticInteractionExclusion](../com.thunderhead.android.api.interactions/-one-automatic-interaction-exclusion/index.md) for use with [One.excludeAutomaticInteraction](#).
 

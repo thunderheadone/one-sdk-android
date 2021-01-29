@@ -16,12 +16,12 @@ A class to configure an exclusion of an Automatic Interaction.
 
 | Name | Summary |
 |---|---|
-| [view](view.md) | [View](https://developer.android.com/reference/android/view/View.html) to exclude from Automatic Interaction Tracking.`val view: `[`View`](https://developer.android.com/reference/android/view/View.html)`?` |
+| [view](view.md) | [View](https://whatever/android/view/View.html) to exclude from Automatic Interaction Tracking.`val view: `[`View`](https://whatever/android/view/View.html)`?` |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
-| [equals](equals.md) | `fun equals(other: `[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`?): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
-| [hashCode](hash-code.md) | `fun hashCode(): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [equals](equals.md) | `fun equals(other: Any?): Boolean` |
+| [hashCode](hash-code.md) | `fun hashCode(): Int` |
+| [toString](to-string.md) | `fun toString(): String` |

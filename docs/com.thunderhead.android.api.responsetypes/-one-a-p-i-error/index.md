@@ -2,7 +2,7 @@
 
 # OneAPIError
 
-`class OneAPIError : `[`Exception`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html)
+`class OneAPIError : Exception`
 
 Error class used to signify that an API error was encountered.
 
@@ -16,11 +16,11 @@ Error class used to signify that an API error was encountered.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Error class used to signify that an API error was encountered.`OneAPIError(httpStatusCode: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, errorMessage: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)` |
+| [&lt;init&gt;](-init-.md) | Error class used to signify that an API error was encountered.`OneAPIError(httpStatusCode: Int, errorMessage: String)` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [errorMessage](error-message.md) | API error message.`val errorMessage: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [httpStatusCode](http-status-code.md) | API system error code.`val httpStatusCode: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [errorMessage](error-message.md) | API error message.`val errorMessage: String` |
+| [httpStatusCode](http-status-code.md) | API system error code.`val httpStatusCode: Int` |

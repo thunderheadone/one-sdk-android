@@ -2,7 +2,7 @@
 
 # removeAutomaticInteractionCallback
 
-`fun `[`Activity`](https://developer.android.com/reference/android/app/Activity.html)`?.removeAutomaticInteractionCallback(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`Activity`](https://whatever/android/app/Activity.html)`?.removeAutomaticInteractionCallback(): Unit`
 
 Remove a previously set *automatic* interaction callback.
 

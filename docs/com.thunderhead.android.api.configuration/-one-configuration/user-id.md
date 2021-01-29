@@ -2,7 +2,7 @@
 
 # userId
 
-`val userId: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`val userId: String?`
 
 The user ID that the [apiKey](api-key.md) &amp; [sharedSecret](shared-secret.md) represent.
 

@@ -2,7 +2,7 @@
 
 # sendInteractionForOutboundLink
 
-`fun `[`Uri`](https://developer.android.com/reference/android/net/Uri.html)`?.sendInteractionForOutboundLink(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`Uri`](https://whatever/android/net/Uri.html)`?.sendInteractionForOutboundLink(): Unit`
 
 Programmatic api to track an outbound link when
 Automatic Outbound Link Tracking is disabled.

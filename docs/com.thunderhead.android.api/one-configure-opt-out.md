@@ -2,7 +2,7 @@
 
 # oneConfigureOptOut
 
-`fun oneConfigureOptOut(initializer: Builder.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`OneOptOutConfiguration`](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md)
+`fun oneConfigureOptOut(initializer: Builder.() -> Unit): `[`OneOptOutConfiguration`](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md)
 
 Configure the Opt Out setting.
 

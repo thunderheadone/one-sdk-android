@@ -9,7 +9,7 @@
 | [com.thunderhead.android.api.configuration](com.thunderhead.android.api.configuration/index.md) |  |
 | [com.thunderhead.android.api.identitytransfer](com.thunderhead.android.api.identitytransfer/index.md) |  |
 | [com.thunderhead.android.api.interactions](com.thunderhead.android.api.interactions/index.md) |  |
-| [com.thunderhead.android.api.messaging](com.thunderhead.android.api.messaging/index.md) |  |
+| [com.thunderhead.android.api.logging](com.thunderhead.android.api.logging/index.md) |  |
 | [com.thunderhead.android.api.optout](com.thunderhead.android.api.optout/index.md) |  |
 | [com.thunderhead.android.api.responsetypes](com.thunderhead.android.api.responsetypes/index.md) |  |
 

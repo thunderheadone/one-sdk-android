@@ -2,7 +2,7 @@
 
 # userId
 
-`var userId: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`var userId: String?`
 
 The user ID that the [apiKey](api-key.md) &amp; [sharedSecret](shared-secret.md) represent.
 
@@ -10,7 +10,7 @@ The user ID that the [apiKey](api-key.md) &amp; [sharedSecret](shared-secret.md)
 
 The user ID that the [apiKey](api-key.md) &amp; [sharedSecret](shared-secret.md) represent.
 
-`fun userId(userId: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): Builder`
+`fun userId(userId: String?): Builder`
 
 ### Parameters
 

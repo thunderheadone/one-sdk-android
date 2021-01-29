@@ -2,7 +2,7 @@
 
 # process
 
-`fun `[`OneResponse`](../com.thunderhead.android.api.responsetypes/-one-response/index.md)`?.process(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`?`
+`fun `[`OneResponse`](../com.thunderhead.android.api.responsetypes/-one-response/index.md)`?.process(): Unit?`
 
 Process the response returned from sending an interaction.
 
