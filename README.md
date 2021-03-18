@@ -144,7 +144,7 @@
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.4.2'
-            classpath 'com.thunderhead.android:orchestration-plugin:3.0.0'
+            classpath 'com.thunderhead.android:orchestration-plugin:4.0.0'
         }
     }
     ```
@@ -171,7 +171,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:3.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:4.0.0'
     }
 }
 
@@ -241,7 +241,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:3.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:4.0.0'
     }
 }
 
