@@ -1949,7 +1949,7 @@ To completely remove the codeless identity transfer functionality for Android, m
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 
 ```gradle 
-classpath 'com.thunderhead.android:orchestration-plugin:3.0.0'
+classpath 'com.thunderhead.android:orchestration-plugin:4.0.0'
 ```
 
 2. Open the **app-level** `build.gradle` file and remove the following references.
