@@ -1,3 +1,14 @@
+#### Version 9.1.0
+* [NEW] Added ability to control Data Adapter location sharing. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#opt-an-end-user-out-in-of-city-country-level-tracking).
+* [NEW] Added ability to disable WebView Interaction tracking. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#disable-automatic-interaction-detection).
+* [UPDATE] Added support for AndroidX Fragments 1.3.0 and AndroidX Activity 1.2.0. For further details on this see [our troubleshooting guide](https://github.com/thunderheadone/one-sdk-android/blob/master/TROUBLESHOOTING-GUIDE.md#resolving-androidx-version-conflicts).
+* [UPDATE] Added support for Identity transfer around `registerForActivityResult` in AndroidX Activities and Fragments.
+* [UPDATE] Updated logging configuration to log ERROR and WARN messages for ANY component by default. For further details on this see [see our readme](https://github.com/thunderheadone/one-sdk-android#configuring-logging).
+* [BUGFIX] Fixed an issue where a user was not able to create an activity capture point for a Material Button.
+* [BUGFIX] Fixed an issue where white spaces were not being trimmed in the username and password text fields.
+* [BUGFIX] Fixed an issue where clearing user profile did not clear the TID from preferences.
+* [BUGFIX] Fixed an issue where the authentication error was not entirely displayed.
+
 #### Version 9.0.0
 * [BREAKING] The SDK has been fully migrated to AndroidX and support for support libraries has been dropped. For further details on this see [our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-9.md#androidx).
 * [BREAKING] The SDK logging API has changed. For further details on this see [our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-9.md#logging-configuration).
