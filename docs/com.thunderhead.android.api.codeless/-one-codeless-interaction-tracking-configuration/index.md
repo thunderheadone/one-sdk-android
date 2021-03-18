@@ -18,6 +18,7 @@ Configuration object for Thunderhead SDK Interaction Tracking.
 |---|---|
 | [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | [Boolean](#) true to disable interaction tracking.`val disableCodelessInteractionTracking: Boolean` |
 | [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | [Boolean](#) true to disable updating outbound links.`val disableOutboundLinkTracking: Boolean` |
+| [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md) | [Boolean](#) true to disable interaction tracking of `WebView` URLs.`val disableWebViewInteractionTracking: Boolean` |
 
 ### Functions
 

@@ -13,6 +13,8 @@ Use the [Builder](-builder/index.md) to create a new instance.
 
 `optOut` - [Boolean](#) true to opt out of tracking.
 
+`optInOptions` - [Set](#) Set of options that have opt in enabled.
+
 ### Types
 
 | Name | Summary |
@@ -23,6 +25,7 @@ Use the [Builder](-builder/index.md) to create a new instance.
 
 | Name | Summary |
 |---|---|
+| [optInOptions](opt-in-options.md) | [Set](#) Set of options that have opt in enabled.`val optInOptions: Set<`[`OptInOptions`](../-opt-in-options/index.md)`>` |
 | [optOut](opt-out.md) | [Boolean](#) true to opt out of tracking.`val optOut: Boolean` |
 
 ### Functions
