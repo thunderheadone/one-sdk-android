@@ -1,18 +1,9 @@
 ![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
 
-**To  _migrate_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](https://github.com/thunderheadone/one-android-orchestration-plugin/blob/master/MIGRATION.md)
-for details on updating the required Gradle plugins.**
+## Resources
 
-**To _migrate_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java 8 migration guide](JAVA8-MIGRATION-GUIDE.md) for details
-on updating your app to be Java 8 compatible in order to use the Thunderhead SDK.**
-
-**To _migrate_ from version(s) < 6.0.0 of the Thunderhead SDK to version(s) 6.0.0+, please see the [Version 6 migration guide](MIGRATION-VERSION-6.md) for details
-on updating your existing SDK configuration.**
-
-**To _migrate_ from version(s) < 9.0.0 of the Thunderhead SDK to version(s) 9.0.0+, please see the [Version 9 migration guide](MIGRATION-VERSION-9.md) for details
-on updating your existing SDK configuration.**
-
-API docs are available for viewing [here](https://thunderheadone.github.io/one-sdk-android/).
+* [Migration Guides](https://github.com/thunderheadone/one-sdk-android/tree/master/migration-guides)
+* [API docs](https://thunderheadone.github.io/one-sdk-android/)
 
 ## Table of Contents
 
@@ -28,6 +19,7 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
         * [SDK initialization not required](#sdk-initialization-not-required)
 * [Additional features](#additional-features)
     * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
+    * [Opt an end-user out/in of city/country level tracking](#opt-an-end-user-out-in-of-city-country-level-tracking)
     * [Exclude an Interaction](#exclude-an-interaction)
     * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
     * [Programmatic Interactions and Properties API](#programmatic-interactions-and-properties-api)
@@ -82,7 +74,7 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:9.0.0"
+      implementation "com.thunderhead.android:one-sdk:9.1.0"
     }
     ```
     
@@ -90,7 +82,7 @@ API docs are available for viewing [here](https://thunderheadone.github.io/one-s
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:9.0.0"
+      implementation "com.thunderhead.android:is-sdk:9.1.0"
     }
     ```
 
@@ -218,7 +210,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:9.0.0"
+  implementation "com.thunderhead.android:one-sdk:9.1.0"
 }
 
 repositories {
@@ -287,7 +279,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:9.0.0"
+  implementation "com.thunderhead.android:is-sdk:9.1.0"
 }
 
 repositories {
@@ -463,6 +455,74 @@ One.setOptOutConfiguration(optOutConfiguration);
 - You can opt a user back in, at any point, by setting the `optOut` parameter to `false` using the same method. 
 - For instructions on completely removing a user's data from Thunderhead ONE or Salesforce Interaction Studio, see our [API Documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
+### Opt an end-user out/in of city/country level tracking
+
+Use this option to opt an end-user out or in of all city/country level tracking.
+
+Examples of how to opt in to city/country level tracking
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneConfigureOptOut
+import com.thunderhead.android.api.optout.OptInOptions
+
+val options = EnumSet.noneOf(OptInOptions::class.java)
+options.add(OptInOptions.CITY_COUNTRY_DETECTION)
+oneConfigureOptOut {
+    optOut = false
+    optInOptions = options
+}
+```
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.optout.OneOptOutConfiguration;
+import com.thunderhead.android.api.optout.OptInOptions;
+
+Set<OptInOptions> options = EnumSet.noneOf(OptInOptions.class);
+options.add(OptInOptions.CITY_COUNTRY_DETECTION);
+final OneOptOutConfiguration optOutConfiguration = new OneOptOutConfiguration.Builder()
+            .optOut(false)
+            .optInOptions(options)
+            .build();
+
+One.setOptOutConfiguration(optOutConfiguration);
+```
+
+Examples of how to opt out of city/country level tracking
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.oneConfigureOptOut
+import com.thunderhead.android.api.optout.OptInOptions
+
+val options = EnumSet.noneOf(OptInOptions::class.java)
+oneConfigureOptOut {
+    optOut = false
+    optInOptions = options
+}
+```
+
+`Java`
+```java
+import com.thunderhead.One;
+import com.thunderhead.android.api.optout.OneOptOutConfiguration;
+import com.thunderhead.android.api.optout.OptInOptions;
+
+Set<OptInOptions> options = EnumSet.noneOf(OptInOptions.class);
+final OneOptOutConfiguration optOutConfiguration = new OneOptOutConfiguration.Builder()
+            .optOut(false)
+            .optInOptions(options)
+            .build();
+
+One.setOptOutConfiguration(optOutConfiguration);
+```
+
+*Note:*
+- By default a user is opted in and would need to be specifically opted out using the method mentioned above, depending on your specific privacy requirements.
+- When a user is opted out, all opt in options are ignored.
+
 ### Exclude an Interaction
 
 Exclude a specific view from being automatically recognized as an Interaction, using the `excludeAutomaticInteraction` Kotlin extension function or `One.excludeAutomaticInteraction` Java method in an Activity's `onCreate` method or a Fragment's `onCreateView`, as shown below. 
@@ -495,14 +555,20 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 
 ### Disable automatic Interaction detection
 
-You can disable automatic Interaction detection by calling the `oneConfigureCodelessInteractionTracking` Kotlin top-level function or the `One.setCodelessInteractionTrackingConfiguration` Java method with the appropriate configuration, as shown below:
+You can disable automatic Interaction detection by calling the `oneConfigureCodelessInteractionTracking` Kotlin top-level function or 
+the `One.setCodelessInteractionTrackingConfiguration` Java method with the appropriate configuration, as shown below:
 
 `Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneConfigureCodelessInteractionTracking
 
 oneConfigureCodelessInteractionTracking {
-    disableCodelessInteractionTracking = true
+    // disables Fragment/Activity Interaction Tracking
+    disableCodelessInteractionTracking = true 
+    // disables WebView URL Interaction Tracking
+    disableWebViewInteractionTracking = true
+    // disables Outbound Link Tracking
+    disableOutboundLinkTracking = true
 }
 ```
 
@@ -513,7 +579,12 @@ import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfig
 
 final OneCodelessInteractionTrackingConfiguration codelessInteractionTrackingConfiguration =
     new OneCodelessInteractionTrackingConfiguration.Builder()
+        // disables Fragment/Activity Interaction Tracking
         .disableCodelessInteractionTracking(true)
+        // disables WebView URL Interaction Tracking
+        .disableWebViewInteractionTracking(true)
+        // disables Outbound Link Tracking
+        .disableOutboundLinkTracking(true)
         .build();
 One.setCodelessInteractionTrackingConfiguration(codelessInteractionTrackingConfiguration);
 ```
@@ -1833,10 +1904,10 @@ occurs in release. Therefore, only include this metadata in the `DEBUG` variant
 are merged, please see the [Android Documentation](https://developer.android.com/studio/build/manifest-merge).
 
 *Note:* 
-- By default, the Thunderhead SDK for Android does not log any information.
+- By default, the Thunderhead SDK for Android logs ERROR and WARN messages for ANY component.
 - The `com.thunderhead.android.InitLogLevel` `AndroidManifest.xml` metadata value is only honored 
 for the Thunderhead SDK initialization process. After initialization has finished, the logging 
-configuration reverts to a default of _off_. If more logging is desired then use the logging 
+configuration reverts to a default configuration mentioned above. If more logging is desired then use the logging
 configuration APIs to turn on logging as shown above.
 - When setting a single `LogLevel`, the SDK will log any messages of that level and above.
     - The order from the bottom is: VERBOSE, DEBUG, ERROR, WARN, INFO, ASSERT
