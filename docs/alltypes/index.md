@@ -166,6 +166,13 @@ A response code request object for sending the response code to the Thunderhead 
 Error used to specify that an SDK error was encountered.
 
 
+|
+
+##### [com.thunderhead.android.api.optout.OptInOptions](../com.thunderhead.android.api.optout/-opt-in-options/index.md)
+
+* Enum of options available for granular control of what customer information is tracked.
+
+
 | (extensions in package com.thunderhead.android.api)
 
 ##### [kotlin.collections.Set](../com.thunderhead.android.api/kotlin.collections.-set/index.md)

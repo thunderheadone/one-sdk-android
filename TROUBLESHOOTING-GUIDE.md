@@ -9,6 +9,7 @@ The Thunderhead SDK for Android Troubleshooting Guide for common implementation 
   * [Resolving conflicts with `android:allowBackup`](#resolving-conflicts-with-androidallowbackup)
   * [Resolving > The library com.google.firebase:firebase-iid is being requested by various other libraries](#resolving--the-library-comgooglefirebasefirebase-iid-is-being-requested-by-various-other-libraries)
   * [Resolving: NoSuchMethodError for Base64 class or 15_000: Signpost cannot be used on this platform](#resolving-nosuchmethoderror-for-base64-class-or-15_000-signpost-cannot-be-used-on-this-platform)
+  * [Resolving: AndroidX Version Conflicts](#resolving-androidx-version-conflicts)
 - [Performance issues](#performance-issues)
   * [Build time](#build-time)
 
@@ -92,13 +93,34 @@ public class MyApplication extends Application {
 }
 ```
 
+### Resolving AndroidX Version Conflicts
+
+The Thunderhead SDK may bring in transitive AndroidX dependencies in order to support codeless Interaction tracking
+which may not be desired. If an unwanted transitive dependency has been brought into an app, developers may exclude it. 
+The Thunderhead SDK checks for transitive dependencies at runtime in User mode to ensure no crashes occur by using
+an excluded dependency. The Thunderhead SDK does also use AndroidX dependencies in Admin mode for UI purposes but
+attempts to only use the lowest possible version. If developers find they need to exclude a transitive dependency
+due to an AndroidX bug in newer version, we recommend following the Gradle guidelines found 
+[here](https://docs.gradle.org/current/userguide/dependency_downgrade_and_exclude.html#sec:excluding-transitive-deps).
+
+Example exclusion of AndroidX Fragments:
+
+```groovy
+dependencies {
+  implementation "com.thunderhead.android:one-sdk:9.1.0", {
+    exclude group: 'androidx.fragment', module: 'fragment'
+  }
+  // rest of dependencies
+}
+```
+
 ## Performance issues
 
 ### Build time
 As instant run is not currently supported it is expected that builds will take longer as a full build will be required when a change is made as opposed to just building the changed bits. We are aware of this limitation and we may consider addressing it in future releases.
 
 Development build times can be improved by disabling Orchestration until the feature is ready for QA. Disabling Orchestration will allow developers to turn on instant run. 
-Disabling Orchestration does not remove the ability to use the SDK in [Admin Mode](https://github.com/thunderheadone/one-sdk-android#set-up-the-sdk-in-admin-mode-for-internal-distribution), it disables the codeless identity transfer and last click attribution features, thus allowing developers to still interact with the Thunderhead sdk.
+Disabling Orchestration does not remove the ability to use the SDK in [Admin Mode](https://github.com/thunderheadone/one-sdk-android#set-up-the-framework-in-admin-mode), it disables the codeless identity transfer and last click attribution features, thus allowing developers to still interact with the Thunderhead sdk.
 
 If this is desired, we recommend conditionally applying the Orchestration Plugin via a Gradle project property argument. 
 Set a gradle property to true for Release Builds in CI and false for development or local developer builds.  
