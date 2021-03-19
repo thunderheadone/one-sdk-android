@@ -19,7 +19,7 @@
         * [SDK initialization not required](#sdk-initialization-not-required)
 * [Additional features](#additional-features)
     * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
-    * [Opt an end-user out/in of city/country level tracking](#opt-an-end-user-out-in-of-city-country-level-tracking)
+    * [Opt an end user out of city country level tracking](#opt-an-end-user-out-of-city-country-level-tracking)
     * [Exclude an Interaction](#exclude-an-interaction)
     * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
     * [Programmatic Interactions and Properties API](#programmatic-interactions-and-properties-api)
@@ -455,7 +455,7 @@ One.setOptOutConfiguration(optOutConfiguration);
 - You can opt a user back in, at any point, by setting the `optOut` parameter to `false` using the same method. 
 - For instructions on completely removing a user's data from Thunderhead ONE or Salesforce Interaction Studio, see our [API Documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-### Opt an end-user out/in of city/country level tracking
+### Opt an end user out of city country level tracking
 
 Use this option to opt an end-user out or in of all city/country level tracking.
 
