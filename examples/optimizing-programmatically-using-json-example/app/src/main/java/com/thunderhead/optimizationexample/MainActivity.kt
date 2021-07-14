@@ -1,7 +1,6 @@
 package com.thunderhead.optimizationexample
 
 import android.os.Bundle
-import android.text.Html
 import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
