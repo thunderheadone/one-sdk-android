@@ -1,7 +1,6 @@
 package com.thunderhead.optimizationexample
 
 import android.os.Bundle
-import android.text.Html
 import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
@@ -160,15 +159,13 @@ class FirstFragment : Fragment() {
         actions?.run {
             this.filter { it.getString("name").contains("banner") }
                 .map { it.getJSONObject("asset").getString("content") }
-                .map { content -> JSONObject(Html.fromHtml(content).toString()) }
-                .forEach { contentJson -> updateContent(contentJson, true) }
+                .forEach { contentJson -> updateContent(JSONObject(contentJson), false) }
         }
 
         actions?.run {
             this.filter { it.getString("name").contains("card") }
                 .map { it.getJSONObject("asset").getString("content") }
-                .map { content -> JSONObject(Html.fromHtml(content).toString()) }
-                .forEach { contentJson -> updateContent(contentJson, false) }
+                .forEach { contentJson -> updateContent(JSONObject(contentJson), false) }
         }
     }
 
