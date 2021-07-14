@@ -158,14 +158,14 @@ class FirstFragment : Fragment() {
 
         actions?.run {
             this.filter { it.getString("name").contains("banner") }
-                .map { it.getJSONObject("asset").getJSONObject("content") }
-                .forEach { contentJson -> updateContent(contentJson, true) }
+                .map { it.getJSONObject("asset").getString("content") }
+                .forEach { contentJson -> updateContent(JSONObject(contentJson), true) }
         }
 
         actions?.run {
             this.filter { it.getString("name").contains("card") }
-                .map { it.getJSONObject("asset").getJSONObject("content") }
-                .forEach { contentJson -> updateContent(contentJson, false) }
+                .map { it.getJSONObject("asset").getString("content") }
+                .forEach { contentJson -> updateContent(JSONObject(contentJson), false) }
         }
     }
 
