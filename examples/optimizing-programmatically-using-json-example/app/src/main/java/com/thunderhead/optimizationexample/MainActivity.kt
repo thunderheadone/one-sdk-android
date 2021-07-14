@@ -156,20 +156,6 @@ class FirstFragment : Fragment() {
                 .map { it.getJSONObject("asset").getJSONArray("responses").get(0) as JSONObject }
                 .forEach { response -> setResponseCode(response, false) }
         }
-
-        actions?.run {
-            this.filter { it.getString("name").contains("banner") }
-                .map { it.getJSONObject("asset").getString("content") }
-                .map { content -> JSONObject(Html.fromHtml(content).toString()) }
-                .forEach { contentJson -> updateContent(contentJson, true) }
-        }
-
-        actions?.run {
-            this.filter { it.getString("name").contains("card") }
-                .map { it.getJSONObject("asset").getString("content") }
-                .map { content -> JSONObject(Html.fromHtml(content).toString()) }
-                .forEach { contentJson -> updateContent(contentJson, false) }
-        }
     }
 
     private fun setResponseCode(json: JSONObject, isBanner: Boolean) {
