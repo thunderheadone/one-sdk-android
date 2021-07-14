@@ -159,7 +159,7 @@ class FirstFragment : Fragment() {
         actions?.run {
             this.filter { it.getString("name").contains("banner") }
                 .map { it.getJSONObject("asset").getString("content") }
-                .forEach { contentJson -> updateContent(JSONObject(contentJson), false) }
+                .forEach { contentJson -> updateContent(JSONObject(contentJson), true) }
         }
 
         actions?.run {
