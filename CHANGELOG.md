@@ -1,3 +1,17 @@
+#### Version 10.0.0
+* [BREAKING] Requires the [Orchestration Plugin version 5.0.0](https://github.com/thunderheadone/one-android-orchestration-plugin/releases/tag/5.0.0).
+* [BREAKING] Fixed an issue where SDK logging was not able to be turned off when using the logging configuration builder in Java. For further details on this [see our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-10.md#logging-configuration).
+* [BREAKING] JSON Assets no longer contain HTML encoded entities and the SDK no longer attempts to remove HTML encoded entities. For further details on this [see our example app](https://github.com/thunderheadone/one-sdk-android/commit/ee8ea5ddab9173cd7401f3765dcd9610f2034ee3). If you still require the old encoding to be returned, please reach out to our [support team](https://github.com/thunderheadone/one-sdk-android#thunderhead-one-support).
+* [NEW] Added ability to send SDK logs to a file whilst in Admin Mode for easy sharing without support team.
+* [NEW] Added ability to create entities in Admin mode and codelessly send app preference data for a region to ONE based on configuration.
+* [UPDATE] Device data is now sent with all runtime requests.
+* [UPDATE] Improved `WebView` automatic Interaction tracking given identified obfuscation issue.
+* [UPDATE] Updated the SDK to use Kotlin 1.4.
+* [BUGFIX] Updated logging to notify the developer if a callback is added before an activity content view is set.
+* [BUGFIX] Fixed a crash when a null error is received by a callback expecting a non-null error.
+* [BUGFIX] Fixed an issue where some not allowed interactions were sent.
+* [BUGFIX] Fixed an issue where the EXIT PREVIEW button was hidden behind a soft menu bar on some phones.
+
 #### Version 9.1.0
 * [NEW] Added ability to control Data Adapter location sharing. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#opt-an-end-user-out-in-of-city-country-level-tracking).
 * [NEW] Added ability to disable WebView Interaction tracking. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#disable-automatic-interaction-detection).

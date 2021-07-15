@@ -2,7 +2,7 @@
 
 # components
 
-`var components: MutableSet<`[`Component`](../../-component/index.md)`>`
+`var components: MutableSet<`[`Component`](../../-component/index.md)`>?`
 
 A `Set` of [Component](../../-component/index.md)s. Components are a feature or technical concept
 such as Networking or Database.

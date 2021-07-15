@@ -47,6 +47,10 @@
      * [Send a location object](#send-a-location-object)
      * [Get Tid](#get-tid)
      * [Configuring Logging](#configuring-logging)
+        * [Turn all logs on](#turn-all-logs-on)
+        * [Turn specific logs on](#turn-specific-logs-on)
+        * [Turn logs for the Thunderhead SDK initialization process on](#turn-logs-for-the-thunderhead-sdk-initialization-process-on)
+        * [Turn all logs off](#turn-all-logs-off)
      * [Identify the SDK version](#identify-the-sdk-version)
      * [Clear the user profile](#clear-the-user-profile)
 * [Further integration details](#further-integration-details)
@@ -74,7 +78,7 @@
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:9.1.0"
+      implementation "com.thunderhead.android:one-sdk:10.0.0"
     }
     ```
     
@@ -82,7 +86,7 @@
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:9.1.0"
+      implementation "com.thunderhead.android:is-sdk:10.0.0"
     }
     ```
 
@@ -144,7 +148,7 @@
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.4.2'
-            classpath 'com.thunderhead.android:orchestration-plugin:4.0.0'
+            classpath 'com.thunderhead.android:orchestration-plugin:5.0.0'
         }
     }
     ```
@@ -171,7 +175,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:4.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:5.0.0'
     }
 }
 
@@ -210,7 +214,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:9.1.0"
+  implementation "com.thunderhead.android:one-sdk:10.0.0"
 }
 
 repositories {
@@ -241,7 +245,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:4.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:5.0.0'
     }
 }
 
@@ -279,7 +283,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:9.1.0"
+  implementation "com.thunderhead.android:is-sdk:10.0.0"
 }
 
 repositories {
@@ -1628,7 +1632,6 @@ Uri.parse("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
 URL("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
 ```
 
-
 `Java`
 ```java
 // URL example
@@ -1694,43 +1697,46 @@ One.getTid();
 ### Configuring Logging
 
 The Thunderhead SDK for Android provides an extensible logging configuration API for debug or reporting purposes. The API can be configured to 
-log any combination of "Components" (features or technical concepts such as networking or databases) to Log Levels (Debug, Verbose, etc). In addition,
+log any combination of Components (features or technical concepts such as Networking or Databases) to Log Levels (Verbose, Debug, etc). In addition,
 custom log writers can be added to facilitate reporting if desired (ex. sending errors to Google Console).
 
-Below are various examples of logging configurations.
+By default, the Thunderhead SDK for Android logs ERROR and WARN messages for ANY component. Below are examples of other logging configurations.
 
-*Turning logging off if it has been turned on.*
+#### Turn all logs on
+
+*Example of configuring logging to VERBOSE Log Level for ANY Components of the Thunderhead SDK.*
 
 `Kotlin`
 ```kotlin
 import com.thunderhead.android.api.logging.Component
 import com.thunderhead.android.api.logging.LogLevel
-import com.thunderhead.android.api.logging.and
 import com.thunderhead.android.api.oneConfigureLogging
 // rest of imports
 
 oneConfigureLogging {
-    levels = mutableSetOf()
-    components = mutableSetOf()
+    levels = mutableSetOf(LogLevel.VERBOSE) 
+    components = mutableSetOf(LogLevel.ANY)
 }
 ```
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.configuration.OneConfiguration;
 import com.thunderhead.android.api.logging.Component;
 import com.thunderhead.android.api.logging.LogLevel;
 import com.thunderhead.android.api.logging.OneLoggingConfiguration;
 // rest of imports
 
 final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
+    .log(LogLevel.VERBOSE)
+    .log(Component.ANY)
     .build();
 
 One.setLoggingConfiguration(oneLoggingConfiguration);
 ```
 
-*Combination of ERROR and WARN levels for ANY Thunderhead SDK Component.*
+#### Turn specific logs on
+
+*Example of configuring logging to combination of ERROR and WARN levels for just NETWORKING and DATABASE Components of the Thunderhead SDK.*
 
 `Kotlin`
 ```kotlin
@@ -1742,14 +1748,12 @@ import com.thunderhead.android.api.oneConfigureLogging
 
 oneConfigureLogging {
     levels = LogLevel.ERROR and LogLevel.WARN
-    components = mutableSetOf(Component.ANY)
+    components = Component.NETWORKING and Component.DATABASE
 }
 ```
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.configuration.OneConfiguration;
 import com.thunderhead.android.api.logging.Component;
 import com.thunderhead.android.api.logging.LogLevel;
 import com.thunderhead.android.api.logging.OneLoggingConfiguration;
@@ -1758,39 +1762,6 @@ import com.thunderhead.android.api.logging.OneLoggingConfiguration;
 final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
     .log(LogLevel.ERROR)
     .log(LogLevel.WARN)
-    .log(Component.ANY)
-    .build();
-
-One.setLoggingConfiguration(oneLoggingConfiguration);
-```
-
-*Combination of VERBOSE (IE everything) for just Networking and Database Components of the Thunderhead SDK.*
-
-`Kotlin`
-```kotlin
-import com.thunderhead.android.api.logging.Component
-import com.thunderhead.android.api.logging.LogLevel
-import com.thunderhead.android.api.logging.and
-import com.thunderhead.android.api.oneConfigureLogging
-// rest of imports
-
-oneConfigureLogging {
-    levels = mutableSetOf(LogLevel.VERBOSE) 
-    components = Component.NETWORKING and Component.DATABASE
-}
-```
-
-`Java`
-```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.configuration.OneConfiguration;
-import com.thunderhead.android.api.logging.Component;
-import com.thunderhead.android.api.logging.LogLevel;
-import com.thunderhead.android.api.logging.OneLoggingConfiguration;
-// rest of imports
-
-final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
-    .log(LogLevel.VERBOSE)
     .log(Component.NETWORKING)
     .log(Component.DATABASE)
     .build();
@@ -1830,8 +1801,6 @@ class CustomLogger : LogWriter() {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.configuration.OneConfiguration;
 import com.thunderhead.android.api.logging.Component;
 import com.thunderhead.android.api.logging.LogLevel;
 import com.thunderhead.android.api.logging.OneLoggingConfiguration;
@@ -1861,7 +1830,7 @@ static class CustomLogger extends LogWriter {
     }
 ```
 
-*To log the Thunderhead SDK initialization process*
+#### Turn logs for the Thunderhead SDK initialization process on
 
 The Thunderhead SDK performs initialization processes in an Android Content Provider which is instantiated before
 the Application is created. This means the log configuration API cannot be invoked before the Thunderhead SDK
@@ -1873,7 +1842,7 @@ a meta data element must be added to the android manifest. If the metadata eleme
 `name` :  `com.thunderhead.android.InitLogLevel`
 `value`: Comma separated list of `com.thunderhead.android.api.logging.LogLevel`
 
-*Example logging verbose and above logs:*
+*Example for logging VERBOSE and above logs:*
 
 ```xml
 <application>
@@ -1885,26 +1854,47 @@ a meta data element must be added to the android manifest. If the metadata eleme
 </application>
 ```
 
-*Example logging only ERROR and WARN logs:*
-
-```xml
-<application>
-    <!--Other application elements-->
-
-    <meta-data
-        android:name="com.thunderhead.android.InitLogLevel"
-        android:value="ERROR,WARN" />
-</application>
-```
-
 **Recommendation**
 We recommend including the above metadata only in `DEBUG` builds to ensure no unnecessary logging
 occurs in release. Therefore, only include this metadata in the `DEBUG` variant
 `AndroidManifest.xml` and _NOT_ in the main `AndroidManifest.xml`. To learn more about how manifests
 are merged, please see the [Android Documentation](https://developer.android.com/studio/build/manifest-merge).
 
+#### Turn all logs off
+
+To turn off logging, pass a set to logLevel and a set to logComponent with the values of NONE
+*Example of turning logging off*
+
+`Kotlin`
+```kotlin
+import com.thunderhead.android.api.logging.Component
+import com.thunderhead.android.api.logging.LogLevel
+import com.thunderhead.android.api.logging.and
+import com.thunderhead.android.api.oneConfigureLogging
+// rest of imports
+
+oneConfigureLogging {
+    levels = mutableSetOf(LogLevel.NONE)
+    components = mutableSetOf(Component.NONE)
+}
+```
+
+`Java`
+```java
+import com.thunderhead.android.api.logging.Component;
+import com.thunderhead.android.api.logging.LogLevel;
+import com.thunderhead.android.api.logging.OneLoggingConfiguration;
+// rest of imports
+
+final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
+    .log(LogLevel.NONE)
+    .log(Component.NONE)
+    .build();
+
+One.setLoggingConfiguration(oneLoggingConfiguration);
+```
+
 *Note:* 
-- By default, the Thunderhead SDK for Android logs ERROR and WARN messages for ANY component.
 - The `com.thunderhead.android.InitLogLevel` `AndroidManifest.xml` metadata value is only honored 
 for the Thunderhead SDK initialization process. After initialization has finished, the logging 
 configuration reverts to a default configuration mentioned above. If more logging is desired then use the logging
@@ -1949,7 +1939,7 @@ To completely remove the codeless identity transfer functionality for Android, m
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 
 ```gradle 
-classpath 'com.thunderhead.android:orchestration-plugin:4.0.0'
+classpath 'com.thunderhead.android:orchestration-plugin:5.0.0'
 ```
 
 2. Open the **app-level** `build.gradle` file and remove the following references.
@@ -1968,3 +1958,4 @@ _For Salesforce Marketing Cloud Interaction Studio questions, please submit a su
 
 ### Thunderhead ONE support
 _The Thunderhead team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
+

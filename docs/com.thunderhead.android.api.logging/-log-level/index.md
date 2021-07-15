@@ -16,3 +16,4 @@ The Level (IE severity) of a Thunderhead SDK Log Message.
 | [WARN](-w-a-r-n.md) | Warnings might be logged. |
 | [INFO](-i-n-f-o.md) | Info details might be logged. |
 | [ASSERT](-a-s-s-e-r-t.md) | Errors might be logged and based on system configuration terminate the application. |
+| [NONE](-n-o-n-e.md) | Nothing is logged. |
