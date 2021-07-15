@@ -24,3 +24,5 @@ the Thunderhead SDK will log.
 | [NETWORKING](-n-e-t-w-o-r-k-i-n-g.md) |  |
 | [DATABASE](-d-a-t-a-b-a-s-e.md) |  |
 | [STATE](-s-t-a-t-e.md) |  |
+| [FILELOGGING](-f-i-l-e-l-o-g-g-i-n-g.md) |  |
+| [NONE](-n-o-n-e.md) |  |

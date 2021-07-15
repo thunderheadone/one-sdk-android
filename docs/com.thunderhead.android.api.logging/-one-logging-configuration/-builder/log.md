@@ -12,9 +12,9 @@ Add a desired [LogLevel](../../-log-level/index.md) to log information about.
 
 `fun log(vararg component: `[`Component`](../../-component/index.md)`): Builder`
 
-Add a multiple desired [Component](../../-component/index.md)s to log information about.
+Add multiple desired [Component](../../-component/index.md)s to log information about.
 
 `fun log(vararg level: `[`LogLevel`](../../-log-level/index.md)`): Builder`
 
-Add a multiple desired [LogLevel](../../-log-level/index.md)s to log information about.
+Add multiple desired [LogLevel](../../-log-level/index.md)s to log information about.
 

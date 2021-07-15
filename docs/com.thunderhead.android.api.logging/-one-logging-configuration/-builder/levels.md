@@ -2,7 +2,7 @@
 
 # levels
 
-`var levels: MutableSet<`[`LogLevel`](../../-log-level/index.md)`>`
+`var levels: MutableSet<`[`LogLevel`](../../-log-level/index.md)`>?`
 
 A `Set` of [LogLevel](../../-log-level/index.md)s. If a singular level is set
 then the SDK will log messages of that level and above in conjunction
