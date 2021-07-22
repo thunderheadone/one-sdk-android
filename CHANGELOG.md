@@ -1,3 +1,7 @@
+#### Version 10.0.1
+* [BUGFIX] Fixed an issue where a manifest merge error could be encountered with multiple file providers.
+* [BUGFIX] Fixed an issue where the SDK Log file creation fails on the first try.
+
 #### Version 10.0.0
 * [BREAKING] Requires the [Orchestration Plugin version 5.0.0](https://github.com/thunderheadone/one-android-orchestration-plugin/releases/tag/5.0.0).
 * [BREAKING] Fixed an issue where SDK logging was not able to be turned off when using the logging configuration builder in Java. For further details on this [see our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-10.md#logging-configuration).
