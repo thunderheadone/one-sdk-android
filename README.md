@@ -78,7 +78,7 @@
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:10.0.0"
+      implementation "com.thunderhead.android:one-sdk:10.0.1"
     }
     ```
     
@@ -86,7 +86,7 @@
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:10.0.0"
+      implementation "com.thunderhead.android:is-sdk:10.0.1"
     }
     ```
 
@@ -214,7 +214,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:10.0.0"
+  implementation "com.thunderhead.android:one-sdk:10.0.1"
 }
 
 repositories {
@@ -283,7 +283,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:10.0.0"
+  implementation "com.thunderhead.android:is-sdk:10.0.1"
 }
 
 repositories {
