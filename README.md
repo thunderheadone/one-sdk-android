@@ -148,7 +148,7 @@
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.4.2'
-            classpath 'com.thunderhead.android:orchestration-plugin:5.0.0'
+            classpath 'com.thunderhead.android:orchestration-plugin:5.0.1'
         }
     }
     ```
@@ -175,7 +175,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:5.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:5.0.1'
     }
 }
 
@@ -245,7 +245,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.thunderhead.android:orchestration-plugin:5.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:5.0.1'
     }
 }
 
@@ -1939,7 +1939,7 @@ To completely remove the codeless identity transfer functionality for Android, m
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 
 ```gradle 
-classpath 'com.thunderhead.android:orchestration-plugin:5.0.0'
+classpath 'com.thunderhead.android:orchestration-plugin:5.0.1'
 ```
 
 2. Open the **app-level** `build.gradle` file and remove the following references.
