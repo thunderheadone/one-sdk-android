@@ -1,3 +1,7 @@
+#### Version 10.0.2
+* [BUGFIX] Fixed an issue where a 'No region found' error would sometimes show in Preview mode.
+* [BUGFIX] Fixed an issue where an error dialog could produce a crash in Admin mode.
+
 #### Version 10.0.1
 * [BUGFIX] Fixed an issue where a manifest merge error could be encountered with multiple file providers.
 * [BUGFIX] Fixed an issue where the SDK Log file creation fails on the first try.
