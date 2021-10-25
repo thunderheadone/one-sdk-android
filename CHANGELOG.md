@@ -1,4 +1,16 @@
-#### Version 10.0.2
+#### Version 11.0.0
+* [BREAKING] Changed the SDK target to API 30.
+* [BREAKING] Requires [Android Gradle Plugin 4.2](https://developer.android.com/studio/releases/gradle-plugin).
+* [BREAKING] Requires [Kotlin version 1.5.20](https://github.com/JetBrains/kotlin/releases/tag/v1.5.20).
+* [BREAKING] Requires [okhttp version 4](https://square.github.io/okhttp/upgrading_to_okhttp_4/).
+* [BREAKING] Requires [Retrofit version 2.9](https://square.github.io/retrofit/).
+* [BREAKING] Requires [Orchestration Plugin version 6.0.0](https://github.com/thunderheadone/one-android-orchestration-plugin/releases/tag/6.0.0).
+* [BREAKING] Requires [Aspects version 5.0.0](https://admin.cloudrepo.io/repository/one-sdk-android/com/thunderhead/android/android-aspects/5.0.0).
+* [NEW] Added ability to dynamically switch Workspace configuration while in Admin mode.
+* [BUGFIX] Fixed an issue when allowing display over permission would not display Poker Chip in Admin mode sometimes.
+* [BUGFIX] Fixed an issue where buttons became unresponsive in User or Admin mode after an Activity Capture Point was added to them.
+
+ #### Version 10.0.2
 * [BUGFIX] Fixed an issue where a 'No region found' error would sometimes show in Preview mode.
 * [BUGFIX] Fixed an issue where an error dialog could produce a crash in Admin mode.
 
