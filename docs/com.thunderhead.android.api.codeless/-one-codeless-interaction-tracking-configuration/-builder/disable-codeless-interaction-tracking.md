@@ -1,17 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.codeless](../../index.md) / [OneCodelessInteractionTrackingConfiguration](../index.md) / [Builder](index.md) / [disableCodelessInteractionTracking](./disable-codeless-interaction-tracking.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.codeless](../../index.md)/[OneCodelessInteractionTrackingConfiguration](../index.md)/[Builder](index.md)/[disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md)
 
 # disableCodelessInteractionTracking
 
-`var disableCodelessInteractionTracking: Boolean?`
+[androidJvm]\
+fun [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md)(disableCodelessInteractionTracking: Boolean?): [OneCodelessInteractionTrackingConfiguration.Builder](index.md)
 
-[Boolean](#) True to disable interaction tracking.
+## Parameters
 
-**Setter**
+androidJvm
 
-[Boolean](#) True to disable interaction tracking.
+| | |
+|---|---|
+| disableCodelessInteractionTracking | Boolean True to disable interaction tracking. |
 
-`fun disableCodelessInteractionTracking(disableCodelessInteractionTracking: Boolean?): Builder`
+[androidJvm]\
+var [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md): Boolean? = false
 
-### Parameters
-
-`disableCodelessInteractionTracking` - [Boolean](#) True to disable interaction tracking.
+Boolean True to disable interaction tracking.

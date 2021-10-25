@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneResponse](index.md) / [httpStatusCode](./http-status-code.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneResponse](index.md)/[httpStatusCode](http-status-code.md)
 
 # httpStatusCode
 
-`val httpStatusCode: Int`
+[androidJvm]\
+val [httpStatusCode](http-status-code.md): Int = 0
 
-API response status code.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| httpStatusCode | API response status code. |

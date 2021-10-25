@@ -1,11 +1,12 @@
-[Thunderhead](../index.md) / [com.thunderhead.android.api](index.md) / [oneGetIdentityTransferLinksWhiteList](./one-get-identity-transfer-links-white-list.md)
+//[thunderhead-sdk](../../index.md)/[com.thunderhead.android.api](index.md)/[oneGetIdentityTransferLinksWhiteList](one-get-identity-transfer-links-white-list.md)
 
 # oneGetIdentityTransferLinksWhiteList
 
-`fun oneGetIdentityTransferLinksWhiteList(): Set<`[`URI`](https://whatever/java/net/URI.html)`>`
+[androidJvm]\
+fun [oneGetIdentityTransferLinksWhiteList](one-get-identity-transfer-links-white-list.md)(): Set<URI>
 
 Retrieve the List of URI destinations that are white listed to have Identity Transfer applied.
 
-**Return**
-A [List](#) of destination URIs that is used to apply Identity Transfer.
+#### Return
 
+A List<URI> of destination URIs that is used to apply Identity Transfer.

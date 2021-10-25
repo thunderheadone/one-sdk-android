@@ -1,47 +1,46 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneResponse](./index.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneResponse](index.md)
 
 # OneResponse
 
-`class OneResponse`
+[androidJvm]\
+class [OneResponse](index.md)(**httpStatusCode**: Int, **tid**: String?, **trackers**: List<Trackers>?, **captures**: List<Captures>?, **optimizations**: List<Optimizations>?, **trace**: String?, **interactionPath**: [OneInteractionPath](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)?)
 
 Interaction Response class used to hold data from the interaction API response.
 
-### Parameters
+## Parameters
 
-`httpStatusCode` - API response status code.
+androidJvm
 
-`tid` - TIP returned from the API.
+| | |
+|---|---|
+| httpStatusCode | API response status code. |
+| tid | TIP returned from the API. |
+| trackers | Array of trackers returned from the API. |
+| captures | Array of captures returned from the API. |
+| optimizations | Array of optimizations returned from the API. |
+| trace | String trace returned from the API. |
+| interactionPath | Copy of the interaction path returned from the API response. |
 
-`trackers` - Array of trackers returned from the API.
+## Constructors
 
-`captures` - Array of captures returned from the API.
+| | |
+|---|---|
+| [OneResponse](-one-response.md) | [androidJvm]<br>fun [OneResponse](-one-response.md)(httpStatusCode: Int = 0, tid: String? = "", trackers: List<Trackers>? = listOf(), captures: List<Captures>? = listOf(), optimizations: List<Optimizations>? = listOf(), trace: String? = "", interactionPath: [OneInteractionPath](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)? = OneInteractionPath(URI.create("")))<br>API response status code. |
 
-`optimizations` - Array of optimizations returned from the API.
-
-`trace` - String trace returned from the API.
-
-`interactionPath` - Copy of the interaction path returned from the API response.
-
-### Constructors
+## Properties
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Interaction Response class used to hold data from the interaction API response.`OneResponse(httpStatusCode: Int = 0, tid: String? = "", trackers: List<Trackers>? = listOf(), captures: List<Captures>? = listOf(), optimizations: List<Optimizations>? = listOf(), trace: String? = "", interactionPath: `[`OneInteractionPath`](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)`? = OneInteractionPath(URI.create("")))` |
+| [captures](captures.md) | [androidJvm]<br>val [captures](captures.md): List<Captures>?<br>Array of captures returned from the API. |
+| [httpStatusCode](http-status-code.md) | [androidJvm]<br>val [httpStatusCode](http-status-code.md): Int = 0<br>API response status code. |
+| [interactionPath](interaction-path.md) | [androidJvm]<br>val [interactionPath](interaction-path.md): [OneInteractionPath](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)?<br>Copy of the interaction path returned from the API response. |
+| [optimizations](optimizations.md) | [androidJvm]<br>val [optimizations](optimizations.md): List<Optimizations>?<br>Array of optimizations returned from the API. |
+| [tid](tid.md) | [androidJvm]<br>val [tid](tid.md): String?<br>TIP returned from the API. |
+| [trace](trace.md) | [androidJvm]<br>val [trace](trace.md): String?<br>String trace returned from the API. |
+| [trackers](trackers.md) | [androidJvm]<br>val [trackers](trackers.md): List<Trackers>?<br>Array of trackers returned from the API. |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [captures](captures.md) | Array of captures returned from the API.`val captures: List<Captures>?` |
-| [httpStatusCode](http-status-code.md) | API response status code.`val httpStatusCode: Int` |
-| [interactionPath](interaction-path.md) | Copy of the interaction path returned from the API response.`val interactionPath: `[`OneInteractionPath`](../../com.thunderhead.android.api.interactions/-one-interaction-path/index.md)`?` |
-| [optimizations](optimizations.md) | Array of optimizations returned from the API.`val optimizations: List<Optimizations>?` |
-| [tid](tid.md) | TIP returned from the API.`val tid: String?` |
-| [trace](trace.md) | String trace returned from the API.`val trace: String?` |
-| [trackers](trackers.md) | Array of trackers returned from the API.`val trackers: List<Trackers>?` |
-
-### Extension Functions
+## Extensions
 
 | Name | Summary |
 |---|---|
-| [process](../../com.thunderhead.android.api/process.md) | Process the response returned from sending an interaction.`fun `[`OneResponse`](./index.md)`?.process(): Unit?` |
+| [process](../../com.thunderhead.android.api/process.md) | [androidJvm]<br>fun [OneResponse](index.md)?.[process](../../com.thunderhead.android.api/process.md)(): Unit?<br>Process the response returned from sending an interaction. |

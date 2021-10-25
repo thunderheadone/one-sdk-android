@@ -1,13 +1,6 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.configuration](../index.md) / [OneConfiguration](index.md) / [touchpoint](./touchpoint.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.configuration](../index.md)/[OneConfiguration](index.md)/[touchpoint](touchpoint.md)
 
 # touchpoint
 
-`val touchpoint: `[`URI`](https://whatever/java/net/URI.html)`?`
-
-The ONE touchpoint to configure the SDK with.
-This can be found in `ONE Collect -> Touchpoints` in the Admin UI.
-
-### Property
-
-`touchpoint` - The ONE touchpoint to configure the SDK with.
-This can be found in `ONE Collect -> Touchpoints` in the Admin UI.
+[androidJvm]\
+val [touchpoint](touchpoint.md): URI? = null

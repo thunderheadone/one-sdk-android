@@ -1,20 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.configuration](../../index.md) / [OneConfiguration](../index.md) / [Builder](index.md) / [touchpoint](./touchpoint.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.configuration](../../index.md)/[OneConfiguration](../index.md)/[Builder](index.md)/[touchpoint](touchpoint.md)
 
 # touchpoint
 
-`var touchpoint: `[`URI`](https://whatever/java/net/URI.html)`?`
+[androidJvm]\
+fun [touchpoint](touchpoint.md)(touchpoint: URI?): [OneConfiguration.Builder](index.md)
 
-The ONE touchpoint to configure the SDK with.
-This can be found in `ONE Collect -> Touchpoints` in the Admin UI.
+## Parameters
 
-**Setter**
+androidJvm
 
-The ONE touchpoint to configure the SDK with.
-This can be found in `ONE Collect -> Touchpoints` in the Admin UI.
+| | |
+|---|---|
+| touchpoint | The ONE touchpoint to configure the SDK with. This can be found in ONE Collect -> Touchpoints in the Admin UI. |
 
-`fun touchpoint(touchpoint: `[`URI`](https://whatever/java/net/URI.html)`?): Builder`
+[androidJvm]\
+var [touchpoint](touchpoint.md): URI? = null
 
-### Parameters
-
-`touchpoint` - The ONE touchpoint to configure the SDK with.
-This can be found in `ONE Collect -> Touchpoints` in the Admin UI.
+The ONE touchpoint to configure the SDK with. This can be found in ONE Collect -> Touchpoints in the Admin UI.

@@ -1,12 +1,16 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.interactions](../index.md) / [OneCall](index.md) / [enqueue](./enqueue.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.interactions](../index.md)/[OneCall](index.md)/[enqueue](enqueue.md)
 
 # enqueue
 
-`abstract fun enqueue(callback: `[`OneCallback`](../-one-callback/index.md)`?): Unit`
+[androidJvm]\
+abstract fun [enqueue](enqueue.md)(callback: [OneCallback](../-one-callback/index.md)?)
 
 Method used to perform network call off the main thread.
 
-### Parameters
+## Parameters
 
-`callback` - object used to listen for a callback. Can be null
-if no notification of call results is needed.
+androidJvm
+
+| | |
+|---|---|
+| callback | object used to listen for a callback. Can be null if no notification of call results is needed. |

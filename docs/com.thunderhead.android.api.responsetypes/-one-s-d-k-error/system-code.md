@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneSDKError](index.md) / [systemCode](./system-code.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneSDKError](index.md)/[systemCode](system-code.md)
 
 # systemCode
 
-`val systemCode: Int`
+[androidJvm]\
+val [systemCode](system-code.md): Int
 
-SDK error code.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| systemCode | SDK error code. |

@@ -1,17 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.interactions](../../index.md) / [OneInteractionPathAssignment](../index.md) / [Builder](index.md) / [interactionPath](./interaction-path.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.interactions](../../index.md)/[OneInteractionPathAssignment](../index.md)/[Builder](index.md)/[interactionPath](interaction-path.md)
 
 # interactionPath
 
-`var interactionPath: `[`OneInteractionPath`](../../-one-interaction-path/index.md)`?`
+[androidJvm]\
+fun [interactionPath](interaction-path.md)(interactionPath: [OneInteractionPath](../../-one-interaction-path/index.md)?): [OneInteractionPathAssignment.Builder](index.md)
 
-The [OneInteractionPath](../../-one-interaction-path/index.md) to assign to a [View](https://whatever/android/view/View.html).
+## Parameters
 
-**Setter**
+androidJvm
 
-The [OneInteractionPath](../../-one-interaction-path/index.md) to assign to a [View](https://whatever/android/view/View.html).
+| | |
+|---|---|
+| interactionPath | The [OneInteractionPath](../../-one-interaction-path/index.md) to assign to a View. |
 
-`fun interactionPath(interactionPath: `[`OneInteractionPath`](../../-one-interaction-path/index.md)`?): Builder`
+[androidJvm]\
+var [interactionPath](interaction-path.md): [OneInteractionPath](../../-one-interaction-path/index.md)? = null
 
-### Parameters
-
-`interactionPath` - The [OneInteractionPath](../../-one-interaction-path/index.md) to assign to a [View](https://whatever/android/view/View.html).
+The [OneInteractionPath](../../-one-interaction-path/index.md) to assign to a View.

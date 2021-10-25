@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneResponse](index.md) / [captures](./captures.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneResponse](index.md)/[captures](captures.md)
 
 # captures
 
-`val captures: List<Captures>?`
+[androidJvm]\
+val [captures](captures.md): List<Captures>?
 
-Array of captures returned from the API.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| captures | Array of captures returned from the API. |

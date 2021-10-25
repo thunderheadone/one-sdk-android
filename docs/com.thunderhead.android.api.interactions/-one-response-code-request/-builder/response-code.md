@@ -1,19 +1,21 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.interactions](../../index.md) / [OneResponseCodeRequest](../index.md) / [Builder](index.md) / [responseCode](./response-code.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.interactions](../../index.md)/[OneResponseCodeRequest](../index.md)/[Builder](index.md)/[responseCode](response-code.md)
 
 # responseCode
 
-`var responseCode: `[`OneResponseCode`](../../-one-response-code/index.md)
-
-The value of the response code.
-
-**Setter**
-
-The value of the response code.
-
-`fun responseCode(responseCode: `[`OneResponseCode`](../../-one-response-code/index.md)`?): Builder`
+[androidJvm]\
+fun [responseCode](response-code.md)(responseCode: [OneResponseCode](../../-one-response-code/index.md)?): [OneResponseCodeRequest.Builder](index.md)
 
 Used to set the response code.
 
-### Parameters
+## Parameters
 
-`responseCode` - ResponseCode object containing the response code value.
+androidJvm
+
+| | |
+|---|---|
+| responseCode | ResponseCode object containing the response code value. |
+
+[androidJvm]\
+var [responseCode](response-code.md): [OneResponseCode](../../-one-response-code/index.md)
+
+The value of the response code.

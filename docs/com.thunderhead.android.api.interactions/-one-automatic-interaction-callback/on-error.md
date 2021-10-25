@@ -1,17 +1,21 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.interactions](../index.md) / [OneAutomaticInteractionCallback](index.md) / [onError](./on-error.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.interactions](../index.md)/[OneAutomaticInteractionCallback](index.md)/[onError](on-error.md)
 
 # onError
 
-`fun onError(errorHandler: (`[`OneSDKError`](../../com.thunderhead.android.api.responsetypes/-one-s-d-k-error/index.md)`) -> Unit): Unit`
+[androidJvm]\
+fun [onError](on-error.md)(errorHandler: ([OneSDKError](../../com.thunderhead.android.api.responsetypes/-one-s-d-k-error/index.md)) -> Unit)
 
-Provide an error handler for *automatic*
-interaction requests.
+Provide an error handler for *automatic* interaction requests.
 
-`fun onError(error: `[`OneSDKError`](../../com.thunderhead.android.api.responsetypes/-one-s-d-k-error/index.md)`): Unit`
+[androidJvm]\
+open override fun [onError](on-error.md)(error: [OneSDKError](../../com.thunderhead.android.api.responsetypes/-one-s-d-k-error/index.md))
 
 Called after an SDK error has been encountered.
 
-### Parameters
+## Parameters
 
-`error` - SDKError containing the message returned
-by the sdk error.
+androidJvm
+
+| | |
+|---|---|
+| error | SDKError containing the message returned by the sdk error. |

@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneResponse](index.md) / [trackers](./trackers.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneResponse](index.md)/[trackers](trackers.md)
 
 # trackers
 
-`val trackers: List<Trackers>?`
+[androidJvm]\
+val [trackers](trackers.md): List<Trackers>?
 
-Array of trackers returned from the API.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| trackers | Array of trackers returned from the API. |

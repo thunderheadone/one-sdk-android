@@ -1,17 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.identitytransfer](../../index.md) / [OneIdentityTransferConfiguration](../index.md) / [Builder](index.md) / [disableIdentityTransfer](./disable-identity-transfer.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.identitytransfer](../../index.md)/[OneIdentityTransferConfiguration](../index.md)/[Builder](index.md)/[disableIdentityTransfer](disable-identity-transfer.md)
 
 # disableIdentityTransfer
 
-`var disableIdentityTransfer: Boolean?`
+[androidJvm]\
+fun [disableIdentityTransfer](disable-identity-transfer.md)(disableIdentityTransfer: Boolean?): [OneIdentityTransferConfiguration.Builder](index.md)
 
-[Boolean](#) true to disable transfer of identity to outbound locations.
+## Parameters
 
-**Setter**
+androidJvm
 
-[Boolean](#) true to disable transfer of identity to outbound locations.
+| | |
+|---|---|
+| disableIdentityTransfer | Boolean true to disable transfer of identity to outbound locations. |
 
-`fun disableIdentityTransfer(disableIdentityTransfer: Boolean?): Builder`
+[androidJvm]\
+var [disableIdentityTransfer](disable-identity-transfer.md): Boolean? = false
 
-### Parameters
-
-`disableIdentityTransfer` - [Boolean](#) true to disable transfer of identity to outbound locations.
+Boolean true to disable transfer of identity to outbound locations.

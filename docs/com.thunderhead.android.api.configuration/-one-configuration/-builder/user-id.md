@@ -1,17 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.configuration](../../index.md) / [OneConfiguration](../index.md) / [Builder](index.md) / [userId](./user-id.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.configuration](../../index.md)/[OneConfiguration](../index.md)/[Builder](index.md)/[userId](user-id.md)
 
 # userId
 
-`var userId: String?`
+[androidJvm]\
+fun [userId](user-id.md)(userId: String?): [OneConfiguration.Builder](index.md)
 
-The user ID that the [apiKey](api-key.md) &amp; [sharedSecret](shared-secret.md) represent.
+## Parameters
 
-**Setter**
+androidJvm
 
-The user ID that the [apiKey](api-key.md) &amp; [sharedSecret](shared-secret.md) represent.
+| | |
+|---|---|
+| userId | The user ID that the [apiKey](api-key.md) & [sharedSecret](shared-secret.md) represent. |
 
-`fun userId(userId: String?): Builder`
+[androidJvm]\
+var [userId](user-id.md): String? = null
 
-### Parameters
-
-`userId` - The user ID that the [apiKey](api-key.md) &amp; [sharedSecret](shared-secret.md) represent.
+The user ID that the [apiKey](api-key.md) & [sharedSecret](shared-secret.md) represent.

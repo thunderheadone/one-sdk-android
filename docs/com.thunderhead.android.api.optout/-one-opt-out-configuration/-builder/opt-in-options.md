@@ -1,17 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.optout](../../index.md) / [OneOptOutConfiguration](../index.md) / [Builder](index.md) / [optInOptions](./opt-in-options.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.optout](../../index.md)/[OneOptOutConfiguration](../index.md)/[Builder](index.md)/[optInOptions](opt-in-options.md)
 
 # optInOptions
 
-`var optInOptions: Set<`[`OptInOptions`](../../-opt-in-options/index.md)`>`
+[androidJvm]\
+fun [optInOptions](opt-in-options.md)(optInOptions: Set<[OptInOptions](../../-opt-in-options/index.md)>?): [OneOptOutConfiguration.Builder](index.md)
 
-[Set](#) Set of options that have opt in enabled.
+## Parameters
 
-**Setter**
+androidJvm
 
-[Set](#) Set of options that have opt in enabled.
+| | |
+|---|---|
+| optInOptions | Set Set of options that have opt in enabled |
 
-`fun optInOptions(optInOptions: Set<`[`OptInOptions`](../../-opt-in-options/index.md)`>?): Builder`
+[androidJvm]\
+var [optInOptions](opt-in-options.md): Set<[OptInOptions](../../-opt-in-options/index.md)>
 
-### Parameters
-
-`optInOptions` - [Set](#) Set of options that have opt in enabled
+Set Set of options that have opt in enabled.

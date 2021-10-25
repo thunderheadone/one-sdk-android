@@ -1,19 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.optout](../../index.md) / [OneOptOutConfiguration](../index.md) / [Builder](index.md) / [optOut](./opt-out.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.optout](../../index.md)/[OneOptOutConfiguration](../index.md)/[Builder](index.md)/[optOut](opt-out.md)
 
 # optOut
 
-`var optOut: Boolean`
+[androidJvm]\
+fun [optOut](opt-out.md)(optOut: Boolean?): [OneOptOutConfiguration.Builder](index.md)
 
-[Boolean](#) true to opt out of tracking.
-Privacy compliance method to completely stop tracking a customer's actions.
+## Parameters
 
-**Setter**
+androidJvm
 
-[Boolean](#) true to opt out of tracking.
-Privacy compliance method to completely stop tracking a customer's actions.
+| | |
+|---|---|
+| optOut | Boolean true to opt out of tracking. |
 
-`fun optOut(optOut: Boolean?): Builder`
+[androidJvm]\
+var [optOut](opt-out.md): Boolean = false
 
-### Parameters
-
-`optOut` - [Boolean](#) true to opt out of tracking.
+Boolean true to opt out of tracking. Privacy compliance method to completely stop tracking a customer's actions.

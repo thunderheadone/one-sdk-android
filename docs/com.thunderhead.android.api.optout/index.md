@@ -1,10 +1,10 @@
-[Thunderhead](../index.md) / [com.thunderhead.android.api.optout](./index.md)
+//[thunderhead-sdk](../../index.md)/[com.thunderhead.android.api.optout](index.md)
 
-## Package com.thunderhead.android.api.optout
+# Package com.thunderhead.android.api.optout
 
-### Types
+## Types
 
 | Name | Summary |
 |---|---|
-| [OneOptOutConfiguration](-one-opt-out-configuration/index.md) | Configuration object for opting in and out of tracking. Privacy compliance method to completely stop tracking a customer's actions.`class OneOptOutConfiguration` |
-| [OptInOptions](-opt-in-options/index.md) | * Enum of options available for granular control of what customer information is tracked.`class OptInOptions` |
+| [OneOptOutConfiguration](-one-opt-out-configuration/index.md) | [androidJvm]<br>class [OneOptOutConfiguration](-one-opt-out-configuration/index.md)<br>Configuration object for opting in and out of tracking. |
+| [OptInOptions](-opt-in-options/index.md) | [androidJvm]<br>enum [OptInOptions](-opt-in-options/index.md)<br>* Enum of options available for granular control of what customer information is tracked. |

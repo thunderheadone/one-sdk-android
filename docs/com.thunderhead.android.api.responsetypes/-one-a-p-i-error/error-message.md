@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneAPIError](index.md) / [errorMessage](./error-message.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneAPIError](index.md)/[errorMessage](error-message.md)
 
 # errorMessage
 
-`val errorMessage: String`
+[androidJvm]\
+val [errorMessage](error-message.md): String
 
-API error message.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| errorMessage | API error message. |

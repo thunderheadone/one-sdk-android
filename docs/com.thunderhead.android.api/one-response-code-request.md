@@ -1,11 +1,16 @@
-[Thunderhead](../index.md) / [com.thunderhead.android.api](index.md) / [oneResponseCodeRequest](./one-response-code-request.md)
+//[thunderhead-sdk](../../index.md)/[com.thunderhead.android.api](index.md)/[oneResponseCodeRequest](one-response-code-request.md)
 
 # oneResponseCodeRequest
 
-`fun oneResponseCodeRequest(initializer: Builder.() -> Unit): `[`OneResponseCodeRequest`](../com.thunderhead.android.api.interactions/-one-response-code-request/index.md)
+[androidJvm]\
+fun [oneResponseCodeRequest](one-response-code-request.md)(initializer: [OneResponseCodeRequest.Builder](../com.thunderhead.android.api.interactions/-one-response-code-request/-builder/index.md).() -> Unit): [OneResponseCodeRequest](../com.thunderhead.android.api.interactions/-one-response-code-request/index.md)
 
 Create a [OneResponseCodeRequest](../com.thunderhead.android.api.interactions/-one-response-code-request/index.md) object containing the response code value.
 
-### Parameters
+## Parameters
 
-`initializer` - [OneResponseCodeRequest.Builder](../com.thunderhead.android.api.interactions/-one-response-code-request/-builder/index.md) initializer to create a [OneResponseCodeRequest](../com.thunderhead.android.api.interactions/-one-response-code-request/index.md).
+androidJvm
+
+| | |
+|---|---|
+| initializer | [OneResponseCodeRequest.Builder](../com.thunderhead.android.api.interactions/-one-response-code-request/-builder/index.md) initializer to create a [OneResponseCodeRequest](../com.thunderhead.android.api.interactions/-one-response-code-request/index.md). |

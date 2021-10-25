@@ -1,17 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.codeless](../../index.md) / [OneCodelessInteractionTrackingConfiguration](../index.md) / [Builder](index.md) / [disableOutboundLinkTracking](./disable-outbound-link-tracking.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.codeless](../../index.md)/[OneCodelessInteractionTrackingConfiguration](../index.md)/[Builder](index.md)/[disableOutboundLinkTracking](disable-outbound-link-tracking.md)
 
 # disableOutboundLinkTracking
 
-`var disableOutboundLinkTracking: Boolean?`
+[androidJvm]\
+fun [disableOutboundLinkTracking](disable-outbound-link-tracking.md)(disableOutboundLinkTracking: Boolean?): [OneCodelessInteractionTrackingConfiguration.Builder](index.md)
 
-[Boolean](#) to disable updating outbound links.
+## Parameters
 
-**Setter**
+androidJvm
 
-[Boolean](#) to disable updating outbound links.
+| | |
+|---|---|
+| disableOutboundLinkTracking | Boolean to disable updating outbound links. |
 
-`fun disableOutboundLinkTracking(disableOutboundLinkTracking: Boolean?): Builder`
+[androidJvm]\
+var [disableOutboundLinkTracking](disable-outbound-link-tracking.md): Boolean? = false
 
-### Parameters
-
-`disableOutboundLinkTracking` - [Boolean](#) to disable updating outbound links.
+Boolean to disable updating outbound links.

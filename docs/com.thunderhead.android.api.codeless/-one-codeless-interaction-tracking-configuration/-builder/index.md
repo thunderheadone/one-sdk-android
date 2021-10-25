@@ -1,30 +1,31 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.codeless](../../index.md) / [OneCodelessInteractionTrackingConfiguration](../index.md) / [Builder](./index.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.codeless](../../index.md)/[OneCodelessInteractionTrackingConfiguration](../index.md)/[Builder](index.md)
 
 # Builder
 
-`class Builder`
+[androidJvm]\
+class [Builder](index.md)
 
 Builder to create a [OneCodelessInteractionTrackingConfiguration](../index.md).
 
-### Constructors
+## Constructors
+
+| | |
+|---|---|
+| [Builder](-builder.md) | [androidJvm]<br>fun [Builder](-builder.md)() |
+
+## Functions
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Builder to create a [OneCodelessInteractionTrackingConfiguration](../index.md).`Builder()` |
+| [build](build.md) | [androidJvm]<br>fun [build](build.md)(): [OneCodelessInteractionTrackingConfiguration](../index.md)<br>Create the [OneCodelessInteractionTrackingConfiguration](../index.md) from provided configuration. |
+| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | [androidJvm]<br>fun [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md)(disableCodelessInteractionTracking: Boolean?): [OneCodelessInteractionTrackingConfiguration.Builder](index.md) |
+| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | [androidJvm]<br>fun [disableOutboundLinkTracking](disable-outbound-link-tracking.md)(disableOutboundLinkTracking: Boolean?): [OneCodelessInteractionTrackingConfiguration.Builder](index.md) |
+| [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md) | [androidJvm]<br>fun [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md)(disableWebViewInteractionTracking: Boolean?): [OneCodelessInteractionTrackingConfiguration.Builder](index.md) |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | [Boolean](#) True to disable interaction tracking.`var disableCodelessInteractionTracking: Boolean?` |
-| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | [Boolean](#) to disable updating outbound links.`var disableOutboundLinkTracking: Boolean?` |
-| [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md) | [Boolean](#) to disable interaction tracking of `WebView` URLs.`var disableWebViewInteractionTracking: Boolean?` |
-
-### Functions
+## Properties
 
 | Name | Summary |
 |---|---|
-| [build](build.md) | Create the [OneCodelessInteractionTrackingConfiguration](../index.md) from provided configuration.`fun build(): `[`OneCodelessInteractionTrackingConfiguration`](../index.md) |
-| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | `fun disableCodelessInteractionTracking(disableCodelessInteractionTracking: Boolean?): Builder` |
-| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | `fun disableOutboundLinkTracking(disableOutboundLinkTracking: Boolean?): Builder` |
-| [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md) | `fun disableWebViewInteractionTracking(disableWebViewInteractionTracking: Boolean?): Builder` |
+| [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md) | [androidJvm]<br>var [disableCodelessInteractionTracking](disable-codeless-interaction-tracking.md): Boolean? = false<br>Boolean True to disable interaction tracking. |
+| [disableOutboundLinkTracking](disable-outbound-link-tracking.md) | [androidJvm]<br>var [disableOutboundLinkTracking](disable-outbound-link-tracking.md): Boolean? = false<br>Boolean to disable updating outbound links. |
+| [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md) | [androidJvm]<br>var [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md): Boolean? = false<br>Boolean to disable interaction tracking of WebView URLs. |
