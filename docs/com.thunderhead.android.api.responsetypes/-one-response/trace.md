@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneResponse](index.md) / [trace](./trace.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneResponse](index.md)/[trace](trace.md)
 
 # trace
 
-`val trace: String?`
+[androidJvm]\
+val [trace](trace.md): String?
 
-String trace returned from the API.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| trace | String trace returned from the API. |

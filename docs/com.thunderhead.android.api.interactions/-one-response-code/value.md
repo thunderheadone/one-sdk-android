@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.interactions](../index.md) / [OneResponseCode](index.md) / [value](./value.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.interactions](../index.md)/[OneResponseCode](index.md)/[value](value.md)
 
 # value
 
-`val value: String`
+[androidJvm]\
+val [value](value.md): String
 
-response code string value.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| value | response code string value. |

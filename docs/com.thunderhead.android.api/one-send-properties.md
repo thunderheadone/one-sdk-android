@@ -1,13 +1,17 @@
-[Thunderhead](../index.md) / [com.thunderhead.android.api](index.md) / [oneSendProperties](./one-send-properties.md)
+//[thunderhead-sdk](../../index.md)/[com.thunderhead.android.api](index.md)/[oneSendProperties](one-send-properties.md)
 
 # oneSendProperties
 
-`suspend fun oneSendProperties(throwErrors: Boolean = false, initializer: Builder.() -> Unit): `[`OneResponse`](../com.thunderhead.android.api.responsetypes/-one-response/index.md)`?`
+[androidJvm]\
+suspend fun [oneSendProperties](one-send-properties.md)(throwErrors: Boolean = false, initializer: [OneRequest.Builder](../com.thunderhead.android.api.interactions/-one-request/-builder/index.md).() -> Unit): [OneResponse](../com.thunderhead.android.api.responsetypes/-one-response/index.md)?
 
 Send properties to ONE.
 
-### Parameters
+## Parameters
 
-`initializer` - [OneRequest.Builder](../com.thunderhead.android.api.interactions/-one-request/-builder/index.md) initializer to create a [OneRequest](../com.thunderhead.android.api.interactions/-one-request/index.md).
+androidJvm
 
-`throwErrors` - [Boolean](#) true to enable throwable errors. When enabled, wrap this method in a `try/catch` block.
+| | |
+|---|---|
+| initializer | [OneRequest.Builder](../com.thunderhead.android.api.interactions/-one-request/-builder/index.md) initializer to create a [OneRequest](../com.thunderhead.android.api.interactions/-one-request/index.md). |
+| throwErrors | Boolean true to enable throwable errors. When enabled, wrap this method in a try/catch block. |

@@ -1,26 +1,30 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneSDKError](./index.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneSDKError](index.md)
 
 # OneSDKError
 
-`class OneSDKError : Exception`
+[androidJvm]\
+class [OneSDKError](index.md)(**systemCode**: Int, **errorMessage**: String) : Exception
 
 Error used to specify that an SDK error was encountered.
 
-### Parameters
+## Parameters
 
-`systemCode` - SDK error code.
+androidJvm
 
-`errorMessage` - SDK error message
+| | |
+|---|---|
+| systemCode | SDK error code. |
+| errorMessage | SDK error message |
 
-### Constructors
+## Constructors
+
+| | |
+|---|---|
+| [OneSDKError](-one-s-d-k-error.md) | [androidJvm]<br>fun [OneSDKError](-one-s-d-k-error.md)(systemCode: Int, errorMessage: String)<br>SDK error code. |
+
+## Properties
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Error used to specify that an SDK error was encountered.`OneSDKError(systemCode: Int, errorMessage: String)` |
-
-### Properties
-
-| Name | Summary |
-|---|---|
-| [errorMessage](error-message.md) | SDK error message`val errorMessage: String` |
-| [systemCode](system-code.md) | SDK error code.`val systemCode: Int` |
+| [errorMessage](error-message.md) | [androidJvm]<br>val [errorMessage](error-message.md): String<br>SDK error message |
+| [systemCode](system-code.md) | [androidJvm]<br>val [systemCode](system-code.md): Int<br>SDK error code. |

@@ -1,5 +1,6 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.configuration](../index.md) / [OneConfiguration](index.md) / [equals](./equals.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.configuration](../index.md)/[OneConfiguration](index.md)/[equals](equals.md)
 
 # equals
 
-`fun equals(other: Any?): Boolean`
+[androidJvm]\
+open operator override fun [equals](equals.md)(other: Any?): Boolean

@@ -1,28 +1,29 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.optout](../../index.md) / [OneOptOutConfiguration](../index.md) / [Builder](./index.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.optout](../../index.md)/[OneOptOutConfiguration](../index.md)/[Builder](index.md)
 
 # Builder
 
-`class Builder`
+[androidJvm]\
+class [Builder](index.md)
 
 Builder to create [OneOptOutConfiguration](../index.md).
 
-### Constructors
+## Constructors
+
+| | |
+|---|---|
+| [Builder](-builder.md) | [androidJvm]<br>fun [Builder](-builder.md)() |
+
+## Functions
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Builder to create [OneOptOutConfiguration](../index.md).`Builder()` |
+| [build](build.md) | [androidJvm]<br>fun [build](build.md)(): [OneOptOutConfiguration](../index.md)<br>Create a [OneOptOutConfiguration](../index.md) from provided configuration. |
+| [optInOptions](opt-in-options.md) | [androidJvm]<br>fun [optInOptions](opt-in-options.md)(optInOptions: Set<[OptInOptions](../../-opt-in-options/index.md)>?): [OneOptOutConfiguration.Builder](index.md) |
+| [optOut](opt-out.md) | [androidJvm]<br>fun [optOut](opt-out.md)(optOut: Boolean?): [OneOptOutConfiguration.Builder](index.md) |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [optInOptions](opt-in-options.md) | [Set](#) Set of options that have opt in enabled.`var optInOptions: Set<`[`OptInOptions`](../../-opt-in-options/index.md)`>` |
-| [optOut](opt-out.md) | [Boolean](#) true to opt out of tracking. Privacy compliance method to completely stop tracking a customer's actions.`var optOut: Boolean` |
-
-### Functions
+## Properties
 
 | Name | Summary |
 |---|---|
-| [build](build.md) | Create a [OneOptOutConfiguration](../index.md) from provided configuration.`fun build(): `[`OneOptOutConfiguration`](../index.md) |
-| [optInOptions](opt-in-options.md) | `fun optInOptions(optInOptions: Set<`[`OptInOptions`](../../-opt-in-options/index.md)`>?): Builder` |
-| [optOut](opt-out.md) | `fun optOut(optOut: Boolean?): Builder` |
+| [optInOptions](opt-in-options.md) | [androidJvm]<br>var [optInOptions](opt-in-options.md): Set<[OptInOptions](../../-opt-in-options/index.md)><br>Set Set of options that have opt in enabled. |
+| [optOut](opt-out.md) | [androidJvm]<br>var [optOut](opt-out.md): Boolean = false<br>Boolean true to opt out of tracking. |

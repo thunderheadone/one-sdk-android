@@ -1,27 +1,28 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.interactions](../index.md) / [OneAutomaticInteractionExclusion](./index.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.interactions](../index.md)/[OneAutomaticInteractionExclusion](index.md)
 
 # OneAutomaticInteractionExclusion
 
-`class OneAutomaticInteractionExclusion`
+[androidJvm]\
+class [OneAutomaticInteractionExclusion](index.md)
 
 A class to configure an exclusion of an Automatic Interaction.
 
-### Types
+## Types
 
 | Name | Summary |
 |---|---|
-| [Builder](-builder/index.md) | Builder to create a [OneAutomaticInteractionExclusion](./index.md).`class Builder` |
+| [Builder](-builder/index.md) | [androidJvm]<br>class [Builder](-builder/index.md)<br>Builder to create a [OneAutomaticInteractionExclusion](index.md). |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [view](view.md) | [View](https://whatever/android/view/View.html) to exclude from Automatic Interaction Tracking.`val view: `[`View`](https://whatever/android/view/View.html)`?` |
-
-### Functions
+## Functions
 
 | Name | Summary |
 |---|---|
-| [equals](equals.md) | `fun equals(other: Any?): Boolean` |
-| [hashCode](hash-code.md) | `fun hashCode(): Int` |
-| [toString](to-string.md) | `fun toString(): String` |
+| [equals](equals.md) | [androidJvm]<br>open operator override fun [equals](equals.md)(other: Any?): Boolean |
+| [hashCode](hash-code.md) | [androidJvm]<br>open override fun [hashCode](hash-code.md)(): Int |
+| [toString](to-string.md) | [androidJvm]<br>open override fun [toString](to-string.md)(): String |
+
+## Properties
+
+| Name | Summary |
+|---|---|
+| [view](view.md) | [androidJvm]<br>val [view](view.md): View?<br>View to exclude from Automatic Interaction Tracking. |

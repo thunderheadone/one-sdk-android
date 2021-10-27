@@ -1,26 +1,27 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.identitytransfer](../../index.md) / [OneIdentityTransferConfiguration](../index.md) / [Builder](./index.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.identitytransfer](../../index.md)/[OneIdentityTransferConfiguration](../index.md)/[Builder](index.md)
 
 # Builder
 
-`class Builder`
+[androidJvm]\
+class [Builder](index.md)
 
 Builder to create [OneIdentityTransferConfiguration](../index.md).
 
-### Constructors
+## Constructors
+
+| | |
+|---|---|
+| [Builder](-builder.md) | [androidJvm]<br>fun [Builder](-builder.md)() |
+
+## Functions
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Builder to create [OneIdentityTransferConfiguration](../index.md).`Builder()` |
+| [build](build.md) | [androidJvm]<br>fun [build](build.md)(): [OneIdentityTransferConfiguration](../index.md)<br>Create a [OneIdentityTransferConfiguration](../index.md) from provided configuration. |
+| [disableIdentityTransfer](disable-identity-transfer.md) | [androidJvm]<br>fun [disableIdentityTransfer](disable-identity-transfer.md)(disableIdentityTransfer: Boolean?): [OneIdentityTransferConfiguration.Builder](index.md) |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [disableIdentityTransfer](disable-identity-transfer.md) | [Boolean](#) true to disable transfer of identity to outbound locations.`var disableIdentityTransfer: Boolean?` |
-
-### Functions
+## Properties
 
 | Name | Summary |
 |---|---|
-| [build](build.md) | Create a [OneIdentityTransferConfiguration](../index.md) from provided configuration.`fun build(): `[`OneIdentityTransferConfiguration`](../index.md) |
-| [disableIdentityTransfer](disable-identity-transfer.md) | `fun disableIdentityTransfer(disableIdentityTransfer: Boolean?): Builder` |
+| [disableIdentityTransfer](disable-identity-transfer.md) | [androidJvm]<br>var [disableIdentityTransfer](disable-identity-transfer.md): Boolean? = false<br>Boolean true to disable transfer of identity to outbound locations. |

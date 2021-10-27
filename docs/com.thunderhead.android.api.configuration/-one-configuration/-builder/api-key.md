@@ -1,20 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.configuration](../../index.md) / [OneConfiguration](../index.md) / [Builder](index.md) / [apiKey](./api-key.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.configuration](../../index.md)/[OneConfiguration](../index.md)/[Builder](index.md)/[apiKey](api-key.md)
 
 # apiKey
 
-`var apiKey: String?`
+[androidJvm]\
+fun [apiKey](api-key.md)(apiKey: String?): [OneConfiguration.Builder](index.md)
 
-The API key to authenticate with when making requests.
-This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
+## Parameters
 
-**Setter**
+androidJvm
 
-The API key to authenticate with when making requests.
-This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
+| | |
+|---|---|
+| apiKey | The API key to authenticate with when making requests. This can be found in ONE Admin -> API Credentials -> OAuth 1.0 Credentials in the Admin UI. |
 
-`fun apiKey(apiKey: String?): Builder`
+[androidJvm]\
+var [apiKey](api-key.md): String? = null
 
-### Parameters
-
-`apiKey` - The API key to authenticate with when making requests.
-This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
+The API key to authenticate with when making requests. This can be found in ONE Admin -> API Credentials -> OAuth 1.0 Credentials in the Admin UI.

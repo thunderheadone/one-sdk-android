@@ -1,20 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.configuration](../../index.md) / [OneConfiguration](../index.md) / [Builder](index.md) / [siteKey](./site-key.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.configuration](../../index.md)/[OneConfiguration](../index.md)/[Builder](index.md)/[siteKey](site-key.md)
 
 # siteKey
 
-`var siteKey: String?`
+[androidJvm]\
+fun [siteKey](site-key.md)(siteKey: String?): [OneConfiguration.Builder](index.md)
 
-The ONE workspace to configure the SDK with.
-This can be found in `ONE Config -> One Tag` in the Admin UI.
+## Parameters
 
-**Setter**
+androidJvm
 
-The ONE workspace to configure the SDK with.
-This can be found in `ONE Config -> One Tag` in the Admin UI.
+| | |
+|---|---|
+| siteKey | The ONE workspace to configure the SDK with. This can be found in ONE Config -> One Tag in the Admin UI. |
 
-`fun siteKey(siteKey: String?): Builder`
+[androidJvm]\
+var [siteKey](site-key.md): String? = null
 
-### Parameters
-
-`siteKey` - The ONE workspace to configure the SDK with.
-This can be found in `ONE Config -> One Tag` in the Admin UI.
+The ONE workspace to configure the SDK with. This can be found in ONE Config -> One Tag in the Admin UI.

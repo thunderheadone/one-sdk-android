@@ -1,5 +1,6 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.interactions](../index.md) / [OneInteractionPathAssignment](index.md) / [hashCode](./hash-code.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.interactions](../index.md)/[OneInteractionPathAssignment](index.md)/[hashCode](hash-code.md)
 
 # hashCode
 
-`fun hashCode(): Int`
+[androidJvm]\
+open override fun [hashCode](hash-code.md)(): Int

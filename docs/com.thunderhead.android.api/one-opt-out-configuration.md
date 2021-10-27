@@ -1,16 +1,20 @@
-[Thunderhead](../index.md) / [com.thunderhead.android.api](index.md) / [oneOptOutConfiguration](./one-opt-out-configuration.md)
+//[thunderhead-sdk](../../index.md)/[com.thunderhead.android.api](index.md)/[oneOptOutConfiguration](one-opt-out-configuration.md)
 
 # oneOptOutConfiguration
 
-`fun oneOptOutConfiguration(initializer: Builder.() -> Unit): `[`OneOptOutConfiguration`](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md)
+[androidJvm]\
+fun [oneOptOutConfiguration](one-opt-out-configuration.md)(initializer: [OneOptOutConfiguration.Builder](../com.thunderhead.android.api.optout/-one-opt-out-configuration/-builder/index.md).() -> Unit): [OneOptOutConfiguration](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md)
 
 Create a [OneOptOutConfiguration](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md) to configure Opt Out setting.
 
-### Parameters
+#### Return
 
-`initializer` - [OneOptOutConfiguration.Builder](../com.thunderhead.android.api.optout/-one-opt-out-configuration/-builder/index.md) initializer to create a
-[OneOptOutConfiguration](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md).
+[OneOptOutConfiguration](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md) to send to One.setOptOutConfiguration.
 
-**Return**
-[OneOptOutConfiguration](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md) to send to [One.setOptOutConfiguration](#).
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| initializer | [OneOptOutConfiguration.Builder](../com.thunderhead.android.api.optout/-one-opt-out-configuration/-builder/index.md) initializer to create a [OneOptOutConfiguration](../com.thunderhead.android.api.optout/-one-opt-out-configuration/index.md). |

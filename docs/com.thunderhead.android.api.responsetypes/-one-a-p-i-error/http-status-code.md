@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.responsetypes](../index.md) / [OneAPIError](index.md) / [httpStatusCode](./http-status-code.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.responsetypes](../index.md)/[OneAPIError](index.md)/[httpStatusCode](http-status-code.md)
 
 # httpStatusCode
 
-`val httpStatusCode: Int`
+[androidJvm]\
+val [httpStatusCode](http-status-code.md): Int
 
-API system error code.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| httpStatusCode | API system error code. |

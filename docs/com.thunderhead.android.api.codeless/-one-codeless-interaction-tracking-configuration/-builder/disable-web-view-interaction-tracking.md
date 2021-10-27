@@ -1,17 +1,19 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.codeless](../../index.md) / [OneCodelessInteractionTrackingConfiguration](../index.md) / [Builder](index.md) / [disableWebViewInteractionTracking](./disable-web-view-interaction-tracking.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.codeless](../../index.md)/[OneCodelessInteractionTrackingConfiguration](../index.md)/[Builder](index.md)/[disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md)
 
 # disableWebViewInteractionTracking
 
-`var disableWebViewInteractionTracking: Boolean?`
+[androidJvm]\
+fun [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md)(disableWebViewInteractionTracking: Boolean?): [OneCodelessInteractionTrackingConfiguration.Builder](index.md)
 
-[Boolean](#) to disable interaction tracking of `WebView` URLs.
+## Parameters
 
-**Setter**
+androidJvm
 
-[Boolean](#) to disable interaction tracking of `WebView` URLs.
+| | |
+|---|---|
+| disableWebViewInteractionTracking | Boolean to disable interaction tracking of WebView URLs. |
 
-`fun disableWebViewInteractionTracking(disableWebViewInteractionTracking: Boolean?): Builder`
+[androidJvm]\
+var [disableWebViewInteractionTracking](disable-web-view-interaction-tracking.md): Boolean? = false
 
-### Parameters
-
-`disableWebViewInteractionTracking` - [Boolean](#) to disable interaction tracking of `WebView` URLs.
+Boolean to disable interaction tracking of WebView URLs.

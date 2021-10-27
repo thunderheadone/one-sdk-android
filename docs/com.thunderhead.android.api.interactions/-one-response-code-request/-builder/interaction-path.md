@@ -1,19 +1,21 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.interactions](../../index.md) / [OneResponseCodeRequest](../index.md) / [Builder](index.md) / [interactionPath](./interaction-path.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.interactions](../../index.md)/[OneResponseCodeRequest](../index.md)/[Builder](index.md)/[interactionPath](interaction-path.md)
 
 # interactionPath
 
-`var interactionPath: `[`OneInteractionPath`](../../-one-interaction-path/index.md)
-
-The string path for the interaction.
-
-**Setter**
-
-The string path for the interaction.
-
-`fun interactionPath(interactionPath: `[`OneInteractionPath`](../../-one-interaction-path/index.md)`?): Builder`
+[androidJvm]\
+fun [interactionPath](interaction-path.md)(interactionPath: [OneInteractionPath](../../-one-interaction-path/index.md)?): [OneResponseCodeRequest.Builder](index.md)
 
 Used to set the interaction path.
 
-### Parameters
+## Parameters
 
-`interactionPath` - OneInteractionPath object containing the path value.
+androidJvm
+
+| | |
+|---|---|
+| interactionPath | OneInteractionPath object containing the path value. |
+
+[androidJvm]\
+var [interactionPath](interaction-path.md): [OneInteractionPath](../../-one-interaction-path/index.md)
+
+The string path for the interaction.

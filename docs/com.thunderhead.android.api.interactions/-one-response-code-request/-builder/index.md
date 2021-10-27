@@ -1,28 +1,29 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.interactions](../../index.md) / [OneResponseCodeRequest](../index.md) / [Builder](./index.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.interactions](../../index.md)/[OneResponseCodeRequest](../index.md)/[Builder](index.md)
 
 # Builder
 
-`class Builder`
+[androidJvm]\
+class [Builder](index.md)
 
 Builder for creating a [OneResponseCodeRequest](../index.md).
 
-### Constructors
+## Constructors
+
+| | |
+|---|---|
+| [Builder](-builder.md) | [androidJvm]<br>fun [Builder](-builder.md)() |
+
+## Functions
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Builder for creating a [OneResponseCodeRequest](../index.md).`Builder()` |
+| [build](build.md) | [androidJvm]<br>fun [build](build.md)(): [OneResponseCodeRequest](../index.md)<br>Creates the [OneResponseCodeRequest](../index.md) to be sent to the Thunderhead API. |
+| [interactionPath](interaction-path.md) | [androidJvm]<br>fun [interactionPath](interaction-path.md)(interactionPath: [OneInteractionPath](../../-one-interaction-path/index.md)?): [OneResponseCodeRequest.Builder](index.md)<br>Used to set the interaction path. |
+| [responseCode](response-code.md) | [androidJvm]<br>fun [responseCode](response-code.md)(responseCode: [OneResponseCode](../../-one-response-code/index.md)?): [OneResponseCodeRequest.Builder](index.md)<br>Used to set the response code. |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [interactionPath](interaction-path.md) | The string path for the interaction.`var interactionPath: `[`OneInteractionPath`](../../-one-interaction-path/index.md) |
-| [responseCode](response-code.md) | The value of the response code.`var responseCode: `[`OneResponseCode`](../../-one-response-code/index.md) |
-
-### Functions
+## Properties
 
 | Name | Summary |
 |---|---|
-| [build](build.md) | Creates the [OneResponseCodeRequest](../index.md) to be sent to the Thunderhead API.`fun build(): `[`OneResponseCodeRequest`](../index.md) |
-| [interactionPath](interaction-path.md) | Used to set the interaction path.`fun interactionPath(interactionPath: `[`OneInteractionPath`](../../-one-interaction-path/index.md)`?): Builder` |
-| [responseCode](response-code.md) | Used to set the response code.`fun responseCode(responseCode: `[`OneResponseCode`](../../-one-response-code/index.md)`?): Builder` |
+| [interactionPath](interaction-path.md) | [androidJvm]<br>var [interactionPath](interaction-path.md): [OneInteractionPath](../../-one-interaction-path/index.md)<br>The string path for the interaction. |
+| [responseCode](response-code.md) | [androidJvm]<br>var [responseCode](response-code.md): [OneResponseCode](../../-one-response-code/index.md)<br>The value of the response code. |

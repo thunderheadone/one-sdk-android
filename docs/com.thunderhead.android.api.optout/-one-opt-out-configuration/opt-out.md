@@ -1,8 +1,14 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.optout](../index.md) / [OneOptOutConfiguration](index.md) / [optOut](./opt-out.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.optout](../index.md)/[OneOptOutConfiguration](index.md)/[optOut](opt-out.md)
 
 # optOut
 
-`val optOut: Boolean`
+[androidJvm]\
+val [optOut](opt-out.md): Boolean = false
 
-[Boolean](#) true to opt out of tracking.
+## Parameters
 
+androidJvm
+
+| | |
+|---|---|
+| optOut | Boolean true to opt out of tracking. |

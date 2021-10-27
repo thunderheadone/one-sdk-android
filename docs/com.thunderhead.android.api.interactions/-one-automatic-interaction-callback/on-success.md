@@ -1,16 +1,21 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.interactions](../index.md) / [OneAutomaticInteractionCallback](index.md) / [onSuccess](./on-success.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.interactions](../index.md)/[OneAutomaticInteractionCallback](index.md)/[onSuccess](on-success.md)
 
 # onSuccess
 
-`fun onSuccess(successHandler: (`[`OneResponse`](../../com.thunderhead.android.api.responsetypes/-one-response/index.md)`) -> Unit): Unit`
+[androidJvm]\
+fun [onSuccess](on-success.md)(successHandler: ([OneResponse](../../com.thunderhead.android.api.responsetypes/-one-response/index.md)) -> Unit)
 
-Provide a success handler for processing *automatic*
-interaction requests.
+Provide a success handler for processing *automatic* interaction requests.
 
-`fun onSuccess(response: `[`OneResponse`](../../com.thunderhead.android.api.responsetypes/-one-response/index.md)`): Unit`
+[androidJvm]\
+open override fun [onSuccess](on-success.md)(response: [OneResponse](../../com.thunderhead.android.api.responsetypes/-one-response/index.md))
 
 Called after a successfully completed network call.
 
-### Parameters
+## Parameters
 
-`response` - response body.
+androidJvm
+
+| | |
+|---|---|
+| response | response body. |

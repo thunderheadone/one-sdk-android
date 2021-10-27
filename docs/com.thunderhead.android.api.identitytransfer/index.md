@@ -1,9 +1,9 @@
-[Thunderhead](../index.md) / [com.thunderhead.android.api.identitytransfer](./index.md)
+//[thunderhead-sdk](../../index.md)/[com.thunderhead.android.api.identitytransfer](index.md)
 
-## Package com.thunderhead.android.api.identitytransfer
+# Package com.thunderhead.android.api.identitytransfer
 
-### Types
+## Types
 
 | Name | Summary |
 |---|---|
-| [OneIdentityTransferConfiguration](-one-identity-transfer-configuration/index.md) | Configuration object for Thunderhead SDK Identity Transfer.`class OneIdentityTransferConfiguration` |
+| [OneIdentityTransferConfiguration](-one-identity-transfer-configuration/index.md) | [androidJvm]<br>class [OneIdentityTransferConfiguration](-one-identity-transfer-configuration/index.md)<br>Configuration object for Thunderhead SDK Identity Transfer. |

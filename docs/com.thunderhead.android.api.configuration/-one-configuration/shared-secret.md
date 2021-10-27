@@ -1,13 +1,6 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.configuration](../index.md) / [OneConfiguration](index.md) / [sharedSecret](./shared-secret.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.configuration](../index.md)/[OneConfiguration](index.md)/[sharedSecret](shared-secret.md)
 
 # sharedSecret
 
-`val sharedSecret: String?`
-
-The shared secret to authenticate with when making requests.
-This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
-
-### Property
-
-`sharedSecret` - The shared secret to authenticate with when making requests.
-This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.
+[androidJvm]\
+val [sharedSecret](shared-secret.md): String? = null

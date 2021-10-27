@@ -1,35 +1,33 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.interactions](../index.md) / [OneInteractionPathAssignment](./index.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.interactions](../index.md)/[OneInteractionPathAssignment](index.md)
 
 # OneInteractionPathAssignment
 
-`class OneInteractionPathAssignment`
+[androidJvm]\
+class [OneInteractionPathAssignment](index.md)
 
-Configuration class used to assign a custom Interaction path to
-an activity content view or a fragment root view.
+Configuration class used to assign a custom Interaction path to an activity content view or a fragment root view.
 
 Create an instance using the [Builder](-builder/index.md).
 
-See [com.thunderhead.One.assignInteractionPath](#)
-See [com.thunderhead.android.api.assignInteractionPath](../../com.thunderhead.android.api/android.view.-view/assign-interaction-path.md)
-See [com.thunderhead.android.api.oneInteractionPathAssignment](../../com.thunderhead.android.api/one-interaction-path-assignment.md)
+See com.thunderhead.One.assignInteractionPath See [com.thunderhead.android.api.assignInteractionPath](../../com.thunderhead.android.api/assign-interaction-path.md) See [com.thunderhead.android.api.oneInteractionPathAssignment](../../com.thunderhead.android.api/one-interaction-path-assignment.md)
 
-### Types
+## Types
 
 | Name | Summary |
 |---|---|
-| [Builder](-builder/index.md) | Builder to create a [OneInteractionPathAssignment](./index.md).`class Builder` |
+| [Builder](-builder/index.md) | [androidJvm]<br>class [Builder](-builder/index.md)<br>Builder to create a [OneInteractionPathAssignment](index.md). |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [interactionPath](interaction-path.md) | The Interaction path to assign to a given view.`val interactionPath: `[`OneInteractionPath`](../-one-interaction-path/index.md)`?` |
-| [view](view.md) | The [View](https://whatever/android/view/View.html) to assign an Interaction path to. This should be the content view of an activity or the root view of a fragment.`val view: `[`View`](https://whatever/android/view/View.html)`?` |
-
-### Functions
+## Functions
 
 | Name | Summary |
 |---|---|
-| [equals](equals.md) | `fun equals(other: Any?): Boolean` |
-| [hashCode](hash-code.md) | `fun hashCode(): Int` |
-| [toString](to-string.md) | `fun toString(): String` |
+| [equals](equals.md) | [androidJvm]<br>open operator override fun [equals](equals.md)(other: Any?): Boolean |
+| [hashCode](hash-code.md) | [androidJvm]<br>open override fun [hashCode](hash-code.md)(): Int |
+| [toString](to-string.md) | [androidJvm]<br>open override fun [toString](to-string.md)(): String |
+
+## Properties
+
+| Name | Summary |
+|---|---|
+| [interactionPath](interaction-path.md) | [androidJvm]<br>val [interactionPath](interaction-path.md): [OneInteractionPath](../-one-interaction-path/index.md)?<br>The Interaction path to assign to a given view. |
+| [view](view.md) | [androidJvm]<br>val [view](view.md): View?<br>The View to assign an Interaction path to. |

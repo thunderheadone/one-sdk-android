@@ -1,38 +1,39 @@
-[Thunderhead](../../../index.md) / [com.thunderhead.android.api.configuration](../../index.md) / [OneConfiguration](../index.md) / [Builder](./index.md)
+//[thunderhead-sdk](../../../../index.md)/[com.thunderhead.android.api.configuration](../../index.md)/[OneConfiguration](../index.md)/[Builder](index.md)
 
 # Builder
 
-`class Builder`
+[androidJvm]\
+class [Builder](index.md)
 
 Builder to create a [OneConfiguration](../index.md).
 
-### Constructors
+## Constructors
+
+| | |
+|---|---|
+| [Builder](-builder.md) | [androidJvm]<br>fun [Builder](-builder.md)() |
+
+## Functions
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Builder to create a [OneConfiguration](../index.md).`Builder()` |
+| [apiKey](api-key.md) | [androidJvm]<br>fun [apiKey](api-key.md)(apiKey: String?): [OneConfiguration.Builder](index.md) |
+| [build](build.md) | [androidJvm]<br>fun [build](build.md)(): [OneConfiguration](../index.md)<br>Creates the [OneConfiguration](../index.md) used to configure the SDK. |
+| [host](host.md) | [androidJvm]<br>fun [host](host.md)(host: URI?): [OneConfiguration.Builder](index.md) |
+| [mode](mode.md) | [androidJvm]<br>fun [mode](mode.md)(mode: OneModes?): [OneConfiguration.Builder](index.md) |
+| [sharedSecret](shared-secret.md) | [androidJvm]<br>fun [sharedSecret](shared-secret.md)(sharedSecret: String?): [OneConfiguration.Builder](index.md) |
+| [siteKey](site-key.md) | [androidJvm]<br>fun [siteKey](site-key.md)(siteKey: String?): [OneConfiguration.Builder](index.md) |
+| [touchpoint](touchpoint.md) | [androidJvm]<br>fun [touchpoint](touchpoint.md)(touchpoint: URI?): [OneConfiguration.Builder](index.md) |
+| [userId](user-id.md) | [androidJvm]<br>fun [userId](user-id.md)(userId: String?): [OneConfiguration.Builder](index.md) |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [apiKey](api-key.md) | The API key to authenticate with when making requests. This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.`var apiKey: String?` |
-| [host](host.md) | The ONE host to send data to.`var host: `[`URI`](https://whatever/java/net/URI.html)`?` |
-| [mode](mode.md) | The Mode of the Thunderhead SDK. [OneModes.ADMIN_MODE](#) should be used when updating the ONE workspace. [OneModes.USER_MODE](#) should be used in production when uploaded to the play store.`var mode: OneModes?` |
-| [sharedSecret](shared-secret.md) | The shared secret to authenticate with when making requests. This can be found in `ONE Admin -> API Credentials -> OAuth 1.0 Credentials` in the Admin UI.`var sharedSecret: String?` |
-| [siteKey](site-key.md) | The ONE workspace to configure the SDK with. This can be found in `ONE Config -> One Tag` in the Admin UI.`var siteKey: String?` |
-| [touchpoint](touchpoint.md) | The ONE touchpoint to configure the SDK with. This can be found in `ONE Collect -> Touchpoints` in the Admin UI.`var touchpoint: `[`URI`](https://whatever/java/net/URI.html)`?` |
-| [userId](user-id.md) | The user ID that the [apiKey](api-key.md) &amp; [sharedSecret](shared-secret.md) represent.`var userId: String?` |
-
-### Functions
+## Properties
 
 | Name | Summary |
 |---|---|
-| [apiKey](api-key.md) | `fun apiKey(apiKey: String?): Builder` |
-| [build](build.md) | Creates the [OneConfiguration](../index.md) used to configure the SDK.`fun build(): `[`OneConfiguration`](../index.md) |
-| [host](host.md) | `fun host(host: `[`URI`](https://whatever/java/net/URI.html)`?): Builder` |
-| [mode](mode.md) | `fun mode(mode: OneModes?): Builder` |
-| [sharedSecret](shared-secret.md) | `fun sharedSecret(sharedSecret: String?): Builder` |
-| [siteKey](site-key.md) | `fun siteKey(siteKey: String?): Builder` |
-| [touchpoint](touchpoint.md) | `fun touchpoint(touchpoint: `[`URI`](https://whatever/java/net/URI.html)`?): Builder` |
-| [userId](user-id.md) | `fun userId(userId: String?): Builder` |
+| [apiKey](api-key.md) | [androidJvm]<br>var [apiKey](api-key.md): String? = null<br>The API key to authenticate with when making requests. |
+| [host](host.md) | [androidJvm]<br>var [host](host.md): URI? = null<br>The ONE host to send data to. |
+| [mode](mode.md) | [androidJvm]<br>var [mode](mode.md): OneModes?<br>The Mode of the Thunderhead SDK. |
+| [sharedSecret](shared-secret.md) | [androidJvm]<br>var [sharedSecret](shared-secret.md): String? = null<br>The shared secret to authenticate with when making requests. |
+| [siteKey](site-key.md) | [androidJvm]<br>var [siteKey](site-key.md): String? = null<br>The ONE workspace to configure the SDK with. |
+| [touchpoint](touchpoint.md) | [androidJvm]<br>var [touchpoint](touchpoint.md): URI? = null<br>The ONE touchpoint to configure the SDK with. |
+| [userId](user-id.md) | [androidJvm]<br>var [userId](user-id.md): String? = null<br>The user ID that the [apiKey](api-key.md) & [sharedSecret](shared-secret.md) represent. |

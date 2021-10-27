@@ -1,37 +1,33 @@
-[Thunderhead](../../index.md) / [com.thunderhead.android.api.logging](../index.md) / [OneLoggingConfiguration](./index.md)
+//[thunderhead-sdk](../../../index.md)/[com.thunderhead.android.api.logging](../index.md)/[OneLoggingConfiguration](index.md)
 
 # OneLoggingConfiguration
 
-`class OneLoggingConfiguration`
+[androidJvm]\
+class [OneLoggingConfiguration](index.md)
 
 A logging configuration object for the Thunderhead SDK.
 
 Use the [Builder](-builder/index.md) for creating a new instance.
 
-### Types
+## Types
 
 | Name | Summary |
 |---|---|
-| [Builder](-builder/index.md) | Builder to create a [OneLoggingConfiguration](./index.md).`class Builder` |
+| [Builder](-builder/index.md) | [androidJvm]<br>class [Builder](-builder/index.md)<br>Builder to create a [OneLoggingConfiguration](index.md). |
+| [Companion](-companion/index.md) | [androidJvm]<br>object [Companion](-companion/index.md) |
 
-### Properties
-
-| Name | Summary |
-|---|---|
-| [components](components.md) | A `Set` of [Component](../-component/index.md)s. Components are a feature or technical concept such as Networking or Database. Use the [Component.ANY](../-component/-a-n-y.md) component to log messages for all of the SDK in conjunction with the log level.`val components: Set<`[`Component`](../-component/index.md)`>` |
-| [levels](levels.md) | A `Set` of [LogLevel](../-log-level/index.md)s. If a singular level is set then the SDK will log messages of that level and above in conjunction with the [components](components.md). The order from bottom up is VERBOSE, DEBUG, ERROR, WARN, INFO, ASSERT. *Example*: Setting VERBOSE will log all messages. *Example*: Setting INFO will log only INFO and ASSERT messages.`val levels: Set<`[`LogLevel`](../-log-level/index.md)`>` |
-| [logWriters](log-writers.md) | A `Set` of custom loggers ([LogWriter](../-log-writer/index.md)).`val logWriters: Set<`[`LogWriter`](../-log-writer/index.md)`>` |
-
-### Functions
+## Functions
 
 | Name | Summary |
 |---|---|
-| [equals](equals.md) | `fun equals(other: Any?): Boolean` |
-| [hashCode](hash-code.md) | `fun hashCode(): Int` |
-| [toString](to-string.md) | `fun toString(): String` |
+| [equals](equals.md) | [androidJvm]<br>open operator override fun [equals](equals.md)(other: Any?): Boolean |
+| [hashCode](hash-code.md) | [androidJvm]<br>open override fun [hashCode](hash-code.md)(): Int |
+| [toString](to-string.md) | [androidJvm]<br>open override fun [toString](to-string.md)(): String |
 
-### Companion Object Functions
+## Properties
 
 | Name | Summary |
 |---|---|
-| [builder](builder.md) | Convenience Java Factory Function to create a [Builder](-builder/index.md).`fun builder(): Builder`<br>Convenience Java Factory Function to create a [Builder](-builder/index.md) that is pre-populated with values from another [OneLoggingConfiguration](./index.md).`fun builder(oneLoggingConfiguration: `[`OneLoggingConfiguration`](./index.md)`?): Builder` |
+| [components](components.md) | [androidJvm]<br>val [components](components.md): Set<[Component](../-component/index.md)><br>A Set of [Component](../-component/index.md)s. |
+| [levels](levels.md) | [androidJvm]<br>val [levels](levels.md): Set<[LogLevel](../-log-level/index.md)><br>A Set of [LogLevel](../-log-level/index.md)s. |
+| [logWriters](log-writers.md) | [androidJvm]<br>val [logWriters](log-writers.md): Set<[LogWriter](../-log-writer/index.md)><br>A Set of custom loggers ([LogWriter](../-log-writer/index.md)). |
