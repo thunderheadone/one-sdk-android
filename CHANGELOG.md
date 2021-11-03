@@ -1,3 +1,6 @@
+#### Version 11.0.1
+* [BUGFIX] Fixed a build time error where `org.aspectj:aspectjtools:1.9.7.M1` could not be found. This will require [Orchestration Plugin version 6.0.1](https://github.com/thunderheadone/one-android-orchestration-plugin/releases/tag/6.0.1).
+
 #### Version 11.0.0
 * [BREAKING] Changed the SDK target to API 30.
 * [BREAKING] Requires [Android Gradle Plugin 4.2](https://developer.android.com/studio/releases/gradle-plugin).
