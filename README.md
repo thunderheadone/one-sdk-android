@@ -78,7 +78,7 @@
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:11.0.0"
+      implementation "com.thunderhead.android:one-sdk:11.0.1"
     }
     ```
     
@@ -86,7 +86,7 @@
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:11.0.0"
+      implementation "com.thunderhead.android:is-sdk:11.0.1"
     }
     ```
 
@@ -138,17 +138,13 @@
             google()
             mavenCentral()
             maven {
-                name 'ThunderheadSpringMilestone'
-                url = 'https://repo.spring.io/milestone'
-            }
-            maven {
                 name 'Thunderhead'
                 url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
             }
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:4.2.0'
-            classpath 'com.thunderhead.android:orchestration-plugin:6.0.0'
+            classpath 'com.thunderhead.android:orchestration-plugin:6.0.1'
         }
     }
     ```
@@ -165,17 +161,13 @@ buildscript {
         google()
         mavenCentral()
         maven {
-            name 'ThunderheadSpringMilestone'
-            url = 'https://repo.spring.io/milestone'
-        }
-        maven {
             name 'Thunderhead'
             url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
         }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.0'
-        classpath 'com.thunderhead.android:orchestration-plugin:6.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:6.0.1'
     }
 }
 
@@ -213,7 +205,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:11.0.0"
+  implementation "com.thunderhead.android:one-sdk:11.0.1"
 }
 
 repositories {
@@ -234,17 +226,13 @@ buildscript {
         google()
         mavenCentral()
         maven {
-            name 'ThunderheadSpringMilestone'
-            url = 'https://repo.spring.io/milestone'
-        }
-        maven {
             name 'Thunderhead'
             url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
         }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.0'
-        classpath 'com.thunderhead.android:orchestration-plugin:6.0.0'
+        classpath 'com.thunderhead.android:orchestration-plugin:6.0.1'
     }
 }
 
@@ -281,7 +269,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:11.0.0"
+  implementation "com.thunderhead.android:is-sdk:11.0.1"
 }
 
 repositories {
@@ -1937,7 +1925,7 @@ To completely remove the codeless identity transfer functionality for Android, m
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 
 ```gradle 
-classpath 'com.thunderhead.android:orchestration-plugin:6.0.0'
+classpath 'com.thunderhead.android:orchestration-plugin:6.0.1'
 ```
 
 2. Open the **app-level** `build.gradle` file and remove the following references.
