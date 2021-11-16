@@ -1,3 +1,6 @@
+#### Version 11.0.2
+* [BUGFIX] Fixed an issue where not configured specifically `one-click` interaction was still sent.
+
 #### Version 11.0.1
 * [BUGFIX] Fixed a build time error where `org.aspectj:aspectjtools:1.9.7.M1` could not be found. This will require [Orchestration Plugin version 6.0.1](https://github.com/thunderheadone/one-android-orchestration-plugin/releases/tag/6.0.1).
 
