@@ -1,5 +1,8 @@
+#### Version 11.0.3
+* [BUGFIX] Added `null` guards for contractual violations in [Android Go Edition](https://www.android.com/versions/go-edition/).
+
 #### Version 11.0.2
-* [BUGFIX] Fixed an issue where not configured specifically `one-click` interaction was still sent.
+* [UPDATE] Improved codeless tracking to only send outbound link requests based on the Interaction Points specifically configured under the Touchpoint.
 
 #### Version 11.0.1
 * [BUGFIX] Fixed a build time error where `org.aspectj:aspectjtools:1.9.7.M1` could not be found. This will require [Orchestration Plugin version 6.0.1](https://github.com/thunderheadone/one-android-orchestration-plugin/releases/tag/6.0.1).
