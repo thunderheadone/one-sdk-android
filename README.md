@@ -36,8 +36,8 @@
         * [Example: Retrieve a response for a manually assigned Interaction](#example-retrieve-a-response-for-a-manually-assigned-interaction)
         * [Optional response processing](#optional-response-processing)
     * [Assign an Interaction to a View](#assign-an-interaction-to-a-view)
-    * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
-    * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
+    * [Ability to include identity transfer links](#ability-to-include-identity-transfer-links)
+    * [Ability to exclude identity transfer links](#ability-to-exclude-identity-transfer-links)
     * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
         * [Send deep link properties programmatically](#send-deep-link-properties-programmatically)
         * [Create a `URL` with a `one-tid` parameter to facilitate identity transfer](#create-a-url-with-a-one-tid-parameter-to-facilitate-identity-transfer)
@@ -78,7 +78,7 @@
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:11.0.3"
+      implementation "com.thunderhead.android:one-sdk:11.1.0"
     }
     ```
     
@@ -86,7 +86,7 @@
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:11.0.3"
+      implementation "com.thunderhead.android:is-sdk:11.1.0"
     }
     ```
 
@@ -205,7 +205,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:11.0.3"
+  implementation "com.thunderhead.android:one-sdk:11.1.0"
 }
 
 repositories {
@@ -269,7 +269,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:11.0.3"
+  implementation "com.thunderhead.android:is-sdk:11.1.0"
 }
 
 repositories {
@@ -286,20 +286,24 @@ For further documentation on the `orchestration-plugin` please see the [Orchestr
 
 Enable your app to automatically recognize **Interactions** in your app, by executing the following steps:
 
-*Developer note:* Android Studio `Instant Run` is not currently supported and must be disabled.
+* *Developer note:* Android Studio `Instant Run` is not currently supported and must be disabled.
 
 ### Set up the SDK in User mode for Play Store builds
 
 To start capturing insights and configuring orchestrations in User mode, you must first configure the Thunderhead SDK with your Thunderhead API parameters. 
 You can find your Thunderhead API parameters on the _API Credentials_ page in Thunderhead ONE or Salesforce Interaction Studio.
 
+For more information on finding these parameters: 
+* For **Thunderhead ONE** integrations, see [Find the Information required when Integrating ONE with your Mobile Solutions](https://permalink.thunderhead.com/mobile-docs/one-mobile-integration-info) 
+* For **Salesforce Interaction Studio** integrations, see [Find the Information required when Integrating Interaction Studio with your Mobile App](https://permalink.thunderhead.com/mobile-docs/is-mobile-integration-info) 
+
 When you have your parameters, configure the SDK. We recommend adding the following lines of code for User Mode under the Application’s subclass `onCreate()` method, though this is not required. 
 You must ensure the `oneConfigure` top-level Kotlin function or `setConfiguration` Java method is invoked after `super.onCreate()` is called.
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.oneConfigure
-import com.thunderhead.OneModes;
+import com.thunderhead.mobile.oneConfigure
+import com.thunderhead.mobile.configuration.OneMode;
 // The rest of the imports
 
 class YourApplication : Application() {
@@ -312,7 +316,7 @@ class YourApplication : Application() {
             userId = USER_ID
             host = URI(HOST)
             touchpoint = URI(TOUCHPOINT)
-            mode = OneModes.USER_MODE
+            mode = OneMode.USER
         }
     }
     
@@ -320,7 +324,7 @@ class YourApplication : Application() {
         const val SITE_KEY = "ONE-XXXXXXXXXX-1022"
         const val API_KEY = "f713d44a-8af0-4e79-ba7e-xxxxxxxxx"
         const val SHARED_SECRET = "bb8bacb2-ffc2-4c52-aaf4-xxx"
-        const val USER_ID = "yourUsername@yourCompanyName"
+        const val USER_ID = "yourUsername@yourCompanyName" // For Interaction Studio integrations use a numeric user id - see https://permalink.thunderhead.com/mobile-docs/is-mobile-integration-info-credentials
         const val HOST = "https://xx.thunderhead.com"
         const val TOUCHPOINT = "myAppsNameURI"
     }
@@ -329,9 +333,9 @@ class YourApplication : Application() {
 
 `Java`
 ```java 
-import com.thunderhead.android.api.configuration.OneConfiguration;
-import com.thunderhead.One;
-import com.thunderhead.OneModes;
+import com.thunderhead.mobile.configuration.OneConfiguration;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.configuration.OneMode;
 // The rest of the imports
 
 public class YourApplication extends Application {
@@ -339,7 +343,7 @@ public class YourApplication extends Application {
   private static final String siteKey = "ONE-XXXXXXXXXX-1022";
   private static final String apiKey = "f713d44a-8af0-4e79-ba7e-xxxxxxxxx";
   private static final String sharedSecret = "bb8bacb2-ffc2-4c52-aaf4-xxx";
-  private static final String userId = "yourUsername@yourCompanyName";
+  private static final String userId = "yourUsername@yourCompanyName"; // For Interaction Studio integrations use a numeric user id - see https://permalink.thunderhead.com/mobile-docs/is-mobile-integration-info-credentials
   private static final String host = "https://xx.thunderhead.com";
   private static final String touchpointURI = "myAppsNameURI";
   
@@ -353,7 +357,7 @@ public class YourApplication extends Application {
         .userId(userId)
         .host(URI.create(host))
         .touchpoint(URI.create(touchpointURI))
-        .mode(OneModes.USER_MODE)
+        .mode(OneMode.USER)
         .build();
 
         One.setConfiguration(oneConfiguration);
@@ -363,7 +367,7 @@ public class YourApplication extends Application {
 
 ### Set up the SDK in Admin mode for internal distribution
 
-To use the SDK in Admin mode, change the `OneModes` parameter to `OneModes.ADMIN_MODE`.
+To use the SDK in Admin mode, change the `mode` parameter to `OneMode.ADMIN`.
 
 *Note:* 
 - If you are running in Admin mode on Android 6.0+, you must enable the “draw over other apps” permission through your OS settings. 
@@ -421,7 +425,7 @@ To opt an end-user out of tracking, when the end-user does not give permission t
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.oneConfigureOptOut
+import com.thunderhead.mobile.oneConfigureOptOut
 
 oneConfigureOptOut {
     optOut = true
@@ -430,8 +434,8 @@ oneConfigureOptOut {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.optout.OneOptOutConfiguration;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.optout.OneOptOutConfiguration;
 
 final OneOptOutConfiguration optOutConfiguration = new OneOptOutConfiguration.Builder()
             .optOut(true)
@@ -453,11 +457,11 @@ Examples of how to opt in to city/country level tracking
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.oneConfigureOptOut
-import com.thunderhead.android.api.optout.OptInOptions
+import com.thunderhead.mobile.oneConfigureOptOut
+import com.thunderhead.mobile.optout.OneOptInOptions
 
-val options = EnumSet.noneOf(OptInOptions::class.java)
-options.add(OptInOptions.CITY_COUNTRY_DETECTION)
+val options = EnumSet.noneOf(OneOptInOptions::class.java)
+options.add(OneOptInOptions.CITY_COUNTRY_DETECTION)
 oneConfigureOptOut {
     optOut = false
     optInOptions = options
@@ -466,12 +470,12 @@ oneConfigureOptOut {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.optout.OneOptOutConfiguration;
-import com.thunderhead.android.api.optout.OptInOptions;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.optout.OneOptOutConfiguration;
+import com.thunderhead.mobile.optout.OneOptInOptions;
 
-Set<OptInOptions> options = EnumSet.noneOf(OptInOptions.class);
-options.add(OptInOptions.CITY_COUNTRY_DETECTION);
+Set<OneOptInOptions> options = EnumSet.noneOf(OneOptInOptions.class);
+options.add(OneOptInOptions.CITY_COUNTRY_DETECTION);
 final OneOptOutConfiguration optOutConfiguration = new OneOptOutConfiguration.Builder()
             .optOut(false)
             .optInOptions(options)
@@ -484,10 +488,10 @@ Examples of how to opt out of city/country level tracking
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.oneConfigureOptOut
-import com.thunderhead.android.api.optout.OptInOptions
+import com.thunderhead.mobile.oneConfigureOptOut
+import com.thunderhead.mobile.optout.OneOptInOptions
 
-val options = EnumSet.noneOf(OptInOptions::class.java)
+val options = EnumSet.noneOf(OneOptInOptions::class.java)
 oneConfigureOptOut {
     optOut = false
     optInOptions = options
@@ -496,11 +500,11 @@ oneConfigureOptOut {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.optout.OneOptOutConfiguration;
-import com.thunderhead.android.api.optout.OptInOptions;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.optout.OneOptOutConfiguration;
+import com.thunderhead.mobile.optout.OneOptInOptions;
 
-Set<OptInOptions> options = EnumSet.noneOf(OptInOptions.class);
+Set<OneOptInOptions> options = EnumSet.noneOf(OneOptInOptions.class);
 final OneOptOutConfiguration optOutConfiguration = new OneOptOutConfiguration.Builder()
             .optOut(false)
             .optInOptions(options)
@@ -519,7 +523,7 @@ Exclude a specific view from being automatically recognized as an Interaction, u
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.excludeAutomaticInteraction
+import com.thunderhead.mobile.excludeAutomaticInteraction
 // rest of imports
 
 override fun onCreate(savedInstanceState: Bundle?) {
@@ -531,6 +535,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 `Java`
 ```java
+import com.thunderhead.mobile.interactions.OneAutomaticInteractionExclusion;
+// rest of imports
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
                          Bundle savedInstanceState) {
@@ -550,7 +556,7 @@ the `One.setCodelessInteractionTrackingConfiguration` Java method with the appro
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.oneConfigureCodelessInteractionTracking
+import com.thunderhead.mobile.oneConfigureCodelessInteractionTracking
 
 oneConfigureCodelessInteractionTracking {
     // disables Fragment/Activity Interaction Tracking
@@ -564,8 +570,8 @@ oneConfigureCodelessInteractionTracking {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfiguration;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.codeless.OneCodelessInteractionTrackingConfiguration;
 
 final OneCodelessInteractionTrackingConfiguration codelessInteractionTrackingConfiguration =
     new OneCodelessInteractionTrackingConfiguration.Builder()
@@ -589,7 +595,7 @@ Set this back to `false` at any point to restart automatic Interaction detection
 You can manually send Interaction Requests and Properties to ONE or Interaction Studio using 
 the `oneSendInteraction` Kotlin top-level function or the `One.sendInteraction` Java method.
 
-The `oneSendInteraction` Kotlin top-level function uses Kotlin [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html). The `One.sendInteraction` Java method follows a Call/Request/Response model similar to [Retrofit](https://square.github.io/retrofit/).
+The `oneSendInteraction` Kotlin top-level function uses Kotlin [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html). The `One.sendInteraction` Java method uses the Java `Future` model and returns a [Completable Future](https://developer.android.com/reference/java/util/concurrent/CompletableFuture).
 
 #### Send Interactions
 
@@ -599,8 +605,8 @@ Send an Interaction request programmatically by calling the `oneSendInteraction`
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendInteraction
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendInteraction
 // rest of imports
 
 scope.launch {
@@ -613,10 +619,10 @@ scope.launch {
 To capture errors, set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendInteraction
-import com.thunderhead.android.api.responsetypes.OneAPIError
-import com.thunderhead.android.api.responsetypes.OneSDKError
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendInteraction
+import com.thunderhead.mobile.responsetypes.OneAPIError
+import com.thunderhead.mobile.responsetypes.OneSDKError
 // rest of imports
 
 scope.launch {
@@ -632,26 +638,25 @@ scope.launch {
 }
 ```
 
-Send an Interaction request programmatically by calling the `One.sendInteraction` Java method and enqueue with a `null` callback, as shown below:
+Send an Interaction request programmatically by calling the `One.sendInteraction` Java method, as shown below:
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.interactions.OneCall;
-import com.thunderhead.android.api.interactions.OneInteractionPath;
-import com.thunderhead.android.api.interactions.OneRequest;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.interactions.OneInteractionPath;
+import com.thunderhead.mobile.interactions.OneRequest;
 // rest of imports
 
 final OneRequest sendInteractionRequest = new OneRequest.Builder()
         .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
         .build();
-final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
-sendInteractionCall.enqueue(null);
+One.sendInteraction(sendInteractionRequest);
 ```
 
 *Note:* 
 - Sends a `POST` request to Thunderhead ONE or Salesforce Interaction Studio. Only the `tid` from the response isused by the SDK; all other response objects are ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and contains only letters, numbers, and/or dashes.
+- When in Java be sure to perform the interaction request in a thread that is NOT the `Main` thread.
 
 ##### Send an Interaction request and retrieve the response
 
@@ -659,9 +664,9 @@ Send an Interaction request programmatically, access its response, and then proc
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendInteraction
-import com.thunderhead.android.api.process
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendInteraction
+import com.thunderhead.mobile.process
 // rest of imports
 
 scope.launch {
@@ -675,11 +680,11 @@ scope.launch {
 To capture errors, set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendInteraction
-import com.thunderhead.android.api.process
-import com.thunderhead.android.api.responsetypes.OneAPIError
-import com.thunderhead.android.api.responsetypes.OneSDKError
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendInteraction
+import com.thunderhead.mobile.process
+import com.thunderhead.mobile.responsetypes.OneAPIError
+import com.thunderhead.mobile.responsetypes.OneSDKError
 // rest of imports
 
 scope.launch {
@@ -700,35 +705,28 @@ Send an Interaction request programmatically and process the response by calling
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.interactions.OneCall;
-import com.thunderhead.android.api.interactions.OneCallback;
-import com.thunderhead.android.api.interactions.OneInteractionPath;
-import com.thunderhead.android.api.interactions.OneRequest;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.interactions.OneInteractionPath;
+import com.thunderhead.mobile.interactions.OneRequest;
+import com.thunderhead.mobile.responsetypes.OneAPIError;
+import com.thunderhead.mobile.responsetypes.OneSDKError;
+import com.thunderhead.mobile.responsetypes.OneResponse;
 // rest of imports
 
 final OneRequest sendInteractionRequest = new OneRequest.Builder()
         .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
         .build();
 
-final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
-
-sendInteractionCall.enqueue(new OneCallback() {
-    @Override
-    public void onSuccess(@NotNull OneResponse response) {
-        One.processResponse(response);
-    }
-
-    @Override
-    public void onError(@NotNull OneSDKError error) {
-        Log.e(TAG, "SDK Error: " +  error.getErrorMessage());
-    }
-
-    @Override
-    public void onFailure(@NotNull OneAPIError error) {
-        Log.e(TAG, "Api Error: " +  error.getErrorMessage());
-    }
-});
+try {
+    final OneResponse response = One.sendResponseCode(true, sendInteractionRequest).join();
+    One.processResponse(response);
+} catch (CompletionException error) {
+    Log.e(TAG, error.getCause());
+} catch(OneSDKError error) {
+    Log.e(TAG, error.getErrorMessage());
+} catch(OneAPIError error) {
+    Log.e(TAG, error.getErrorMessage());
+}
 ```
 
 The response can be passed to the `One.processResponse` method, as shown above. This method returns the response to the SDK to process, attaching any activity capture, attribute capture, or optimize instructions to the interaction.
@@ -736,6 +734,7 @@ The response can be passed to the `One.processResponse` method, as shown above. 
 *Note:* 
 - Sends a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and contains only letters, numbers, and/or dashes.
+- When in Java be sure to perform the interaction request in a thread that is NOT the `Main` thread.
 
 #### Send Properties
 
@@ -748,8 +747,8 @@ by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine, as
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendInteraction
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendInteraction
 // rest of imports
 
 scope.launch {
@@ -763,10 +762,10 @@ scope.launch {
 To capture errors, set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendInteraction
-import com.thunderhead.android.api.responsetypes.OneAPIError
-import com.thunderhead.android.api.responsetypes.OneSDKError
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendInteraction
+import com.thunderhead.mobile.responsetypes.OneAPIError
+import com.thunderhead.mobile.responsetypes.OneSDKError
 // rest of imports
 
 scope.launch {
@@ -784,14 +783,14 @@ scope.launch {
 ```
 
 Send an Interaction request with Properties, programmatically, and ignore the response
-by calling the `One.sendInteraction` Java method and enqueue with a `null` callback, as shown below:
+by calling the `One.sendInteraction` Java method, as shown below:
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.interactions.OneCall;
-import com.thunderhead.android.api.interactions.OneInteractionPath;
-import com.thunderhead.android.api.interactions.OneRequest;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.interactions.OneCall;
+import com.thunderhead.mobile.interactions.OneInteractionPath;
+import com.thunderhead.mobile.interactions.OneRequest;
 // rest of imports
 
 final Map<String, String> properties = new HashMap<>();
@@ -803,9 +802,11 @@ final OneRequest sendInteractionRequest = new OneRequest.Builder()
         .properties(properties)
         .build();
 
-final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
-
-sendInteractionCall.enqueue(null);
+try {
+    One.sendInteraction(sendInteractionRequest);
+} catch (ExecutionException e) {
+    e.printStackTrace();
+}
 ```
 
 ##### Send Properties to a base Touchpoint
@@ -814,8 +815,8 @@ Send Properties programmatically and ignore the response by calling the `oneSend
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendProperties
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendProperties
 // rest of imports
 
 scope.launch {
@@ -828,10 +829,10 @@ scope.launch {
 To capture errors, set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendProperties
-import com.thunderhead.android.api.responsetypes.OneAPIError
-import com.thunderhead.android.api.responsetypes.OneSDKError
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendProperties
+import com.thunderhead.mobile.responsetypes.OneAPIError
+import com.thunderhead.mobile.responsetypes.OneSDKError
 // rest of imports
 
 scope.launch {
@@ -847,13 +848,12 @@ scope.launch {
 }
 ```
 
-Send Properties programmatically and ignore the response by calling the `One.sendProperties` Java method and enqueue with a null callback, as shown below:
+Send Properties programmatically and ignore the response by calling the `One.sendProperties` Java method, as shown below:
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.interactions.OneCall;
-import com.thunderhead.android.api.interactions.OneRequest;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.interactions.OneRequest;
 // rest of imports
 
 final Map<String, String> properties = new HashMap<>();
@@ -864,9 +864,11 @@ final OneRequest sendPropertiesRequest = new OneRequest.Builder()
         .properties(properties)
         .build();
 
-final OneCall sendPropertiesCall = One.sendProperties(sendPropertiesRequest);
-
-sendPropertiesCall.enqueue(null);
+try {
+    One.sendProperties(sendPropertiesRequest);
+} catch (ExecutionException e) {
+    e.printStackTrace();
+}
 ```
 
 *Note:* 
@@ -879,14 +881,14 @@ Send a response code by calling the `oneSendResponseCode` Kotlin top-level funct
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendResponseCode
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendResponseCode
 // rest of imports
 
 scope.launch {
     oneSendResponseCode {
         interactionPath = OneInteractionPath(URI("/interactionPath"))
-        code = ResponseCode("code")
+        code = OneResponseCode("code")
     }
 }
 ```
@@ -894,17 +896,17 @@ scope.launch {
 To capture errors, set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
 ```kotlin
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneSendResponseCode
-import com.thunderhead.android.api.responsetypes.OneAPIError
-import com.thunderhead.android.api.responsetypes.OneSDKError
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneSendResponseCode
+import com.thunderhead.mobile.responsetypes.OneAPIError
+import com.thunderhead.mobile.responsetypes.OneSDKError
 // rest of imports
 
 scope.launch {
     try {
         oneSendResponseCode(throwErrors = true) {
             interactionPath = OneInteractionPath(URI("/interactionPath"))
-            code = ResponseCode("code")
+            code = OneResponseCode("code")
         }
     } catch (error: OneSDKError) {
         Log.e(TAG, "SDK Error: ${error.errorMessage}")
@@ -919,16 +921,20 @@ and the corresponding interaction path as parameters, as shown below:
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.interactions.OneResponseCodeRequest;
-import com.thunderhead.android.api.interactions.OneInteractionPath;
-import com.thunderhead.android.api.interactions.OneResponseCode;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.interactions.OneResponseCodeRequest;
+import com.thunderhead.mobile.interactions.OneInteractionPath;
+import com.thunderhead.mobile.interactions.OneResponseCode;
 
 final OneResponseCodeRequest responseCodeRequest = new OneResponseCodeRequest.Builder()
-        .responseCode(new ResponseCode("code"))
-        .interactionPath(new OneInteractionPath("/interactionPath"))
-        .build()
-One.sendResponseCode(responseCodeRequest).enqueue(null);
+        .responseCode(new OneResponseCode("code"))
+        .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
+        .build();
+try {
+    One.sendResponseCode(responseCodeRequest);
+} catch (ExecutionException e) {
+    e.printStackTrace();
+}
 ```
 
 *Note:* 
@@ -952,9 +958,9 @@ automatic Interaction callback API.
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.process
-import com.thunderhead.android.api.setAutomaticInteractionCallback
-import com.thunderhead.android.api.removeAutomaticInteractionCallback
+import com.thunderhead.mobile.process
+import com.thunderhead.mobile.setAutomaticInteractionCallback
+import com.thunderhead.mobile.removeAutomaticInteractionCallback
 // rest of imports
 
 class MainActivity : AppCompatActivity() {
@@ -995,11 +1001,11 @@ class MainActivity : AppCompatActivity() {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.interactions.OneCallback;
-import com.thunderhead.android.api.responsetypes.OneAPIError;
-import com.thunderhead.android.api.responsetypes.OneResponse;
-import com.thunderhead.android.api.responsetypes.OneSDKError;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.interactions.OneCallback;
+import com.thunderhead.mobile.responsetypes.OneAPIError;
+import com.thunderhead.mobile.responsetypes.OneResponse;
+import com.thunderhead.mobile.responsetypes.OneSDKError;
 // rest of imports
 
 public class MainActivity extends AppCompatActivity {
@@ -1045,9 +1051,9 @@ public class MainActivity extends AppCompatActivity {
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.process
-import com.thunderhead.android.api.setAutomaticInteractionCallback
-import com.thunderhead.android.api.removeAutomaticInteractionCallback
+import com.thunderhead.mobile.process
+import com.thunderhead.mobile.setAutomaticInteractionCallback
+import com.thunderhead.mobile.removeAutomaticInteractionCallback
 // rest of imports
 
 class MainActivity : FragmentActivity() {
@@ -1106,11 +1112,11 @@ class MainActivity : FragmentActivity() {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.interactions.OneCallback;
-import com.thunderhead.android.api.responsetypes.OneAPIError;
-import com.thunderhead.android.api.responsetypes.OneResponse;
-import com.thunderhead.android.api.responsetypes.OneSDKError;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.interactions.OneCallback;
+import com.thunderhead.mobile.responsetypes.OneAPIError;
+import com.thunderhead.mobile.responsetypes.OneResponse;
+import com.thunderhead.mobile.responsetypes.OneSDKError;
 // rest of imports
 
 public class MainActivity extends FragmentActivity {
@@ -1168,10 +1174,10 @@ public class MainActivity extends FragmentActivity {
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.oneSetAutomaticInteractionCallback
-import com.thunderhead.android.api.interactions.OneInteractionPath
-import com.thunderhead.android.api.oneRemoveAutomaticInteractionCallback
-import com.thunderhead.android.api.process
+import com.thunderhead.mobile.oneSetAutomaticInteractionCallback
+import com.thunderhead.mobile.interactions.OneInteractionPath
+import com.thunderhead.mobile.oneRemoveAutomaticInteractionCallback
+import com.thunderhead.mobile.process
 // rest of imports
 
 oneSetAutomaticInteractionCallback(OneInteractionPath(URI("/ManualInteraction"))) {
@@ -1197,11 +1203,11 @@ oneSetAutomaticInteractionCallback(OneInteractionPath(URI("/ManualInteraction"))
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.interactions.OneInteractionPath;
-import com.thunderhead.android.api.responsetypes.OneAPIError;
-import com.thunderhead.android.api.responsetypes.OneResponse;
-import com.thunderhead.android.api.responsetypes.OneSDKError;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.interactions.OneInteractionPath;
+import com.thunderhead.mobile.responsetypes.OneAPIError;
+import com.thunderhead.mobile.responsetypes.OneResponse;
+import com.thunderhead.mobile.responsetypes.OneSDKError;
 // rest of imports
 
 One.setAutomaticInteractionCallback(new OneInteractionPath(URI.create("/ManualInteraction")), new OneCallback() {
@@ -1240,8 +1246,8 @@ or the `One.assignInteractionPath` Java method with a valid desired Interaction 
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.assignInteractionPath
-import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.mobile.assignInteractionPath
+import com.thunderhead.mobile.interactions.OneInteractionPath
 
 findViewById<LinearLayout>(R.id.linear_layout)
     .assignInteractionPath(OneInteractionPath(URI("/viewAsInteraction")))
@@ -1265,11 +1271,11 @@ For example, you may have a list view, that is reused across the application to 
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.assignInteractionPath
-import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.mobile.assignInteractionPath
+import com.thunderhead.mobile.interactions.OneInteractionPath
 // rest of imports
 
-class LocationsList : ListActivity(), GISDataPresenter {
+class LocationsList : ListActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val interactionPath = if (presenterType == CASH_POINT_LOCATION) {
@@ -1284,7 +1290,7 @@ class LocationsList : ListActivity(), GISDataPresenter {
 
 `Java`
 ```java
-public class LocationsList extends ListActivity implements GISDataPresenter {
+public class LocationsList extends ListActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -1330,11 +1336,11 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.assignInteractionPath
-import com.thunderhead.android.api.interactions.OneInteractionPath
+import com.thunderhead.mobile.assignInteractionPath
+import com.thunderhead.mobile.interactions.OneInteractionPath
 // rest of imports
 
-private fun showVariants() {
+fun showVariants() {
     if (varientsView == null) {
         variantsView = inflater.inflate(R.layout.variants_slide, mainPanelView, false)
         variantsView.assignInteractionPath(OneInteractionPath(URI("/variants")))
@@ -1344,7 +1350,7 @@ private fun showVariants() {
 
 `Java`
 ```java
-private void showVariants() {
+void showVariants() {
     if (variantsView == null) {
         variantsView = inflater.inflate(R.layout.variants_slide, mainPaneView, false);
         final OneInteractionPathAssignment assignment = 
@@ -1358,125 +1364,121 @@ private void showVariants() {
 }
 ```
 
-### Ability to whitelist identity transfer links
+### Ability to include identity transfer links
 
-The SDK appends a `one-tid` `URL` parameter to all links opened from a mobile app. To limit this behaviour, and allow the SDK to append a `one-tid` `URL` parameter only to a specific set of links, whitelist that set of links by calling the `java.net.URI.setIdentityTransferLinksWhiteList` Kotlin extension function or `whitelistIdentityTransferLinks` Java method, as shown below:
+The SDK appends a `one-tid` `URL` parameter to all links opened from a mobile app. To limit this behaviour, and allow the SDK to append a `one-tid` `URL` parameter only to a specific set of links. Include that set of links by assigning `oneIdentityTransferIncludeList` top level property or `One.setIdentityTransferIncludeList` Java method, as shown below:
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.setIdentityTransferLinksWhiteList
+import com.thunderhead.mobile.oneIdentityTransferIncludeList
+import com.thunderhead.mobile.identitytransfer.OneIdentityTransferUriMatcher
 // rest of imports
 
-// This example shows how to whitelist links under specific domain names
-// www.google.com and www.uber.com. For example,
-// https://www.google.com, https://www.uber.com/en/,
-// https://www.uber.com/en/ride/, etc.
-val whiteList = setOf(URI("www.google.com"), URI("www.uber.com"))
-    .setIdentityTransferLinksWhiteList()
+// This example shows how to include links for specific uri(s) which do have SSL protocols:
+// https://www.google.com and https://www.uber.com
+oneIdentityTransferIncludeList = setOf(
+    OneIdentityTransferUriMatcher.ExactMatch(URI("https://www.google.com")),
+    OneIdentityTransferUriMatcher.ExactMatch(URI("https://www.uber.com"))
+)
 
-// This example shows how to whitelist the main domain name
-// wikipedia.org and any subdomain. For example,
-// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-val whiteList = setOf(URI("*.wikipedia.org"))
-    .setIdentityTransferLinksWhiteList()
+// This example shows how to include the sub domains for wikipedia.org but not wikipedia.org directly.
+oneIdentityTransferIncludeList = setOf(
+    OneIdentityTransferUriMatcher.RegexMatch("https://(simple|en)\\.wikipedia\\.org".toRegex())
+)
 
-// This example show how to retrieve the whitelist currently in use
-val whitelist = oneGetIdentityTransferLinksWhiteList()
+// This example shows how to retrieve the include list currently in use
+val includeList = oneIdentityTransferIncludeList
 ```
 
 `Java`
 ```java
-// This example shows how to whitelist links under specific domain names
-// www.google.com and www.uber.com. For example,
-// https://www.google.com, https://www.uber.com/en/,
-// https://www.uber.com/en/ride/, etc.
-HashSet<URI> whitelist = new HashSet<>();
+// This example shows how to include links for specific uri(s) which do have SSL protocols:
+// https://www.google.com and https://www.uber.com
+Set<OneIdentityTransferUriMatcher> includeList = new HashSet<>();
 try {
-    whitelist.add(new URI("www.google.com"));
-    whitelist.add(new URI("www.uber.com"));
-} catch (URISyntaxException e) {
+    includeList.add(new OneIdentityTransferUriMatcher.ExactMatch(URI.create("https://www.google.com")));
+    includeList.add(new OneIdentityTransferUriMatcher.ExactMatch(URI.create("https://www.uber.com")));
+} catch (Exception e) {
     e.printStackTrace();
 }
-One.setIdentityTransferLinksWhiteList(whitelist);
+One.setIdentityTransferIncludeList(includeList);
 
-// This example shows how to whitelist the main domain name
-// wikipedia.org and any subdomain. For example,
-// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-HashSet<URI> whitelist = new HashSet<>();
+// This example shows how to include the sub domains for wikipedia.org but not wikipedia.org directly.
+Set<OneIdentityTransferUriMatcher> includeList = new HashSet<>();
 try {
-    whitelist.add("*.wikipedia.org");
-} catch (URISyntaxException e) {
+    final Regex wikipediaSubDomains = new Regex("https://(simple|en)\\.wikipedia\\.org");
+    includeList.add(new OneIdentityTransferUriMatcher.RegexMatch(wikipediaSubDomains));
+} catch (Exception e) {
     e.printStackTrace();
 }
-One.setIdentityTransferLinksWhiteList(whitelist);
+One.setIdentityTransferIncludeList(includeList);
 
-// This example show how to retrieve the whitelist currently in use
-HashSet<URI> whitelist = One.getIdentityTransferLinksWhiteList()
+// This example shows how to retrieve the include list currently in use
+Set<OneIdentityTransferUriMatcher> includeList = One.getIdentityTransferIncludeList();
 ```
 
 *Note:* 
-- When a link is whitelisted, a `one-tid` is appended only to the whitelisted links.
-- Setting the whitelist to an `empty list` or `null` clears the existing whitelist.
+- When a link is included, a `one-tid` is appended only to the allowed links, superseding any
+[excluded identity transfer links](#ability-to-exclude-identity-transfer-links).
+- Setting the allowed list to an `empty list` clears the existing list.
 
-### Ability to blacklist identity transfer links
+### Ability to exclude identity transfer links
 
-The SDK appends a `one-tid` `URL` parameter to all links opened from a mobile app. To limit this behaviour, and allow the SDK to append a `one-tid` `URL` parameter only to a specific set of links, blacklist the links to which the SDK should not append a `one-tid` by calling the `java.net.URI.setIdentityTransferLinksBlackList` Kotlin extension function or `blacklistIdentityTransferLinks` Java method, as shown below:
+The SDK appends a `one-tid` `URL` parameter to all links opened from a mobile app. To limit this behaviour, and allow the SDK to append a `one-tid` `URL` parameter only to a specific set of links. Exclude the links by assigning list to the `oneIdentityTransferExcludeList` top level property or `One.setIdentityTransferExcludeList` Java method, as shown below:
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.setIdentityTransferLinksBlackList
+import com.thunderhead.mobile.oneIdentityTransferExcludeList
+import com.thunderhead.mobile.identitytransfer.OneIdentityTransferUriMatcher
 // rest of imports
 
-// This example shows how to blacklist links under specific domain names
-// www.google.com and www.uber.com. For example,
-// https://www.google.com, https://www.uber.com/en/,
-// https://www.uber.com/en/ride/, etc.
-val blackList = setOf(URI("www.google.com"), URI("www.uber.com"))
-    .setIdentityTransferLinksBlackList()
+// This example shows how to exclude links for specific uri(s) which do not have SSL protocols:
+// www.google.com and www.uber.com
+oneIdentityTransferExcludeList = setOf(
+    OneIdentityTransferUriMatcher.ExactMatch(URI("http://www.google.com")),
+    OneIdentityTransferUriMatcher.ExactMatch(URI("http://www.uber.com"))
+)
 
-// This example shows how to whitelist the main domain name
-// wikipedia.org and any subdomain. For example,
-// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-val blackList = setOf(URI("*.wikipedia.org"))
-    .setIdentityTransferLinksBlackList()
+// This example shows how to exclude the sub domains for wikipedia.org but not wikipedia.org directly.
+oneIdentityTransferExcludeList = setOf(
+    OneIdentityTransferUriMatcher.RegexMatch("https://(simple|en)\\.wikipedia\\.org".toRegex())
+)
 
-// This example show how to retrieve the whitelist currently in use
-val blackList = oneGetIdentityTransferLinksBlackList()
+// This example shows how to retrieve the exclude list currently in use
+val excludeList = oneIdentityTransferExcludeList
 ```
 
 `Java`
 ```java
-// This example shows how to blacklist links under specific domain names
-// www.google.com and www.uber.com. For example,
-// https://www.google.com, https://www.uber.com/en/,
-// https://www.uber.com/en/ride/, etc.
-HashSet<URI> blacklist = new HashSet<>();
+// This example shows how to exclude links for specific uri(s) which do not have SSL protocols:
+// www.google.com and www.uber.com
+Set<OneIdentityTransferUriMatcher> excludeList = new HashSet<>();
 try {
-    blacklist.add(new URI("www.google.com"));
-    blacklist.add(new URI("www.uber.com"));
-} catch (URISyntaxException e) {
+    excludeList.add(new OneIdentityTransferUriMatcher.ExactMatch(URI.create("http://www.google.com")));
+    excludeList.add(new OneIdentityTransferUriMatcher.ExactMatch(URI.create("http://www.uber.com")));
+} catch (Exception e) {
     e.printStackTrace();
 }
-One.setIdentityTransferLinksBlackList(blacklist);
+One.setIdentityTransferExcludeList(excludeList);
 
-// This example shows how to blacklist the main domain name
-// wikipedia.org and any subdomain. For example,
-// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-HashSet<URI> blacklist = new HashSet<>();
+// This example shows how to exclude the sub domains for wikipedia.org but not wikipedia.org directly.
+Set<OneIdentityTransferUriMatcher> excludeList = new HashSet<>();
 try {
-    blacklist.add("*.wikipedia.org");
-} catch (URISyntaxException e) {
+    final Regex wikipediaSubDomains = new Regex("https://(simple|en)\\.wikipedia\\.org");
+    excludeList.add(new OneIdentityTransferUriMatcher.RegexMatch(wikipediaSubDomains));
+} catch (Exception e) {
     e.printStackTrace();
 }
-One.setIdentityTransferLinksBlackList(blacklist);
+One.setIdentityTransferExcludeList(excludeList);
 
-// This example show how to retrieve the blacklist currently in use
-HashSet<URI> blacklist = One.getIdentityTransferLinksBlackList()
+// This example shows how to retrieve the exclude list currently in use
+Set<OneIdentityTransferUriMatcher> excludeList = One.getIdentityTransferExcludeList();
 ```
 
 *Note:* 
-- If a link is blacklisted, a `one-tid` is appended to all links other than the blacklisted link. 
-- Setting the blacklist to an `empty list` or `null` clears the existing blacklist.
+- If a link is excluded, a `one-tid` is appended to all links other than the excluded link, but
+is superseded by any [included identity transfer links](#ability-to-include-identity-transfer-links).
+- Setting the exclude list to an `empty list` clears the existing list.
 
 ### Disable automatic identity transfer
 
@@ -1485,7 +1487,7 @@ To disable this functionality, call the `oneConfigureIdentityTransfer` Kotlin to
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.oneConfigureIdentityTransfer
+import com.thunderhead.mobile.oneConfigureIdentityTransfer
 
 oneConfigureIdentityTransfer {
     disableIdentityTransfer = true
@@ -1494,8 +1496,8 @@ oneConfigureIdentityTransfer {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.identitytransfer.OneIdentityTransferConfiguration;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.identitytransfer.OneIdentityTransferConfiguration;
 
 final OneIdentityTransferConfiguration identityTransferConfiguration =
     new OneIdentityTransferConfiguration.Builder()
@@ -1513,7 +1515,7 @@ If you have disabled automatic identity transfer, you can still send all `URL` p
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.processDeepLink
+import com.thunderhead.mobile.processDeepLink
 // rest of imports
 
 URI("myapp://MainActivity?customerKey=1").processDeepLink()
@@ -1530,20 +1532,20 @@ One.processDeepLink(URI.create("myapp://MainActivity?customerKey=1"));
 
 #### Create a `URL` with a `one-tid` parameter to facilitate identity transfer 
 
-If you have disabled automatic identity transfer, you can still create a `URL` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URL.createUrlWithTid()` Kotlin extension function or the `One.createUrlWithTid(URL)` Java method, as shown below:
+If you have disabled automatic identity transfer, you can still create a `URL` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URL.generateIdentityTransferUrl()` Kotlin extension function or the `One.generateIdentityTransferUrl(URL)` Java method, as shown below:
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.createUrlWithTid
+import com.thunderhead.mobile.generateIdentityTransferUrl
 // rest of imports
 
-val urlWithOneTid = URL("http://mysite.com").createUrlWithTid()
+val urlWithOneTid = URL("http://mysite.com").generateIdentityTransferUrl()
 ```
 
 `Java`
 ```java
 URL url = new URL("http://mysite.com");
-URL urlWithOneTid = One.createUrlWithTid(url);
+URL urlWithOneTid = One.generateIdentityTransferUrl(url);
 ```
 
 Once you have the `urlWithOneTid`, pass this into the method which handles the opening of the `URL`.
@@ -1552,24 +1554,24 @@ Once you have the `urlWithOneTid`, pass this into the method which handles the o
 
 #### Create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to facilitate identity transfer 
 
-If you have disabled automatic identity transfer, you can still create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URI.createUriWithTid()` or `android.net.Uri.createUriWithTid()` Kotlin extension functions or the `One.createUriWithTid(Uri|URI)` Java method as shown below:
+If you have disabled automatic identity transfer, you can still create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URI.generateIdentityTransferUri()` or `android.net.Uri.generateIdentityTransferUri()` Kotlin extension functions or the `One.generateIdentityTransferUri(Uri|URI)` Java method as shown below:
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.createUriWithTid
+import com.thunderhead.mobile.generateIdentityTransferUri
 // rest of imports
 
-val androidUriWithOneTid = Uri.parse("http://mysite.com").createUriWithTid()
-val javaUriWithOneTid = URI("http://mysite.com").createUriWithTid()
+val androidUriWithOneTid = Uri.parse("http://mysite.com").generateIdentityTransferUri()
+val javaUriWithOneTid = URI("http://mysite.com").generateIdentityTransferUri()
 ```
 
 `Java`
 ```java
 Uri uri = Uri.parse("http://mysite.com");
-Uri uriWithOneTid = One.createUriWithTid(uri);
+Uri uriWithOneTid = One.generateIdentityTransferUri(uri);
 
 URI javaUri = URI.create("http://mysite.com");
-URI javaUriWithOneTid = One.createUriWithTid(javaUri);
+URI javaUriWithOneTid = One.generateIdentityTransferUri(javaUri);
 ```
 
 Once you have the `uriWithOneTid`, pass this into the method which handles the opening of the `Uri`.
@@ -1584,7 +1586,7 @@ To disable this functionality, use the code below:
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.oneConfigureCodelessInteractionTracking
+import com.thunderhead.mobile.oneConfigureCodelessInteractionTracking
 
 oneConfigureCodelessInteractionTracking {
     disableOutboundLinkTracking = true
@@ -1593,8 +1595,8 @@ oneConfigureCodelessInteractionTracking {
 
 `Java`
 ```java
-import com.thunderhead.One;
-import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfiguration;
+import com.thunderhead.mobile.One;
+import com.thunderhead.mobile.codeless.OneCodelessInteractionTrackingConfiguration;
 
 final OneCodelessInteractionTrackingConfiguration codelessInteractionTrackingConfiguration =
     new OneCodelessInteractionTrackingConfiguration.Builder()
@@ -1610,7 +1612,7 @@ If you have disabled automatic outbound link tracking, you can still track a `UR
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.sendInteractionForOutboundLink
+import com.thunderhead.mobile.sendInteractionForOutboundLink
 
 URI("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
 Uri.parse("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
@@ -1630,7 +1632,7 @@ try {
 // URI example
 try {
      One.sendInteractionForOutboundLink(Uri.parse("https://www.yourfullurl.com/"));
-} catch (MalformedURLException e) {
+} catch (Exception e) {
     e.printStackTrace();
 }
 
@@ -1672,6 +1674,12 @@ LocationListener locationListener = new LocationListener() {
 
 To get the current `tid` used by the SDK, call:
 
+`Kotlin`
+```kotlin
+oneGetTid()
+```
+
+`Java`
 ```java
 One.getTid();
 ```
@@ -1694,27 +1702,27 @@ By default, the Thunderhead SDK for Android logs ERROR and WARN messages for ANY
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.logging.Component
-import com.thunderhead.android.api.logging.LogLevel
-import com.thunderhead.android.api.oneConfigureLogging
+import com.thunderhead.mobile.logging.OneLogComponent
+import com.thunderhead.mobile.logging.OneLogLevel
+import com.thunderhead.mobile.oneConfigureLogging
 // rest of imports
 
 oneConfigureLogging {
-    levels = mutableSetOf(LogLevel.VERBOSE) 
-    components = mutableSetOf(LogLevel.ANY)
+    levels = mutableSetOf(OneLogLevel.VERBOSE) 
+    components = mutableSetOf(OneLogComponent.ANY)
 }
 ```
 
 `Java`
 ```java
-import com.thunderhead.android.api.logging.Component;
-import com.thunderhead.android.api.logging.LogLevel;
-import com.thunderhead.android.api.logging.OneLoggingConfiguration;
+import com.thunderhead.mobile.logging.OneLogComponent;
+import com.thunderhead.mobile.logging.OneLogLevel;
+import com.thunderhead.mobile.logging.OneLoggingConfiguration;
 // rest of imports
 
 final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
-    .log(LogLevel.VERBOSE)
-    .log(Component.ANY)
+    .log(OneLogLevel.VERBOSE)
+    .log(OneLogComponent.ANY)
     .build();
 
 One.setLoggingConfiguration(oneLoggingConfiguration);
@@ -1726,30 +1734,29 @@ One.setLoggingConfiguration(oneLoggingConfiguration);
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.logging.Component
-import com.thunderhead.android.api.logging.LogLevel
-import com.thunderhead.android.api.logging.and
-import com.thunderhead.android.api.oneConfigureLogging
+import com.thunderhead.mobile.logging.OneLogComponent
+import com.thunderhead.mobile.logging.OneLogLevel
+import com.thunderhead.mobile.oneConfigureLogging
 // rest of imports
 
 oneConfigureLogging {
-    levels = LogLevel.ERROR and LogLevel.WARN
-    components = Component.NETWORKING and Component.DATABASE
+    levels = OneLogLevel.ERROR and OneLogLevel.WARN
+    components = OneLogComponent.NETWORKING and OneLogComponent.DATABASE
 }
 ```
 
 `Java`
 ```java
-import com.thunderhead.android.api.logging.Component;
-import com.thunderhead.android.api.logging.LogLevel;
-import com.thunderhead.android.api.logging.OneLoggingConfiguration;
+import com.thunderhead.mobile.logging.OneLogComponent;
+import com.thunderhead.mobile.logging.OneLogLevel;
+import com.thunderhead.mobile.logging.OneLoggingConfiguration;
 // rest of imports
 
 final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
-    .log(LogLevel.ERROR)
-    .log(LogLevel.WARN)
-    .log(Component.NETWORKING)
-    .log(Component.DATABASE)
+    .log(OneLogLevel.ERROR)
+    .log(OneLogLevel.WARN)
+    .log(OneLogComponent.NETWORKING)
+    .log(OneLogComponent.DATABASE)
     .build();
 
 One.setLoggingConfiguration(oneLoggingConfiguration);
@@ -1759,24 +1766,23 @@ One.setLoggingConfiguration(oneLoggingConfiguration);
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.logging.Component
-import com.thunderhead.android.api.logging.LogLevel
-import com.thunderhead.android.api.logging.and
-import com.thunderhead.android.api.oneConfigureLogging
-import com.thunderhead.android.api.logging.LogWriter
+import com.thunderhead.mobile.logging.OneLogComponent
+import com.thunderhead.mobile.logging.OneLogLevel
+import com.thunderhead.mobile.oneConfigureLogging
+import com.thunderhead.mobile.logging.OneLogWriter
 // rest of imports
 
 oneConfigureLogging {
-    levels = mutableSetOf(LogLevel.VERBOSE) 
-    components = Component.NETWORKING and Component.DATABASE
+    levels = mutableSetOf(OneLogLevel.VERBOSE) 
+    components = OneLogComponent.NETWORKING and OneLogComponent.DATABASE
     logWriters = mutableSetOf(CustomLogger())
 }
 
 // custom logger
-class CustomLogger : LogWriter() {
+class CustomLogger : OneLogWriter() {
     override fun log(
-        logLevel: LogLevel,
-        component: Component,
+        logLevel: OneLogLevel,
+        component: OneLogComponent,
         message: String,
         throwable: Throwable?
     ) {
@@ -1787,27 +1793,27 @@ class CustomLogger : LogWriter() {
 
 `Java`
 ```java
-import com.thunderhead.android.api.logging.Component;
-import com.thunderhead.android.api.logging.LogLevel;
-import com.thunderhead.android.api.logging.OneLoggingConfiguration;
-import com.thunderhead.android.api.logging.LogWriter;
+import com.thunderhead.mobile.logging.OneLogComponent;
+import com.thunderhead.mobile.logging.OneLogLevel;
+import com.thunderhead.mobile.logging.OneLoggingConfiguration;
+import com.thunderhead.mobile.logging.OneLogWriter;
 // rest of imports
 
 final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
-    .log(LogLevel.VERBOSE)
-    .log(Component.NETWORKING)
-    .log(Component.DATABASE)
+    .log(OneLogLevel.VERBOSE)
+    .log(OneLogComponent.NETWORKING)
+    .log(OneLogComponent.DATABASE)
     .logTo(new CustomLogger())
     .build();
 
 One.setLoggingConfiguration(oneLoggingConfiguration);
 
 // custom logger
-static class CustomLogger extends LogWriter {
+static class CustomLogger extends OneLogWriter {
         @Override
         public void log(
-                @NotNull LogLevel logLevel,
-                @NotNull Component component,
+                @NotNull OneLogLevel logLevel,
+                @NotNull OneLogComponent component,
                 @NotNull String message,
                 @Nullable Throwable throwable
         ) {
@@ -1826,7 +1832,7 @@ a meta data element must be added to the android manifest. If the metadata eleme
 *Metadata Info:*
 
 `name` :  `com.thunderhead.android.InitLogLevel`
-`value`: Comma separated list of `com.thunderhead.android.api.logging.LogLevel`
+`value`: Comma separated list of `com.thunderhead.mobile.logging.OneLogLevel`
 
 *Example for logging VERBOSE and above logs:*
 
@@ -1848,33 +1854,32 @@ are merged, please see the [Android Documentation](https://developer.android.com
 
 #### Turn all logs off
 
-To turn off logging, pass a set to logLevel and a set to logComponent with the values of NONE
+To turn off logging, pass a set to OneLogLevel and a set to OneLogComponent with the values of NONE
 *Example of turning logging off*
 
 `Kotlin`
 ```kotlin
-import com.thunderhead.android.api.logging.Component
-import com.thunderhead.android.api.logging.LogLevel
-import com.thunderhead.android.api.logging.and
-import com.thunderhead.android.api.oneConfigureLogging
+import com.thunderhead.mobile.logging.OneLogComponent
+import com.thunderhead.mobile.logging.OneLogLevel
+import com.thunderhead.mobile.oneConfigureLogging
 // rest of imports
 
 oneConfigureLogging {
-    levels = mutableSetOf(LogLevel.NONE)
-    components = mutableSetOf(Component.NONE)
+    levels = mutableSetOf(OneLogLevel.NONE)
+    components = mutableSetOf(OneLogComponent.NONE)
 }
 ```
 
 `Java`
 ```java
-import com.thunderhead.android.api.logging.Component;
-import com.thunderhead.android.api.logging.LogLevel;
-import com.thunderhead.android.api.logging.OneLoggingConfiguration;
+import com.thunderhead.mobile.logging.OneLogComponent;
+import com.thunderhead.mobile.logging.OneLogLevel;
+import com.thunderhead.mobile.logging.OneLoggingConfiguration;
 // rest of imports
 
 final OneLoggingConfiguration oneLoggingConfiguration = OneLoggingConfiguration.builder()
-    .log(LogLevel.NONE)
-    .log(Component.NONE)
+    .log(OneLogLevel.NONE)
+    .log(OneLogComponent.NONE)
     .build();
 
 One.setLoggingConfiguration(oneLoggingConfiguration);
@@ -1885,14 +1890,14 @@ One.setLoggingConfiguration(oneLoggingConfiguration);
 for the Thunderhead SDK initialization process. After initialization has finished, the logging 
 configuration reverts to a default configuration mentioned above. If more logging is desired then use the logging
 configuration APIs to turn on logging as shown above.
-- When setting a single `LogLevel`, the SDK will log any messages of that level and above.
+- When setting a single `OneLogLevel`, the SDK will log any messages of that level and above.
     - The order from the bottom is: VERBOSE, DEBUG, ERROR, WARN, INFO, ASSERT
     - Example: Setting VERBOSE will log all messages.
     - Example: Setting INFO will log only INFO and ASSERT messages.
-- When setting multiple `LogLevel`(s), the SDK will log only messages of those specific levels.
+- When setting multiple `OneLogLevel`(s), the SDK will log only messages of those specific levels.
     - Example: Setting ERROR and WARN will only log message of ERROR and WARN levels and nothing else.
-- When setting `Component` to _only_ `ANY` all components will be logged in conjunction with the log level.
-- When setting multiple `Component`(s), the SDK will log only messages for those specific components.
+- When setting `OneLogComponent` to _only_ `ANY` all components will be logged in conjunction with the log level.
+- When setting multiple `OneLogComponent`(s), the SDK will log only messages for those specific components.
     - Do not set set multiple `Components`(s) along side the `ANY` component. Choose only the components
         required or just use `ANY` but not both.
 
@@ -1900,6 +1905,12 @@ configuration APIs to turn on logging as shown above.
 
 Find the current version of the SDK by calling:
 
+`Kotlin`
+```kotlin
+val version = oneVersion
+```
+
+`Java`
 ```java
 One.getVersion();
 ```
@@ -1908,6 +1919,12 @@ One.getVersion();
 
 Programmatically erase the user profile data by calling:
 
+`Kotlin`
+```kotlin
+oneClearUserProfile()
+```
+
+`Java`
 ```java
 One.clearUserProfile();
 ```
