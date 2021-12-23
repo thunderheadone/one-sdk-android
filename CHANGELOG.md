@@ -1,3 +1,12 @@
+#### Version 11.1.0
+* [NEW] The SDK will be automatically disabled for side-loaded apps with an incorrect [App Bundle](https://developer.android.com/guide/app-bundle) on API 29+ instead of officially downloaded via the Google Play Store in order to avoid crashes due to missing components.
+* [UPDATE] Deprecated `com.thunderhead.One` and APIs in `com.thunderhead.android.api` namespace. For further details on this [see our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-11-1.md).
+* [UPDATE] Updated the `oneIdentityTransferIncludeList` API to accept a match type, either an exact URI match or a regex match. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#ability-to-include-identity-transfer-links).
+* [UPDATE] Updated the `oneIdentityTransferExcludeList` API to accept a match type, either an exact URI match or a regex match. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-android#ability-to-exclude-identity-transfer-links).
+* [BUGFIX] Fixed an issue where sending interactions would cause an `IndexOutOfBoundsException`.
+* [BUGFIX] Fixed an issue where a `NullPointerException` could happen as a result of QueueManager member being null.
+* [BUGFIX] Fixed a build time error where `library "libnrb.so"` could not be found.
+
 #### Version 11.0.3
 * [BUGFIX] Added `null` guards for contractual violations in [Android Go Edition](https://www.android.com/versions/go-edition/).
 
