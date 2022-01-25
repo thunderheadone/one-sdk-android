@@ -1,3 +1,6 @@
+#### Version 11.1.1
+* [BUGFIX] Fixed a build time error where the `join()` method could not be resolved when using `sendInteractionLegacySupport()`.
+
 #### Version 11.1.0
 * [NEW] The SDK will be automatically disabled for side-loaded apps with an incorrect [App Bundle](https://developer.android.com/guide/app-bundle) on API 29+ instead of officially downloaded via the Google Play Store in order to avoid crashes due to missing components.
 * [UPDATE] Deprecated `com.thunderhead.One` and APIs in `com.thunderhead.android.api` namespace. For further details on this [see our migration guide](https://github.com/thunderheadone/one-sdk-android/blob/master/MIGRATION-VERSION-11-1.md).
