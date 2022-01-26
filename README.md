@@ -78,7 +78,7 @@
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:11.1.0"
+      implementation "com.thunderhead.android:one-sdk:11.1.1"
     }
     ```
     
@@ -86,7 +86,7 @@
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:11.1.0"
+      implementation "com.thunderhead.android:is-sdk:11.1.1"
     }
     ```
 
@@ -205,7 +205,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:11.1.0"
+  implementation "com.thunderhead.android:one-sdk:11.1.1"
 }
 
 repositories {
@@ -269,7 +269,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:11.1.0"
+  implementation "com.thunderhead.android:is-sdk:11.1.1"
 }
 
 repositories {
