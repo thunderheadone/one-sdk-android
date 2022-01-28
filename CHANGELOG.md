@@ -1,3 +1,6 @@
+#### Version 11.1.2
+* [BUGFIX] Fixed an issue when properties were not sent in `sendInteraction` request.
+
 #### Version 11.1.1
 * [BUGFIX] Fixed a build time error where the `join()` method could not be resolved when using `sendInteractionLegacySupport()`.
 
