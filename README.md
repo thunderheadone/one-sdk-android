@@ -78,7 +78,7 @@
 
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:one-sdk:11.1.2"
+      implementation "com.thunderhead.android:one-sdk:11.1.3"
     }
     ```
     
@@ -86,7 +86,7 @@
     
     ```gradle
     dependencies {     
-      implementation "com.thunderhead.android:is-sdk:11.1.2"
+      implementation "com.thunderhead.android:is-sdk:11.1.3"
     }
     ```
 
@@ -144,7 +144,7 @@
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:4.2.0'
-            classpath 'com.thunderhead.android:orchestration-plugin:6.0.1'
+            classpath 'com.thunderhead.android:orchestration-plugin:7.0.0'
         }
     }
     ```
@@ -167,7 +167,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.0'
-        classpath 'com.thunderhead.android:orchestration-plugin:6.0.1'
+        classpath 'com.thunderhead.android:orchestration-plugin:7.0.0'
     }
 }
 
@@ -205,7 +205,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:one-sdk:11.1.2"
+  implementation "com.thunderhead.android:one-sdk:11.1.3"
 }
 
 repositories {
@@ -232,7 +232,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.0'
-        classpath 'com.thunderhead.android:orchestration-plugin:6.0.1'
+        classpath 'com.thunderhead.android:orchestration-plugin:7.0.0'
     }
 }
 
@@ -269,7 +269,7 @@ android {
 }
 
 dependencies {     
-  implementation "com.thunderhead.android:is-sdk:11.1.2"
+  implementation "com.thunderhead.android:is-sdk:11.1.3"
 }
 
 repositories {
@@ -1942,7 +1942,7 @@ To completely remove the codeless identity transfer functionality for Android, m
 1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
 
 ```gradle 
-classpath 'com.thunderhead.android:orchestration-plugin:6.0.1'
+classpath 'com.thunderhead.android:orchestration-plugin:7.0.0'
 ```
 
 2. Open the **app-level** `build.gradle` file and remove the following references.
