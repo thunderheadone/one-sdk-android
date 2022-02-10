@@ -1,3 +1,7 @@
+#### Version 11.1.3
+* [BUGFIX] Fixed a runtime error where static method `getLogger()` could not be found. This will require [Orchestration Plugin version 7.0.0](https://github.com/thunderheadone/one-android-orchestration-plugin/releases/tag/7.0.0).
+* [BUGFIX] Fixed an issue where opting out of Data Adapter location sharing could also opt-out of programmatic Interaction tracking.
+
 #### Version 11.1.2
 * [BUGFIX] Fixed an issue when properties were not sent in `sendInteraction` request.
 
